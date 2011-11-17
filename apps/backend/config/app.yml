@@ -1,0 +1,10 @@
+all:
+  map:
+    path: /apps/frontend/modules/map/xml/
+    images_path: images/map/backgrounds/
+    
+  accueil:
+    items:
+      cell_type:        {link: "@cell_type", label: "Type de cellules"}
+      cell_type_family: {link: "@cell_type_family", label: "Type de famille de cellules"} 
+      front:            {link: "@homepage", label: "Front", application: "frontend"}

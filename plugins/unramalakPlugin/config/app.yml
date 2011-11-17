@@ -1,0 +1,3 @@
+all:
+  editor:
+    pointers: [{label: 'Petit', size: 0}, {label: 'Moyen', size: 1}, {label: 'Grand', size: 2}] # size: number of cells rows before "clicked" element

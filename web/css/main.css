@@ -1,0 +1,58 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	outline: none;	
+}
+body{
+	font-family: Arial;
+	font-size: 12px;
+	width: 956px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 0px;
+}
+#header{
+	border: black solid 1px;
+	height: 75px;	
+}
+#content{
+	border: black solid 1px;
+	padding: 10px;
+	float: left;
+	width: 934px;
+	min-height: 450px;
+}
+#footer{
+	border: black solid 1px;
+	width: 954px;
+}
+
+#logo{
+	height: 50px;
+	float: left;
+}
+
+.floatbreaker{
+	clear: both;
+	border: none;
+}
+
+/* Generals */
+ul
+{
+}
+	ul li
+	{
+		float: left;
+		display: block;
+		padding-right: 10px;
+	}
+
+/* components */
+#connexion-logged{
+	width: 150px;
+	float: right;
+}
+#menu-principal{
+	float: left;
+}

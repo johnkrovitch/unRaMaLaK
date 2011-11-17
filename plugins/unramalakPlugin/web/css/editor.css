@@ -1,0 +1,24 @@
+/* globals */
+.clicked{
+	border: 1px solid red !important;
+}
+
+/* Map Editor */
+#editor{
+	float: left;
+	width: 500px;	
+}
+
+/* Editor Menu */
+#editor-menu{
+	float: left;
+	width: 300px;
+}
+  #editor-menu .cell-type{
+    cursor: pointer;
+  }
+#editor-pointer-menu{
+}
+  #editor-pointer-menu{
+    cursor: pointer;
+  }

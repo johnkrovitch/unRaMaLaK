@@ -1,0 +1,217 @@
+sfGuardUserProfile:
+    tableName: sf_guard_user_profile
+    actAs:        {timestampable: ~}
+    options:      { collate: utf8_unicode_ci, charset: utf8}
+    columns:
+      id:         {type: integer, primary: true, autoincrement: true}
+      user_id:    {type: integer, notnull: true}      
+      birthday:    date      
+      title:      string(20)  # ex: Seigneur du krovitch
+      avatar:     string(255)  
+      id_race:    {type: integer}  
+    relations:     
+      User:       { class: sfGuardUser, foreign: id, local: user_id, type: one, onDelete: cascade, foreignType: one, foreignAlias: Profile}
+      Race:       { local: id_race, foreign: id, type: one}
+
+Army:
+  tableName: army
+  actAs: [Timestampable]  
+  columns:
+    id:            {type: integer, primary: true, autoincrement: true}
+    name:          string(255)   
+      
+Attributes:
+  tableName: attributes
+  columns:
+    id:       {type: integer, primary: true, autoincrement: true}
+    life:     {type: integer, notnull: true}
+    life_max: {type: integer, notnull: true}
+    mana:     {type: integer, notnull: true}
+    mana_max: {type: integer, notnull: true}
+    limit_lvl: {type: integer, notnull: true}
+    limit_max: {type: integer, notnull: true}
+    strength: {type: integer, notnull: true}
+    agility:  {type: integer, notnull: true}
+    intelligence: {type: integer, notnull: true}
+    id_heros: {type: integer, notnull: true}    
+  relations:
+    Heros:    { local: id_heros, foreign: id, type: one}
+      
+Batiment:
+  tableName: batiment
+  actAs: [Timestampable]
+  columns:
+    id:       {type: integer, primary: true, autoincrement: true}
+    name:     {type: string(45), notnull: true}
+    niveau:   {type: integer(2), notnull: true}
+    id_ville: {type: integer, notnull: true}
+    theme: string(45)    
+  relations:
+    Ville:    { local: id_ville, foreign: id, type: one}
+
+      
+Heros:
+  tableName: heros
+  actAs: [Timestampable]  
+  columns:
+    id:       {type: integer, primary: true, autoincrement: true}
+    name:     {type: string(100), notnull: true}
+    level:    {type: integer, default: '1', notnull: true}
+    xp:       {type: integer, default: '0', notnull: true}
+    xp_next_level: {type: integer, notnull: true}
+    id_user:  {type: integer, notnull: true}    
+    position_x: {type: integer, default: '0', notnull: true}
+    position_y: {type: integer, default: '0', notnull: true}
+    id_map:   {type: integer, notnull: true}    
+  relations:
+    Map:      { local: id_map, foreign: id, type: one}    
+    Attributes: { local: id, foreign: id_heros, type: many}
+    
+Item:
+  tableName: item
+  actAs: [Timestampable]
+  columns:
+    id:       {type: integer, primary: true, autoincrement: true}
+    name:     {type: string(100), notnull: true}
+    history:  {type: string(), notnull: true}
+    description: {type: string(), notnull: true}
+    thumbnail:   {type: string(45), notnull: true}
+    real_image:  {type: string(45), notnull: true}
+    is_original: integer(1)
+
+# MAP
+Map:
+  tableName: map
+  columns:
+    id:      {type: integer, primary: true, autoincrement: true}
+    name:    {type: string(100), notnull: true, unique: true}     
+    height:  {type: integer}
+    width:   {type: integer}
+    starting_cell_id: {type: integer}
+  relations:
+    Cell:    {local: id, foreign: id_map, type: many}
+    Starting_Cell: {local: starting_cell_id, foreign: id, type: one, class: Cell}
+      
+Cell:
+  tableName: cell
+  columns:
+    id:         {type: integer, primary: true, autoincrement: true}   
+    position_x: {type: integer, notnull: true}
+    position_y: {type: integer, notnull: true}
+    background_image: {type: string(100)}
+    id_type:    {type: integer}
+    id_map:     {type: integer, notnull: true}
+  relations:
+    Map:        {local: id_map, foreign: id, type: one, onDelete: cascade} 
+            
+Cell_Type:
+  tableName: cell_type
+  columns:
+    id:        {type: integer, primary: true, autoincrement: true}
+    name:      {type: varchar(50), notnull: true}
+    background_image: {type: string(100)}
+    id_type_family: {type: integer, notnull: true}
+  relations:
+    Cell_Type_Family: {local: id_type_family, foreign: id, type: one}
+      
+Cell_Type_Family:
+  tableName: cell_type_family
+  columns:
+    id:        {type: integer, primary: true, autoincrement: true}
+    name:      {type: varchar(50), notnull: true}
+    background_image: {type: string(100)}
+  relations:
+    Cell_Type: {local: id, foreign: id_type_family, type: many}
+      
+Planete:
+  tableName: planete
+  actAs: [Timestampable]
+  columns:
+    id:         {type: integer, primary: true, autoincrement: true}
+    name:       {type: string(45), notnull: true}
+    principal:  {type: integer(1), notnull: true}
+    taille:     {type: string(45), notnull: true}
+    poids:      {type: string(45), notnull: true}
+    atmosphere: {type: string(45), notnull: true}
+    climat:     {type: string(45), notnull: true}
+    temperature: {type: string(45), notnull: true}
+    id_user:    {type: integer, notnull: true}
+  relations:
+    User:
+      local: id_user
+      foreign: id
+      type: one
+    Ville:
+      local: id
+      foreign: id_planete
+      type: many
+Race:
+  tableName: race
+  columns:
+    id:
+      type: integer
+      
+      primary: true
+    name:
+      type: string(45)
+      notnull: true
+    theme: string(45)
+  relations:    
+    User:
+      local: id
+      foreign: id_race
+      type: many
+      
+Position:
+  tableName: position
+  columns:
+    id:
+      type: integer
+      
+      primary: true
+    position_x:
+      type: integer
+      notnull: true
+    position_y:
+      type: integer
+      notnull: true
+    id_map:
+      type: integer
+      
+      primary: true
+  relations:
+    Map:
+      local: id_map
+      foreign: id
+      type: one    
+ 
+Ville:
+  tableName: ville
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer
+      
+      primary: true
+      autoincrement: true
+    name:
+      type: string(45)
+      notnull: true
+    capital:
+      type: integer(1)
+      notnull: true
+    taille:
+      type: string(45)
+      notnull: true
+    id_planete:
+      type: integer      
+      notnull: true
+  relations:
+    Planete:
+      local: id_planete
+      foreign: id
+      type: one
+    Batiment:
+      local: id
+      foreign: id_ville
+      type: many

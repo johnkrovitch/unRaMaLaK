@@ -1,0 +1,64 @@
+Race:
+  Race_1:
+    id: 1
+    name: Zaloumeks
+    theme: null
+  Race_2:
+    id: 2
+    name: Les Humains
+    theme: null
+  Race_3:
+    id: 3
+    name: Les Pirates
+    theme: null
+  Race_4:
+    id: 4
+    name: Les Bioptères
+    theme: null 
+  Race_5:
+    id: 5
+    name: Les Aqualytes
+    theme: null
+  Race_6:
+    id: 6
+    name: Les Robots
+    theme: null 
+    
+Cell_Type_Family:
+  Eau:
+    name: "Eau"
+    background_image: uploads/cell_type/eau.png
+  Foret:
+    name: "Forêt"
+    background_image: uploads/cell_type/foret.png
+  Desert:
+    name: "Désert"
+    background_image: uploads/cell_type/desert.png
+  Plaine:
+    name: "Plaine"
+    background_image: uploads/cell_type/plat.png
+  Neige:
+    name: "Neige"
+    background_image: uploads/cell_type/glace.png
+    
+Cell_Type:
+  Eau_Profonde:
+    name: "Eau profonde"
+    background_image:
+    Cell_Type_Family: Eau    
+  Foret_1:
+    name: "Forêt de pins"
+    background_image:
+    Cell_Type_Family: Foret 
+  Desert_1:
+    name: "Désert"
+    background_image:
+    Cell_Type_Family: Desert
+  Plaine_1:
+    name: "Plaine"
+    background_image:
+    Cell_Type_Family: Plaine
+  Neige_1:
+    name: "Neige"
+    background_image: 
+    Cell_Type_Family: Neige    

@@ -1,0 +1,3 @@
+all:
+  menu_plugin:
+    default_route: "@homepage"
