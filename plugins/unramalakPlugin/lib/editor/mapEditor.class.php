@@ -1,5 +1,7 @@
 <?php
 
+// TODO unramalak: à supprimer
+
 class mapEditor
 {
 	private $map;
@@ -18,7 +20,7 @@ class mapEditor
 	
 	public function render()
 	{
-	  $limit = unramalakUtils::parseWithDelimiter(sfConfig::get('app_editor_map_size'));	  
+	  $limit = unramalakUtils::parseWithDelimiter(sfConfig::get('app_editor_map_size'));
 	  $starting_point = $this->getMap()->getStartingCell()->getPoint();
 	  $ending_point = $this->getMap()->getEndingCell($starting_point, $limit)->getPoint();
 	  
@@ -69,10 +71,10 @@ class mapEditor
 	private function renderPointerMenu()
 	{
 	  $content = '<div id="editor-pointer-menu"><ul>';
-	  //var_dump($this->pointers );
+	  
 	  foreach($this->pointers as $pointer){
-	    $content.= '<li><span>'.$pointer['label'].'</span>';
-      $content.= '<input type="hidden" class="value" value="'.$pointer['size'].'" /></li>';
+	    $content.= '<li><a>'.$pointer['label'].'</a>';
+      $content.= '<input type="hidden" class="pointer-size-value" value="'.$pointer['size'].'" /></li>';
 	  }
 	  $content .= '</ul></div>';
 	  

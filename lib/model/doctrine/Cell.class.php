@@ -12,7 +12,7 @@
  */
 class Cell extends BaseCell
 {
-  public function render()
+  /*public function render()
   {
     $content = '<span class="cell">';
     $content.= image_tag($this->getBackgroundImage(), array('alt' => 'map-cell'));
@@ -34,15 +34,15 @@ class Cell extends BaseCell
       }
     }
     return $cell_array;
-  }
+  }*/
 
   public function getPoint()
   {
     return new Point($this->getPositionX(), $this->getPositionY());
   }
   
-  public function getLimitPoint()
+  /*public function getLimitPoint()
   {
     
-  }
+  }*/
 }

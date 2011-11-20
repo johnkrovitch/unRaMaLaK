@@ -2,6 +2,7 @@
 $(document).ready(function() {
   $('#editor-menu .item').clickable(true, '#editor-menu *', setCellType);
   $('#editor-pointer-menu li').clickable(true, '#editor-pointer-menu li', setMapHoverable);
+
 });
 
 /* Change the type of a cell */
@@ -38,5 +39,31 @@ function setMapHoverable(element){
 
   });
 }
+
+var unramalakEditor =  $.jClass({
+  init: function(){
+    $('editor-pointer-menu ')
+    $('.cell-pointer-size')
+
+  }
+ });
+
+var unramalak = $.jClass({
+  init: function(){
+    this.loadEditorContext();
+  },
+  editorContext: null,
+  loadEditorContext: function(){
+    this.editorContext = new unramalakEditorContext();
+  }
+});
+
+var unramalakEditorContext = $.jClass({
+  init: function(){
+    
+  }
+
+
+});
 
 // TODO faire $.unramalak

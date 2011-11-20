@@ -1,7 +1,5 @@
-<div id="editor">
-  <?php echo html_entity_decode($editor->render()); ?>
+<div id="editor-container">
+  <?php include_component('map_editor', 'show', array('map_id' => $map_id)); ?>
 </div>
-
-<?php echo html_entity_decode($editor->renderMenu()); ?>
 
 <?php echo link_to('Précedent', '@map') ?>

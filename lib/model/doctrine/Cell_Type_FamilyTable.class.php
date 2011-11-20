@@ -7,13 +7,23 @@
  */
 class Cell_Type_FamilyTable extends Doctrine_Table
 {
-    /**
-     * Returns an instance of this class.
-     *
-     * @return Cell_Type_FamilyTable
-     */
-    public static function getInstance()
-    {
-      return Doctrine_Core::getTable('Cell_Type_Family');
-    }
+  /**
+   * Returns an instance of this class.
+   *
+   * @return Cell_Type_FamilyTable
+   */
+  public static function getInstance()
+  {
+    return Doctrine_Core::getTable('Cell_Type_Family');
+  }
+
+  /**
+   * @return Doctrine_Collection
+   */
+  public function getFamiliesWithCellType()
+  {
+    return $this->createQuery('f')
+      ->leftJoin('f.CellType c')
+      ->execute();
+  }
 }

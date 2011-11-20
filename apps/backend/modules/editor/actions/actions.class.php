@@ -17,9 +17,9 @@ class editorActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-		$map = new mapClass();
+		/*$map = new mapClass();
 		$map->generate();
 		$this->map = $map;
-		print_r($map);
+		print_r($map);*/
 	}
 }

@@ -44,6 +44,10 @@ class mapActions extends sfActions
 	
 	public function executeEdit(sfWebRequest $request)
 	{
-	  $this->editor = new mapEditor($request->getParameter('id'));
+	  //$this->editor = new mapEditor($request->getParameter('id'));
+
+    $this->map_id = $request->getParameter('id');
+
+
 	}
 }

@@ -11,4 +11,19 @@ class unramalakUtils
     }
     return $return_array;
   }
+
+  public static function sortInTable($flat_array, $row_method = 'getPositionX')
+  {
+    $rows = array();
+    $columns = array();
+
+    foreach($flat_array as $item){
+
+      if(!isset($rows[$item->$row_method()])){
+        $rows[$item->$row_method()] = array();
+      }
+      $rows[$item->$row_method()][] = $item;
+    }
+    return $rows;
+  }
 }

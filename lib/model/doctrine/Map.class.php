@@ -12,35 +12,21 @@
  */
 class Map extends BaseMap
 {
-  public function render(Point $starting_point, Point $ending_point)
-	{
-	  $content = '<table id="map-table" cellpadding="0" cellspacing="0">';
-	  $last_row = -1;
-	  $cells = CellTable::getInstance()->getCellsBetweenPosition($this->getId(), $starting_point, $ending_point);
-	  
-	  foreach($cells as $cell){
-	    if($cell->getPositionY() > $last_row){
-	      $last_row = $cell->getPositionY();
-	      $content.= '<tr>';
-	    }	    
-	    $content.= '<td>';	    
-	    $content.= $cell->render();
-	    $content.= '</td>';
-	    
-	    if($cell->getPositionY() > $last_row){
-	      $content.= '</tr>';
-	    }	    
-	  }
-	  $content.= '</table>';
-	  
-	  return $content;
-	}
-	
+  /**
+   * Return the cell where map should start
+   * @return mixed
+   */
 	public function getStartingCell()
 	{
 	  return CellTable::getInstance()->find($this->getStartingCellId());
 	}
-	
+
+  /**
+   * Return the last cell to be generated
+   * @param Point $point
+   * @param $limit
+   * @return Doctrine_Collection|mixed
+   */
 	public function getEndingCell(Point $point, $limit)
 	{
 	  $ending_point = new Point($point->getX() + $limit[0], $point->getY() + $limit[1]);
@@ -49,7 +35,6 @@ class Map extends BaseMap
 	  if(!$ending_cell){
 	    $ending_cell = CellTable::getInstance()->getLastCell($this_>getId());
 	  }
-	  
 	  return $ending_cell;
 	}
 }
