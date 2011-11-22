@@ -8,7 +8,7 @@ all:
     menu:
       accueil: {link: "@homepage", label: "Accueil"}
       map    : {link: "@map", label: "Map", is_secure: true}
-      backend: {link: "@homepage", label: "Backoffice", application: "backend"}
+      backend: {link: "backend.php", label: "Backoffice"}
     
   global_config:
     input_max_length: 50  

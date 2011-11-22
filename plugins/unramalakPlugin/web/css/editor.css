@@ -1,24 +1,29 @@
 /* globals */
-.clicked{
-	border: 1px solid red !important;
+/* line 2, ../sass/editor.scss */
+.clicked {
+  border: 1px solid red !important;
 }
 
 /* Map Editor */
-#editor{
-	float: left;
-	width: 500px;	
+/* line 7, ../sass/editor.scss */
+#editor {
+  float: left;
+  width: 500px;
 }
 
 /* Editor Menu */
-#editor-menu{
-	float: left;
-	width: 300px;
+/* line 13, ../sass/editor.scss */
+#editor-menu {
+  float: left;
+  width: 300px;
 }
-  #editor-menu .cell-type{
-    cursor: pointer;
-  }
-#editor-pointer-menu{
+
+/* line 17, ../sass/editor.scss */
+#editor-menu .cell-type {
+  cursor: pointer;
 }
-  #editor-pointer-menu{
-    cursor: pointer;
-  }
+
+/* line 22, ../sass/editor.scss */
+#editor-pointer-menu {
+  cursor: pointer;
+}

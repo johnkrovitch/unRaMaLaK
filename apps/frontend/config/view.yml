@@ -9,7 +9,7 @@ default:
     language:     fr
     robots:       index, follow
 
-  stylesheets:    [main, jquery-ui, /unramalakPlugin/css/editor]
+  stylesheets:    [main, jquery-ui, /unramalakPlugin/css/editor, /unramalakPlugin/css/menu]
 
   javascripts:    [jquery/jquery.min, jquery/jquery-ui.min, jquery/jquery.maskedinput.min, jquery/jquery.class, /unramalakPlugin/js/unramalak.js]
  

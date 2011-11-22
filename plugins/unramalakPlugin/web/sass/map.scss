@@ -1,0 +1,13 @@
+/* Map */
+#map{
+  float: left;
+}
+
+#map-editor-table td{
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
+  #map-editor-table td:hover{
+    border: 1px solid red;
+  }

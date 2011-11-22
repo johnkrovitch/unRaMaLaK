@@ -6,11 +6,16 @@
 body{
 	font-family: Arial;
 	font-size: 12px;
-	width: 956px;
+
+}
+
+#container{
+  width: 956px;
 	margin-right: auto;
 	margin-left: auto;
 	padding: 0px;
 }
+
 #header{
 	border: black solid 1px;
 	height: 75px;	

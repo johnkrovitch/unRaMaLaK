@@ -9,15 +9,16 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-  	<div id="header">
-  		<?php echo image_tag('logo.png', array('id'=>'logo')); ?>  		  	  				  		
-  		<?php include_partial('menu/login'); ?>
-  	  <?php include_component('menu','show'); ?>
-  	</div>
-  	<div id="content">  		
+
+    <?php include_component('menu','show'); ?>
+    
+  	<div id="container">
     	<?php echo $sf_content ?>
+
+      <div class="floatBreaker"></div>
+      <div id="footer">UnRaMaLaK&reg; est une marque déposé de Krovitch&co</div>
+
     </div>
-    <div class="floatBreaker"></div>
-    <div id="footer">UnRaMaLaK&reg; est une marque déposé de Krovitch&co</div>
+
   </body>
 </html>
