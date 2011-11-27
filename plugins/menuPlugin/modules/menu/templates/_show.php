@@ -1,4 +1,4 @@
-<div id="menu-bar">
+<div id="menu-bar" class="">
   <ul id="main-menu">
 
   <?php foreach($menu as $menu_item): ?>
@@ -9,3 +9,9 @@
     
   </ul>
 </div>
+
+<script>
+$(document).ready(function(){
+  $('#menu-bar').addClass('onLoad');
+});
+</script>

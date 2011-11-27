@@ -53,3 +53,9 @@ $.fn.toCellsArray = function(){
   }
   return table_array;
 }
+
+
+
+$(document).ready(function(){
+  //$('body').animate({backgroundPosition: '(224px -119px)'}, 3000, 'swing', function(){ });
+});

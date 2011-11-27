@@ -4,31 +4,53 @@
   width: 1000px;
   margin-right: auto;
   margin-left: auto;
-  background: #737373;
+  opacity: 0.8;
 }
 
 /* line 15, ../sass/scss/main.scss */
+.container-background-color, #container, #login {
+  background: #ffffff;
+}
+
+/* line 20, ../sass/scss/main.scss */
 * {
   margin: 0px;
   padding: 0px;
   outline: none;
 }
 
-/* line 20, ../sass/scss/main.scss */
+/* line 25, ../sass/scss/main.scss */
 body {
   font-family: Arial;
   font-size: 12px;
-  background: #000000;
+  background: url("../images/logo.png") no-repeat 224px -119px black;
+  padding-top: 124px;
+  -moz-transition-property: opacity;
+  -webkit-transition-property: opacity;
+  -o-transition-property: opacity;
+  transition-property: opacity;
+  -moz-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  transition-duration: 1s;
 }
 
-/* line 26, ../sass/scss/main.scss */
+/* line 36, ../sass/scss/main.scss */
 .floatbreaker {
   clear: both;
   border: none;
 }
 
-/* line 33, ../sass/scss/main.scss */
+/* line 43, ../sass/scss/main.scss */
 ul li {
   float: left;
   display: inline-block;
+}
+
+/* line 51, ../sass/scss/main.scss */
+#login {
+  position: relative;
+  left: 450px;
+  top: -101px;
+  width: 400px;
 }

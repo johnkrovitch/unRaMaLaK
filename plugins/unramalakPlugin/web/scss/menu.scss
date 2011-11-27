@@ -7,6 +7,10 @@
 
   @include background(linear-gradient(top, #000000, #000000 44%, #737373 95%));
 
+  &:load{
+  height: 200px;
+  }
+
   #main-menu{
     width: $site-width;
     margin: 0px auto 0px auto;

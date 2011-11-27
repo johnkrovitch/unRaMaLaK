@@ -7,8 +7,13 @@
   width: $site-width;
   margin-right: auto;
   margin-left: auto;
+  opacity: 0.8;
 
-  background: #737373;
+  @extend .container-background-color;
+}
+
+.container-background-color{
+  background: #ffffff;
 }
 
 // site
@@ -20,8 +25,13 @@
 body{
 	font-family: Arial;
 	font-size: 12px;
-	background: #000000;
+	background: url('../images/logo.png') no-repeat 224px -119px #000000;
+  padding-top: 124px;
   //@include background(radial-gradient(color-stops(#ffffff, #000000), top));
+
+  @include transition-property(opacity);
+  @include transition-duration(1s);
+  //@include transition-timing-function(ease-in);
 }
 .floatbreaker{
 	clear: both;
@@ -34,4 +44,15 @@ ul{
 		float: left;
 		display: inline-block;
 	}
+}
+
+
+// Homepage
+#login{
+  position: relative;
+  left: 450px;
+  top: -101px;
+  width: 400px;
+
+  @extend .container-background-color;
 }

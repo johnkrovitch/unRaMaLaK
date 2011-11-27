@@ -8,7 +8,7 @@
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
-  <body>
+  <body class="onLoad">
 
     <?php include_component('menu','show'); ?>
     
