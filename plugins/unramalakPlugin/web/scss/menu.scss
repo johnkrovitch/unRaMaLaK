@@ -1,0 +1,85 @@
+// main top menu
+#menu-bar{
+  height: $menu-height;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+
+  @include background(linear-gradient(top, #000000, #000000 44%, #737373 95%));
+
+  #main-menu{
+    width: $site-width;
+    margin: 0px auto 0px auto;
+    font-size: $font-size-big;
+
+    // items
+    li{
+      height: $menu-height;
+      text-align: center;
+    }
+    a{
+      color: #ffffff;
+      padding: 10px 35px 0px 35px;
+      height: $menu-height - 10px;
+      text-decoration: none;
+      display: block;
+
+      &:hover{
+        @include background(linear-gradient(top, #737373, #000000 44%, #000000 95%));
+      }
+      &:active{
+        opacity: 0.8;
+      }
+      &.active{
+        text-decoration: underline;
+        color: #d10000;
+      }
+    }
+  }
+}
+
+/*
+
+
+
+
+-moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+
+
+
+
+
+
+
+737373
+
+
+background-image: linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
+background-image: -o-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
+background-image: -moz-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
+background-image: -webkit-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
+background-image: -ms-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
+
+background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(115,115,115)),
+	color-stop(0.94, rgb(0,0,0)),
+	color-stop(0.79, rgb(1,5,15))
+);
+
+
+
+
+
+.in-css3 {
+  background: url(foo.png),
+              linear-gradient(top left, #333, #0c0),
+              radial-gradient(#c00, #fff 100px);
+}
+.with-compass {
+  @include background(image-url("foo.png"),
+                      linear-gradient(top left, #333, #0c0),
+                      radial-gradient(#c00, #fff 100px));
+}*/

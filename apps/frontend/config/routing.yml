@@ -1,7 +1,7 @@
 # @homepage
 homepage:
   url:   /
-  param: { module: accueil, action: index }
+  param: { module: homepage, action: index }
   
 # @backend
 backend:

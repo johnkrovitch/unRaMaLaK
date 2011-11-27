@@ -16,7 +16,7 @@
     	<?php echo $sf_content ?>
 
       <div class="floatBreaker"></div>
-      <div id="footer">UnRaMaLaK&reg; est une marque déposé de Krovitch&co</div>
+      <div id="footer">UnRaMaLaK&reg; est une marque déposée de Krovitch&co&trade;</div>
 
     </div>
 

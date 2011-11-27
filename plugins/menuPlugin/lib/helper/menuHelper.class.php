@@ -44,4 +44,14 @@ class menuHelper
     }
     return menuHelper::$_instance;
   }
+
+  public static function url_for($route)
+  {
+    return (substr($route, 0, 1) == '@') ? url_for($route) : $route;
+  }
+
+  public static function getCssClass($current_item_route, $current_route)
+  {
+    return substr($current_item_route, 1) == $current_route ? 'class="active"' : '';
+  }
 }
