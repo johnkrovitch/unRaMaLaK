@@ -17,6 +17,7 @@ class map_editorComponents extends sfComponents
     }
     // init menu
     $menu_options['cell_types_families'] = Cell_Type_FamilyTable::getInstance()->findAll();
+    $menu_options['pointers'] = sfConfig::get('app_editor_pointers');
 	  $map_options['map'] = MapTable::getInstance()->find($map_id);
 
     // init map

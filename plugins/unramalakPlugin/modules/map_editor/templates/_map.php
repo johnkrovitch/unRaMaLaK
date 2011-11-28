@@ -5,7 +5,9 @@
     <tr>
     <?php foreach($rows as $cell): ?>
 
-      <td><?php echo $cell->getBackgroundImage() ?></td>
+      <td data-position-x="<?php echo $cell->getPositionX() ?>" data-position-y="<?php echo $cell->getPositionY() ?>">
+        <?php echo image_tag($cell->getBackgroundImage(), array()) ?>
+      </td>
 
     <?php endforeach; ?>
     </tr>

@@ -1,3 +1,0 @@
-all:
-  stylesheets: [/unramalakPlugin/css/map.css]  
-  javascripts: [/unramalakPlugin/js/map.js]

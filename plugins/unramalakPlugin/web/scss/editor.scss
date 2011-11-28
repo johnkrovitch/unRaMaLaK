@@ -2,11 +2,17 @@
 .clicked{
 	border: 1px solid red !important;
 }
+.hovered{
+  border: 1px solid blue !important;
+}
 
 /* Map Editor */
 #editor{
 	float: left;
 	width: 500px;
+}
+#map-editor{
+  height: 500px; // TODO unramalak: height à supprimer ?
 }
 
 /* Editor Menu */
