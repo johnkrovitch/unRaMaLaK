@@ -7,38 +7,24 @@ $.fn.unClick = function(){
 	return $(this).removeClass('clicked');
 };
 
-// change cell state on click
-/*$.fn.clickable = function(single, pattern, callback) {
-  $(this).click(function() {
-	  // add class "clicked" to clicked object
-    if($(this).isClicked()) {	
-      $(this).removeClass('clicked');
-    }else{
-      // delete all already clicked objects in pattern
-      if(single == true){
-        $(pattern).each(function() {
-          $(this).removeClass('clicked');
-        });
-      }
-      $(this).addClass('clicked');
-    }
-    // add custom function
-    if(typeof callback == 'function'){
-      callback($(this));
-    }
-  });
-  return $(this);
-};*/
+function htmlDecode(input){
+  var e = document.createElement('div');
+  e.innerHTML = input;
+  return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+}
 
 $.fn.clickable = function(pattern, callback){
   $(this).click(function(){
 
-    if($(this).isClicked()){
+    if($(this).isClicked()){ // two clicks on same element = deselect
       $(this).removeClass('clicked');
     }else{
-      $(pattern + ' *').each(function(){
-        $(this).removeClass('clicked');
-      });
+      // remove any other .clicked in pattern
+      if(typeof pattern != undefined){
+        $(pattern + ' *').each(function(){
+          $(this).removeClass('clicked');
+        });
+      }
       $(this).addClass('clicked');
     }
     // add custom function

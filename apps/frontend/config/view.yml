@@ -11,7 +11,7 @@ default:
 
   stylesheets:    [main, jquery-ui, unramalakPlugin]
 
-  javascripts:    [jquery/jquery.min, jquery/jquery-ui.min, jquery/jquery.maskedinput.min, jquery/jquery.class, jquery/jquery.background-position, /unramalakPlugin/js/unramalak, /unramalakPlugin/js/map]
+  javascripts:    [jquery/jquery.min, jquery/jquery-ui.min, jquery/jquery.maskedinput.min, jquery/jquery.class, jquery/jquery.background-position, main, /unramalakPlugin/js/unramalak, /unramalakPlugin/js/map]
  
   has_layout:     on
   layout:         layout

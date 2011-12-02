@@ -11,11 +11,15 @@
   <body class="onLoad">
 
     <?php include_component('menu','show'); ?>
+
+    <div class="title">
+      <p>Bienvenue dans l'antre du Kalamar géant...</p>
+    </div>
     
   	<div id="container">
     	<?php echo $sf_content ?>
 
-      <div class="floatBreaker"></div>
+
       <div id="footer">UnRaMaLaK&reg; est une marque déposée de Krovitch&co&trade;</div>
 
     </div>

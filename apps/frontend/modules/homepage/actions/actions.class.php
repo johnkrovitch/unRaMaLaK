@@ -17,9 +17,6 @@ class homepageActions extends sfActions
 	 */
 	public function executeIndex(sfWebRequest $request)
 	{
-		// si l'utilisateur n'a pas de race, on le redirige		
-		//if(!$this->getUser()->hasRace()){
-		//	$this->redirect('race/index');
-		//}
+    $this->is_user_authenticated = $this->getUser()->isAuthenticated();
 	}
 }

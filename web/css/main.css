@@ -1,56 +1,100 @@
 /* line 5, ../sass/scss/main.scss */
+body {
+  font-family: Arial;
+  font-size: 12px;
+  background: #bfbfbf;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #bfbfbf 0%, black 6%, #13173d 13%, #040a18 29%, #05011d 67%, black 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #bfbfbf), color-stop(6%, black), color-stop(13%, #13173d), color-stop(29%, #040a18), color-stop(67%, #05011d), color-stop(100%, black));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #bfbfbf 0%, black 6%, #13173d 13%, #040a18 29%, #05011d 67%, black 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #bfbfbf 0%, black 6%, #13173d 13%, #040a18 29%, #05011d 67%, black 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #bfbfbf 0%, black 6%, #13173d 13%, #040a18 29%, #05011d 67%, black 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#bfbfbf', endColorstr='#000000',GradientType=0 );
+  /* IE6-9 */
+  min-height: 750px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-color: #000000;
+}
+
+/* line 38, ../sass/scss/main.scss */
 #container {
-  margin-top: 40px;
   width: 1000px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 65px;
   opacity: 0.8;
 }
+/* line 52, ../sass/scss/main.scss */
+#container .content {
+  -moz-box-shadow: 3px -3px 4px rgba(161, 3, 3, 0.76);
+  height: 500px;
+  padding: 25px;
+  clear: both;
+}
 
-/* line 15, ../sass/scss/main.scss */
-.container-background-color, #container, #login {
+/* line 63, ../sass/scss/main.scss */
+.title {
+  height: 40px;
+  width: 500px;
+  padding: 5px;
+  float: right;
+  margin-right: 75px;
+  -moz-box-shadow: 3px -3px 4px rgba(161, 3, 3, 0.76);
+}
+
+/* line 76, ../sass/scss/main.scss */
+.container-background-color, #container, .title, .login-container .login {
   background: #ffffff;
 }
 
-/* line 20, ../sass/scss/main.scss */
+/* line 81, ../sass/scss/main.scss */
 * {
   margin: 0px;
   padding: 0px;
   outline: none;
 }
 
-/* line 25, ../sass/scss/main.scss */
-body {
-  font-family: Arial;
-  font-size: 12px;
-  background: url("../images/logo.png") no-repeat 224px -119px black;
-  padding-top: 124px;
-  -moz-transition-property: opacity;
-  -webkit-transition-property: opacity;
-  -o-transition-property: opacity;
-  transition-property: opacity;
-  -moz-transition-duration: 1s;
-  -webkit-transition-duration: 1s;
-  -o-transition-duration: 1s;
-  transition-duration: 1s;
-}
-
-/* line 36, ../sass/scss/main.scss */
+/* line 87, ../sass/scss/main.scss */
 .floatbreaker {
   clear: both;
   border: none;
 }
 
-/* line 43, ../sass/scss/main.scss */
+/* line 91, ../sass/scss/main.scss */
+.hidden {
+  display: none;
+}
+
+/* line 97, ../sass/scss/main.scss */
 ul li {
   float: left;
   display: inline-block;
 }
 
-/* line 51, ../sass/scss/main.scss */
-#login {
+/* line 104, ../sass/scss/main.scss */
+.login-container {
+  height: 0px;
+}
+/* line 107, ../sass/scss/main.scss */
+.login-container .login {
   position: relative;
   left: 450px;
-  top: -101px;
+  top: -17px;
   width: 400px;
+  height: 150px;
 }
+/* line 117, ../sass/scss/main.scss */
+.login-container .login.minimized {
+  heigth: 50px;
+}
+
+/*background: rgb(0,7,221); /* Old browsers */
+/*background: -moz-linear-gradient(top,  rgba(0,7,221,1) 2%, rgba(0,3,94,1) 21%, rgba(0,3,94,1) 54%, rgba(24,24,38,1) 100%); /* FF3.6+ */

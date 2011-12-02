@@ -64,8 +64,12 @@ var unramalakEditor =  $.jClass({
       context.currentCellTypeObject = $(this);
     });
     // add hover effects on map cells
-    $(context.mapCells).hoverable().clickable(context.mapContainer, function(){
+    $(context.mapCells).hoverable().click(function(){
+      if(context.hasItemSelected()){
+        alert('trace');
 
+        $(this).html($(context.currentCellTypeObject).html());
+      }
     });
     //$('#editor-pointer-menu li').addEvent(true, '#editor-pointer-menu li', setMapHoverable);
 
@@ -92,6 +96,9 @@ var unramalakEditorContext = $.jClass({
     this.cellsMenu = cellsMenu;
     this.mapContainer = mapContainer;
     this.mapCells = mapCells;
+  },
+  hasItemSelected: function(){
+    return this.currentCellTypeObject != null;
   }
 });
 
