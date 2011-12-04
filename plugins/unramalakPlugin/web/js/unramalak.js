@@ -14,14 +14,14 @@ function htmlDecode(input){
 }
 
 $.fn.clickable = function(pattern, callback){
-  $(this).click(function(){
+  $(this).bind('click', function(){
 
     if($(this).isClicked()){ // two clicks on same element = deselect
       $(this).removeClass('clicked');
     }else{
       // remove any other .clicked in pattern
       if(typeof pattern != undefined){
-        $(pattern + ' *').each(function(){
+        $(pattern).each(function(){
           $(this).removeClass('clicked');
         });
       }

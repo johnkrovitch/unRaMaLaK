@@ -8,7 +8,6 @@ var unramalak = $.jClass({
   saveUrl: '',
 
   init: function(saveUrl){
-
     this.saveUrl = saveUrl;
 
     // init map and editor context
@@ -74,7 +73,7 @@ var unramalakEditor =  $.jClass({
 
   init: function(context){
     // bind click on pointerSize change
-    $(context.pointerMenu).clickable(context.editorMenu, function(element){
+    $(context.pointerMenu).clickable(context.pointerMenu, function(element){
       context.pointerSize = element.data('pointer-size');
     });
     // add click effects on menu items

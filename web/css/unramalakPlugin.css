@@ -1,12 +1,12 @@
 /* globals */
 /* line 2, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 .clicked {
-  border: 1px solid red !important;
+  border: 1px solid red;
 }
 
 /* line 5, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 .hovered {
-  border: 1px solid blue !important;
+  border: 1px solid blue;
 }
 
 /* Map Editor */
@@ -20,20 +20,39 @@
 #map-editor {
   height: 500px;
 }
-
-/* Editor Menu */
-/* line 19, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
-#editor-menu {
-  float: left;
-  width: 300px;
+/* line 17, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+#map-editor .clicked {
+  border: none;
+  -moz-box-shadow: 0px 0px 4px rgba(161, 3, 3, 0.9);
+  background-color: rgba(161, 3, 3, 0.4);
+  padding: 1px;
 }
 
-/* line 23, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* Editor Menu */
+/* line 26, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+#editor-menu {
+  float: right;
+  width: 300px;
+}
+/* line 34, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+#editor-menu ul li {
+  width: 100px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 42, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+.editor-menu-container, #editor-menu > div {
+  width: 100%;
+  clear: both;
+}
+
+/* line 49, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-menu .cell-type {
   cursor: pointer;
 }
 
-/* line 28, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* line 54, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-pointer-menu {
   cursor: pointer;
 }
@@ -43,7 +62,7 @@
   height: 40px;
   width: 100%;
   position: fixed;
-  top: 0;
+  top: 0px;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(44%, #000000), color-stop(95%, #737373));
   background: -webkit-linear-gradient(top, #000000, #000000 44%, #737373 95%);
   background: -moz-linear-gradient(top, #000000, #000000 44%, #737373 95%);
@@ -154,5 +173,4 @@ background-image: -webkit-gradient(
   display: block;
   height: 100%;
   width: 100%;
-  background: #c77405;
 }

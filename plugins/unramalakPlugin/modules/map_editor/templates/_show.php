@@ -12,7 +12,7 @@
   
 </div>
 
-<script type="javascript">
+<script type="text/javascript">
   // Unramalak launch
   $(document).ready(function(){
     var ur = new unramalak("<?php echo url_for('@save_map') ?>");
