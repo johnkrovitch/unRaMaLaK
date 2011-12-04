@@ -25,7 +25,7 @@ class mapActions extends sfActions
 	  
 	  if($request->getMethod() == sfWebRequest::POST){
 	    $this->form->bind($request->getParameter('map'));
-	    
+
 	    if($this->form->isValid()){
 	      $this->form->save();
 	      $this->redirect('@map');
@@ -47,7 +47,22 @@ class mapActions extends sfActions
 	  //$this->editor = new mapEditor($request->getParameter('id'));
 
     $this->map_id = $request->getParameter('id');
-
-
 	}
+
+  public function executeSave(sfWebRequest $request)
+  {
+    $nb_rows_affected = 0;
+
+    if($request->isXmlHttpRequest()){
+      $data = json_decode($request->getParameter('data'));
+
+      foreach($data as $cell_data){
+        $nb_rows_affected += CellTable::getInstance()->updateCell($cell_data);
+      }
+      echo $nb_rows_affected;
+
+      return sfView::NONE;
+    }
+    $this->nb_rows_affected = $nb_rows_affected;
+  }
 }

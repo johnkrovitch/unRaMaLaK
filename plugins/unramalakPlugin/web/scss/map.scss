@@ -1,10 +1,18 @@
 /* Map */
 #map{
   float: left;
-}
 
-#map-editor-table td{
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
+  #map-editor-table td{
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+
+    img{
+      // temporaire
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: #c77405;
+    }
+  }
 }

@@ -1,52 +1,71 @@
-/* Map Editor */
-$(document).ready(function() {
-
-
-});
-
-/* Change the type of a cell */
-function setCellType(element){
-  $('#map-table td').click(function() {
-    $(this).html(element.clone().unClick());
-  });
-}
-
-function setMapHoverable(element){
-  $('#map-table td').hover(function() {
-    var value = element.children('.value').val(); // element est un <li>
-    var col = $(this).parent().children().index($(this));
-    var row = $(this).parent().parent().children().index($(this).parent());
-
-    var cell = $(this).parent().children();
-    var table = $(this).parents('table').toCellsArray();
-
-    for(var i = 0; i < table.length; i++){
-      for(var j = 0; j < table[i].length; j++){
-
-        if(i >= (row - value) && i <= (row + value)){
-          alert('i:'+i + ' row:'+ row + ' value:'+ value + ' test:' + (i <= (row + value)));
-          $(table[i][j]).css('background', 'blue');
-        }
-
-        if(i >= row - value && i <= row + value && j >= col + value && j <= col - value){
-          //alert('i:'+i+' j:'+j+' row:'+row+' value:'+value);
-
-        }
-      }
-
-    }
-
-  });
-}
+// unramalak map API
 
 var unramalak = $.jClass({
   editorContext: null,
   editor: null,
+  mapContext: null,
   map: null,
+  saveUrl: '',
 
-  init: function(){
-    this.editorContext = new unramalakEditorContext('#editor-menu', '#editor-pointer-menu li.pointer .item', '#cell-family-container li.cell-type .item', '#map-editor-table', '#map-editor-table td');
+  init: function(saveUrl){
+
+    this.saveUrl = saveUrl;
+
+    // init map and editor context
+    this.editorContext = new unramalakEditorContext({
+      editorMenu: '#editor-menu',
+      editorPointerMenu: '#editor-pointer-menu li.pointer .item',
+      cellsMenu:  '#cell-family-container li.cell-type .item'
+    });
+    this.mapContext = new unramalakMapContext({
+      mapContainer: '#map-editor-table',
+      mapCells:  '#map-editor-table td',
+      saveButton: '.save-map'
+    });
+  },
+
+  /**
+   * Launch function required because in function init(), other class methods have not been loaded yet
+   */
+  launch: function(){
+    var _super = this;
+
     this.editor = new unramalakEditor(this.editorContext);
+    this.map = new unramalakMap(this.mapContext);
+
+    // map binding
+    $(this.map).bind('save', function(){
+      _super.save();
+    }).bind('load', function(){
+      // load stuff here
+    }).bind('cellClick', function(){
+      if(_super.editorContext.hasItemSelected()){
+        _super.map.updateCell(_super.editorContext.pointerSize, $(_super.editorContext.currentCellTypeObject).clone());
+      }
+    });
+  },
+
+  save: function(){
+    var cellsValues = new Array();
+    var jsonData = '';
+
+    // save stuff here
+    $(this.mapContext.mapCells).each(function(){
+
+      var id = $(this).data('id');
+      var idType = $(this).getIdType();
+      var x = $(this).getPosition('x');
+      var y = $(this).getPosition('y');
+      var backgroundImage = $(this).getBackgroundImage();
+
+      cellsValues.push({id: id, id_type: idType, x: x, y: y, background_image: backgroundImage});
+      jsonData = JSON.stringify(cellsValues, null);
+    });
+    $.ajax({
+      type: 'POST',
+      url: this.saveUrl,
+      data: 'data=' + jsonData
+    });
   }
 });
 
@@ -55,24 +74,14 @@ var unramalakEditor =  $.jClass({
 
   init: function(context){
     // bind click on pointerSize change
-    $(context.pointerMenu).clickable(context.parentMenu, function(){
-      context.pointerSize = $(this).data('pointer-size');
+    $(context.pointerMenu).clickable(context.editorMenu, function(element){
+      context.pointerSize = element.data('pointer-size');
     });
     // add click effects on menu items
-    $(context.cellsMenu).clickable(context.parentMenu, function(){
-      context.currentCellType = $(this).data('cell-type');
-      context.currentCellTypeObject = $(this);
+    $(context.cellsMenu).clickable(context.cellsMenu, function(element){
+      context.currentCellType = element.data('id-type');
+      context.currentCellTypeObject = element;
     });
-    // add hover effects on map cells
-    $(context.mapCells).hoverable().click(function(){
-      if(context.hasItemSelected()){
-        alert('trace');
-
-        $(this).html($(context.currentCellTypeObject).html());
-      }
-    });
-    //$('#editor-pointer-menu li').addEvent(true, '#editor-pointer-menu li', setMapHoverable);
-
     this.context = context;
   }
  });
@@ -83,27 +92,104 @@ var unramalakEditorContext = $.jClass({
   currentCellType: 0,
   currentCellTypeObject: null,
   // menu
-  parentMenu: null,
+  editorMenu: null,
   pointerMenu: null,
   cellsMenu: null,
-  // map
-  mapContainer: null,
-  mapCells: null,
 
-  init: function(parentMenu, pointerMenu, cellsMenu, mapContainer, mapCells){
-    this.parentMenu = parentMenu;
-    this.pointerMenu = pointerMenu;
-    this.cellsMenu = cellsMenu;
-    this.mapContainer = mapContainer;
-    this.mapCells = mapCells;
+  init: function(options){
+    this.editorMenu = options.editorMenu;
+    this.pointerMenu = options.editorPointerMenu;
+    this.cellsMenu = options.cellsMenu;
   },
   hasItemSelected: function(){
     return this.currentCellTypeObject != null;
   }
 });
 
-// TODO faire $.unramalak
+var unramalakMap = $.jClass({
+  cellClickedObject: null,
+  context: null,
 
-$(document).ready(function(){
-  new unramalak();
+  init: function(context){
+    var _super = this;
+
+    // add hover effects on map cells and cells images copy according to pointerSize
+    $(context.mapCells).hoverable(context.mapContainer, context.pointerSize).bind('click', function(){
+      // fire event cellClick for unramalak object to update cell
+      _super.cellClickedObject = $(this);
+      $(_super).trigger('cellClick');
+    }).bind('contextmenu', function(e){
+        context.setMapClicked(e.pageX, e.pageY);
+        e.stopPropagation();
+        return false;
+    }).bind('mouseup', function(){
+      context.setMapNotClicked();
+    }).bind('mousemove',function(e){
+
+      if(context.isMapClicked()){
+        // TODO stuff here...
+
+      }
+    });
+    // save map
+    $('.map-save').bind('click', function(){
+      $(_super).trigger('save');
+    });
+    this.context = context;
+  },
+
+  updateCell: function(pointerSize, clonedCellTypeObject){
+    var currentCell = this.cellClickedObject;
+    currentCell.empty();
+    currentCell.append(clonedCellTypeObject);
+
+    // get coordinates of current clicked cells
+    var currentX = currentCell.getPosition('x');
+    var currentY = currentCell.getPosition('y');
+
+    // fills other cells according to pointerSize
+    if(parseInt(pointerSize) > 0){
+
+      $(this.context.mapCells).each(function(){
+        var x = $(this).getPosition('x');
+        var y = $(this).getPosition('y');
+        var xValid = (x >= (currentX - pointerSize) && x <= currentX) || (x <= (currentX + pointerSize) && x >= currentX);
+        var yValid = (y >= (currentY - pointerSize) && y <= currentY) || (y <= (currentY + pointerSize) && y >= currentY);
+
+        if(xValid && yValid){
+          $(this).empty();
+          $(this).append(clonedCellTypeObject.clone());
+        }
+      });
+    }
+  }
+});
+
+var unramalakMapContext = $.jClass({
+  // map
+  mapContainer: null,
+  mapCells: null,
+  mapContext: null,
+  // actions
+  saveButton: null,
+  mapXClicked: null,
+  mapYClicked: null,
+
+  init: function(options){
+    this.mapContainer = options.mapContainer;
+    this.mapCells = options.mapCells;
+    this.saveButton = options.saveButton;
+  },
+
+  setMapClicked: function(pageX, pageY){
+    this.mapXClicked = pageX;
+    this.mapYClicked = pageY;
+  },
+  setMapNotClicked: function(){
+    this.mapXClicked = null;
+    this.mapYClicked = null;
+  },
+  isMapClicked: function(){
+    return typeof this.mapXClicked != undefined || typeof this.mapYClicked != undefined;
+  }
 });

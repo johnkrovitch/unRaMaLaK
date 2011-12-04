@@ -17,6 +17,16 @@ class CellTable extends Doctrine_Table
       return Doctrine_Core::getTable('Cell');
   }
 
+  public function updateCell($cell_data)
+  {
+    return $this->createQuery('c')
+      ->update('Cell c')
+      ->set('c.id_type', '?', $cell_data->id_type)
+      ->set('c.background_image', '?', $cell_data->background_image)
+      ->where('c.id = ?', intval($cell_data->id))
+      ->execute();
+  }
+
   /**
    * 
    * Enter description here ...
@@ -45,7 +55,7 @@ class CellTable extends Doctrine_Table
     ->fetchOne();
   }
   
-  public function getLastCell($id_map)
+  /*public function getLastCell($id_map)
   {
     $max_cell = $this->createQuery('c1')
       ->select('MAX(c1.position_x) AS max_x, MAX(c1.position_y) AS max_y')
@@ -57,5 +67,5 @@ class CellTable extends Doctrine_Table
      ->andWhere('c.position_x = ?', $max_cell['max_x'])
      ->andWhere('c.position_y = ?', $max_cell['max_y'])
      ->execute();
-  }
+  }*/
 }

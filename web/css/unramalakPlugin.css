@@ -43,7 +43,7 @@
   height: 40px;
   width: 100%;
   position: fixed;
-  top: 0px;
+  top: 0;
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(44%, #000000), color-stop(95%, #737373));
   background: -webkit-linear-gradient(top, #000000, #000000 44%, #737373 95%);
   background: -moz-linear-gradient(top, #000000, #000000 44%, #737373 95%);
@@ -143,10 +143,16 @@ background-image: -webkit-gradient(
 #map {
   float: left;
 }
-
-/* line 6, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-#map-editor-table td {
+/* line 5, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+#map #map-editor-table td {
   width: 40px;
   height: 40px;
   border: 1px solid black;
+}
+/* line 10, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+#map #map-editor-table td img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: #c77405;
 }

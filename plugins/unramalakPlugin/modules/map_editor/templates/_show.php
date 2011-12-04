@@ -11,3 +11,11 @@
   </div>
   
 </div>
+
+<script type="javascript">
+  // Unramalak launch
+  $(document).ready(function(){
+    var ur = new unramalak("<?php echo url_for('@save_map') ?>");
+    ur.launch();
+  });
+</script>

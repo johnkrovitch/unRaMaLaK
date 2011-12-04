@@ -43,3 +43,7 @@ delete_map:
 edit_map:
   url:  /map/edit
   param: { module: map, action: edit }
+
+save_map:
+  url: /map/save
+  param: { module: map, action: save }

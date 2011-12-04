@@ -1,6 +1,6 @@
 // return true if elt has "clicked" class
 $.fn.isClicked = function() {
-  return $(this).hasClass('clicked')
+  return $(this).hasClass('clicked');
 }
 // remove class clicked
 $.fn.unClick = function(){
@@ -38,20 +38,39 @@ $.fn.clickable = function(pattern, callback){
 $.fn.hoverable = function(pattern, pointerSize){
 	$(this).hover(function(){
     $(this).addClass('hovered');
-
-    if(parseInt(pointerSize) > 1){
-      
-    }
-
-
-
   }, function(){
     $(this).removeClass('hovered');
   });
 	return $(this);
 };
 
-$.fn.toCellsArray = function(){
+$.fn.getPosition = function(position){
+  return $(this).data('position-' + position);
+};
+
+$.fn.getBackgroundImage = function(){
+  var image = $(this).find('img');
+  return image.length > 0 ? image.attr('src') : '';
+};
+
+$.fn.getIdType = function(){
+  var idType = $(this).find('img').data('cell-type');
+  return isNaN(idType) ? '' : idType;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*$.fn.toCellsArray = function(){
   var table_array = new Array(500);
   var rows = $(this).find('tr');
   var i = 0;
@@ -67,10 +86,18 @@ $.fn.toCellsArray = function(){
     table_array[i] = rows_array;
   }
   return table_array;
-}
+}*/
 
 
 
 $(document).ready(function(){
   //$('body').animate({backgroundPosition: '(224px -119px)'}, 3000, 'swing', function(){ });
+});
+
+$(document).ajaxStart(function(){
+  $('.loader').show();
+});
+
+$(document).ajaxStop(function(){
+  $('.loader').hide();
 });

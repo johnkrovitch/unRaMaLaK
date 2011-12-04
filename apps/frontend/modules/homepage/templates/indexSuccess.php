@@ -9,7 +9,7 @@
 <?php endif; ?>
 
 
-<div class="content">
+<div class="homepage">
   <div>
     <p>Gloire à Unramalak, le dieu-kalamar qui asservit l'unvivers</p>
   </div>

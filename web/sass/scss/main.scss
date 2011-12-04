@@ -1,7 +1,6 @@
 // frontend main css
 @import "partials/_imports.scss";
 
-
 body{
 	font-family: Arial;
 	font-size: 12px;
@@ -32,8 +31,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', end
   //font-family: 'Unlock', cursive;
 }
 
-
-
 // container
 #container{
   width: $site-width;
@@ -41,7 +38,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', end
   margin-left: auto;
   margin-top: $menu-height + 25px;
 
-  @extend .container-background-color;
+
   //padding-top: 124px;
 
   opacity: 0.8;
@@ -51,7 +48,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', end
 
   .content{
 
-    -moz-box-shadow: 3px -3px 4px rgba(161, 3, 3, 0.76);
+    @extend .container-background-color;
+
+    -moz-box-shadow: 3px -3px 50px rgba(161, 3, 3, 0.76);
         //-webkit-box-shadow: -6px -4px 77px rgba(0, 0, 0, 0.76);
      height: 500px;
      padding: $site-padding;
@@ -64,9 +63,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', end
      @extend .container-background-color;
      height: 40px;
      width: 500px;
-     padding: 5px;
      float: right;
+     padding: 5px;
      margin-right: 75px;
+     text-align: center;
+     font-family: 'Unlock', cursive;
 
      -moz-box-shadow: 3px -3px 4px rgba(161, 3, 3, 0.76);
   }
@@ -91,8 +92,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bfbfbf', end
 .hidden{
   display: none;
 }
-
-// Generals
+.loader{
+  display: none;
+  height: 16px;
+  width: 16px;
+  background-image: url('../images/ajax-loader.gif');
+}
 ul{
 	li{
 		float: left;

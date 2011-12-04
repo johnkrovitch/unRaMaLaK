@@ -6,19 +6,23 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
+    <link href='http://fonts.googleapis.com/css?family=Unlock' rel='stylesheet' type='text/css'>
     <?php include_javascripts() ?>
   </head>
   <body class="onLoad">
 
     <?php include_component('menu','show'); ?>
-
-    <div class="title">
-      <p>Bienvenue dans l'antre du Kalamar géant...</p>
-    </div>
     
   	<div id="container">
-    	<?php echo $sf_content ?>
 
+      <div class="title">
+        <p>Bienvenue dans l'antre du Kalamar géant...</p>
+        <h1>Unramalak</h1>
+      </div>
+
+      <div class="content">
+        <?php echo $sf_content ?>
+      </div>
 
       <div id="footer">UnRaMaLaK&reg; est une marque déposée de Krovitch&co&trade;</div>
 

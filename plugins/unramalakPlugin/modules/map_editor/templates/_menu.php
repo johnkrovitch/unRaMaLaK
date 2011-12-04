@@ -26,3 +26,8 @@
 	</ul>
 
 </div>
+
+<div class="map-editor-actions">
+  <input type="button" class="map-save" value="Sauvegarder"/>
+  <div class="loader"></div>
+</div>
