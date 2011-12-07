@@ -4,13 +4,11 @@ class menuComponents extends sfComponents
 {
 	public function executeShow()
 	{
-	  $items = sfConfig::get('app_menu', array());
-    $menu = array();
+    $menu_config_key = $this->getVar('menu');
+	  $menu = sfConfig::get('app_menu_'.$menu_config_key, array());
 
-    if(is_array($items)){
-      $menu = $items;
-    }
     $this->setVar('menu', $menu);
+    $this->setVar('menu_name', $menu_config_key);
     $this->setVar('current_route_name', $this->getContext()->getRouting()->getCurrentRouteName());
 	}
 }

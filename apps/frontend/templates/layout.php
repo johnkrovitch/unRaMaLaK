@@ -11,7 +11,7 @@
   </head>
   <body class="onLoad">
 
-    <?php include_component('menu','show'); ?>
+    <?php include_component('menu','show', array('menu' => 'main_menu')); ?>
     
   	<div id="container">
 

@@ -3,12 +3,9 @@ all:
     routes_register:        true
     profile_class:      sfGuardUserProfile
     profile_field_name: user_id
-    
-  .menu:
-    menu:
-      accueil: {link: "@homepage", label: "Accueil"}
-      map    : {link: "@map", label: "Map", is_secure: true}
-      backend: {link: "backend.php", label: "Backoffice"}
+
+  menu:
+    main_menu: {home: {link: "@homepage", label: "Accueil"}, map: {link: "@map", label: "Map", is_secure: true}, backend: {link: "backend.php", label: "Backoffice"}}
     
   global_config:
     input_max_length: 50  
@@ -29,6 +26,3 @@ all:
   xp:
     xp_update_coefficient: 1.2
     xp_start: 50
-  
-    
-      

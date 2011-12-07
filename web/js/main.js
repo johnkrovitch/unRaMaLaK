@@ -14,4 +14,8 @@ $(document).ready(function(){
     }
     e.preventDefault();
   });
+
+  $('.main_menu .login').addHiddenMenu('.login-hidden');
+
+  sfWebDebugToggleMenu();
 });

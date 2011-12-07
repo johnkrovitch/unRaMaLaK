@@ -44,6 +44,21 @@ $.fn.hoverable = function(pattern, pointerSize){
 	return $(this);
 };
 
+$.fn.addHiddenMenu = function(menu){
+  var top = $(this).offset().top + $(this).height();
+  var left = $(this).offset().left;
+  var unit = 'px';
+
+
+
+  $(this).click(function(){
+    console.log(top);
+    $(menu).css('top', top + unit);
+    $(menu).css('left', left + unit);
+    $(menu).toggle('slow');
+  });
+}
+
 $.fn.getPosition = function(position){
   return $(this).data('position-' + position);
 };

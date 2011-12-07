@@ -1,0 +1,30 @@
+// resuable scss classes
+
+.floatbreaker{
+	clear: both;
+	border: none;
+}
+.hidden{
+  display: none;
+}
+.loader{
+  display: none;
+  height: 16px;
+  width: 16px;
+  background-image: url('../images/ajax-loader.gif');
+}
+
+// red shadow with high radius
+.red-box-shadow{
+  @include box-shadow(3px -3px 50px $dark-red);
+}
+
+// main container color
+.container-background-color{
+  background: #ffffff;
+}
+
+// main fonts
+.unlock{
+  font-family: 'Unlock', cursive;
+}

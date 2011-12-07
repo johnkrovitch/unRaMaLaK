@@ -3,7 +3,7 @@
 
     <a class="login-link" href="<?php echo url_for('@new_player') ?>"><span class="arrow">&and;</span>Se connecter</a>
 
-    <div class="hidden">
+    <div class="">
 
       <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
         <table>

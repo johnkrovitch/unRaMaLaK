@@ -5,7 +5,7 @@ class menuHelper
   protected $applicationRouting = null;
   protected static $_instance = null;
   
-  public function getApplicationRouting($application, sfWebRequest $request, $controller = null)
+  /*public function getApplicationRouting($application, sfWebRequest $request, $controller = null)
   {
     if (!$this->applicationRouting)
     {
@@ -24,26 +24,26 @@ class menuHelper
       $this->applicationRouting->setRoutes($routes);
     }
     return $this->applicationRouting;
-  }
-  
+  }*/
+
   /**
   * Creates cross-application links
   */
-  public function generateApplicationRoute($application, $controller = null, $request, $name, $parameters = array())
+  /*public function generateApplicationRoute($application, $controller = null, $request, $name, $parameters = array())
   {
     return $this->getApplicationRouting($application, $request, $controller)->generate(str_replace('@', '', $name), $parameters, true);
-  }
+  }*/
   
   /**
    * @return menuHelper object
    */
-  public static function getInstance()
+  /*public static function getInstance()
   {
     if(!menuHelper::$_instance){
       menuHelper::$_instance = new self();
     }
     return menuHelper::$_instance;
-  }
+  }*/
 
   public static function url_for($route)
   {
