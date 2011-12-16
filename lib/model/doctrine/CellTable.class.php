@@ -33,6 +33,7 @@ class CellTable extends Doctrine_Table
    * @param unknown_type $id_map
    * @param Point $starting_point
    * @param Point $ending_point
+   * @return \Doctrine_Collection
    */
   public function getCellsBetweenPosition($id_map, Point $starting_point, Point $ending_point)
   {

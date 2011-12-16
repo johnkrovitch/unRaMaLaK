@@ -37,19 +37,20 @@
 
 /* line 4, ../sass/scss/main.scss */
 body {
-  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bfbfbf), color-stop(6%, #000000), color-stop(13%, #13173d), color-stop(29%, #040a18), color-stop(67%, #05011d), color-stop(100%, #000000));
-  background: -webkit-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
-  background: -moz-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
-  background: -o-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
-  background: -ms-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
-  background: linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #bfbfbf), color-stop(6%, #000000), color-stop(13%, #13173d), color-stop(29%, #040a18), color-stop(67%, #05011d), color-stop(100%, #000000));
+  background-image: -webkit-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
+  background-image: -moz-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
+  background-image: -o-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
+  background-image: -ms-linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
+  background-image: linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%);
   font-family: Arial;
   font-size: 12px;
   background-repeat: no-repeat;
+  background-color: #000000;
   min-height: 750px;
 }
 
-/* line 15, ../sass/scss/main.scss */
+/* line 16, ../sass/scss/main.scss */
 #container {
   width: 1000px;
   margin-right: auto;
@@ -57,14 +58,14 @@ body {
   margin-top: 65px;
   opacity: 0.8;
 }
-/* line 22, ../sass/scss/main.scss */
+/* line 23, ../sass/scss/main.scss */
 #container .content {
   height: 500px;
   padding: 25px;
   clear: both;
 }
 
-/* line 33, ../sass/scss/main.scss */
+/* line 34, ../sass/scss/main.scss */
 .title {
   -moz-box-shadow: 3px -3px 4px rgba(161, 3, 3, 0.76);
   -webkit-box-shadow: 3px -3px 4px rgba(161, 3, 3, 0.76);
@@ -78,14 +79,14 @@ body {
   text-align: center;
 }
 
-/* line 47, ../sass/scss/main.scss */
+/* line 48, ../sass/scss/main.scss */
 * {
   margin: 0px;
   padding: 0px;
   outline: none;
 }
 
-/* line 54, ../sass/scss/main.scss */
+/* line 55, ../sass/scss/main.scss */
 ul li {
   float: left;
   display: inline-block;

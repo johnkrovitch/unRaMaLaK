@@ -14,3 +14,11 @@ $cell-width: 15px;
 
 // colors
 $dark-red: rgba(161, 3, 3, 0.76);
+
+// mixins
+@function font-size-to($to-size, $from-size: $base-font-size) {
+  @if not $relative-font-sizing and $from-size != $base-font-size {
+    @warn "$relative-font-sizing is false but a relative font size was passed to adjust-font-size-to";
+  }
+  @return $font-unit * $to-size / $from-size;
+}

@@ -10,9 +10,9 @@
  * @property integer $height
  * @property integer $width
  * @property integer $starting_cell_id
- * @property Doctrine_Collection $Cell
  * @property Cell $Starting_Cell
  * @property Doctrine_Collection $Heros
+ * @property Doctrine_Collection $Cell
  * @property Doctrine_Collection $Position
  * 
  * @method integer             getId()               Returns the current record's "id" value
@@ -20,18 +20,18 @@
  * @method integer             getHeight()           Returns the current record's "height" value
  * @method integer             getWidth()            Returns the current record's "width" value
  * @method integer             getStartingCellId()   Returns the current record's "starting_cell_id" value
- * @method Doctrine_Collection getCell()             Returns the current record's "Cell" collection
  * @method Cell                getStartingCell()     Returns the current record's "Starting_Cell" value
  * @method Doctrine_Collection getHeros()            Returns the current record's "Heros" collection
+ * @method Doctrine_Collection getCell()             Returns the current record's "Cell" collection
  * @method Doctrine_Collection getPosition()         Returns the current record's "Position" collection
  * @method Map                 setId()               Sets the current record's "id" value
  * @method Map                 setName()             Sets the current record's "name" value
  * @method Map                 setHeight()           Sets the current record's "height" value
  * @method Map                 setWidth()            Sets the current record's "width" value
  * @method Map                 setStartingCellId()   Sets the current record's "starting_cell_id" value
- * @method Map                 setCell()             Sets the current record's "Cell" collection
  * @method Map                 setStartingCell()     Sets the current record's "Starting_Cell" value
  * @method Map                 setHeros()            Sets the current record's "Heros" collection
+ * @method Map                 setCell()             Sets the current record's "Cell" collection
  * @method Map                 setPosition()         Sets the current record's "Position" collection
  * 
  * @package    unramalak
@@ -69,15 +69,16 @@ abstract class BaseMap extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Cell', array(
+        $this->hasOne('Cell as Starting_Cell', array(
+             'local' => 'starting_cell_id',
+             'foreign' => 'id',
+             'onDelete' => 'cascade'));
+
+        $this->hasMany('Heros', array(
              'local' => 'id',
              'foreign' => 'id_map'));
 
-        $this->hasOne('Cell as Starting_Cell', array(
-             'local' => 'starting_cell_id',
-             'foreign' => 'id'));
-
-        $this->hasMany('Heros', array(
+        $this->hasMany('Cell', array(
              'local' => 'id',
              'foreign' => 'id_map'));
 

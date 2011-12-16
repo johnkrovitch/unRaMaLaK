@@ -1,90 +1,91 @@
 // main top menu
-#menu-bar{
+
+#menu-bar-container{
   height: $menu-height;
   width: 100%;
   position: fixed;
   top: 0px;
+  z-index: 10;
+  color: #ffffff;
 
   @include background(linear-gradient(top, #000000, #000000 44%, #737373 95%));
 
-  a{
-    color: #ffffff;
-    padding: 10px 35px 0px 35px;
-    height: $menu-height - 10px;
-    text-decoration: none;
-    display: block;
-
-    &:hover{
-      @include background(linear-gradient(top, #737373, #000000 44%, #000000 95%));
-    }
-    &:active{
-      opacity: 0.8;
-    }
-    &.active{
-      text-decoration: underline;
-      color: #d10000;
-    }
-  }
-  .main_menu{
+  #menu-bar{
     width: $site-width;
-    margin: 0px auto 0px auto;
-    font-size: $font-size-big;
+    margin: 0px auto;
 
-    // items
-    li{
-      height: $menu-height;
-      text-align: center;
+    a{
+      color: #ffffff;
+      padding: 10px 35px 0px 35px;
+      height: $menu-height - 10px;
+      text-decoration: none;
+      display: block;
 
+      &:hover{
+        @include background(linear-gradient(top, #737373, #000000 44%, #000000 95%));
+      }
+      &:active{
+        opacity: 0.8;
+      }
+      &.active{
+        text-decoration: underline;
+        color: #d10000;
+      }
       &.login{
         float: right;
         background: url("../images/icons/down_arrow.png") no-repeat scroll right transparent;
       }
     }
-  }
-  .login-hidden{
-    @extend .unlock;
-    @include background(linear-gradient(top, #737373, #000000 44%, #000000 95%));
+    .main_menu{
+      margin: 0px auto 0px auto;
+      font-size: $font-size-big;
 
-    width: 380px;
-    position: absolute;
-    padding: 0 10px 10px 10px;
-    z-index: 10;
-    color: #ffffff;
-
-    input{
-      float: left;
+      // items
+      li{
+        height: $menu-height;
+        text-align: center;
+      }
     }
-    h2{
-      margin-bottom: 5px;
-    }
-    span{
-      width: 380px;
-      display: block;
-    }
-    input[type="submit"]{
+    .login-hidden{ // hidden login form
       @extend .unlock;
+      @include background(linear-gradient(top, #000000, #000000 44%, #737373 95%));
 
-      -moz-border-radius:50px;
-      -webkit-border-radius:50px;
-      border-radius:50px;
+      width: 412px;
+      position: absolute;
+      padding: 0 10px 10px 10px;
+      z-index: 10;
+      color: #ffffff;
 
-      -moz-box-shadow:0 1px 0 rgba(0,0,0,0.3);
-      -webkit-box-shadow:0 1px 0 rgba(0,0,0,0.3);
-      box-shadow:0 1px 0 rgba(0,0,0,0.3);
+      h2{
+        margin: 5px;
+      }
+      span{ // span required for better display on jquery.show()
+        width: 412px;
+        display: block;
+      }
+      input[type="submit"]{
+        @extend .unlock;
+        @include border-radius(50px);
+        @include box-shadow(0 1px 0 rgba(0,0,0,0.3));
+        @include background(liner-gradient(19% 75% 90deg, #E0E0E0, #FAFAFA));
 
-      background: -moz-linear-gradient(19% 75% 90deg, #E0E0E0, #FAFAFA);
-
-      background: -webkit-gradient(linear, left top, left bottom, from(#FAFAFA), to(#E0E0E0));
-
-      color:#4A4A4A;
-      padding: 2px;
-      text-shadow:1px 1px 0 rgba(255, 255, 255, 0.7);
-      font-size: 12px;
-      margin: 10px 10px 0px 0px;
+        color:#4A4A4A;
+        padding: 2px;
+        text-shadow:1px 1px 0 rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+      }
+    }
+    .logged{
       float: right;
+      padding: 10px;
 
+      a{
+        display: inline;
+        padding: 0px;
+      }
     }
   }
+
 }
 
 /*

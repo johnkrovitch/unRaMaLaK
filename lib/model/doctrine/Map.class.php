@@ -18,7 +18,8 @@ class Map extends BaseMap
    */
 	public function getStartingCell()
 	{
-	  return CellTable::getInstance()->find($this->getStartingCellId());
+	  //return CellTable::getInstance()->find($this->getStartingCellId());
+    return $this->Cell->getFirst();
 	}
 
   /**

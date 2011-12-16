@@ -45,17 +45,22 @@ $.fn.hoverable = function(pattern, pointerSize){
 };
 
 $.fn.addHiddenMenu = function(menu){
-  var top = $(this).offset().top + $(this).height();
-  var left = $(this).offset().left;
+  var top = $(this).offset().top + $(this).height() + 15;
+  var left = $(this).offset().left - 200;
   var unit = 'px';
 
-
-
-  $(this).click(function(){
-    console.log(top);
+  $(this).click(function(e){
     $(menu).css('top', top + unit);
     $(menu).css('left', left + unit);
     $(menu).toggle('slow');
+
+    e.stopPropagation();
+  });
+  $(menu).click(function(e){
+    e.stopPropagation();
+  });
+  $(document).click(function(){
+    $(menu).hide('slow');
   });
 }
 
@@ -72,47 +77,3 @@ $.fn.getIdType = function(){
   var idType = $(this).find('img').data('cell-type');
   return isNaN(idType) ? '' : idType;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*$.fn.toCellsArray = function(){
-  var table_array = new Array(500);
-  var rows = $(this).find('tr');
-  var i = 0;
-
-  for (i = 0; i < rows.length; i++){
-    var j = 0;
-    var cells = $(rows[i]).find('td');
-    var rows_array = new Array(cells.length);
-
-    for (j = 0; j <= cells.length; j++){
-      rows_array[j] = cells[j];
-    }
-    table_array[i] = rows_array;
-  }
-  return table_array;
-}*/
-
-
-
-$(document).ready(function(){
-  //$('body').animate({backgroundPosition: '(224px -119px)'}, 3000, 'swing', function(){ });
-});
-
-$(document).ajaxStart(function(){
-  $('.loader').show();
-});
-
-$(document).ajaxStop(function(){
-  $('.loader').hide();
-});

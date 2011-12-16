@@ -25,7 +25,7 @@ ALTER TABLE batiment ADD CONSTRAINT batiment_id_ville_ville_id FOREIGN KEY (id_v
 ALTER TABLE cell ADD CONSTRAINT cell_id_map_map_id FOREIGN KEY (id_map) REFERENCES map(id) ON DELETE CASCADE;
 ALTER TABLE cell_type ADD CONSTRAINT cell_type_id_type_family_cell_type_family_id FOREIGN KEY (id_type_family) REFERENCES cell_type_family(id);
 ALTER TABLE heros ADD CONSTRAINT heros_id_map_map_id FOREIGN KEY (id_map) REFERENCES map(id);
-ALTER TABLE map ADD CONSTRAINT map_starting_cell_id_cell_id FOREIGN KEY (starting_cell_id) REFERENCES cell(id);
+ALTER TABLE map ADD CONSTRAINT map_starting_cell_id_cell_id FOREIGN KEY (starting_cell_id) REFERENCES cell(id) ON DELETE CASCADE;
 ALTER TABLE position ADD CONSTRAINT position_id_map_map_id FOREIGN KEY (id_map) REFERENCES map(id);
 ALTER TABLE ville ADD CONSTRAINT ville_id_planete_planete_id FOREIGN KEY (id_planete) REFERENCES planete(id);
 ALTER TABLE sf_guard_forgot_password ADD CONSTRAINT sf_guard_forgot_password_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;

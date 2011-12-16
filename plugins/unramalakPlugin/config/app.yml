@@ -1,3 +1,15 @@
 all:
   editor:
     pointers: [{label: 'Petit', size: 0}, {label: 'Moyen', size: 1}, {label: 'Grand', size: 2}] # size: number of cells rows before "clicked" element
+    map_size: 20x20 # width x height
+    cache_size: 20 # number of circles of cells in cache
+
+    # map configuration
+    map:
+      absolute_path: "%sf_upload_dir%/maps"
+
+      path: /apps/frontend/modules/map/xml/
+      images_path: map/backgrounds/
+      #map_test: map_test.xml
+
+      #polygon_line_size: 20 # taille de l'arete des polygones

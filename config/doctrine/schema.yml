@@ -89,8 +89,8 @@ Map:
     width:   {type: integer}
     starting_cell_id: {type: integer}
   relations:
-    Cell:    {local: id, foreign: id_map, type: many}
-    Starting_Cell: {local: starting_cell_id, foreign: id, type: one, class: Cell}
+    Cells:    {local: id, foreign: id_map, type: many, onDelete: cascade}
+    Starting_Cell: {local: starting_cell_id, foreign: id, type: one, class: Cell, onDelete: cascade}
       
 Cell:
   tableName: cell

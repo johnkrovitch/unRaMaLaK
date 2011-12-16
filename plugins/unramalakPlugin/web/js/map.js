@@ -41,6 +41,8 @@ var unramalak = $.jClass({
       if(_super.editorContext.hasItemSelected()){
         _super.map.updateCell(_super.editorContext.pointerSize, $(_super.editorContext.currentCellTypeObject).clone());
       }
+    }).bind('move', function(){
+      _super.move();
     });
   },
 
@@ -65,6 +67,10 @@ var unramalak = $.jClass({
       url: this.saveUrl,
       data: 'data=' + jsonData
     });
+  },
+
+  move: function(){
+    console.log('move2');
   }
 });
 
@@ -110,7 +116,7 @@ var unramalakMap = $.jClass({
   context: null,
 
   init: function(context){
-    var _super = this;
+    var _super = $(this);
 
     // add hover effects on map cells and cells images copy according to pointerSize
     $(context.mapCells).hoverable(context.mapContainer, context.pointerSize).bind('click', function(){
@@ -119,15 +125,15 @@ var unramalakMap = $.jClass({
       $(_super).trigger('cellClick');
     }).bind('contextmenu', function(e){
         context.setMapClicked(e.pageX, e.pageY);
-        e.stopPropagation();
+        // stop right clicks
+        //e.stopPropagation();
         return false;
     }).bind('mouseup', function(){
       context.setMapNotClicked();
     }).bind('mousemove',function(e){
 
       if(context.isMapClicked()){
-        // TODO stuff here...
-
+        _super.trigger('move');
       }
     });
     // save map

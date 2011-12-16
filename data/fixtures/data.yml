@@ -27,19 +27,19 @@ Race:
 Cell_Type_Family:
   Eau:
     name: "Eau"
-    background_image: uploads/cell_type/eau.png
+    background_image: map/cells/sea.png
   Foret:
     name: "Forêt"
-    background_image: uploads/cell_type/foret.png
+    background_image: map/cells/forest.png
   Desert:
     name: "Désert"
-    background_image: uploads/cell_type/desert.png
+    background_image: map/cells/desert.png
   Plaine:
     name: "Plaine"
-    background_image: uploads/cell_type/plat.png
+    background_image: map/cells/hills.png
   Neige:
     name: "Neige"
-    background_image: uploads/cell_type/glace.png
+    background_image: map/cells/snow.png
     
 Cell_Type:
   Eau_Profonde:

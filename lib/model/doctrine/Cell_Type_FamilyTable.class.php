@@ -23,7 +23,7 @@ class Cell_Type_FamilyTable extends Doctrine_Table
   public function getFamiliesWithCellType()
   {
     return $this->createQuery('f')
-      ->leftJoin('f.CellType c')
+      ->leftJoin('f.Cell_Type c')
       ->execute();
   }
 }

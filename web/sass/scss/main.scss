@@ -2,11 +2,12 @@
 @import "partials/_imports.scss";
 
 body{
-  @include background(linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%));
+  @include background-image(linear-gradient(top, #bfbfbf 0%, #000000 6%, #13173d 13%, #040a18 29%, #05011d 67%, #000000 100%));
 
   font-family: Arial;
 	font-size: 12px;
   background-repeat: no-repeat;
+  background-color: #000000;
   // TODO unramalak : supprimer cette propriété quand yaura assez de contenu
   min-height: 750px;
 }

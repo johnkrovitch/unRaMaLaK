@@ -17,10 +17,28 @@ class MapTable extends Doctrine_Table
     return Doctrine_Core::getTable('Map');
   }
 
-  public function getMapWithDatas()
+  public function getMapAndStartingPoint($map_id)
   {
-    return $this->createQuery('m')
-      ->leftJoin('m.Cells c')
+    return Doctrine_Query::create()
+      ->from('Map m')
+      ->where('m.id = ?', $map_id)
+      ->leftJoin('m.Starting_Cell c')
       ->execute();
   }
+
+  /**
+   * Return a map and its related cells
+   * @param $id_map
+   * @param $starting_point
+   * @param $ending_point
+   * @return Map
+   */
+  /*public function getMapWithCells($id_map, $starting_point, $ending_point)
+  {
+    return $this->createQuery('m')
+      ->leftJoin('m.Cell c WITH c.position_x >= ? AND c.position_y >= ? AND c.position_x <= ? AND c.position_y <= ?',
+                  $starting_point->getX(), $starting_point->getY(), $ending_point->getX(), $ending_point->getX())
+      ->where('m.id = ?', $id_map)
+      ->fetchOne();
+  }*/
 }

@@ -1,6 +1,6 @@
 <?php
 
-class cell
+/*class cell
 {
 	private $background = '';
 	private $x;
@@ -53,5 +53,4 @@ class cell
 	  //print_r($cells);
 	  return $cells;
 	}
-}
-
+}*/

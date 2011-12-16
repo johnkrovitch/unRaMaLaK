@@ -11,4 +11,9 @@ class menuComponents extends sfComponents
     $this->setVar('menu_name', $menu_config_key);
     $this->setVar('current_route_name', $this->getContext()->getRouting()->getCurrentRouteName());
 	}
+
+  public function executeLogin(sfWebRequest $request)
+  {
+    $this->form = new sfGuardFormSignin();
+  }
 }

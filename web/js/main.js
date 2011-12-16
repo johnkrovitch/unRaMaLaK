@@ -15,7 +15,30 @@ $(document).ready(function(){
     e.preventDefault();
   });
 
-  $('.main_menu .login').addHiddenMenu('.login-hidden');
+  // menu bar login
+  if($('#menu-bar .login').length != 0){
+    $('#menu-bar .login').addHiddenMenu('.login-hidden');
+  }
+  /*$('form.login-form input[type="submit"]').click(function(e){
+    var form = $(this).parents('form');
+    var submit = $(this);
 
-  sfWebDebugToggleMenu();
+    submit.hide();
+    form.find('.loader').show();
+    $.ajax({
+      type: 'post',
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function(data){
+        form.find('.loader').hide();
+        submit.show();
+      }
+    });
+
+    e.preventDefault();
+  });*/
+
+  if(typeof sfWebDebugToggleMenu == 'function'){
+    //sfWebDebugToggleMenu();
+  }
 });
