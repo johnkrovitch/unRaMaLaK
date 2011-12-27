@@ -14,7 +14,7 @@
 
     <?php endforeach; ?>
     </tr>
-    
+
   <?php endforeach; ?>
   </tbody>
 </table>

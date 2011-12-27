@@ -71,25 +71,29 @@
   float: right;
   width: 300px;
 }
-/* line 34, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* line 30, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+#editor-menu > div {
+  width: 100%;
+  clear: both;
+  float: left;
+  border-radius: 15px;
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+/* line 40, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-menu ul li {
   width: 100px;
   margin-right: 10px;
   margin-bottom: 10px;
 }
 
-/* line 42, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
-.editor-menu-container, #editor-menu > div {
-  width: 100%;
-  clear: both;
-}
-
-/* line 49, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* line 48, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-menu .cell-type {
   cursor: pointer;
 }
 
-/* line 54, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* line 53, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-pointer-menu {
   cursor: pointer;
 }
@@ -253,18 +257,18 @@ background-image: -webkit-gradient(
                       radial-gradient(#c00, #fff 100px));
 }*/
 /* Map */
-/* line 2, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-#map {
+/* line 3, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map {
   float: left;
 }
-/* line 5, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-#map #map-editor-table td {
+/* line 6, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map #map-editor-table td {
   width: 40px;
   height: 40px;
   border: 1px solid black;
 }
-/* line 10, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-#map #map-editor-table td img {
+/* line 11, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map #map-editor-table td img {
   display: block;
   height: 100%;
   width: 100%;

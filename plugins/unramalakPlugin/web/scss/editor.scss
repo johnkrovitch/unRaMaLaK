@@ -28,7 +28,13 @@
   width: 300px;
 
   & > div{
-    @extend .editor-menu-container;
+    width: 100%;
+    clear: both;
+    float: left;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 15px;
   }
   ul{
     li{
@@ -38,13 +44,6 @@
     }
   }
 }
-
-.editor-menu-container{
-  width: 100%;
-  clear: both;
-}
-
-
 
   #editor-menu .cell-type{
     cursor: pointer;

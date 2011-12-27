@@ -1,22 +1,23 @@
 // unramalak map API
 
-var unramalak = $.jClass({
+$.Class('unramalak.unramalak', {},{
   editorContext: null,
   editor: null,
   mapContext: null,
   map: null,
   saveUrl: '',
+  lastPointClicked: null,
 
   init: function(saveUrl){
     this.saveUrl = saveUrl;
 
     // init map and editor context
-    this.editorContext = new unramalakEditorContext({
+    this.editorContext = new unramalak.editorContext({
       editorMenu: '#editor-menu',
       editorPointerMenu: '#editor-pointer-menu li.pointer .item',
       cellsMenu:  '#cell-family-container li.cell-type .item'
     });
-    this.mapContext = new unramalakMapContext({
+    this.mapContext = new unramalak.mapContext({
       mapContainer: '#map-editor-table',
       mapCells:  '#map-editor-table td',
       saveButton: '.save-map'
@@ -28,9 +29,8 @@ var unramalak = $.jClass({
    */
   launch: function(){
     var _super = this;
-
-    this.editor = new unramalakEditor(this.editorContext);
-    this.map = new unramalakMap(this.mapContext);
+    this.editor = new unramalak.editor(this.editorContext);
+    this.map = new unramalak.map(this.mapContext);
 
     // map binding
     $(this.map).bind('save', function(){
@@ -43,6 +43,8 @@ var unramalak = $.jClass({
       }
     }).bind('move', function(){
       _super.move();
+    }).bind('unClick', function(){
+      _super.unClick();
     });
   },
 
@@ -52,7 +54,6 @@ var unramalak = $.jClass({
 
     // save stuff here
     $(this.mapContext.mapCells).each(function(){
-
       var id = $(this).data('id');
       var idType = $(this).getIdType();
       var x = $(this).getPosition('x');
@@ -70,11 +71,19 @@ var unramalak = $.jClass({
   },
 
   move: function(){
-    console.log('move2');
+    if($.isNull(this.lastPointClicked)){
+      this.lastPointClicked = new unramalak.point(this.mapContext.mapXClicked, this.mapContext.mapYClicked);
+    }else{
+    }
+  },
+
+  unClick: function(){
+    console.log('unClick');
+    this.lastPointClicked = null;
   }
 });
 
-var unramalakEditor =  $.jClass({
+$.Class('unramalak.editor', {},{
   context: null,
 
   init: function(context){
@@ -89,9 +98,9 @@ var unramalakEditor =  $.jClass({
     });
     this.context = context;
   }
- });
+});
 
-var unramalakEditorContext = $.jClass({
+$.Class('unramalak.editorContext', {},{
   // vars
   pointerSize: 1,
   currentCellType: 0,
@@ -111,29 +120,32 @@ var unramalakEditorContext = $.jClass({
   }
 });
 
-var unramalakMap = $.jClass({
+$.Class('unramalak.map', {},{
   cellClickedObject: null,
   context: null,
 
   init: function(context){
-    var _super = $(this);
+    var _super = this;
 
     // add hover effects on map cells and cells images copy according to pointerSize
     $(context.mapCells).hoverable(context.mapContainer, context.pointerSize).bind('click', function(){
       // fire event cellClick for unramalak object to update cell
       _super.cellClickedObject = $(this);
       $(_super).trigger('cellClick');
-    }).bind('contextmenu', function(e){
-        context.setMapClicked(e.pageX, e.pageY);
-        // stop right clicks
-        //e.stopPropagation();
-        return false;
-    }).bind('mouseup', function(){
+    }
+    ).bind('contextmenu', function(e){
+      context.setMapClick(e.pageX, e.pageY, 'right');
+      return false;  // stop right click
+    }
+    ).bind('mouseup', function(){
       context.setMapNotClicked();
-    }).bind('mousemove',function(e){
+      $(_super).trigger('unClick');
+    }
+    ).bind('mousemove',function(e){
+      console.log(context.isMapClicked());
 
       if(context.isMapClicked()){
-        _super.trigger('move');
+        $(_super).trigger('move');
       }
     });
     // save map
@@ -144,6 +156,8 @@ var unramalakMap = $.jClass({
   },
 
   updateCell: function(pointerSize, clonedCellTypeObject){
+    console.log('update', this.cellClickedObject);
+
     var currentCell = this.cellClickedObject;
     currentCell.empty();
     currentCell.append(clonedCellTypeObject);
@@ -170,31 +184,53 @@ var unramalakMap = $.jClass({
   }
 });
 
-var unramalakMapContext = $.jClass({
+$.Class('unramalak.mapContext', {},{
   // map
   mapContainer: null,
   mapCells: null,
   mapContext: null,
   // actions
   saveButton: null,
-  mapXClicked: null,
-  mapYClicked: null,
+  click: null,
 
   init: function(options){
     this.mapContainer = options.mapContainer;
     this.mapCells = options.mapCells;
     this.saveButton = options.saveButton;
   },
-
-  setMapClicked: function(pageX, pageY){
-    this.mapXClicked = pageX;
-    this.mapYClicked = pageY;
+  setMapClick: function(pageX, pageY, mouseButton){
+    this.click = new unramalakClick(pageX, pageY, mouseButton);
   },
   setMapNotClicked: function(){
-    this.mapXClicked = null;
-    this.mapYClicked = null;
+    this.click = null;
   },
   isMapClicked: function(){
-    return typeof this.mapXClicked != undefined || typeof this.mapYClicked != undefined;
+    return $.isNull(this.click);
+  }
+});
+
+$.Class('unramalak.point', {},{
+  x: null,
+  y: null,
+
+  init: function(x, y){
+    this.x = x;
+    this.y = y;
+  },
+  getX: function(){
+    return this.x;
+  },
+  getY: function(){
+    return this.y;
+  }
+});
+
+$('unramalak.click', {},{
+  point: null,
+  mouseButton: null,
+
+  init: function(x, y, mouseButton){
+    this.point = new unramalak.point(x, y);
+    this.mouseButton = mouseButton;
   }
 });

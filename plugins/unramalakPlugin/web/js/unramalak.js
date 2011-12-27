@@ -1,3 +1,7 @@
+$.isNull = function(object){
+  return object == 'undefined' || object == null;
+}
+
 // return true if elt has "clicked" class
 $.fn.isClicked = function() {
   return $(this).hasClass('clicked');

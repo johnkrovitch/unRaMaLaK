@@ -2,7 +2,7 @@
 
   <?php //print_r($map_options);?>
 
-  <div id="map">
+  <div class="map">
     <?php include_partial('mapEditor/map', array('map_options' => $map_options)); ?>
   </div>
 
@@ -15,7 +15,7 @@
 <script type="text/javascript">
   // Unramalak launch
   $(document).ready(function(){
-    var ur = new unramalak("<?php echo url_for('@save_map') ?>");
+    var ur = new unramalak.unramalak("<?php echo url_for('@save_map') ?>");
     ur.launch();
   });
 </script>
