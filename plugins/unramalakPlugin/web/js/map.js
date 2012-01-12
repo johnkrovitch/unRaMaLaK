@@ -1,5 +1,7 @@
 // unramalak map API
 
+
+
 $.Class('unramalak.unramalak', {},{
   editorContext: null,
   editor: null,
@@ -18,8 +20,8 @@ $.Class('unramalak.unramalak', {},{
       cellsMenu:  '#cell-family-container li.cell-type .item'
     });
     this.mapContext = new unramalak.mapContext({
-      mapContainer: '#map-editor-table',
-      mapCells:  '#map-editor-table td',
+      mapContainer: '.map',
+      mapCells:  '.map .cell',
       saveButton: '.save-map'
     });
   },
@@ -72,13 +74,21 @@ $.Class('unramalak.unramalak', {},{
 
   move: function(){
     if($.isNull(this.lastPointClicked)){
-      this.lastPointClicked = new unramalak.point(this.mapContext.mapXClicked, this.mapContext.mapYClicked);
+      console.log('last point null here');
+      this.lastPointClicked = this.mapContext.click.point;
     }else{
+      var xDelta = this.lastPointClicked.getX() - this.mapContext.click.point.getX();
+      var yDelta = this.lastPointClicked.getY() - this.mapContext.click.point.getY();
+
+      console.log('x delta', xDelta);
+      console.log('y delta', yDelta);
+
+      this.map.move(xDelta, yDelta);
     }
   },
 
   unClick: function(){
-    console.log('unClick');
+    //console.log('unClick');
     this.lastPointClicked = null;
   }
 });
@@ -127,36 +137,40 @@ $.Class('unramalak.map', {},{
   init: function(context){
     var _super = this;
 
-    // add hover effects on map cells and cells images copy according to pointerSize
-    $(context.mapCells).hoverable(context.mapContainer, context.pointerSize).bind('click', function(){
+    $(context.mapCells).bind('click', function(){
       // fire event cellClick for unramalak object to update cell
       _super.cellClickedObject = $(this);
       $(_super).trigger('cellClick');
-    }
-    ).bind('contextmenu', function(e){
+
+    }).bind('contextmenu', function(e){
+      console.log('right click');
       context.setMapClick(e.pageX, e.pageY, 'right');
+
       return false;  // stop right click
-    }
-    ).bind('mouseup', function(){
+    }).bind('mouseup', function(){
+      console.log('mouseup');
       context.setMapNotClicked();
       $(_super).trigger('unClick');
+
+      return false;
     }
     ).bind('mousemove',function(e){
-      console.log(context.isMapClicked());
+      //console.log('mapclicked ?', context.isMapClicked());
 
       if(context.isMapClicked()){
+        context.setMapClick(e.pageX, e.pageY, context.click.mouseButton);
         $(_super).trigger('move');
       }
-    });
+    }
+    ).hoverable(context.mapContainer, context.pointerSize); // add hover effects on map cells and cells images copy according to pointerSize
     // save map
     $('.map-save').bind('click', function(){
       $(_super).trigger('save');
     });
     this.context = context;
   },
-
   updateCell: function(pointerSize, clonedCellTypeObject){
-    console.log('update', this.cellClickedObject);
+    //console.log('update', this.cellClickedObject);
 
     var currentCell = this.cellClickedObject;
     currentCell.empty();
@@ -181,6 +195,20 @@ $.Class('unramalak.map', {},{
         }
       });
     }
+  },
+  move: function(x, y){
+    var htmlMap = $(this.context.mapContainer);
+    //var currentTop = ('top');
+    //var currentLeft = htmlMap.css('left');
+
+    console.log('top', htmlMap.position().top);
+    console.log('left', htmlMap.position().left);
+
+    var unit = 'px';
+    var top = htmlMap.position().top + x + unit;
+    var left = htmlMap.position().left + y + unit;
+
+    htmlMap.css('top', top).css('left', left);
   }
 });
 
@@ -199,13 +227,16 @@ $.Class('unramalak.mapContext', {},{
     this.saveButton = options.saveButton;
   },
   setMapClick: function(pageX, pageY, mouseButton){
-    this.click = new unramalakClick(pageX, pageY, mouseButton);
+    console.log('setMapClick', pageX, pageY);
+    this.click = new unramalak.click(pageX, pageY, mouseButton);
   },
   setMapNotClicked: function(){
     this.click = null;
+    //console.log('click null', this.click);
   },
   isMapClicked: function(){
-    return $.isNull(this.click);
+    //console.log($.isNull(this.click));
+    return !$.isNull(this.click);
   }
 });
 
@@ -225,7 +256,7 @@ $.Class('unramalak.point', {},{
   }
 });
 
-$('unramalak.click', {},{
+$.Class('unramalak.click', {},{
   point: null,
   mouseButton: null,
 

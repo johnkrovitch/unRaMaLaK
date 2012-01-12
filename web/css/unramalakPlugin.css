@@ -87,13 +87,17 @@
   margin-right: 10px;
   margin-bottom: 10px;
 }
+/* line 46, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+#editor-menu .reload {
+  background-image: url("../images/icons/circle-refresh.png");
+}
 
-/* line 48, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* line 51, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-menu .cell-type {
   cursor: pointer;
 }
 
-/* line 53, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
+/* line 56, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/editor.scss */
 #editor-pointer-menu {
   cursor: pointer;
 }
@@ -258,17 +262,32 @@ background-image: -webkit-gradient(
 }*/
 /* Map */
 /* line 3, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-.map {
+.map-container {
   float: left;
+  position: relative;
+  border: 3px solid grey;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 500px;
+  width: 630px;
 }
-/* line 6, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-.map #map-editor-table td {
+/* line 13, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map-container .map {
+  position: relative;
+}
+/* line 16, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map-container .map .row {
+  width: 5000px;
+}
+/* line 20, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map-container .map .cell {
   width: 40px;
   height: 40px;
   border: 1px solid black;
+  float: left;
 }
-/* line 11, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
-.map #map-editor-table td img {
+/* line 26, /home/afrezet/workspace/unramalak_symfony/web/sass/scss/../../unramalakPlugin/scss/map.scss */
+.map-container .map .cell img {
   display: block;
   height: 100%;
   width: 100%;

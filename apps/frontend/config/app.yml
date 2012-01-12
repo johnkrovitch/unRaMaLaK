@@ -5,7 +5,7 @@ all:
     profile_field_name: user_id
 
   menu:
-    main_menu: {home: {link: "@homepage", label: "Accueil"}, map: {link: "@map", label: "Map", is_secure: true}, backend: {link: "backend.php", label: "Backoffice"}}
+    main_menu: {home: {link: "@homepage", label: "Accueil"}, map: {link: "@map", label: "Map", is_secure: true}}
     
   global_config:
     input_max_length: 50  

@@ -15,6 +15,8 @@
     
   	<div id="container">
 
+      <h1 class="titre">  </h1>
+
       <div class="title">
         <p>Bienvenue dans l'antre du Kalamar géant...</p>
         <h1>Unramalak</h1>

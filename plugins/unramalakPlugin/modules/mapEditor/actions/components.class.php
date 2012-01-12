@@ -19,7 +19,7 @@ class mapEditorComponents extends sfComponents
     }
     $menu_options = array();
     $map_options = array();
-    $cache_size = sfConfig::get('app_editor_map_editor_cache_size');
+    $cache_size = sfConfig::get('app_editor_cache_size');
     $starting_cell = CellTable::getInstance()->find($map->getStartingCellId());
     list($x, $y) = unramalakUtils::parseWithDelimiter(sfConfig::get('app_editor_map_size'));
 
