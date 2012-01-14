@@ -130,6 +130,9 @@ $.Class('unramalak.editorContext', {},{
   }
 });
 
+/**
+ * Map class
+ */
 $.Class('unramalak.map', {},{
   cellClickedObject: null,
   context: null,
