@@ -1,7 +1,8 @@
 // unramalak map API
 
-
-
+/**
+ *
+ */
 $.Class('unramalak.unramalak', {},{
   editorContext: null,
   editor: null,
@@ -248,8 +249,8 @@ $.Class('unramalak.point', {},{
   y: null,
 
   init: function(x, y){
-    this.x = x;
-    this.y = y;
+    this.x = Math.round(x);
+    this.y = Math.round(y);
   },
   getX: function(){
     return this.x;
