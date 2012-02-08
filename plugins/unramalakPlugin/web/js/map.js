@@ -244,7 +244,7 @@ $.Class('unramalak.mapContext', {},{
   }
 });
 
-$.Class('unramalak.point', {},{
+$.Class('unramalak.geometry.point', {},{
   x: null,
   y: null,
 

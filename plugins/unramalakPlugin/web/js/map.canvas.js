@@ -30,22 +30,28 @@ $(document).ready(function(){
   context.closePath();
   context.fill();*/
 
-  var origin = new unramalak.point(10, 10);
+  var origin = new unramalak.geometry.point(10, 10);
   var canvas = new unramalak.canvas.canvas({canvasId: 'map', originPoint: origin});
 
   console.debug(canvas);
 
-  var square = new unramalak.canvas.shape(canvas.context2d, {originPoint: origin, numberOfSides: 3, sideLength: 100});
+  var shapeOrigin = new unramalak.geometry.point(150, 150);
+  var square = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 3, sideLength: 100});
   square.draw({fill: true, stroke: true});
 
+  shapeOrigin = new unramalak.geometry.point(150, 400);
+  var test = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 4, sideLength: 100});
+  test.draw({fill: true, stroke: true});
+
+  shapeOrigin = new unramalak.geometry.point(400, 150);
+  var lol = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 6, sideLength: 100});
+  lol.draw({fill: true, stroke: true});
 });
 
 /**
  * Class canvas
  */
 $.Class('unramalak.canvas.canvas', {}, {
-  context2d: null,
-  originPoint: null,
 
   init: function(options){
     var canvas = document.getElementById(options.canvasId);
@@ -65,46 +71,52 @@ $.Class('unramalak.canvas.canvas', {}, {
  * Shape
  */
 $.Class('unramalak.canvas.shape', {}, {
-  context: null,
-  points: new Array(),
-  originPoint: null,
-  numberOfSides: 0,
-  sideLength: 0,
 
   init: function(context, shapeOptions){
     this.context = context;
     this.originPoint = shapeOptions.originPoint;
     this.numberOfSides = shapeOptions.numberOfSides;
     this.sideLength = shapeOptions.sideLength;
+    this.points = new Array();
+
+    console.debug('originPoint', shapeOptions.originPoint);
 
     // calculates points for shape
     this.processPoints();
   },
 
   processPoints: function(){
-    var radius = Math.PI * this.numberOfSides;
-    var sideRadius = 360;
+    // angle of each portion of the circle containing the shapes equals to 2PI/Number of sides
+    var angle = 2 * Math.PI / this.numberOfSides;
+    var x = this.originPoint.getX() - this.sideLength / 2;
+    var y = this.originPoint.getY() - this.sideLength / 2;
+    console.debug('new shape at origin : ', this.originPoint);
 
-    //radius = Math.PI * 2;
+    // insert first point
+    var firstPoint = new unramalak.geometry.point(x, y);
+    this.points.push(firstPoint);
 
-    this.points.push(this.originPoint);
+    // second point : first segment is horizontal
+    x = this.originPoint.getX() + this.sideLength / 2;
+    var secondPoint = new unramalak.geometry.point(x, y)
+    this.points.push(secondPoint);
+    console.debug('points before push :', this.points);
+
+    // radius of circle containing shapes
+    var radius = Math.sqrt(Math.pow(firstPoint.getX() - this.originPoint.getX(), 2) + Math.pow(firstPoint.getY() - this.originPoint.getY(), 2));
     console.debug('radius', radius);
 
+    for(var i = this.points.length; i < this.numberOfSides; i++){
+      var x = radius * Math.cos(angle * (i - 1));
+      var y = radius * Math.sin(angle * (i - 1));
 
+      x+= this.points[i - 1].getX();
+      y+= this.points[i - 1].getY();
+      //x += this.originPoint.getX();
+      //y += this.originPoint.getY();
 
-    for(var i = 1; i < this.numberOfSides; i++){
-      // conversion from polar coordinates to cartesian
-      var x = this.sideLength * Math.cos(radius * i);
-      var y = this.sideLength * Math.sin(radius * i);
-
-      console.debug('x', Math.round(x));
-      console.debug('y', Math.round(y));
-      // but origins is previous point
-      x+= this.originPoint.getX();
-      y+= this.originPoint.getY();
-
-      this.points.push(new unramalak.point(x, y));
-      sideRadius-= radius;
+      this.points.push(new unramalak.geometry.point(x, y));
+      console.debug('push completed :', this.points);
     }
   },
 
@@ -155,7 +167,8 @@ unramalak.canvas.shape('unramalak.cell', {}, {
  */
 $.Class('options.canvas.options', {}, {
   canvasId: '',
-  originPoint: null
+  originPoint: null,
+  firstPoint: null
 });
 /**
  *
