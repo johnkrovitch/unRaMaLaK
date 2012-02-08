@@ -7,7 +7,7 @@ console.debug = function(){
 }
 
 $(document).ready(function(){
-  console.log('canvas !!!');
+  console.log('canvas go !!!');
 
   //var canvas = document.getElementById('map');
 
@@ -36,16 +36,8 @@ $(document).ready(function(){
   console.debug(canvas);
 
   var shapeOrigin = new unramalak.geometry.point(150, 150);
-  var square = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 3, sideLength: 100});
-  square.draw({fill: true, stroke: true});
-
-  shapeOrigin = new unramalak.geometry.point(150, 400);
-  var test = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 4, sideLength: 100});
-  test.draw({fill: true, stroke: true});
-
-  shapeOrigin = new unramalak.geometry.point(400, 150);
-  var lol = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 6, sideLength: 100});
-  lol.draw({fill: true, stroke: true});
+  var square = new unramalak.canvas.shape(canvas.context2d, {originPoint: shapeOrigin, numberOfSides: 6, sideLength: 50});
+  square.draw({fill: false, stroke: true});
 });
 
 /**
@@ -88,32 +80,19 @@ $.Class('unramalak.canvas.shape', {}, {
   processPoints: function(){
     // angle of each portion of the circle containing the shapes equals to 2PI/Number of sides
     var angle = 2 * Math.PI / this.numberOfSides;
-    var x = this.originPoint.getX() - this.sideLength / 2;
-    var y = this.originPoint.getY() - this.sideLength / 2;
     console.debug('new shape at origin : ', this.originPoint);
 
-    // insert first point
-    var firstPoint = new unramalak.geometry.point(x, y);
-    this.points.push(firstPoint);
-
-    // second point : first segment is horizontal
-    x = this.originPoint.getX() + this.sideLength / 2;
-    var secondPoint = new unramalak.geometry.point(x, y)
-    this.points.push(secondPoint);
-    console.debug('points before push :', this.points);
-
     // radius of circle containing shapes
-    var radius = Math.sqrt(Math.pow(firstPoint.getX() - this.originPoint.getX(), 2) + Math.pow(firstPoint.getY() - this.originPoint.getY(), 2));
+    var radius = Math.abs(this.sideLength / (2 * Math.sin(angle)));
     console.debug('radius', radius);
 
-    for(var i = this.points.length; i < this.numberOfSides; i++){
-      var x = radius * Math.cos(angle * (i - 1));
-      var y = radius * Math.sin(angle * (i - 1));
+    for(var i = 1; i <= this.numberOfSides; i++){
+      var x = radius * Math.cos((Math.PI - angle)/2 + (i - 1)*angle);
+      var y = radius * Math.sin((Math.PI - angle)/2 + (i - 1)*angle);
 
-      x+= this.points[i - 1].getX();
-      y+= this.points[i - 1].getY();
-      //x += this.originPoint.getX();
-      //y += this.originPoint.getY();
+      // back to the origin coordinates
+      x += this.originPoint.getX();
+      y += this.originPoint.getY();
 
       this.points.push(new unramalak.geometry.point(x, y));
       console.debug('push completed :', this.points);
