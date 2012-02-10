@@ -18,8 +18,10 @@ Army:
   actAs: [Timestampable]  
   columns:
     id:            {type: integer, primary: true, autoincrement: true}
-    name:          string(255)   
-      
+    name:          string(255)
+
+
+# ?
 Attributes:
   tableName: attributes
   columns:
