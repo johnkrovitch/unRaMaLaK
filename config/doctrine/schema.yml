@@ -104,7 +104,7 @@ Cell:
   relations:
     Map:        {local: id_map, foreign: id, type: one, onDelete: cascade} 
             
-Cell_Type:
+CellType:
   tableName: cell_type
   columns:
     id:        {type: integer, primary: true, autoincrement: true}
@@ -112,16 +112,16 @@ Cell_Type:
     background_image: {type: string(100)}
     id_type_family: {type: integer, notnull: true}
   relations:
-    Cell_Type_Family: {local: id_type_family, foreign: id, type: one}
+    CellTypeFamily: {local: id_type_family, foreign: id, type: one}
       
-Cell_Type_Family:
+CellTypeFamily:
   tableName: cell_type_family
   columns:
     id:        {type: integer, primary: true, autoincrement: true}
     name:      {type: varchar(50), notnull: true}
     background_image: {type: string(100)}
   relations:
-    Cell_Type: {local: id, foreign: id_type_family, type: many}
+    CellType: {local: id, foreign: id_type_family, type: many}
       
 Planete:
   tableName: planete

@@ -1,7 +1,7 @@
 cell_type_family:
   class: sfDoctrineRouteCollection
   options:
-    model:                Cell_Type_Family
+    model:                CellTypeFamily
     module:               cell_type_family
     prefix_path:          /cell_type_family
     column:               id
@@ -10,7 +10,7 @@ cell_type_family:
 cell_type:
   class: sfDoctrineRouteCollection
   options:
-    model:                Cell_Type
+    model:                CellType
     module:               cell_type
     prefix_path:          /cell_type
     column:               id

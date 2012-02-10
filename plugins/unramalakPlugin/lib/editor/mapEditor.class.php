@@ -10,7 +10,7 @@ class mapEditor
 	
 	public function __construct($map_id)
 	{
-	  $cell_types_families = Cell_Type_FamilyTable::getInstance()->findAll();;
+	  $cell_types_families = CellTypeFamilyTable::getInstance()->findAll();;
 	  $map = MapTable::getInstance()->find($map_id);
 	  
 	  $this->map = $this->throwUnless($map);
@@ -55,7 +55,7 @@ class mapEditor
 	  foreach($this->map_types_cells_family as $cell_family){ // Cells type families
 	    $content.= '<ul class="cell-family">';
 	     
-	    foreach($cell_family->getCell_Type() as $cell_type){ // Cells types
+	    foreach($cell_family->getCellType() as $cell_type){ // Cells types
 	      $content.= '<li class="cell-type">';
 	      $content.= image_tag($cell_type->getBackgroundImage(), array('alt' => $cell_type->getName(), 'class' => 'item'));
 	      $content.= '</li>';

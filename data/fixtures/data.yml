@@ -24,7 +24,7 @@ Race:
     name: Les Robots
     theme: null 
     
-Cell_Type_Family:
+CellTypeFamily:
   Eau:
     name: "Eau"
     background_image: map/cells/sea.png
@@ -41,24 +41,24 @@ Cell_Type_Family:
     name: "Neige"
     background_image: map/cells/snow.png
     
-Cell_Type:
+CellType:
   Eau_Profonde:
     name: "Eau profonde"
     background_image:
-    Cell_Type_Family: Eau    
+    CellTypeFamily: Eau
   Foret_1:
     name: "Forêt de pins"
     background_image:
-    Cell_Type_Family: Foret 
+    CellTypeFamily: Foret
   Desert_1:
     name: "Désert"
     background_image:
-    Cell_Type_Family: Desert
+    CellTypeFamily: Desert
   Plaine_1:
     name: "Plaine"
     background_image:
-    Cell_Type_Family: Plaine
+    CellTypeFamily: Plaine
   Neige_1:
     name: "Neige"
     background_image: 
-    Cell_Type_Family: Neige    
+    CellTypeFamily: Neige

@@ -33,7 +33,7 @@ class mapEditorComponents extends sfComponents
     $cells = CellTable::getInstance()->getCellsBetweenPosition($map_id, new Point($starting_x, $starting_y), new Point($ending_x, $ending_y));
 
     // init menu
-    $menu_options['cell_types_families'] = Cell_Type_FamilyTable::getInstance()->getFamiliesWithCellType();
+    $menu_options['cell_types_families'] = CellTypeFamilyTable::getInstance()->getFamiliesWithCellType();
     $menu_options['pointers'] = sfConfig::get('app_editor_pointers');
 
     // init map

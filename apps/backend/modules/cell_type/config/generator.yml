@@ -1,7 +1,7 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           Cell_Type
+    model_class:           CellType
     theme:                 admin
     non_verbose_templates: true
     with_show:             false
