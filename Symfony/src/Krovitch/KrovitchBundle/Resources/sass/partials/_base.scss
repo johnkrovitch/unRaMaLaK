@@ -1,0 +1,30 @@
+// dimensions
+$site-width:   1000px !default;
+$site-padding: 25px !default;
+
+$menu-height:  40px !default;
+$menu-item-width: 70px !default;
+
+// fonts
+$font-size-big: 16px !default;
+
+// editor
+$cell-height: 15px !default;
+$cell-width: 15px !default;
+
+// colors
+$dark-red: rgba(161, 3, 3, 0.76);
+
+// mixins
+@function font-size-to($to-size, $from-size: $base-font-size) {
+  @if not $relative-font-sizing and $from-size != $base-font-size {
+    @warn "$relative-font-sizing is false but a relative font size was passed to adjust-font-size-to";
+  }
+  @return $font-unit * $to-size / $from-size;
+}
+
+// resets
+body {
+  margin:  0px;
+  padding: 0px;
+}

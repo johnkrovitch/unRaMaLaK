@@ -1,0 +1,14 @@
+{% extends 'KrovitchBundle::layout.html.twig' %}
+
+{% block layout %}
+<div class="row">
+    <!-- main column -->
+    <div class="span8">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- right column -->
+    <div class="span4">
+        {% render 'KrovitchBundle:Widget:list' with {'context': 'right'} %}
+    </div>
+</div>
+{% endblock %}

@@ -2,11 +2,8 @@
 
 namespace Krovitch\KrovitchBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 class Entity
 {
-  public function toArray()
-  {
-    print_r(get_object_vars($this));
-    return get_object_vars($this);
-  }
 }

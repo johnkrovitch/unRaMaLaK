@@ -11,7 +11,7 @@ $(document).ready(function() {
   //displayMenu();
 
   var ur = new unramalak.unramalak();
-  ur.launch();
+  //ur.launch();
 });
 
 function displayMap()
