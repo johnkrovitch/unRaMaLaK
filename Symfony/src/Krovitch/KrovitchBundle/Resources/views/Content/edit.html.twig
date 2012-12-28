@@ -1,0 +1,32 @@
+{% extends 'KrovitchBundle::layout.html.twig' %}
+
+{% block content %}
+
+<form id="content_form" action="{% if content_id is defined %} {{ path('_content_edit', {'id': content_id}) }}
+                                   {% else %} {{ path('_content_edit') }} {% endif %}" method="post" {{ form_enctype(form) }}>
+
+  <fieldset>
+    <legend>Content edition</legend>
+
+    <div class="form-row">
+      {{ form_label(form.title) }}
+      {{ form_widget(form.title) }}
+      {{ form_errors(form.title) }}
+    </div>
+
+    <div class="form-row">
+      {{ form_label(form.content) }}
+      {{ form_widget(form.content) }}
+      {{ form_errors(form.content) }}
+    </div>
+  </fieldset>
+
+  {{ form_errors(form) }}
+  {{ form_rest(form) }}
+  <input type="submit" value="Send" />
+
+</form>
+
+<a href="{{ path('_content')}}">Back</a>
+
+{% endblock %}

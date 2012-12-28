@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buuuuuuuuuuunnnndddleee !!!!!</title>
+  {% block javascripts %}
+    <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/paper.js"></script>
+    <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/jquery/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/jquery/jquery.class.js"></script>
+    <script language="javascript" type="text/paperscript" src="/bundles/krovitch/js/unramalak/unramalak.class.js"  data-paper-canvas="myCanvas"></script>
+    <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/main.js"></script>
+    {% endblock %}
+  {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+  <div id="navigation_bar">
+    <a href="{{ path('_homepage') }}">Home</a>
+    <a href="{{ path('_content') }}">Content</a>
+    <a href="{{ path('_map') }}">Map</a>
+  </div>
+
+  {% if app.session.hasFlash('notice') %}
+  <div class="flash-notice">
+    {{ app.session.flash('notice') }}
+  </div>
+  {% endif %}
+
+  <div class="main-content">
+    {% block content %}{% endblock %}
+  </div>
+
+</body>
+</html>
