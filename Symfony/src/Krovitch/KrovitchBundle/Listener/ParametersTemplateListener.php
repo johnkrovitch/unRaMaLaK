@@ -1,6 +1,6 @@
 <?php
 
-namespace RzTrucks\RzTrucksBundle\Listener;
+namespace Krovitch\KrovitchBundle\Listener;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
@@ -36,7 +36,7 @@ class ParametersTemplateListener extends TemplateListener
             return $parameters;
         }
         // dynamically add widgets into template
-        $mainTemplate = $this->getMainTemplateName($request->getSession()->get('locale'));
+        $mainTemplate = $this->getMainTemplateName();
         $parameters = array_merge($parameters, array('mainTemplate' => $mainTemplate));
 
         if (!$request->attributes->get('_template_streamable')) {
@@ -51,15 +51,12 @@ class ParametersTemplateListener extends TemplateListener
         return null;
     }
 
-    protected function getMainTemplateName($locale)
+    protected function getMainTemplateName()
     {
-        $bundle = 'RzTrucksBundle';
-        $template = '%s::layout-%s.html.twig';
+        $bundle = 'KrovitchBundle';
+        $template = '%s:Layout:content.layout.html.twig';
 
-        if ($locale == 'en_GB') {
-            $bundle = 'RzTrucksUKBundle';
-        }
-        return sprintf($template, $bundle, $locale);
+        return sprintf($template, $bundle);
     }
 
 }

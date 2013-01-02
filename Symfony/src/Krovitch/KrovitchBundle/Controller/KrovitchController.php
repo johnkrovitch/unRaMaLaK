@@ -2,7 +2,6 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -12,7 +11,7 @@ use Krovitch\KrovitchBundle\Entity\Contact;
 /**
  * @Route("/test")
  */
-class KrovitchController extends Controller
+class KrovitchController extends BaseController
 {
   /**
    * @Route("/", name="_homepage")
@@ -31,6 +30,7 @@ class KrovitchController extends Controller
    */
   public function contactAction()
   {
+      die('lol');
     $contact = new Contact();
 
     $builder = $this->createFormBuilder($contact);

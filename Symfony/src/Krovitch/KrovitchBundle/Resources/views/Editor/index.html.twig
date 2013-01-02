@@ -1,0 +1,15 @@
+{% extends mainTemplate %}
+
+{% block content %}
+    <div id="editor-home" class="row">
+        <h1>{% trans %}Editor{% endtrans %}</h1>
+
+        <div class="span2">
+            <ul class="unstyled">
+                <li><a href="{{ path('createHero') }}">{% trans %}create a Hero{% endtrans %}</a></li>
+            </ul>
+
+        </div>
+        <div class="span6"></div>
+    </div>
+{% endblock %}

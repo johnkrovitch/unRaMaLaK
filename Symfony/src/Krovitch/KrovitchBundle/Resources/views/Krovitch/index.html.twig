@@ -1,7 +1,12 @@
-{% extends "KrovitchBundle:Layout:content.layout.html.twig" %}
+{% extends mainTemplate %}
 
 {% block content %}
-  <h1>Oh yeah!</h1>
+    <h1>Oh yeah!</h1>
 
-  <a href="{{ path('_contact')}}">Contact</a>
+    <div class="row">
+        <div class="span8">
+            {% trans %}UnRaMaLak, la terreur de l'espace !{% endtrans %}
+        </div>
+    </div>
+
 {% endblock %}

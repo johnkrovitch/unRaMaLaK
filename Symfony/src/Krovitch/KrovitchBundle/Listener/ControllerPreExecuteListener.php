@@ -1,6 +1,6 @@
 <?php
 
-namespace RzTrucks\RzTrucksBundle\Listener;
+namespace Krovitch\KrovitchBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;

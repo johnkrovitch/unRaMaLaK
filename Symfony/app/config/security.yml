@@ -3,6 +3,7 @@ jms_security_extra:
     expressions: true
 
 security:
+    #access_denied_url: test
     encoders:
         #Symfony\Component\Security\Core\User\User: plaintext
         FOS\UserBundle\Model\UserInterface: sha512
@@ -26,6 +27,7 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
+                #login_path: /lol
             logout:       true
             anonymous:    true
 
@@ -42,6 +44,7 @@ security:
             form_login:
                 check_path: _security_check
                 login_path: _demo_login
+
             logout:
                 path:   _demo_logout
                 target: _demo

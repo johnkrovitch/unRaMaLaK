@@ -18,6 +18,10 @@ _map:
   resource: "@KrovitchBundle/Controller/MapController.php"
   type:     annotation
 
+_editor:
+    resource: "@KrovitchBundle/Controller/EditorController.php"
+    type:   annotation
+
 # UserBundle
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -4,7 +4,11 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
+    <!-- manager -->
     <parameter key="krovitch.content_manager.class">Krovitch\KrovitchBundle\Manager\ContentManager</parameter>
+    <!-- listener -->
+    <parameter key="sensio_framework_extra.view.listener.class">Krovitch\KrovitchBundle\Listener\ParametersTemplateListener</parameter>
+    <parameter key="krovitch.listener.preExecute.class">Krovitch\KrovitchBundle\Listener\ControllerPreExecuteListener</parameter>
   </parameters>
 
   <services>
@@ -15,6 +19,11 @@
     <service id="krovitch_user.registration.form.type" class="Krovitch\KrovitchUserBundle\Form\RegistrationFormType">
       <tag name="form.type" alias="krovitch_user_registration" />
       <argument>%fos_user.model.user.class%</argument>
+    </service>
+
+    <!-- preExecute listener -->
+    <service id="controller.pre_execute_listener" class="%krovitch.listener.preExecute.class%">
+      <tag name="kernel.event_listener" event="kernel.controller" method="onCoreController" />
     </service>
   </services>
 </container>
