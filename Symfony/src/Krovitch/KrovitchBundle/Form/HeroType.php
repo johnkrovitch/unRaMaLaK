@@ -1,5 +1,7 @@
 <?php
 
+namespace Krovitch\KrovitchBundle\Form;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -8,8 +10,8 @@ class HeroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text');
-        $builder->add('email', 'email');
-        $builder->add('password', 'password');
+        $builder->add('avatar', 'file');
+        $builder->add('race', 'entity', array('class' => 'KrovitchBundle:Race', 'property' => 'name'));
 
         return $builder;
     }

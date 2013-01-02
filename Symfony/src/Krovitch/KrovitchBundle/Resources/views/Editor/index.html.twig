@@ -10,6 +10,20 @@
             </ul>
 
         </div>
-        <div class="span6"></div>
+        <div class="span6">
+            <h2>{% trans %}dashboard{% endtrans %}</h2>
+
+            {% for hero in heroes %}
+                <div class="row">
+                    <table>
+                        <tr>
+                            <td>{{  hero.name }}</td>
+                            <td>{{  hero.race }}</td>
+                        </tr>
+                    </table>
+
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -3,7 +3,6 @@ jms_security_extra:
     expressions: true
 
 security:
-    #access_denied_url: test
     encoders:
         #Symfony\Component\Security\Core\User\User: plaintext
         FOS\UserBundle\Model\UserInterface: sha512

@@ -29,14 +29,26 @@ abstract class BaseController extends Controller
 
     /**
      * Return the manager linked with this controller
+     * @param null $managerName
      * @return \Krovitch\KrovitchBundle\Manager\BaseManager
      */
-    protected function getManager()
+    protected function getManager($managerName = null)
     {
+        $managerName = strtolower($managerName);
 
-        $manager_id = 'krovitch.' . StringUtils::getEntityClassName($this) . '_manager';
-
-        return $this->get($manager_id);
+        // try to find automatically the manager name
+        if (!$managerName) {
+            $managerName = StringUtils::getEntityClassName($this);
+        }
+        // add Krovitch prefix
+        if (substr($managerName, 0, 7) != 'krovitch') {
+            $managerName = 'krovitch.'.$managerName;
+        }
+        // add suffix
+        if (substr($managerName, -7) != 'manager') {
+            $managerName.= '_manager';
+        }
+        return $this->get($managerName);
     }
 
     /**

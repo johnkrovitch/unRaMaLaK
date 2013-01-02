@@ -1,11 +1,13 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Entity\Unit;
+namespace Krovitch\KrovitchBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Krovitch\KrovitchBundle\Entity\Entity;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Krovitch\KrovitchBundle\Entity\Entity;
 
 /**
  * @ORM\Entity(repositoryClass="Krovitch\KrovitchBundle\Repository\UnitRepository")
@@ -37,6 +39,17 @@ class Unit extends Entity
      * @ORM\Column(type="integer")
      */
     protected $life;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\File(maxSize = "2M", mimeTypes = {"image/png", "image/jpeg"}, mimeTypesMessage = "Please upload a png or a jpg lower than 2M")
+     */
+    protected $avatar;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Race", inversedBy="members")
+     */
+    protected $race;
 
     /**
      * Get id
@@ -115,5 +128,51 @@ class Unit extends Entity
     public function getLife()
     {
         return $this->life;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param File $avatar
+     * @return Unit
+     */
+    public function setAvatar(File $avatar)
+    {
+        $this->avatar = $avatar;
+    
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return File
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set race
+     *
+     * @param \Krovitch\KrovitchBundle\Entity\Race $race
+     * @return Unit
+     */
+    public function setRace(Race $race = null)
+    {
+        $this->race = $race;
+    
+        return $this;
+    }
+
+    /**
+     * Get race
+     *
+     * @return \Krovitch\KrovitchBundle\Entity\Race
+     */
+    public function getRace()
+    {
+        return $this->race;
     }
 }

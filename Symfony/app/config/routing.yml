@@ -2,10 +2,6 @@ _welcome:
   pattern:  /
   defaults: { _controller: KrovitchBundle:Krovitch:index }
 
-_assetic:
-  resource: .
-  type:     assetic
-
 _test:
   resource: "@KrovitchBundle/Controller/KrovitchController.php"
   type:     annotation

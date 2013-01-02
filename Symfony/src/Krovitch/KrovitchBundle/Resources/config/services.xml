@@ -4,15 +4,20 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <!-- manager -->
+    <!-- managers -->
     <parameter key="krovitch.content_manager.class">Krovitch\KrovitchBundle\Manager\ContentManager</parameter>
-    <!-- listener -->
+    <parameter key="krovitch.hero_manager.class">Krovitch\KrovitchBundle\Manager\HeroManager</parameter>
+    <!-- listeners -->
     <parameter key="sensio_framework_extra.view.listener.class">Krovitch\KrovitchBundle\Listener\ParametersTemplateListener</parameter>
     <parameter key="krovitch.listener.preExecute.class">Krovitch\KrovitchBundle\Listener\ControllerPreExecuteListener</parameter>
   </parameters>
 
   <services>
+    <!-- managers -->
     <service id="krovitch.content_manager" class="%krovitch.content_manager.class%">
+      <argument type="service" id="doctrine.orm.entity_manager" />
+    </service>
+    <service id="krovitch.hero_manager" class="%krovitch.hero_manager.class%">
       <argument type="service" id="doctrine.orm.entity_manager" />
     </service>
 
