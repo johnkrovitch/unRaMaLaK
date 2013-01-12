@@ -21,7 +21,8 @@
     "jms/security-extra-bundle": "1.2.*",
     "jms/di-extra-bundle": "1.1.*",
     "kriswallsmith/assetic": "1.1.*@dev",
-    "friendsofsymfony/user-bundle": "*"
+    "friendsofsymfony/user-bundle": "*",
+    "phpunit/phpunit": "3.7.10"
   },
   "scripts": {
     "post-install-cmd": [

@@ -5,25 +5,27 @@
         <h1>{% trans %}Editor{% endtrans %}</h1>
 
         <div class="span2">
-            <ul class="unstyled">
+            <ul class="unstyled menu">
                 <li><a href="{{ path('createHero') }}">{% trans %}create a Hero{% endtrans %}</a></li>
             </ul>
-
         </div>
         <div class="span6">
             <h2>{% trans %}dashboard{% endtrans %}</h2>
 
-            {% for hero in heroes %}
-                <div class="row">
-                    <table>
+            <div class="row">
+                <h3>{% trans %}Hero{% endtrans %}</h3>
+                <table>
+                    {% for hero in heroes %}
                         <tr>
-                            <td>{{  hero.name }}</td>
-                            <td>{{  hero.race }}</td>
+                            <td>{{ hero.name }}</td>
+                            <td>{{ hero.race }}</td>
+                            <td class="actions">
+                                <a href="{{ path('deleteHero', {'id': hero.id}) }}" class="alert-delete">{% trans %}delete{% endtrans %}</a>
+                            </td>
                         </tr>
-                    </table>
-
-                </div>
-            {% endfor %}
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

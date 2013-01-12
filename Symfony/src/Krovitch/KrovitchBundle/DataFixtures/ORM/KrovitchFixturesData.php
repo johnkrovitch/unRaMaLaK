@@ -43,8 +43,7 @@ class KrovitchFixtures implements FixtureInterface, ContainerAwareInterface
             // encode password before insertion
             $encoder = $this->container->get('security.encoder_factory')->getEncoder($user);
             $user->setPassword($encoder->encodePassword($data['password'], $user->getSalt()));
-
-
+            // save
             $this->manager->persist($user);
         }
     }
@@ -62,7 +61,7 @@ class KrovitchFixtures implements FixtureInterface, ContainerAwareInterface
         foreach ($races as $data) {
             $race = new Race();
             $race->setName($data['name']);
-
+            //save
             $this->manager->persist($race);
         }
     }

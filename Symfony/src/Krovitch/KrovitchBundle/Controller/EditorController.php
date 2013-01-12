@@ -26,7 +26,7 @@ class EditorController extends BaseController
     }
 
     /**
-     * @Route("/createHero", name="createHero")
+     * @Route("/hero/create", name="createHero")
      * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
@@ -43,10 +43,30 @@ class EditorController extends BaseController
                 $hero->setLevel(0);
                 $hero->setLife(500);
                 $this->getManager('Hero')->save($hero);
+                $this->setMessage('Hero %hero% was successfully created !', array('%hero%' => $hero->getName()));
 
-                $this->forward('editor');
+                return $this->redirect('@editor');
             }
         }
         return array('form' => $form->createView());
+    }
+
+    /**
+     * @Route("/hero/delete/{id}", name="deleteHero")
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function deleteHeroAction()
+    {
+        $id = $this->getRequest()->get('id');
+        $hero = $this->getManager('Hero')->find($id);
+
+        if (!$hero) {
+            throw $this->createNotFoundException(sprintf('Hero with id %s not found.', $id));
+        }
+        $this->getManager('Hero')->delete($hero);
+        $this->setMessage('Hero %hero% was successfully deleted.', array('%hero%' => $hero->getName()));
+
+        return $this->redirect('@editor');
     }
 }

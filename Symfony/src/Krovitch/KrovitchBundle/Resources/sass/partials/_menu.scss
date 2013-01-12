@@ -1,3 +1,9 @@
+// generals
+.menu {
+  border-right: 1px solid #eee;
+  padding:  5px;
+}
+
 // main top menu
 #menu-bar-container {
   height: $menu-height;
@@ -89,49 +95,3 @@
   }
 
 }
-
-/*
-
-
-
-
--moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
-
-
-
-
-
-
-
-737373
-
-
-background-image: linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -o-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -moz-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -webkit-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -ms-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(115,115,115)),
-	color-stop(0.94, rgb(0,0,0)),
-	color-stop(0.79, rgb(1,5,15))
-);
-
-
-
-
-
-.in-css3 {
-  background: url(foo.png),
-              linear-gradient(top left, #333, #0c0),
-              radial-gradient(#c00, #fff 100px);
-}
-.with-compass {
-  @include background(image-url("foo.png"),
-                      linear-gradient(top left, #333, #0c0),
-                      radial-gradient(#c00, #fff 100px));
-}*/

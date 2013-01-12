@@ -6,7 +6,7 @@ $.inArrays = function(item, arrays) {
     inArray &= ($.inArray(item, array) > -1);
   });
   return $.inArray(item) > -1 && $.inArray(item) > -1
-}
+};
 
 Array.prototype.remove = function (value) {
   for (var i = 0; i < this.length; ) {
@@ -16,4 +16,11 @@ Array.prototype.remove = function (value) {
       ++i;
     }
   }
-}
+};
+
+
+
+
+
+
+

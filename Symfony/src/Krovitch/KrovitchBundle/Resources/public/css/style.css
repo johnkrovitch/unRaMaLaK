@@ -37,10 +37,26 @@ body {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000328}}
 .unlock, #menu-bar-container #menu-bar .login-hidden input[type="submit"] {
-  font-family: 'Unlock', cursive;
+  font-family: "Unlock", cursive;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000333}}
+.center-text, h1, h2 {
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000338}}
+.alert {
+  margin-bottom: 5px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\000032}}
+.menu {
+  border-right: 1px solid #eeeeee;
+  padding: 5px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\000038}}
 #menu-bar-container {
   height: 40px;
   width: 100%;
@@ -54,12 +70,12 @@ body {
   background: -o-linear-gradient(top, #000000, #000000 44%, #737373 95%);
   background: linear-gradient(top, #000000, #000000 44%, #737373 95%);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000312}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000318}}
 #menu-bar-container #menu-bar {
   width: 1000px;
   margin: 0px auto;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000316}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000322}}
 #menu-bar-container #menu-bar a {
   color: #ffffff;
   display: block;
@@ -68,7 +84,7 @@ body {
   padding: 10px 35px 0px 35px;
   text-decoration: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000324}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000330}}
 #menu-bar-container #menu-bar a:hover {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #737373), color-stop(44%, #000000), color-stop(95%, #000000));
   background: -webkit-linear-gradient(top, #737373, #000000 44%, #000000 95%);
@@ -76,31 +92,31 @@ body {
   background: -o-linear-gradient(top, #737373, #000000 44%, #000000 95%);
   background: linear-gradient(top, #737373, #000000 44%, #000000 95%);
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000327}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000333}}
 #menu-bar-container #menu-bar a:active {
   opacity: 0.8;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000330}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000336}}
 #menu-bar-container #menu-bar a.active {
   text-decoration: underline;
   color: #d10000;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000334}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000340}}
 #menu-bar-container #menu-bar a.login {
   float: right;
   background: url("../images/icons/down_arrow.png") no-repeat scroll right transparent;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000345}}
 #menu-bar-container #menu-bar .main_menu {
   margin: 0px auto 0px auto;
   font-size: 12px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000344}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000350}}
 #menu-bar-container #menu-bar .main_menu li {
   height: 40px;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000349}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000355}}
 #menu-bar-container #menu-bar .login-hidden {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #000000), color-stop(44%, #000000), color-stop(95%, #737373));
   background: -webkit-linear-gradient(top, #000000, #000000 44%, #737373 95%);
@@ -113,16 +129,16 @@ body {
   z-index: 10;
   color: #ffffff;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000366}}
 #menu-bar-container #menu-bar .login-hidden h2 {
   margin: 5px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000369}}
 #menu-bar-container #menu-bar .login-hidden span {
   width: 412px;
   display: block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000368}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000374}}
 #menu-bar-container #menu-bar .login-hidden input[type="submit"] {
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
@@ -138,63 +154,18 @@ body {
   text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
   font-size: 12px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000380}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000386}}
 #menu-bar-container #menu-bar .logged {
   float: right;
   padding: 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000384}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\0000390}}
 #menu-bar-container #menu-bar .logged a {
   display: inline;
   padding: 0px;
 }
 
-/*
-
-
-
-
--moz-linear-gradient(top, #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
-
-
-
-
-
-
-
-737373
-
-
-background-image: linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -o-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -moz-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -webkit-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-background-image: -ms-linear-gradient(bottom, rgb(115,115,115) 0%, rgb(0,0,0) 94%, rgb(1,5,15) 79%);
-
-background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(0, rgb(115,115,115)),
-	color-stop(0.94, rgb(0,0,0)),
-	color-stop(0.79, rgb(1,5,15))
-);
-
-
-
-
-
-.in-css3 {
-  background: url(foo.png),
-              linear-gradient(top left, #333, #0c0),
-              radial-gradient(#c00, #fff 100px);
-}
-.with-compass {
-  @include background(image-url("foo.png"),
-                      linear-gradient(top left, #333, #0c0),
-                      radial-gradient(#c00, #fff 100px));
-}*/
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\000036}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/Symfony\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\000039}}
 #unramalak {
   padding-top: 40px;
   margin-right: auto;

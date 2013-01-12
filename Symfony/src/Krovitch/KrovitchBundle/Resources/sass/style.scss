@@ -1,11 +1,13 @@
 @import "compass";
+// globals
 @import "partials/base";
 @import "partials/classes";
 @import "partials/menu";
+// specific
+@import "partials/editor";
 
 #unramalak {
   padding-top: $menu-height;
   margin-right: auto;
   margin-left: auto;
-  //width: 1200px;
 }
