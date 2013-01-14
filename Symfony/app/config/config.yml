@@ -70,3 +70,6 @@ fos_user:
     registration:
         form:
             type: krovitch_user_registration
+krovitch:
+    unit:
+        upload_dir: 'web/bundles/krovitch/uploads'

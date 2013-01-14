@@ -13,6 +13,7 @@ use Krovitch\KrovitchBundle\Entity\Entity;
  * @ORM\Entity(repositoryClass="Krovitch\KrovitchBundle\Repository\UnitRepository")
  * @ORM\Table(name="unit")
  * @ORM\InheritanceType("JOINED")
+ * @ORM\HasLifecycleCallbacks
  * @DiscriminatorColumn(name="type", type="string")
  * @DiscriminatorMap({"unit" = "Unit", "hero" = "Hero"})
  */
@@ -51,10 +52,49 @@ class Unit extends Entity
      */
     protected $race;
 
+    protected $uploadDir;
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if ($this->getAvatar() !== null) {
+            // generate unique path
+            $filename = $this->getAvatar()->getBasename() . sha1(uniqid(mt_rand(), true)) . '.' . $this->getAvatar()->guessExtension();
+            $path = $this->getAvatar()->move($this->getUploadRootDir(), $filename);
+        }
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            unlink($file);
+        }
+    }
+
+    public function getUploadRootDir()
+    {
+        // default parameter
+        if (!$this->uploadDir) {
+            $this->uploadDir = '/web/bundles/krovitch/uploads';
+        }
+        return __DIR__.'/../../../../'.$this->uploadDir;
+    }
+
+    public function setUploadDir($dir)
+    {
+        $this->uploadDir = $dir;
+    }
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -70,14 +110,14 @@ class Unit extends Entity
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -93,14 +133,14 @@ class Unit extends Entity
     public function setLevel($level)
     {
         $this->level = $level;
-    
+
         return $this;
     }
 
     /**
      * Get level
      *
-     * @return integer 
+     * @return integer
      */
     public function getLevel()
     {
@@ -116,14 +156,14 @@ class Unit extends Entity
     public function setLife($life)
     {
         $this->life = $life;
-    
+
         return $this;
     }
 
     /**
      * Get life
      *
-     * @return integer 
+     * @return integer
      */
     public function getLife()
     {
@@ -139,7 +179,7 @@ class Unit extends Entity
     public function setAvatar(File $avatar)
     {
         $this->avatar = $avatar;
-    
+
         return $this;
     }
 
@@ -162,7 +202,7 @@ class Unit extends Entity
     public function setRace(Race $race = null)
     {
         $this->race = $race;
-    
+
         return $this;
     }
 

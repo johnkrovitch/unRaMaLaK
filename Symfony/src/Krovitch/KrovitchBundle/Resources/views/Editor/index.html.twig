@@ -20,6 +20,7 @@
                             <td>{{ hero.name }}</td>
                             <td>{{ hero.race }}</td>
                             <td class="actions">
+                                <a href="{{ path('editHero', {'id': hero.id}) }}">{% trans %}modify{% endtrans %}</a>
                                 <a href="{{ path('deleteHero', {'id': hero.id}) }}" class="alert-delete">{% trans %}delete{% endtrans %}</a>
                             </td>
                         </tr>

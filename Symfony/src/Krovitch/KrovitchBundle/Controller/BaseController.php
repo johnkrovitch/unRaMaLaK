@@ -23,11 +23,6 @@ abstract class BaseController extends Controller
         return $this->get('translator');
     }
 
-    protected function translate($string, $parameters = array())
-    {
-        return $this->getTranslator()->trans($string, $parameters);
-    }
-
     /**
      * Return current session
      * @return Session
@@ -35,6 +30,11 @@ abstract class BaseController extends Controller
     protected function getSession()
     {
         return $this->get('session');
+    }
+
+    public function getConfig($key)
+    {
+        return $this->container->getParameter($key);
     }
 
     /**
@@ -87,5 +87,10 @@ abstract class BaseController extends Controller
             $url = $this->generateUrl($route);
         }
         return parent::redirect($url, $status);
+    }
+
+    protected function translate($string, $parameters = array())
+    {
+        return $this->getTranslator()->trans($string, $parameters);
     }
 }

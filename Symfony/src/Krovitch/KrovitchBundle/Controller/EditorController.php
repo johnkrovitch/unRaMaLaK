@@ -52,6 +52,32 @@ class EditorController extends BaseController
     }
 
     /**
+     * @Route("/hero/edit/{id}", name="editHero")
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function editHeroAction()
+    {
+        $request = $this->getRequest();
+        $hero  = $this->getManager('Hero')->find($request->get('id'));
+        $form = $this->createForm(new HeroType(), $hero);
+
+        if ($request->isMethod('post')) {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                // set upload dir before saving hero
+                $hero->setUploadDir($this->getConfig('krovitch.unit.upload_dir'));
+                $this->getManager('Hero')->save($hero);
+                $this->setMessage('Hero %hero% was successfully created !', array('%hero%' => $hero->getName()));
+
+                return $this->redirect('@editor');
+            }
+        }
+        return array('form' => $form->createView(), 'heroId' => $hero->getId());
+    }
+
+    /**
      * @Route("/hero/delete/{id}", name="deleteHero")
      * @Secure(roles="ROLE_ADMIN")
      * @Template()

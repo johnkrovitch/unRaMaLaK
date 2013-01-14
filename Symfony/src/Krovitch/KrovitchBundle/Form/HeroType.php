@@ -10,7 +10,7 @@ class HeroType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', 'text');
-        $builder->add('avatar', 'file');
+        $builder->add('avatar', 'file', array('data_class' => null));
         $builder->add('race', 'entity', array('class' => 'KrovitchBundle:Race', 'property' => 'name'));
 
         return $builder;
