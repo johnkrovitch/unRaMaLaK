@@ -16,9 +16,10 @@ class BaseCommandLine extends ContainerAwareCommand
         $this->cleanCommand($command);
         // writing arguments for command
         foreach ($arguments as $name => $value) {
-            $argumentsCommand .= $name . ' ' . $value;
+            $argumentsCommand .= $name . ' ' . $value . ' ';
         }
         $commandLine = $command . $argumentsCommand;
+        $printOutput->writeln('Run command '.$commandLine);
         // execute command
         exec($commandLine, $output);
 
