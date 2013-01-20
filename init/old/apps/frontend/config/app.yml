@@ -1,0 +1,28 @@
+all:
+  sf_guard_plugin:
+    routes_register:        true
+    profile_class:      sfGuardUserProfile
+    profile_field_name: user_id
+
+  menu:
+    main_menu: {home: {link: "@homepage", label: "Accueil"}, map: {link: "@map", label: "Map", is_secure: true}}
+    
+  global_config:
+    input_max_length: 50  
+    
+### Races ###
+# Zaloumeks       
+  zaloumek:
+    start_limit_level: 5  
+    start_map_id: 1
+    
+  path:
+    avatar: avatar
+    banniere: banniere
+  
+  images:
+    avatars: [sophie.png, cha.png]
+  
+  xp:
+    xp_update_coefficient: 1.2
+    xp_start: 50

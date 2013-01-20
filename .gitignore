@@ -1,3 +1,9 @@
-lib/model/doctrine/base/*
-lib/form/doctrine/base/*
-lib/filter/doctrine/base/*
+web/bundles/
+app/bootstrap.php.cache
+app/cache/*
+app/logs/*
+app/config/parameters.yml
+build/
+vendor
+bin
+composer.phar

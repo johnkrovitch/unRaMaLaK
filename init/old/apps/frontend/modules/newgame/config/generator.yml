@@ -1,0 +1,33 @@
+generator:
+  class:              sfDoctrineAdminGenerator
+  param:
+    model_class:      Users
+    theme:            default
+
+    fields:
+      users_id:      { name: Article author }
+
+    list:
+      title:          List of all articles
+      display:        [title, author_id, category_id]
+      fields:
+        published_on: { params: date_format='dd/MM/yy' }
+      layout:         stacked
+      params:         |
+        %%is_published%%<strong>%%=title%%</strong><br /><em>by %%author%%
+        in %%category%% (%%published_on%%)</em><p>%%content_summary%%</p>
+      filters:        [title, category_id, author_id, is_published]
+      max_per_page:   2
+
+    edit:
+      title:          Editing article "%%title%%"
+      display:
+        "Post":       [title, category_id, content]
+        "Workflow":   [author_id, is_published, created_on]
+      fields:
+        category_id:  { params: disabled=true }
+        is_published: { type: plain}
+        created_on:   { type: plain, params: date_format='dd/MM/yy' }
+        author_id:    { params: size=5 include_custom=>> Choose an author << }
+        published_on: { credentials:  }
+        content:      { params: rich=true tinymce_options=height:150 }

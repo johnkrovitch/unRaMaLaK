@@ -1,0 +1,1 @@
+<p>Bravo, l'inscription s'est bien déroulé, vous êtes trop fort !!!!</p>
