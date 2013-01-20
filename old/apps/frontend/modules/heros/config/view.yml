@@ -1,6 +1,0 @@
-all:
-  stylesheets: [modules/heros.css]
-  javascripts: [easyslider.js, modules/heros.js, jquery]
-  
-editSuccess:
-   javascripts: [jquery-ui.js , modules/herosEdit.js]
