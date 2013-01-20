@@ -2,7 +2,6 @@
 
 namespace Gmf\GmfBundle\Tests\Core;
 
-use Gmf\GmfBundle\Core\GameApplication;
 use Gmf\GmfBundle\Core\GameEngine;
 
 class GameEngineTests extends \PHPUnit_Framework_TestCase

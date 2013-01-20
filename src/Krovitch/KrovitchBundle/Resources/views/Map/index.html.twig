@@ -1,14 +1,18 @@
 {% extends mainTemplate %}
 
 {% block javascripts %}
-  {{ parent() }}
+    {{ parent() }}
 {% endblock %}
 
 {% block content %}
-  <h1>La map, la map !!!</h1>
+    <h1>La map, la map !!!</h1>
 
-  <a href="{{ path('_homepage')}}">Homepage</a>
+    <a href="{{ path('_homepage') }}">Homepage</a>
 
-  <canvas id="myCanvas" width="1400" height="3000"></canvas>
+    {% for brick in viewBricks %}
+        {{  brick.render }}
+    {% endfor %}
+
+    <canvas id="myCanvas" width="1400" height="3000"></canvas>
 
 {% endblock %}

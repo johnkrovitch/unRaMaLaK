@@ -16,7 +16,7 @@ class GameApplication
 
     /**
      * Returns current applications engines
-     * @return array[GameEngines]
+     * @return GameEngine[]
      */
     public function getEngines()
     {

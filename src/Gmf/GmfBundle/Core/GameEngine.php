@@ -11,6 +11,10 @@ class GameEngine
         $this->cores[] = new GameCore();
     }
 
+    /**
+     * Return engine's gamecore
+     * @return GameCore[]
+     */
     public function getCores()
     {
         return $this->cores;
