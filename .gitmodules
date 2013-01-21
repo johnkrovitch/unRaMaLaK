@@ -1,0 +1,3 @@
+[submodule "src/Gmf/GmfBundle"]
+	path = src/Gmf/GmfBundle
+	url = https://github.com/GeorgetteParty/GMFBundle.git
