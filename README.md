@@ -1,6 +1,11 @@
 unRamalak and Gmf Installation
 ========================
 
+What's n3w ?
+
+Tentative d'implémentation d'évènements dans le gmf pour gérer les chargemennts d'entités du modèle par exemple, je pense...
+
+
 1) Cloning repository
 ----------------------------------
 
@@ -9,8 +14,6 @@ Run :
     mkdir unRamalak && cd unRamalak
 
     git clone https://github.com/johnkrovitch/unRaMaLaK.git .
-
-    cd Symfony
 
 
 2) Installing with composer
@@ -43,6 +46,8 @@ If you get any warnings or recommendations, fix them before moving on.
 3) Setting
 --------------------------------
 
+Copy & rename app/config/parameters-dist.yml to app/config/parameters.yml
+and set your own parameters, for database for example.
 
 4) Running PHPUnit tests
 --------------------------------
