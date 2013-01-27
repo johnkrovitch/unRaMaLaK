@@ -6,17 +6,9 @@ var menu = {
 };
 var hitObjects = [];
 
-$(document).ready(function() {
-  //displayMap();
-  //displayMenu();
-
-  var ur = new unramalak.unramalak();
-  //ur.launch();
-});
-
 function displayMap()
 {
-  var mapOptions = {startingPoint: new Point(200, 100), numberOfSides: 6, radius: 50, cellPadding: 0};
+  var mapOptions = {startingPoint: new Point(0, 0), numberOfSides: 6, radius: 50, cellPadding: 0};
   var mapSize = { x: 10, y: 10};
   var odd = false;
 
@@ -31,6 +23,8 @@ function displayMap()
 
     if (odd) {
       // case of hexagons : each row is staggered with previous
+      // two configurations are possible :
+      //TODO translation
       // += : les lignes pairs (0,2,4...) ne commencent pas au bord de la map
       // -= : les lignes impairs (1,3...) ne commencent pas au bord de la map
       hexagonCenterX -= xRadius;

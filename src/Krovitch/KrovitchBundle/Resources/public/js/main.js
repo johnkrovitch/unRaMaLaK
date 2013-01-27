@@ -1,26 +1,17 @@
-// TODO ça sert a queqchose ????
-$.inArrays = function(item, arrays) {
-  var inArray = false;
-
-  $.each(arrays, function(index, array) {
-    inArray &= ($.inArray(item, array) > -1);
-  });
-  return $.inArray(item) > -1 && $.inArray(item) > -1
+/**
+ * Retourne true si l'objet est null ou undefined
+ * @param object
+ * @return bool
+ */
+$.isNull = function(object){
+  return typeof object === 'undefined' || object === null || object.length === 0;
 };
 
-Array.prototype.remove = function (value) {
-  for (var i = 0; i < this.length; ) {
-    if (this[i] === value) {
-      this.splice(i, 1);
-    } else {
-      ++i;
-    }
-  }
+/**
+ * Retourne true si l'objet n'est pas null ou undefined
+ * @param object
+ * @return bool
+ */
+$.isNotNull = function(object){
+  return !$.isNull(object);
 };
-
-
-
-
-
-
-
