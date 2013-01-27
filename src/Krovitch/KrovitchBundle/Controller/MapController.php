@@ -2,6 +2,8 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
+use Gmf\GmfBundle\Brick\Unit\HeroBrick;
+use Gmf\GmfBundle\Brick\View\ViewBrick;
 use Gmf\GmfBundle\Core\GameApplication;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -23,13 +25,6 @@ class MapController extends BaseController
      */
     public function indexAction()
     {
-        // testing gmf
-        $application = new GameApplication();
-        $engine = $application->getEngines()[0];
-        $core = $engine->getCores()[0];
-
-        $bricks = $core->getBricks();
-
-        return array('viewBricks' => $bricks);
+        return array();
     }
 }

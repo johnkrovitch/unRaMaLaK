@@ -1,5 +1,5 @@
 {
-    "hash": "4b67aa4bd7bd5bd578103a3b8ef5d70c",
+    "hash": "ce1eef14a7fc78f3ebcb0a5fa020d3bf",
     "packages": [
         {
             "name": "doctrine/common",
@@ -443,6 +443,64 @@
             "keywords": [
                 "User management"
             ]
+        },
+        {
+            "name": "georgette-party/gmf-bundle",
+            "version": "dev-master",
+            "target-dir": "GMF/GMFBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GeorgetteParty/GMFBundle.git",
+                "reference": "ba681d50a22863fadb7bff4aefd8679a0b63896c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GeorgetteParty/GMFBundle/zipball/ba681d50a22863fadb7bff4aefd8679a0b63896c",
+                "reference": "ba681d50a22863fadb7bff4aefd8679a0b63896c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": ">=2.1,<2.3-dev",
+                "symfony/config": ">=2.1,<2.3-dev",
+                "symfony/yaml": ">=2.1,<2.3-dev",
+                "symfony/http-kernel": ">=2.1,<2.3-dev"
+            },
+            "time": "2013-01-27 18:51:45",
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Gmf\\GmfBundle": ""
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "JohnKrovitch",
+                    "email": "john@krovitch.info"
+                },
+                {
+                    "name": "Lutangar",
+                    "email": "georges@party.org"
+                },
+                {
+                    "name": "Goutte",
+                    "email": "goutte@goutte.do"
+                }
+            ],
+            "description": "Game Management Framework (not ready)",
+            "homepage": "https://github.com/GeorgetteParty/GMFBundle",
+            "keywords": [
+                "Game"
+            ],
+            "support": {
+                "source": "https://github.com/GeorgetteParty/GMFBundle/tree/master",
+                "issues": "https://github.com/GeorgetteParty/GMFBundle/issues"
+            }
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1779,6 +1837,7 @@
         "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "twig/extensions": 20,
-        "kriswallsmith/assetic": 20
+        "kriswallsmith/assetic": 20,
+        "georgette-party/gmf-bundle": 20
     }
 }

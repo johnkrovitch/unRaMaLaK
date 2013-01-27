@@ -23,7 +23,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Krovitch\KrovitchBundle\KrovitchBundle(),
             new Krovitch\KrovitchUserBundle\KrovitchUserBundle(),
-            new Gmf\GmfBundle\GmfBundle()
+            //new Gmf\GmfBundle\GmfBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

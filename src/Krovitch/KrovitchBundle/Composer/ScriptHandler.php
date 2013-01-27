@@ -3,6 +3,7 @@
 use Sensio\Bundle\DistributionBundle\Composer\ScriptHandler as BaseScriptHandler;
 use Composer\Script\Event;
 
+// NOT WORKING YET
 class ScriptHandler extends BaseScriptHandler
 {
     public static function updateTranslations(Event $event)

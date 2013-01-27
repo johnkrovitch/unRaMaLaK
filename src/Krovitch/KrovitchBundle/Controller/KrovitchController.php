@@ -13,63 +13,63 @@ use Krovitch\KrovitchBundle\Entity\Contact;
  */
 class KrovitchController extends BaseController
 {
-  /**
-   * @Route("/", name="_homepage")
-   * @Template()
-   * @return array
-   */
-  public function indexAction()
-  {
-    return array();
-  }
-
-  /**
-   * @Route("/contact", name="_contact")
-   * @Template()
-   * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
-   */
-  public function contactAction()
-  {
-      die('lol');
-    $contact = new Contact();
-
-    $builder = $this->createFormBuilder($contact);
-    $builder->add('name')
-            ->add('password', 'password')
-            ->add('email', 'email');
-    $form = $builder->getForm();
-
-    // handling form submission
-    $request = $this->getRequest();
-
-    if($request->getMethod() == 'POST'){
-      $form->bindRequest($request);
-
-      if($form->isValid()){
-
-      }else{
-
-      }
+    /**
+     * @Route("/", name="_homepage")
+     * @Template()
+     * @return array
+     */
+    public function indexAction()
+    {
+        return array();
     }
 
-    return array('form' => $form->createView());
+    /**
+     * @Route("/contact", name="_contact")
+     * @Template()
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function contactAction()
+    {
+        die('lol');
+        $contact = new Contact();
 
-    /*  $form = $this->get('form.factory')->create(new ContactType());
+        $builder = $this->createFormBuilder($contact);
+        $builder->add('name')
+            ->add('password', 'password')
+            ->add('email', 'email');
+        $form = $builder->getForm();
 
-      $request = $this->get('request');
-      if ('POST' == $request->getMethod()) {
-          $form->bindRequest($request);
-          if ($form->isValid()) {
-              $mailer = $this->get('mailer');
-              // .. setup a message and send it
-              // http://symfony.com/doc/current/cookbook/email.html
+        // handling form submission
+        $request = $this->getRequest();
 
-              $this->get('session')->setFlash('notice', 'Message sent!');
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
 
-              return new RedirectResponse($this->generateUrl('_demo'));
+            if ($form->isValid()) {
+
+            } else {
+
+            }
+        }
+
+        return array('form' => $form->createView());
+
+        /*  $form = $this->get('form.factory')->create(new ContactType());
+
+          $request = $this->get('request');
+          if ('POST' == $request->getMethod()) {
+              $form->bindRequest($request);
+              if ($form->isValid()) {
+                  $mailer = $this->get('mailer');
+                  // .. setup a message and send it
+                  // http://symfony.com/doc/current/cookbook/email.html
+
+                  $this->get('session')->setFlash('notice', 'Message sent!');
+
+                  return new RedirectResponse($this->generateUrl('_demo'));
+              }
           }
-      }
 
-      return array('form' => $form->createView());*/
-  }
+          return array('form' => $form->createView());*/
+    }
 }
