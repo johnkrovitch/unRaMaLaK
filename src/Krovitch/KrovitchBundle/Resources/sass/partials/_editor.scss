@@ -3,6 +3,16 @@
 h1 {
   @extend .center-text;
 }
+
 h2 {
   @extend .center-text;
+}
+
+#editor-menu {
+  ul.choices {
+    img {
+      cursor: pointer;
+      height: 50px;
+    }
+  }
 }

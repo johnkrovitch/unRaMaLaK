@@ -5,31 +5,41 @@ $.Class('Unramalak.Map', {}, {
   context: null,
   cells: null,
   hitCells: null,
+  menu: null,
 
 
   /**
    * Initialize map parameters
    * @param context
    */
-  init: function(context) {
-    var _super = this;
-
+  init: function (context) {
     this.context = context;
     this.cells = [];
     this.hitCells = [];
   },
 
+  bindMenu: function () {
+    // create menu
+    this.menu = new Unramalak.Menu(this.context.menuContainer, 'mainMenu');
+    this.menu.build();
+    this.menu.container.bind('mainMenu.click', this.menuClick);
+  },
+
+  menuClick: function (e, type, value) {
+    console.log('Yeah !', type, value);
+  },
+
   /**
    * Render the map with options in context
    */
-  draw: function() {
+  draw: function () {
     console.log('map.draw', this.context);
 
     var mapSize = {x: 10, y: 10};
     var odd = false;
 
     var hexagonCenterX = this.context.startingPoint.x;
-    var hexagonCenterY =  this.context.startingPoint.y;
+    var hexagonCenterY = this.context.startingPoint.y;
     var xRadius = 0;
     var yRadius = 0;
 
@@ -45,7 +55,6 @@ $.Class('Unramalak.Map', {}, {
         extraCells = 1;
       }
       for (var j = 0; j < (mapSize.y + extraCells); j++) {
-
         var hexagonCenter = new Point(hexagonCenterX, hexagonCenterY);
         var hexagon = new Path.RegularPolygon(hexagonCenter, this.context.numberOfSides, this.context.radius);
         hexagon.fillColor = '#e9e9ff';
@@ -53,14 +62,14 @@ $.Class('Unramalak.Map', {}, {
 
         // x-radius of shape : distance between center and one of his point.
         // distance between this shape and the next is equals to a diameter (plus an optional padding)
-        xRadius =  hexagonCenter.x - hexagon.segments[0].point.x;
+        xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
         hexagonCenterX += xRadius * 2 + this.context.cellPadding;
 
         this.cells.push(hexagon);
       }
       odd = !odd;
       // y-radius
-      yRadius =  hexagonCenter.y - hexagon.segments[0].point.y;
+      yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.context.cellPadding;
     }
   },
@@ -68,11 +77,12 @@ $.Class('Unramalak.Map', {}, {
   bind: function () {
     console.log('map.bind');
     var _super = this;
-    //var _project = project;
+    // bind menu events
+    this.bindMenu();
 
-    $.each(this.cells, function(index, cell) {
+    $.each(this.cells, function (index, cell) {
       // onMouseDown
-      cell.attach('mousedown', function(event) {
+      cell.attach('mousedown', function (event) {
         // get current cell state before deselecting all cells
         var selected = this.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
@@ -85,7 +95,7 @@ $.Class('Unramalak.Map', {}, {
         }
       });
       // onMouseDrag
-      cell.attach('mousedrag', function(event) {
+      cell.attach('mousedrag', function (event) {
         //console.log('mousedrag', event);
 
         //_super.hitCells.push(event.point);
@@ -97,11 +107,11 @@ $.Class('Unramalak.Map', {}, {
         }
       });
       // onMouseUp
-      cell.attach('mouseup', function(event) {
+      cell.attach('mouseup', function (event) {
         console.log('map.mouseup', this);
 
         // if cells have been clicked or drag
-        $.each(_super.hitCells, function(index, cell) {
+        $.each(_super.hitCells, function (index, cell) {
           cell.selected = true;
         });
         // then remove this cells from hit cells array
@@ -110,10 +120,10 @@ $.Class('Unramalak.Map', {}, {
     });
   },
 
-  unselect: function() {
+  unselect: function () {
     console.log('map.unselect');
 
-    $.each(this.cells, function(index, cell) {
+    $.each(this.cells, function (index, cell) {
       cell.selected = false;
     });
   }
@@ -164,17 +174,19 @@ $.Class('Unramalak.Map', {}, {
 
 $.Class('Unramalak.MapContext', {}, {
   // map paper canvas options
-  startingPoint:null,
-  numberOfSides:0,
-  radius:0,
-  cellPadding:0,
+  startingPoint: null,
+  numberOfSides: 0,
+  radius: 0,
+  cellPadding: 0,
+  menuContainer: null,
 
-  init:function (mapOptions) {
+  init: function (mapOptions) {
     console.log('mapContext.init', mapOptions);
 
     this.startingPoint = mapOptions.startingPoint;
     this.numberOfSides = mapOptions.numberOfSides;
     this.radius = mapOptions.radius;
     this.cellPadding = mapOptions.cellPadding;
+    this.menuContainer = mapOptions.menuContainer;
   }
 });

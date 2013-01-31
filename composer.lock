@@ -451,12 +451,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GeorgetteParty/GMFBundle.git",
-                "reference": "ba681d50a22863fadb7bff4aefd8679a0b63896c"
+                "reference": "fcc4d1eae6956e8acceb16b01e3367a6199687a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GeorgetteParty/GMFBundle/zipball/ba681d50a22863fadb7bff4aefd8679a0b63896c",
-                "reference": "ba681d50a22863fadb7bff4aefd8679a0b63896c",
+                "url": "https://api.github.com/repos/GeorgetteParty/GMFBundle/zipball/fcc4d1eae6956e8acceb16b01e3367a6199687a5",
+                "reference": "fcc4d1eae6956e8acceb16b01e3367a6199687a5",
                 "shasum": ""
             },
             "require": {
@@ -468,7 +468,7 @@
                 "symfony/yaml": ">=2.1,<2.3-dev",
                 "symfony/http-kernel": ">=2.1,<2.3-dev"
             },
-            "time": "2013-01-27 18:51:45",
+            "time": "2013-01-29 18:49:59",
             "type": "symfony-bundle",
             "autoload": {
                 "psr-0": {

@@ -4,6 +4,14 @@
     <h1>La map, la map !!!</h1>
     <a href="{{ path('_homepage') }}">Homepage</a>
 
+    <div id="editor-menu">
+        <ul class="choices">
+            <li>{% trans %}Terrain de base{% endtrans %}</li>
+            <li data-type="land" data-value="yellow"><img src="/bundles/krovitch/images/sand.png"
+                                                          alt="{% trans %}Sable{% endtrans %}"/></li>
+        </ul>
+    </div>
+
     <canvas id="myCanvas" width="1000" height="1000">
         It seems that your old and ugly browser does not support canvas yet...
     </canvas>

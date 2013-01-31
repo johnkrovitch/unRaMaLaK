@@ -83,7 +83,7 @@ class Unit extends Entity
         if (!$this->uploadDir) {
             $this->uploadDir = '/web/bundles/krovitch/uploads';
         }
-        return __DIR__.'/../../../../'.$this->uploadDir;
+        return __DIR__ . '/../../../../' . $this->uploadDir;
     }
 
     public function setUploadDir($dir)
