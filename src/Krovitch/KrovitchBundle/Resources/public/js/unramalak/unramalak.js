@@ -19,7 +19,7 @@ $.Class('Unramalak.Application', {}, {
   init: function () {
     // init map context
     this.mapContext = new Unramalak.MapContext({
-      startingPoint: new Point(100, 100),
+      startingPoint: new Point(100, 50),
       numberOfSides: 6,
       radius: 50,
       cellPadding: 0,
@@ -35,6 +35,7 @@ $.Class('Unramalak.Application', {}, {
     this.map = new Unramalak.Map(this.mapContext);
     this.map.draw();
     this.map.bind();
+    this.map.preventBubbling();
 
     // map binding
     /*$(this.map).bind('save',function () {

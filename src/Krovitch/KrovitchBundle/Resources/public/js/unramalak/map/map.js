@@ -2,11 +2,11 @@
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
-  context: null,
   cells: null,
+  context: null,
   hitCells: null,
   menu: null,
-
+  menuData: [],
 
   /**
    * Initialize map parameters
@@ -19,14 +19,18 @@ $.Class('Unramalak.Map', {}, {
   },
 
   bindMenu: function () {
+    var _super = this;
     // create menu
     this.menu = new Unramalak.Menu(this.context.menuContainer, 'mainMenu');
     this.menu.build();
-    this.menu.container.bind('mainMenu.click', this.menuClick);
-  },
-
-  menuClick: function (e, type, value) {
-    console.log('Yeah !', type, value);
+    this.menu.container.bind('mainMenu.click', function (e, type, value) {
+      // keep editor's changes
+      _super.menuData.push({'type': type, 'value': value});
+    });
+    this.menu.container.bind('mainMenu.unselect', function (e) {
+      // keep editor's changes
+      _super.menuData = [];
+    });
   },
 
   /**
@@ -75,100 +79,70 @@ $.Class('Unramalak.Map', {}, {
   },
 
   bind: function () {
-    console.log('map.bind');
     var _super = this;
     // bind menu events
     this.bindMenu();
 
     $.each(this.cells, function (index, cell) {
       // onMouseDown
-      cell.attach('mousedown', function (event) {
+      cell.attach('mousedown', function (paperEvent) {
         // get current cell state before deselecting all cells
         var selected = this.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
         // If <Ctrl> was press, we do not deselect cells
-        if (event.key != 'control') {
+        if (!paperEvent.event.ctrlKey) {
           _super.unselect();
         }
+        // if cell was not selected, we select it
         if (!selected) {
           _super.hitCells.push(this);
         }
       });
-      // onMouseDrag
-      cell.attach('mousedrag', function (event) {
-        //console.log('mousedrag', event);
-
-        //_super.hitCells.push(event.point);
-
-        var hit = project.hitTest(event.point);
-        // if user drag over the map, hit will be null
-        if (hit) {
-          _super.hitCells.push(hit.item);
-        }
-      });
       // onMouseUp
-      cell.attach('mouseup', function (event) {
-        console.log('map.mouseup', this);
-
-        // if cells have been clicked or drag
-        $.each(_super.hitCells, function (index, cell) {
-          cell.selected = true;
-        });
-        // then remove this cells from hit cells array
-        _super.hitCells.length = 0;
+      cell.attach('mouseup', function (paperEvent) {
+        _super.update();
       });
+    });
+    // onclick anywhere but on menu and map, unselect user choice
+    $(document).on('click', function () {
+      _super.menu.unselect();
     });
   },
 
+  /**
+   * Unselect cells
+   */
   unselect: function () {
-    console.log('map.unselect');
-
     $.each(this.cells, function (index, cell) {
       cell.selected = false;
     });
+  },
+
+  update: function () {
+    var _super = this;
+
+    // if cells have been clicked or drag
+    $.each(_super.hitCells, function (index, cell) {
+      cell.selected = true;
+
+      // if user clicked on editor, we handle that
+      if (_super.menuData.length > 0) {
+        cell.fillColor = _super.menuData[0].value;
+      }
+    });
+    // then reset hitCells
+    this.hitCells = [];
+  },
+
+  /**
+   * Prevents canvas events bubbling
+   */
+  preventBubbling: function () {
+    $('canvas').on('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    });
   }
-
-  /*updateCell:function (pointerSize, clonedCellTypeObject) {
-   //console.log('update', this.cellClickedObject);
-
-   var currentCell = this.cellClickedObject;
-   currentCell.empty();
-   currentCell.append(clonedCellTypeObject);
-
-   // get coordinates of current clicked cells
-   var currentX = currentCell.getPosition('x');
-   var currentY = currentCell.getPosition('y');
-
-   // fills other cells according to pointerSize
-   if (parseInt(pointerSize) > 0) {
-
-   $(this.context.mapCells).each(function () {
-   var x = $(this).getPosition('x');
-   var y = $(this).getPosition('y');
-   var xValid = (x >= (currentX - pointerSize) && x <= currentX) || (x <= (currentX + pointerSize) && x >= currentX);
-   var yValid = (y >= (currentY - pointerSize) && y <= currentY) || (y <= (currentY + pointerSize) && y >= currentY);
-
-   if (xValid && yValid) {
-   $(this).empty();
-   $(this).append(clonedCellTypeObject.clone());
-   }
-   });
-   }
-   },
-   move:function (x, y) {
-   var htmlMap = $(this.context.mapContainer);
-   //var currentTop = ('top');
-   //var currentLeft = htmlMap.css('left');
-
-   console.log('top', htmlMap.position().top);
-   console.log('left', htmlMap.position().left);
-
-   var unit = 'px';
-   var top = htmlMap.position().top + x + unit;
-   var left = htmlMap.position().left + y + unit;
-
-   htmlMap.css('top', top).css('left', left);
-   }*/
 });
 /*****************************/
 

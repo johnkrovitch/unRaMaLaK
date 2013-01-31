@@ -9,9 +9,21 @@ h2 {
 }
 
 #editor-menu {
-  ul.choices {
+  margin-bottom: 35px;
+
+  ul.choices li {
+    cursor: pointer;
+
+    &.selected {
+      border: 1px solid blue;
+    }
+    &.title {
+      clear: both;
+    }
+    &.land {
+      width: 50px;
+    }
     img {
-      cursor: pointer;
       height: 50px;
     }
   }
