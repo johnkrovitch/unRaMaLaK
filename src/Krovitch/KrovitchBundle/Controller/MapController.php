@@ -25,6 +25,8 @@ class MapController extends BaseController
      */
     public function indexAction()
     {
-        return array();
+        $map = $this->getManager('Map')->find(1);
+
+        return array('map' => json_encode($map->getContent()));
     }
 }

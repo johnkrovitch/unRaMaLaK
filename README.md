@@ -3,9 +3,12 @@ unRamalak and Gmf Installation
 
 What's n3w ?
 
+> en cours ; créé une map en js à partir des données en base
+
 > Working on gmf
 
 > Tentative d'implémentation d'évènements dans le gmf pour gérer les chargements d'entités du modèle par exemple, je pense...
+
 
 
 1) Cloning repository

@@ -16,14 +16,20 @@ $.Class('Unramalak.Application', {}, {
   /**
    * Initialize map and editor objects
    */
-  init: function () {
+  init: function (cells) {
+    // Get a reference to the canvas object
+    var canvas = document.getElementById('myCanvas');
+    // Create an empty project and a view for the canvas:
+    paper.setup(canvas);
+
     // init map context
     this.mapContext = new Unramalak.MapContext({
-      startingPoint: new Point(100, 50),
+      startingPoint: new paper.Point(100, 50),
       numberOfSides: 6,
       radius: 50,
       cellPadding: 0,
-      menuContainer: '#editor-menu ul.choices'
+      menuContainer: '#editor-menu ul.choices',
+      cells: cells
     });
   },
 
@@ -51,29 +57,29 @@ $.Class('Unramalak.Application', {}, {
      }).bind('unClick', function () {
      _super.unClick();
      });*/
+  },
+
+  save: function () {
+    var cellsValues = [];
+    var jsonData = '';
+
+    // save stuff here
+    $(this.map.cells).each(function () {
+      var id = 1
+      var idType = $(this).getIdType();
+      var x = $(this).getPosition('x');
+      var y = $(this).getPosition('y');
+      var backgroundImage = $(this).getBackgroundImage();
+
+      cellsValues.push({id: id, id_type: idType, x: x, y: y, background_image: backgroundImage});
+      jsonData = JSON.stringify(cellsValues, null);
+    });
+    $.ajax({
+      type: 'POST',
+      url: this.saveUrl,
+      data: 'data=' + jsonData
+    });
   }
-
-  /*save:function () {
-   var cellsValues = new Array();
-   var jsonData = '';
-
-   // save stuff here
-   $(this.mapContext.mapCells).each(function () {
-   var id = $(this).data('id');
-   var idType = $(this).getIdType();
-   var x = $(this).getPosition('x');
-   var y = $(this).getPosition('y');
-   var backgroundImage = $(this).getBackgroundImage();
-
-   cellsValues.push({id:id, id_type:idType, x:x, y:y, background_image:backgroundImage});
-   jsonData = JSON.stringify(cellsValues, null);
-   });
-   $.ajax({
-   type:'POST',
-   url:this.saveUrl,
-   data:'data=' + jsonData
-   });
-   },*/
 
   /*move:function () {
    if ($.isNull(this.lastPointClicked)) {
@@ -94,11 +100,4 @@ $.Class('Unramalak.Application', {}, {
    //console.log('unClick');
    this.lastPointClicked = null;
    }*/
-});
-
-
-//
-$(document).ready(function () {
-  var ur = new Unramalak.Application();
-  ur.run();
 });

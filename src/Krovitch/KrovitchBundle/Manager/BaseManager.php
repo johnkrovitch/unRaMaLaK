@@ -5,6 +5,7 @@ namespace Krovitch\KrovitchBundle\Manager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
 use Krovitch\KrovitchBundle\Utils\StringUtils;
+use Symfony\Component\DependencyInjection\Container;
 
 abstract class BaseManager
 {
@@ -49,13 +50,19 @@ abstract class BaseManager
 
     protected function getRepository($repositoryName = null)
     {
+        // try to find automatically the manager name
         if (!$repositoryName) {
             $repositoryName = StringUtils::getEntityClassName($this);
         }
-        return $this->getEntityManager()->getRepository('KrovitchBundle:Hero');
+        $repositoryName = Container::camelize($repositoryName);
+        // add krovitch prefix
+        if (substr($repositoryName, 0, 7) != 'krovitch') {
+            $repositoryName = 'KrovitchBundle:Editor\\' . $repositoryName;
+        }
+        return $this->getEntityManager()->getRepository($repositoryName);
     }
 
-    protected function getEntityManager()
+    public function getEntityManager()
     {
         return $this->entity_manager;
     }

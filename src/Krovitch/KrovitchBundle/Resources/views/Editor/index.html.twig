@@ -2,11 +2,12 @@
 
 {% block content %}
     <div id="editor-home" class="row">
-        <h1>{% trans %}Editor{% endtrans %}</h1>
+        <h1>{% trans %}editor.title{% endtrans %}</h1>
 
         <div class="span2">
             <ul class="unstyled menu">
                 <li><a href="{{ path('createHero') }}">{% trans %}create a Hero{% endtrans %}</a></li>
+                <li><a href="{{ path('createMap') }}">{% trans %}editor.map.create{% endtrans %}</a></li>
             </ul>
         </div>
         <div class="span6">
@@ -21,7 +22,8 @@
                             <td>{{ hero.race }}</td>
                             <td class="actions">
                                 <a href="{{ path('editHero', {'id': hero.id}) }}">{% trans %}modify{% endtrans %}</a>
-                                <a href="{{ path('deleteHero', {'id': hero.id}) }}" class="alert-delete">{% trans %}delete{% endtrans %}</a>
+                                <a href="{{ path('deleteHero', {'id': hero.id}) }}" class="alert-delete">{% trans %}
+                                    delete{% endtrans %}</a>
                             </td>
                         </tr>
                     {% endfor %}

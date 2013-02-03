@@ -3,9 +3,11 @@
 namespace Krovitch\KrovitchBundle\Controller;
 
 use Krovitch\KrovitchBundle\Entity\Hero;
+use Krovitch\KrovitchBundle\Entity\Editor\Map;
+use Krovitch\KrovitchBundle\Form\HeroType;
+use Krovitch\KrovitchBundle\Form\MapType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Krovitch\KrovitchBundle\Form\HeroType;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
 /**
@@ -32,7 +34,7 @@ class EditorController extends BaseController
      */
     public function createHeroAction()
     {
-        $hero  = new Hero();
+        $hero = new Hero();
         $request = $this->getRequest();
         $form = $this->createForm(new HeroType(), $hero);
 
@@ -59,7 +61,7 @@ class EditorController extends BaseController
     public function editHeroAction()
     {
         $request = $this->getRequest();
-        $hero  = $this->getManager('Hero')->find($request->get('id'));
+        $hero = $this->getManager('Hero')->find($request->get('id'));
         $form = $this->createForm(new HeroType(), $hero);
 
         if ($request->isMethod('post')) {
@@ -94,5 +96,46 @@ class EditorController extends BaseController
         $this->setMessage('Hero %hero% was successfully deleted.', array('%hero%' => $hero->getName()));
 
         return $this->redirect('@editor');
+    }
+
+    /**
+     * @Route("/map/create", name="createMap")
+     * @Route("/map/edit/{id}", name="editMap", requirements={"id" = "\d+"})
+     * @Route("/map/delete/{id}", name="deleteMap", requirements={"id" = "\d+"})
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function editMapAction()
+    {
+        $request = $this->getRequest();
+        $id = $request->get('id');
+        $map = new Map();
+        $route = array('name' => 'createMap', 'parameters' => array());
+
+        if ($id) {
+            // load existing map
+            $map = $this->getManager('Map')->find($id);
+            $route = array('name' => 'editMap', 'parameters' => array('id' => $id));
+        }
+        $form = $this->createForm(new MapType(), $map);
+
+        if ($request->isMethod('post')) {
+            $form->bind($request);
+
+            if ($form->isValid()) {
+                $this->getManager('Hero')->save($map);
+                $this->setMessage('editor.map.saveSuccess', array('%map%' => $map->getName()));
+            }
+        }
+        return array('form' => $form->createView(), 'route' => $route);
+    }
+
+
+    protected function validParametersForAction($id, $action)
+    {
+        if (in_array($action, array('edit', 'delete')) && !$id) {
+            throw $this->createNotFoundException(sprintf('Edit or delete action required a "id" parameter.'));
+        }
+
     }
 }

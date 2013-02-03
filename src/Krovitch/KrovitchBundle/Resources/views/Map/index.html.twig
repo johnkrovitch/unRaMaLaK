@@ -7,13 +7,24 @@
     <div id="editor-menu">
         <ul class="choices">
             <li class="title">{% trans %}Terrain de base{% endtrans %}</li>
-            <li class="land" data-type="land" data-value="yellow">
+            <li class="menu-item" data-type="land" data-value="yellow">
                 <img src="/bundles/krovitch/images/sand.png" alt="{% trans %}Sable{% endtrans %}"/>
             </li>
+        </ul>
+        <ul class="actions">
+            <li><a href="javascript:void(0);" class="menu-action save" data-menu-action="save">{% trans %}
+                    save{% endtrans %}</a></li>
         </ul>
     </div>
 
     <canvas id="myCanvas" width="1000" height="1000">
         It seems that your old and ugly browser does not support canvas yet...
     </canvas>
+
+    <script type="text/javascript" language="javascript">
+        $(document).ready(function () {
+            var ur = new Unramalak.Application({{ map }});
+            ur.run();
+        });
+    </script>
 {% endblock %}

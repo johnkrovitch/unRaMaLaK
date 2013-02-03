@@ -14,7 +14,7 @@ $.Class('Unramalak.Menu', {}, {
 
   build: function () {
     var _super = this;
-    this.items = this.container.find('li');
+    this.items = this.container.find('.menu-item');
 
     this.items.each(function () {
       // handle click on type of land
@@ -35,6 +35,9 @@ $.Class('Unramalak.Menu', {}, {
         e.stopPropagation();
         e.preventDefault();
       });
+    });
+    this.container.find('.menu-actions').on('click', function () {
+      _super.container.trigger(_super.name + '.save');
     });
   },
 

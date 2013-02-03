@@ -1,0 +1,19 @@
+{% extends 'KrovitchBundle:Editor:index.html.twig' %}
+
+{% block content %}
+    <div id="editor-home" class="row">
+        <h1>{% trans %}editor.map.title{% endtrans %}</h1>
+
+        <div class="span8">
+            <form action="{{ path(route.name, route.parameters) }}" method="post" {{ form_enctype(form) }}>
+                {{ form_widget(form) }}
+
+                <input type="submit"/>
+            </form>
+        </div>
+
+        <div class="actions">
+            <a href="{{ path('editor') }}">{% trans %}return{% endtrans %}</a>
+        </div>
+    </div>
+{% endblock %}

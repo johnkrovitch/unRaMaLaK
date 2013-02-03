@@ -12,15 +12,14 @@ h2 {
   margin-bottom: 35px;
 
   ul.choices li {
-    cursor: pointer;
-
     &.selected {
       border: 1px solid blue;
     }
     &.title {
       clear: both;
     }
-    &.land {
+    &.menu-item {
+      cursor: pointer;
       width: 50px;
     }
     img {

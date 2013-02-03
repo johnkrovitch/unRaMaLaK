@@ -2,9 +2,9 @@
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
-  cells: null,
+  cells: [],
   context: null,
-  hitCells: null,
+  hitCells: [],
   menu: null,
   menuData: [],
 
@@ -14,8 +14,6 @@ $.Class('Unramalak.Map', {}, {
    */
   init: function (context) {
     this.context = context;
-    this.cells = [];
-    this.hitCells = [];
   },
 
   bindMenu: function () {
@@ -31,17 +29,17 @@ $.Class('Unramalak.Map', {}, {
       // keep editor's changes
       _super.menuData = [];
     });
+    this.menu.container.bind('mainMenu.save', function (e) {
+      console.log('save');
+    });
   },
 
   /**
    * Render the map with options in context
    */
   draw: function () {
-    console.log('map.draw', this.context);
-
-    var mapSize = {x: 10, y: 10};
     var odd = false;
-
+    var mapSize = {x: 10, y: 10};
     var hexagonCenterX = this.context.startingPoint.x;
     var hexagonCenterY = this.context.startingPoint.y;
     var xRadius = 0;
@@ -59,8 +57,8 @@ $.Class('Unramalak.Map', {}, {
         extraCells = 1;
       }
       for (var j = 0; j < (mapSize.y + extraCells); j++) {
-        var hexagonCenter = new Point(hexagonCenterX, hexagonCenterY);
-        var hexagon = new Path.RegularPolygon(hexagonCenter, this.context.numberOfSides, this.context.radius);
+        var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
+        var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.context.numberOfSides, this.context.radius);
         hexagon.fillColor = '#e9e9ff';
         hexagon.strokeColor = '#a2a2f2';
 
@@ -69,7 +67,7 @@ $.Class('Unramalak.Map', {}, {
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
         hexagonCenterX += xRadius * 2 + this.context.cellPadding;
 
-        this.cells.push(hexagon);
+        this.cells.push(new Unramalak.Cell(hexagon, data));
       }
       odd = !odd;
       // y-radius
@@ -146,6 +144,16 @@ $.Class('Unramalak.Map', {}, {
 });
 /*****************************/
 
+$.Class('Unramalak.Cell', {}, {
+  shape: null,
+  data: {},
+
+  init: function (shape, data) {
+    this.shape = shape;
+    this.data = data;
+  }
+});
+
 $.Class('Unramalak.MapContext', {}, {
   // map paper canvas options
   startingPoint: null,
@@ -153,6 +161,7 @@ $.Class('Unramalak.MapContext', {}, {
   radius: 0,
   cellPadding: 0,
   menuContainer: null,
+  cells: [],
 
   init: function (mapOptions) {
     console.log('mapContext.init', mapOptions);
@@ -162,5 +171,6 @@ $.Class('Unramalak.MapContext', {}, {
     this.radius = mapOptions.radius;
     this.cellPadding = mapOptions.cellPadding;
     this.menuContainer = mapOptions.menuContainer;
+    this.cells = mapOptions.cells;
   }
 });

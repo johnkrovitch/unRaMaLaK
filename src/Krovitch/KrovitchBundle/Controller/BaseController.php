@@ -50,13 +50,13 @@ abstract class BaseController extends Controller
         if (!$managerName) {
             $managerName = StringUtils::getEntityClassName($this);
         }
-        // add Krovitch prefix
+        // add krovitch prefix
         if (substr($managerName, 0, 7) != 'krovitch') {
-            $managerName = 'krovitch.'.$managerName;
+            $managerName = 'krovitch.' . $managerName;
         }
         // add suffix
         if (substr($managerName, -7) != 'manager') {
-            $managerName.= '_manager';
+            $managerName .= '_manager';
         }
         return $this->get($managerName);
     }
