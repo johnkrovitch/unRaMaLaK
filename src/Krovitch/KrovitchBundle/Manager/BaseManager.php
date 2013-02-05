@@ -57,7 +57,7 @@ abstract class BaseManager
         $repositoryName = Container::camelize($repositoryName);
         // add krovitch prefix
         if (substr($repositoryName, 0, 7) != 'krovitch') {
-            $repositoryName = 'KrovitchBundle:Editor\\' . $repositoryName;
+            $repositoryName = 'KrovitchBundle:' . $repositoryName;
         }
         return $this->getEntityManager()->getRepository($repositoryName);
     }

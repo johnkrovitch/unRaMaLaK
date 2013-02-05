@@ -23,7 +23,9 @@
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
-            var ur = new Unramalak.Application({{ map }});
+            console.log({{ map }});
+
+            var ur = new Unramalak.Application();
             ur.run();
         });
     </script>

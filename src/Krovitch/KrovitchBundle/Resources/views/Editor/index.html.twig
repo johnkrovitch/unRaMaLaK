@@ -29,6 +29,24 @@
                     {% endfor %}
                 </table>
             </div>
+
+            <div class="row">
+                <h3>{% trans %}editor.map.list{% endtrans %}</h3>
+                <table>
+                    {% for map in maps %}
+                        <tr>
+                            <td>{{ map.name }}</td>
+                            <td>{{ map.size }}</td>
+                            <td class="actions">
+                                <a href="{{ path('editMap', {'id': map.id}) }}">{% trans %}
+                                    editor.modify{% endtrans %}</a>
+                                <a href="{{ path('deleteMap', {'id': map.id}) }}" class="alert-delete">{% trans %}
+                                    editor.delete{% endtrans %}</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 {% endblock %}

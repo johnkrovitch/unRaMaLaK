@@ -3,7 +3,7 @@
 namespace Krovitch\KrovitchBundle\Controller;
 
 use Krovitch\KrovitchBundle\Entity\Hero;
-use Krovitch\KrovitchBundle\Entity\Editor\Map;
+use Krovitch\KrovitchBundle\Entity\Map;
 use Krovitch\KrovitchBundle\Form\HeroType;
 use Krovitch\KrovitchBundle\Form\MapType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -23,8 +23,9 @@ class EditorController extends BaseController
     public function indexAction()
     {
         $heroes = $this->getManager('Hero')->findAll();
+        $maps = $this->getManager('Map')->findAll();
 
-        return array('heroes' => $heroes);
+        return array('heroes' => $heroes, 'maps' => $maps);
     }
 
     /**

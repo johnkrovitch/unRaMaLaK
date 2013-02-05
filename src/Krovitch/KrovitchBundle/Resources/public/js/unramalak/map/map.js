@@ -2,6 +2,7 @@
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
+  name: 'New Map',
   cells: [],
   context: null,
   hitCells: [],
@@ -14,6 +15,7 @@ $.Class('Unramalak.Map', {}, {
    */
   init: function (context) {
     this.context = context;
+    this.preventBubbling();
   },
 
   bindMenu: function () {
@@ -31,6 +33,37 @@ $.Class('Unramalak.Map', {}, {
     });
     this.menu.container.bind('mainMenu.save', function (e) {
       console.log('save');
+    });
+  },
+
+  bind: function () {
+    var _super = this;
+    // bind menu events
+    this.bindMenu();
+
+    $.each(this.cells, function (index, cell) {
+      // onMouseDown
+      cell.attach('mousedown', function (paperEvent) {
+        // get current cell state before deselecting all cells
+        var selected = this.selected;
+        // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
+        // If <Ctrl> was press, we do not deselect cells
+        if (!paperEvent.event.ctrlKey) {
+          _super.unselect();
+        }
+        // if cell was not selected, we select it
+        if (!selected) {
+          _super.hitCells.push(this);
+        }
+      });
+      // onMouseUp
+      cell.attach('mouseup', function (paperEvent) {
+        _super.update();
+      });
+    });
+    // onclick anywhere but on menu and map, unselect user choice
+    $(document).on('click', function () {
+      _super.menu.unselect();
     });
   },
 
@@ -67,44 +100,13 @@ $.Class('Unramalak.Map', {}, {
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
         hexagonCenterX += xRadius * 2 + this.context.cellPadding;
 
-        this.cells.push(new Unramalak.Cell(hexagon, data));
+        //this.cells.push(new Unramalak.Cell(hexagon, data));
       }
       odd = !odd;
       // y-radius
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.context.cellPadding;
     }
-  },
-
-  bind: function () {
-    var _super = this;
-    // bind menu events
-    this.bindMenu();
-
-    $.each(this.cells, function (index, cell) {
-      // onMouseDown
-      cell.attach('mousedown', function (paperEvent) {
-        // get current cell state before deselecting all cells
-        var selected = this.selected;
-        // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
-        // If <Ctrl> was press, we do not deselect cells
-        if (!paperEvent.event.ctrlKey) {
-          _super.unselect();
-        }
-        // if cell was not selected, we select it
-        if (!selected) {
-          _super.hitCells.push(this);
-        }
-      });
-      // onMouseUp
-      cell.attach('mouseup', function (paperEvent) {
-        _super.update();
-      });
-    });
-    // onclick anywhere but on menu and map, unselect user choice
-    $(document).on('click', function () {
-      _super.menu.unselect();
-    });
   },
 
   /**
@@ -155,22 +157,21 @@ $.Class('Unramalak.Cell', {}, {
 });
 
 $.Class('Unramalak.MapContext', {}, {
-  // map paper canvas options
-  startingPoint: null,
+  data: null,
+  cellPadding: 0,
+  mapContainer: '',
+  menuContainer: '',
   numberOfSides: 0,
   radius: 0,
-  cellPadding: 0,
-  menuContainer: null,
-  cells: [],
+  startingPoint: null,
 
   init: function (mapOptions) {
-    console.log('mapContext.init', mapOptions);
-
-    this.startingPoint = mapOptions.startingPoint;
+    this.cellPadding = mapOptions.cellPadding;
+    this.data = mapOptions.data;
+    this.mapContainer = mapOptions.mapContainer;
+    this.menuContainer = mapOptions.menuContainer;
     this.numberOfSides = mapOptions.numberOfSides;
     this.radius = mapOptions.radius;
-    this.cellPadding = mapOptions.cellPadding;
-    this.menuContainer = mapOptions.menuContainer;
-    this.cells = mapOptions.cells;
+    this.startingPoint = mapOptions.startingPoint;
   }
 });

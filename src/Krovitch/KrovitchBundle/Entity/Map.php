@@ -1,6 +1,6 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Entity\Editor;
+namespace Krovitch\KrovitchBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Krovitch\KrovitchBundle\Entity\Entity;
@@ -34,6 +34,16 @@ class Map extends Entity
     protected $content;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    protected $width;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $height;
+
+    /**
      * Get id
      *
      * @return integer
@@ -41,6 +51,12 @@ class Map extends Entity
     public function getId()
     {
         return $this->id;
+    }
+
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -110,5 +126,30 @@ class Map extends Entity
     public function getContent()
     {
         return $this->content;
+    }
+
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    public function setHeight($height)
+    {
+        $this->height = $height;
+    }
+
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    public function setWidth($width)
+    {
+        $this->height = $width;
+    }
+
+    public function getSize()
+    {
+        return $this->height . ' ' . $this->width;
     }
 }

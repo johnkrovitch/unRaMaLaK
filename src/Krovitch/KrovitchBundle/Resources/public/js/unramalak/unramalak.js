@@ -16,20 +16,21 @@ $.Class('Unramalak.Application', {}, {
   /**
    * Initialize map and editor objects
    */
-  init: function (cells) {
+  init: function (canvasId, mapData) {
     // Get a reference to the canvas object
-    var canvas = document.getElementById('myCanvas');
+    var canvas = document.getElementById(canvasId);
     // Create an empty project and a view for the canvas:
     paper.setup(canvas);
 
     // init map context
     this.mapContext = new Unramalak.MapContext({
-      startingPoint: new paper.Point(100, 50),
-      numberOfSides: 6,
-      radius: 50,
       cellPadding: 0,
+      data: mapData,
+      numberOfSides: 6,
+      mapContainer: canvasId,
       menuContainer: '#editor-menu ul.choices',
-      cells: cells
+      radius: 50,
+      startingPoint: new paper.Point(100, 50)
     });
   },
 
@@ -41,7 +42,6 @@ $.Class('Unramalak.Application', {}, {
     this.map = new Unramalak.Map(this.mapContext);
     this.map.draw();
     this.map.bind();
-    this.map.preventBubbling();
 
     // map binding
     /*$(this.map).bind('save',function () {
