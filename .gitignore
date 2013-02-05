@@ -5,6 +5,7 @@ app/config/parameters.yml
 build/
 bin
 composer.phar
+composer.lock
 vendor
 web/bundles/
 
