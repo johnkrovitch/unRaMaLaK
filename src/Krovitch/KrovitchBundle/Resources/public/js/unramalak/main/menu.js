@@ -1,7 +1,8 @@
 $.Class('Unramalak.Menu', {}, {
-  name: '',
+  actionItems: null,
   container: null,
   items: null,
+  name: '',
 
   init: function (container, name) {
     this.container = $(container);
@@ -15,6 +16,7 @@ $.Class('Unramalak.Menu', {}, {
   build: function () {
     var _super = this;
     this.items = this.container.find('.menu-item');
+    this.actionItems = this.container.find('.menu-action');
 
     this.items.each(function () {
       // handle click on type of land
@@ -36,8 +38,9 @@ $.Class('Unramalak.Menu', {}, {
         e.preventDefault();
       });
     });
-    this.container.find('.menu-actions').on('click', function () {
-      _super.container.trigger(_super.name + '.save');
+    // handle action like save, load...
+    this.container.find('.menu-action').on('click', function () {
+      _super.container.trigger(_super.name + '.' + $(this).data('action'));
     });
   },
 

@@ -9,11 +9,8 @@
     <parameter key="krovitch.hero_manager.class">Krovitch\KrovitchBundle\Manager\HeroManager</parameter>
     <parameter key="krovitch.map_manager.class">Krovitch\KrovitchBundle\Manager\MapManager</parameter>
     <!-- listeners -->
-    <parameter key="sensio_framework_extra.view.listener.class">
-      Krovitch\KrovitchBundle\Listener\ParametersTemplateListener
-    </parameter>
-    <parameter key="krovitch.listener.preExecute.class">Krovitch\KrovitchBundle\Listener\ControllerPreExecuteListener
-    </parameter>
+    <parameter key="sensio_framework_extra.view.listener.class">Krovitch\KrovitchBundle\Listener\ParametersTemplateListener</parameter>
+    <parameter key="krovitch.listener.preExecute.class">Krovitch\KrovitchBundle\Listener\ControllerPreExecuteListener</parameter>
   </parameters>
 
   <services>

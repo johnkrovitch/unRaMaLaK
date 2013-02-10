@@ -2,14 +2,13 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
-use Gmf\GmfBundle\Brick\Unit\HeroBrick;
-use Gmf\GmfBundle\Brick\View\ViewBrick;
-use Gmf\GmfBundle\Core\GameApplication;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/map")
@@ -27,6 +26,23 @@ class MapController extends BaseController
     {
         $map = $this->getManager('Map')->find(1);
 
-        return array('map' => json_encode($map->getContent()));
+        return array('map' => $map->serialize());
+    }
+
+    /**
+     * @Route("/save", name="mapSave")
+     * @Secure(roles="ROLE_ADMIN")
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @return array
+     */
+    public function saveAction(Request $request)
+    {
+        $map = $this->getManager('Map')->find($this->getRequest()->get('id'));
+        $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
+        // saving map content
+        $map->setContent($request->get('data'));
+        $this->getManager('Map')->save($map);
+
+        return new Response('0');
     }
 }

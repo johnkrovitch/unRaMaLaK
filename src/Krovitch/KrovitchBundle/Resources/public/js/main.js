@@ -1,5 +1,5 @@
 /**
- * Retourne true si l'objet est null ou undefined
+ * Return true if object is undefined or null or object.length equals 0
  * @param object
  * @return bool
  */
@@ -8,7 +8,7 @@ $.isNull = function(object){
 };
 
 /**
- * Retourne true si l'objet n'est pas null ou undefined
+ * Return false if object is undefined or null or object.length equals 0
  * @param object
  * @return bool
  */

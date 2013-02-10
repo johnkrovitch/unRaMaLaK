@@ -29,7 +29,7 @@ class Map extends Entity
     protected $description;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $content;
 
@@ -145,11 +145,26 @@ class Map extends Entity
 
     public function setWidth($width)
     {
-        $this->height = $width;
+        $this->width = $width;
     }
 
     public function getSize()
     {
         return $this->height . ' ' . $this->width;
+    }
+
+    /**
+     * Serialize this map into a json string
+     */
+    public function serialize()
+    {
+        $mapJson = new \stdClass();
+        $mapJson->id = $this->id;
+        $mapJson->name = $this->name;
+        $mapJson->height = $this->height;
+        $mapJson->width = $this->width;
+        $mapJson->cells = $this->getContent();
+
+        return $mapJson;
     }
 }

@@ -89,6 +89,13 @@ abstract class BaseController extends Controller
         return parent::redirect($url, $status);
     }
 
+    public function redirect404Unless($condition, $message)
+    {
+        if (!$condition) {
+            $this->createNotFoundException($message);
+        }
+    }
+
     protected function translate($string, $parameters = array())
     {
         return $this->getTranslator()->trans($string, $parameters);

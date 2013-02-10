@@ -7,13 +7,14 @@
     <div id="editor-menu">
         <ul class="choices">
             <li class="title">{% trans %}Terrain de base{% endtrans %}</li>
-            <li class="menu-item" data-type="land" data-value="yellow">
-                <img src="/bundles/krovitch/images/sand.png" alt="{% trans %}Sable{% endtrans %}"/>
+            <li>
+                <a href="javascript:void(0);" class="menu-item" data-type="land" data-value="yellow">
+                    <img src="/bundles/krovitch/images/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/></a>
             </li>
         </ul>
         <ul class="actions">
-            <li><a href="javascript:void(0);" class="menu-action save" data-menu-action="save">{% trans %}
-                    save{% endtrans %}</a></li>
+            <li><a href="javascript:void(0);" class="menu-action" data-action="save">
+                    {% trans %}editor.map.save{% endtrans %}</a></li>
         </ul>
     </div>
 
@@ -23,9 +24,8 @@
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
-            console.log({{ map }});
-
-            var ur = new Unramalak.Application();
+            var mapData = {{ map|json_encode|raw }};
+            var ur = new Unramalak.Application('myCanvas', mapData);
             ur.run();
         });
     </script>

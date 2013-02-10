@@ -2,44 +2,57 @@
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
-  name: 'New Map',
+  id: 0,
   cells: [],
-  context: null,
+  cellsData: [],
+  cellPadding: 0,
+  height: 0,
   hitCells: [],
   menu: null,
+  // contains data from menu (what kind of button has been clicked, what is its value...)
   menuData: [],
+  menuContainer: '',
+  name: 'New Map',
+  numberOfSides: 0,
+  radius: 0,
+  startingPoint: null,
+  width: 0,
 
   /**
    * Initialize map parameters
    * @param context
    */
   init: function (context) {
-    this.context = context;
-    this.preventBubbling();
+
+    if (context.preventBubbling) {
+      this.preventBubbling();
+    }
+    if ($.isNotNull(context.data)) {
+      this.id = context.data.id;
+
+      if ($.isArray(context.data.cells) && $.isNotNull(context.data.cells)) {
+        this.cellsData = context.data.cells;
+      }
+    }
+    this.cellPadding = context.cellPadding;
+    this.height = context.data.height;
+    this.menuContainer = context.menuContainer;
+    this.name = context.data.name;
+    this.numberOfSides = context.numberOfSides;
+    this.radius = context.radius;
+    this.startingPoint = context.startingPoint;
+    this.width = context.data.width;
   },
 
-  bindMenu: function () {
-    var _super = this;
-    // create menu
-    this.menu = new Unramalak.Menu(this.context.menuContainer, 'mainMenu');
-    this.menu.build();
-    this.menu.container.bind('mainMenu.click', function (e, type, value) {
-      // keep editor's changes
-      _super.menuData.push({'type': type, 'value': value});
-    });
-    this.menu.container.bind('mainMenu.unselect', function (e) {
-      // keep editor's changes
-      _super.menuData = [];
-    });
-    this.menu.container.bind('mainMenu.save', function (e) {
-      console.log('save');
-    });
+  load: function (data) {
+    // map must build paper.js object's before binding events on them
+    this.draw();
+    this.bind();
+    this.bindMenu();
   },
 
   bind: function () {
     var _super = this;
-    // bind menu events
-    this.bindMenu();
 
     $.each(this.cells, function (index, cell) {
       // onMouseDown
@@ -64,6 +77,26 @@ $.Class('Unramalak.Map', {}, {
     // onclick anywhere but on menu and map, unselect user choice
     $(document).on('click', function () {
       _super.menu.unselect();
+      _super.unselect();
+    });
+  },
+
+  bindMenu: function () {
+    var _super = this;
+    // create menu
+    this.menu = new Unramalak.Menu(this.menuContainer, 'mainMenu');
+    this.menu.build();
+    this.menu.container.bind('mainMenu.click', function (e, type, value) {
+      // keep editor's changes
+      _super.menuData.push({'type': type, 'value': value});
+    });
+    this.menu.container.bind('mainMenu.unselect', function () {
+      // keep editor's changes
+      _super.menuData = [];
+    });
+    this.menu.container.bind('mainMenu.save', function () {
+      console.log('save');
+      _super.save();
     });
   },
 
@@ -72,15 +105,14 @@ $.Class('Unramalak.Map', {}, {
    */
   draw: function () {
     var odd = false;
-    var mapSize = {x: 10, y: 10};
-    var hexagonCenterX = this.context.startingPoint.x;
-    var hexagonCenterY = this.context.startingPoint.y;
+    var hexagonCenterX = this.startingPoint.x;
+    var hexagonCenterY = this.startingPoint.y;
     var xRadius = 0;
     var yRadius = 0;
 
-    for (var i = 0; i < mapSize.x; i++) {
+    for (var i = 0; i < this.width; i++) {
       var extraCells = 0;
-      hexagonCenterX = this.context.startingPoint.x;
+      hexagonCenterX = this.startingPoint.x;
 
       if (odd) {
         // case of hexagons : each row is staggered with previous
@@ -89,23 +121,22 @@ $.Class('Unramalak.Map', {}, {
         hexagonCenterX -= xRadius;
         extraCells = 1;
       }
-      for (var j = 0; j < (mapSize.y + extraCells); j++) {
+      for (var j = 0; j < (this.height + extraCells); j++) {
         var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
-        var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.context.numberOfSides, this.context.radius);
+        var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
         hexagon.fillColor = '#e9e9ff';
         hexagon.strokeColor = '#a2a2f2';
-
         // x-radius of shape : distance between center and one of his point.
         // distance between this shape and the next is equals to a diameter (plus an optional padding)
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
-        hexagonCenterX += xRadius * 2 + this.context.cellPadding;
-
-        //this.cells.push(new Unramalak.Cell(hexagon, data));
+        hexagonCenterX += xRadius * 2 + this.cellPadding;
+        // push to map cells array
+        this.cells.push(new Unramalak.Map.Cell(hexagon, {x: i, y: j, background: hexagon.fillColor}));
       }
       odd = !odd;
       // y-radius
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
-      hexagonCenterY += yRadius * 3 + this.context.cellPadding;
+      hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
   },
 
@@ -114,7 +145,7 @@ $.Class('Unramalak.Map', {}, {
    */
   unselect: function () {
     $.each(this.cells, function (index, cell) {
-      cell.selected = false;
+      cell.shape.selected = false;
     });
   },
 
@@ -134,6 +165,24 @@ $.Class('Unramalak.Map', {}, {
     this.hitCells = [];
   },
 
+  save: function () {
+    var jsonData;
+    var mapId = this.id;
+    var cellsValues = [];
+
+    // save stuff here
+    $(this.cells).each(function (index, cell) {
+      cellsValues.push(cell.toString());
+      console.log(cell.toString());
+    });
+    jsonData = JSON.stringify(cellsValues);
+    $.ajax({
+      type: 'POST',
+      url: 'save',
+      data: 'id=' + mapId + '&data=' + jsonData
+    });
+  },
+
   /**
    * Prevents canvas events bubbling
    */
@@ -144,24 +193,46 @@ $.Class('Unramalak.Map', {}, {
     });
   }
 });
-/*****************************/
 
-$.Class('Unramalak.Cell', {}, {
+/**
+ * Unramalak.Cell
+ */
+$.Class('Unramalak.Map.Cell', {}, {
+  data: {
+    x: null,
+    y: null,
+    background: null
+  },
   shape: null,
-  data: {},
 
   init: function (shape, data) {
-    this.shape = shape;
     this.data = data;
+    this.shape = shape;
+  },
+
+  attach: function (event, callback) {
+    this.shape.attach(event, callback);
+  },
+
+  toString: function () {
+    var data = {
+      x: this.data.x,
+      y: this.data.y
+    };
+    if (this.data.background) {
+      data.background = {red: this.data.background.red, blue: this.data.background.blue, green: this.data.background.green, alpha: this.data.background.alpha}
+    }
+    return data;
   }
 });
 
-$.Class('Unramalak.MapContext', {}, {
+$.Class('Unramalak.Map.Context', {}, {
   data: null,
   cellPadding: 0,
   mapContainer: '',
   menuContainer: '',
   numberOfSides: 0,
+  preventBubbling: true, // not customizable now
   radius: 0,
   startingPoint: null,
 

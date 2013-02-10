@@ -23,12 +23,12 @@ $.Class('Unramalak.Application', {}, {
     paper.setup(canvas);
 
     // init map context
-    this.mapContext = new Unramalak.MapContext({
+    this.mapContext = new Unramalak.Map.Context({
       cellPadding: 0,
       data: mapData,
       numberOfSides: 6,
       mapContainer: canvasId,
-      menuContainer: '#editor-menu ul.choices',
+      menuContainer: '#editor-menu',
       radius: 50,
       startingPoint: new paper.Point(100, 50)
     });
@@ -40,8 +40,8 @@ $.Class('Unramalak.Application', {}, {
   run: function () {
     // draw map and bind map's events
     this.map = new Unramalak.Map(this.mapContext);
-    this.map.draw();
-    this.map.bind();
+    //this.map.draw();
+    this.map.load();
 
     // map binding
     /*$(this.map).bind('save',function () {
@@ -57,28 +57,6 @@ $.Class('Unramalak.Application', {}, {
      }).bind('unClick', function () {
      _super.unClick();
      });*/
-  },
-
-  save: function () {
-    var cellsValues = [];
-    var jsonData = '';
-
-    // save stuff here
-    $(this.map.cells).each(function () {
-      var id = 1
-      var idType = $(this).getIdType();
-      var x = $(this).getPosition('x');
-      var y = $(this).getPosition('y');
-      var backgroundImage = $(this).getBackgroundImage();
-
-      cellsValues.push({id: id, id_type: idType, x: x, y: y, background_image: backgroundImage});
-      jsonData = JSON.stringify(cellsValues, null);
-    });
-    $.ajax({
-      type: 'POST',
-      url: this.saveUrl,
-      data: 'data=' + jsonData
-    });
   }
 
   /*move:function () {
