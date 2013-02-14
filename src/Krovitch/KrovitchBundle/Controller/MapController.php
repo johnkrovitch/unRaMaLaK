@@ -37,7 +37,7 @@ class MapController extends BaseController
      */
     public function saveAction(Request $request)
     {
-        $map = $this->getManager('Map')->find($this->getRequest()->get('id'));
+        $map = $this->getManager('Map')->find(1);
         $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
         // saving map content
         $map->setContent($request->get('data'));

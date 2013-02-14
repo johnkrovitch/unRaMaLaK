@@ -18,15 +18,11 @@ $.Class('Unramalak.Menu', {}, {
     this.items = this.container.find('.menu-item');
     this.actionItems = this.container.find('.menu-action');
 
-    this.items.each(function () {
-      // handle click on type of land
-      $(this).on('click', function (e) {
-
+    this.items.on('click', function (e) {
         // if already selected, unselect it instead
         if ($(this).hasClass('selected')) {
-          $(this).addClass('selected');
           // trigger unselect event
-          _super.container.trigger(_super.name + '.unselect');
+          _super.unselect();
         }
         else {
           $(this).addClass('selected');
@@ -37,10 +33,11 @@ $.Class('Unramalak.Menu', {}, {
         e.stopPropagation();
         e.preventDefault();
       });
-    });
     // handle action like save, load...
     this.container.find('.menu-action').on('click', function () {
+
       _super.container.trigger(_super.name + '.' + $(this).data('action'));
+      _super.unselect();
     });
   },
 

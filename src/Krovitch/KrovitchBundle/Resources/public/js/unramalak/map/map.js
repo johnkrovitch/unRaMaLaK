@@ -2,10 +2,12 @@
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
+  // TODO refactor Map members (too much)
   id: 0,
   cells: [],
   cellsData: [],
   cellPadding: 0,
+  data: null,
   height: 0,
   hitCells: [],
   menu: null,
@@ -19,20 +21,16 @@ $.Class('Unramalak.Map', {}, {
   width: 0,
 
   /**
-   * Initialize map parameters
-   * @param context
+   * Initialize map parameters, gathering data from context
+   * @param context Execution context. Should contains all data required by map (like canvasId, name, cells data...)
    */
   init: function (context) {
 
     if (context.preventBubbling) {
       this.preventBubbling();
     }
-    if ($.isNotNull(context.data)) {
-      this.id = context.data.id;
-
-      if ($.isArray(context.data.cells) && $.isNotNull(context.data.cells)) {
-        this.cellsData = context.data.cells;
-      }
+    if ($.isNotNull(context.data.cells)) {
+      this.data = context.data;
     }
     this.cellPadding = context.cellPadding;
     this.height = context.data.height;
@@ -44,11 +42,22 @@ $.Class('Unramalak.Map', {}, {
     this.width = context.data.width;
   },
 
-  load: function (data) {
+  load: function () {
+    var _super = this;
+    // load cells data
+    console.log('load cells', this.data);
+
+    if (this.data) {
+      this.cellsData = JSON.parse(this.data.cells);
+    }
     // map must build paper.js object's before binding events on them
     this.draw();
     this.bind();
     this.bindMenu();
+    /*$.each(this.data, function (index, value) {
+      console.log('load values', value);
+      _super.cellsData[value.x] = value;
+    });*/
   },
 
   bind: function () {
@@ -95,7 +104,6 @@ $.Class('Unramalak.Map', {}, {
       _super.menuData = [];
     });
     this.menu.container.bind('mainMenu.save', function () {
-      console.log('save');
       _super.save();
     });
   },
@@ -124,14 +132,28 @@ $.Class('Unramalak.Map', {}, {
       for (var j = 0; j < (this.height + extraCells); j++) {
         var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
         var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
-        hexagon.fillColor = '#e9e9ff';
         hexagon.strokeColor = '#a2a2f2';
         // x-radius of shape : distance between center and one of his point.
         // distance between this shape and the next is equals to a diameter (plus an optional padding)
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
         hexagonCenterX += xRadius * 2 + this.cellPadding;
-        // push to map cells array
-        this.cells.push(new Unramalak.Map.Cell(hexagon, {x: i, y: j, background: hexagon.fillColor}));
+
+        // create cell object to ease further manipulations
+        var cellData = {
+          x: i,
+          y: j,
+          background: '#e9e9ff'
+        };
+
+        console.log('length', this.cellsData.length, i * this.width + j);
+
+        if (this.cellsData.length) {
+          cellData = this.cellsData[i * this.width + j];
+        }
+        // if bg data were loaded, we bind
+        hexagon.fillColor = cellData.background;
+
+        this.cells.push(new Unramalak.Map.Cell(hexagon, cellData));
       }
       odd = !odd;
       // y-radius
@@ -154,8 +176,6 @@ $.Class('Unramalak.Map', {}, {
 
     // if cells have been clicked or drag
     $.each(_super.hitCells, function (index, cell) {
-      cell.selected = true;
-
       // if user clicked on editor, we handle that
       if (_super.menuData.length > 0) {
         cell.fillColor = _super.menuData[0].value;
@@ -173,7 +193,6 @@ $.Class('Unramalak.Map', {}, {
     // save stuff here
     $(this.cells).each(function (index, cell) {
       cellsValues.push(cell.toString());
-      console.log(cell.toString());
     });
     jsonData = JSON.stringify(cellsValues);
     $.ajax({
@@ -181,6 +200,7 @@ $.Class('Unramalak.Map', {}, {
       url: 'save',
       data: 'id=' + mapId + '&data=' + jsonData
     });
+    console.log('save ok');
   },
 
   /**
@@ -215,14 +235,13 @@ $.Class('Unramalak.Map.Cell', {}, {
   },
 
   toString: function () {
+    console.log('to string cell :', this.shape.fillColor, typeof this.shape.fillColor);
     var data = {
       x: this.data.x,
-      y: this.data.y
+      y: this.data.y,
+      background: this.shape.fillColor.toCss()
     };
-    if (this.data.background) {
-      data.background = {red: this.data.background.red, blue: this.data.background.blue, green: this.data.background.green, alpha: this.data.background.alpha}
-    }
-    return data;
+    return JSON.stringify(data);
   }
 });
 

@@ -29,7 +29,7 @@ class Map extends Entity
     protected $description;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
 
@@ -165,6 +165,6 @@ class Map extends Entity
         $mapJson->width = $this->width;
         $mapJson->cells = $this->getContent();
 
-        return $mapJson;
+        return json_encode($mapJson);
     }
 }

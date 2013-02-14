@@ -24,7 +24,10 @@
 
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
-            var mapData = {{ map|json_encode|raw }};
+
+            var mapData = {{ map|raw }};
+            console.log('mapData', mapData);
+
             var ur = new Unramalak.Application('myCanvas', mapData);
             ur.run();
         });
