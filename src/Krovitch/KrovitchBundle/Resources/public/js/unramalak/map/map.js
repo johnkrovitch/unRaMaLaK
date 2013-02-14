@@ -55,9 +55,9 @@ $.Class('Unramalak.Map', {}, {
     this.bind();
     this.bindMenu();
     /*$.each(this.data, function (index, value) {
-      console.log('load values', value);
-      _super.cellsData[value.x] = value;
-    });*/
+     console.log('load values', value);
+     _super.cellsData[value.x] = value;
+     });*/
   },
 
   bind: function () {
@@ -144,11 +144,9 @@ $.Class('Unramalak.Map', {}, {
           y: j,
           background: '#e9e9ff'
         };
-
-        console.log('length', this.cellsData.length, i * this.width + j);
-
         if (this.cellsData.length) {
-          cellData = this.cellsData[i * this.width + j];
+          cellData = JSON.parse(this.cellsData[i * this.width + j]);
+          cellData.background = new paper.RgbColor(cellData.background.red, cellData.background.green, cellData.background.blue, cellData.background.alpha);
         }
         // if bg data were loaded, we bind
         hexagon.fillColor = cellData.background;
@@ -239,7 +237,12 @@ $.Class('Unramalak.Map.Cell', {}, {
     var data = {
       x: this.data.x,
       y: this.data.y,
-      background: this.shape.fillColor.toCss()
+      background: {
+        red: this.shape.fillColor.red,
+        green: this.shape.fillColor.green,
+        blue: this.shape.fillColor.blue,
+        alpha: this.shape.fillColor.alpha
+      }
     };
     return JSON.stringify(data);
   }

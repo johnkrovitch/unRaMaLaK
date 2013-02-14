@@ -9,12 +9,17 @@
             <li class="title">{% trans %}Terrain de base{% endtrans %}</li>
             <li>
                 <a href="javascript:void(0);" class="menu-item" data-type="land" data-value="yellow">
-                    <img src="/bundles/krovitch/images/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/></a>
+                    <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/></a>
             </li>
         </ul>
         <ul class="actions">
-            <li><a href="javascript:void(0);" class="menu-action" data-action="save">
-                    {% trans %}editor.map.save{% endtrans %}</a></li>
+            <li><a href="javascript:void(0);" class="menu-action btn btn-success btn-small" data-action="save">
+                    <i class="icon-white icon-ok"></i>{% trans %}editor.map.save{% endtrans %}</a>
+            </li>
+            <li>
+                <a class="btn btn-danger btn-small">
+                    <i class="icon-white icon-remove"></i>{% trans %}editor.map.removeBackground{% endtrans %}</a>
+            </li>
         </ul>
     </div>
 
