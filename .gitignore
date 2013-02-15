@@ -8,6 +8,7 @@ composer.phar
 composer.lock
 vendor
 web/bundles/
+web/css/
 
 # IDE
 .idea/*
@@ -15,3 +16,4 @@ web/bundles/
 .directory
 # Compass
 .sass-cache
+config.rb
