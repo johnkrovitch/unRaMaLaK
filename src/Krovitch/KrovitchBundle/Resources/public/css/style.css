@@ -50,11 +50,6 @@ body {
   text-align: center;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000333}}
-.alert {
-  margin-bottom: 5px;
-}
-
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\000032}}
 .menu {
   border-right: 1px solid #eeeeee;
@@ -184,4 +179,15 @@ body {
   padding-top: 40px;
   margin-right: auto;
   margin-left: auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000315}}
+#flash-container {
+  position: fixed;
+  left: 1165px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000320}}
+#flash-container .alert {
+  margin-bottom: 5px;
+  opacity: 0.9;
 }

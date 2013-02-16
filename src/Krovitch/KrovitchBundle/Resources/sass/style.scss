@@ -11,3 +11,14 @@
   margin-right: auto;
   margin-left: auto;
 }
+// flash notifications
+#flash-container {
+  position: fixed;
+  left: 1165px;
+
+  // messages
+  .alert {
+    margin-bottom: 5px;
+    opacity: 0.9;
+  }
+}

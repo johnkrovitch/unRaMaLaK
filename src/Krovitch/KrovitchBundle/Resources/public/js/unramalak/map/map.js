@@ -181,8 +181,6 @@ $.Class('Unramalak.Map', {}, {
     var cellsValues = [];
     var _super = this;
 
-    console.log(this);
-
     // save stuff here
     $(this.cells).each(function (index, cell) {
       cellsValues.push(cell.toString());

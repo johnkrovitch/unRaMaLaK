@@ -15,14 +15,16 @@ var AlertManager = {
     var notification = '<div class="alert alert-%type%">%message%<button type="button" class="close">×</button></div>';
     notification = notification.replace('%type%', type).replace('%message%', message);
 
-    $('#unramalak').prepend($(notification));
+    $('#flash-container').prepend($(notification));
     this.init();
   },
 
   launchCounter: function () {
     var alerts = this.alerts;
     setTimeout(function () {
-      alerts.fadeOut(1000);
+      alerts.fadeOut(1000, function () {
+        $(this).remove();
+      });
     }, 5000);
   }
 };
