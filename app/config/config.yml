@@ -4,7 +4,6 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -18,6 +17,7 @@ framework:
     session:
         cookie_lifetime: 14400
         cookie_lifetime: 14400
+    translator: { fallback: en }
 
 # Twig Configuration
 twig:

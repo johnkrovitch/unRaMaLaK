@@ -4,6 +4,11 @@ body {
   padding: 0px;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_base\.scss}line{font-family:\0000331}}
+.btn, .btn:focus {
+  outline: none;
+}
+
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\000033}}
 .floatbreaker {
   clear: both;
@@ -23,29 +28,29 @@ body {
   background-image: url("../images/ajax-loader.gif");
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000317}}
 .red-box-shadow {
   -webkit-box-shadow: 3px -3px 50px rgba(161, 3, 3, 0.76);
   -moz-box-shadow: 3px -3px 50px rgba(161, 3, 3, 0.76);
   box-shadow: 3px -3px 50px rgba(161, 3, 3, 0.76);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000323}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000321}}
 .container-background-color {
   background: #ffffff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000328}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000325}}
 .unlock, #menu-bar-container #menu-bar .login-hidden input[type="submit"] {
   font-family: "Unlock", cursive;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000329}}
 .center-text, h1, h2 {
   text-align: center;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_classes\.scss}line{font-family:\0000333}}
 .alert {
   margin-bottom: 5px;
 }
@@ -170,21 +175,8 @@ body {
   margin-bottom: 35px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_editor\.scss}line{font-family:\0000315}}
-#editor-menu ul.choices li a.selected {
-  border: 1px solid blue;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_editor\.scss}line{font-family:\0000318}}
-#editor-menu ul.choices li a.title {
-  clear: both;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_editor\.scss}line{font-family:\0000321}}
-#editor-menu ul.choices li a.menu-item {
-  cursor: pointer;
-  width: 50px;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_editor\.scss}line{font-family:\0000325}}
-#editor-menu ul.choices li a img {
-  height: 50px;
+#editor-menu .menu-item img {
+  height: 28px;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\000039}}

@@ -1,0 +1,16 @@
+editor.map.baseLand: 'terrain de base'
+editor.map.sand: 'sable'
+editor.map.save: 'sauvegarder'
+editor.map.removeBackground: 'supprimer le fond'
+'UnRaMaLak, la terreur de l''espace !': '__UnRaMaLak, la terreur de l''espace !'
+editor.map.title: __editor.map.title
+return: __return
+Editor: __Editor
+editor.title: __editor.title
+'create a Hero': '__create a Hero'
+editor.map.create: __editor.map.create
+dashboard: __dashboard
+Hero: __Hero
+editor.modify: __editor.modify
+editor.delete: __editor.delete
+editor.map.list: __editor.map.list

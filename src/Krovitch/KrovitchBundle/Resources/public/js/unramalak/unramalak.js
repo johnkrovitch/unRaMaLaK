@@ -41,6 +41,7 @@ $.Class('Unramalak.Application', {}, {
     // draw map and bind map's events
     this.map = new Unramalak.Map(this.mapContext);
     //this.map.draw();
+    this.map.bind(this.notify);
     this.map.load();
 
     // map binding
@@ -57,6 +58,10 @@ $.Class('Unramalak.Application', {}, {
      }).bind('unClick', function () {
      _super.unClick();
      });*/
+  },
+
+  notify: function (message, type) {
+    AlertManager.addAlert(message, type);
   }
 
   /*move:function () {

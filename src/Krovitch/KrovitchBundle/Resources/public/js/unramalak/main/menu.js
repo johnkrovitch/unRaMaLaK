@@ -1,7 +1,10 @@
 $.Class('Unramalak.Menu', {}, {
-  actionItems: null,
+  actions: null,
+  actionClicked: [],
   container: null,
   items: null,
+  itemClicked: [],
+  onSave: null,
   name: '',
 
   init: function (container, name) {
@@ -11,41 +14,32 @@ $.Class('Unramalak.Menu', {}, {
     if (this.container.length == 0 || this.name.length == 0) {
       throw 'Menu cannot be empty';
     }
+    this.items = this.container.find('.menu-item');
+    this.actions = this.container.find('.menu-action');
   },
 
-  build: function () {
-    var _super = this;
-    this.items = this.container.find('.menu-item');
-    this.actionItems = this.container.find('.menu-action');
-
-    this.items.on('click', function (e) {
-        // if already selected, unselect it instead
-        if ($(this).hasClass('selected')) {
-          // trigger unselect event
-          _super.unselect();
-        }
-        else {
-          $(this).addClass('selected');
-          // trigger click event
-          _super.container.trigger(_super.name + '.click', [$(this).data('type'), $(this).data('value')]);
-        }
-        // stop event propagation
-        e.stopPropagation();
-        e.preventDefault();
-      });
+  bind: function (onSave, map) {
     // handle action like save, load...
-    this.container.find('.menu-action').on('click', function () {
-
-      _super.container.trigger(_super.name + '.' + $(this).data('action'));
-      _super.unselect();
+    this.actions.on('click', function () {
+      if ($(this).data('action') == 'save') {
+        onSave.call(map||this);
+      }
     });
+  },
+
+  onItemClick: function (item, e) {
+    this.unselect();
+    item.addClass('active');
+    this.itemClicked.push(item.data('data-value'));
+    // stop event propagation
+    e.stopPropagation();
+    e.preventDefault();
   },
 
   unselect: function () {
     this.items.each(function () {
-      $(this).removeClass('selected');
+      $(this).removeClass('active');
     });
-    // trigger unselect event
-    this.container.trigger(this.name + '.unselect');
+    this.itemClicked = [];
   }
 });

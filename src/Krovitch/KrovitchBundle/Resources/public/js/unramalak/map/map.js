@@ -1,3 +1,5 @@
+var defaultBackgroundColor = '#e9e9ff';
+
 /**
  * Map class
  */
@@ -7,6 +9,7 @@ $.Class('Unramalak.Map', {}, {
   cells: [],
   cellsData: [],
   cellPadding: 0,
+  container: '',
   data: null,
   height: 0,
   hitCells: [],
@@ -16,6 +19,7 @@ $.Class('Unramalak.Map', {}, {
   menuContainer: '',
   name: 'New Map',
   numberOfSides: 0,
+  onNotify: null,
   radius: 0,
   startingPoint: null,
   width: 0,
@@ -52,20 +56,18 @@ $.Class('Unramalak.Map', {}, {
     }
     // map must build paper.js object's before binding events on them
     this.draw();
-    this.bind();
-    this.bindMenu();
     /*$.each(this.data, function (index, value) {
      console.log('load values', value);
      _super.cellsData[value.x] = value;
      });*/
   },
 
-  bind: function () {
+  bind: function (onNotify) {
     var _super = this;
 
     $.each(this.cells, function (index, cell) {
       // onMouseDown
-      cell.attach('mousedown', function (paperEvent) {
+      cell.bind('mousedown', function (paperEvent) {
         // get current cell state before deselecting all cells
         var selected = this.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
@@ -75,11 +77,11 @@ $.Class('Unramalak.Map', {}, {
         }
         // if cell was not selected, we select it
         if (!selected) {
-          _super.hitCells.push(this);
+          _super.hitCells.push(cell);
         }
       });
       // onMouseUp
-      cell.attach('mouseup', function (paperEvent) {
+      cell.bind('mouseup', function (paperEvent) {
         _super.update();
       });
     });
@@ -88,24 +90,14 @@ $.Class('Unramalak.Map', {}, {
       _super.menu.unselect();
       _super.unselect();
     });
-  },
-
-  bindMenu: function () {
-    var _super = this;
     // create menu
     this.menu = new Unramalak.Menu(this.menuContainer, 'mainMenu');
-    this.menu.build();
-    this.menu.container.bind('mainMenu.click', function (e, type, value) {
-      // keep editor's changes
-      _super.menuData.push({'type': type, 'value': value});
-    });
-    this.menu.container.bind('mainMenu.unselect', function () {
-      // keep editor's changes
-      _super.menuData = [];
-    });
-    this.menu.container.bind('mainMenu.save', function () {
-      _super.save();
-    });
+    this.menu.bind(this.save, this);
+    this.onNotify = onNotify;
+  },
+
+  onclick: function (e, type, value) {
+    this.menuData.push({'type': type, 'value': value});
   },
 
   /**
@@ -142,7 +134,7 @@ $.Class('Unramalak.Map', {}, {
         var cellData = {
           x: i,
           y: j,
-          background: '#e9e9ff'
+          background: defaultBackgroundColor
         };
         if (this.cellsData.length) {
           cellData = JSON.parse(this.cellsData[i * this.width + j]);
@@ -176,7 +168,7 @@ $.Class('Unramalak.Map', {}, {
     $.each(_super.hitCells, function (index, cell) {
       // if user clicked on editor, we handle that
       if (_super.menuData.length > 0) {
-        cell.fillColor = _super.menuData[0].value;
+        cell.setBackground(_super.menuData[0].value);
       }
     });
     // then reset hitCells
@@ -187,18 +179,31 @@ $.Class('Unramalak.Map', {}, {
     var jsonData;
     var mapId = this.id;
     var cellsValues = [];
+    var _super = this;
+
+    console.log(this);
 
     // save stuff here
     $(this.cells).each(function (index, cell) {
       cellsValues.push(cell.toString());
     });
     jsonData = JSON.stringify(cellsValues);
+    // call ajax url
     $.ajax({
       type: 'POST',
       url: 'save',
-      data: 'id=' + mapId + '&data=' + jsonData
+      data: 'id=' + mapId + '&data=' + jsonData,
+      success: function () {
+        _super.notify('Map successfully saved !', 'success');
+      },
+      error: function () {
+        _super.notify('An error has occurred during map save', 'error')
+      }
     });
-    console.log('save ok');
+  },
+
+  notify: function (message, type) {
+    this.onNotify(message, type);
   },
 
   /**
@@ -228,12 +233,18 @@ $.Class('Unramalak.Map.Cell', {}, {
     this.shape = shape;
   },
 
-  attach: function (event, callback) {
+  bind: function (event, callback) {
     this.shape.attach(event, callback);
   },
 
+  setBackground: function (background) {
+    if ($.isNull(background)) {
+      background = defaultBackgroundColor
+    }
+    this.shape.fillColor = background;
+  },
+
   toString: function () {
-    console.log('to string cell :', this.shape.fillColor, typeof this.shape.fillColor);
     var data = {
       x: this.data.x,
       y: this.data.y,

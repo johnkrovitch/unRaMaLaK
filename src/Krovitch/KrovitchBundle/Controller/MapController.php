@@ -18,7 +18,6 @@ class MapController extends BaseController
     /**
      * @Route("/", name="map")
      * @Template()
-     * @Secure(roles="ROLE_USER")
      *
      * @return array
      */
@@ -31,7 +30,6 @@ class MapController extends BaseController
 
     /**
      * @Route("/save", name="mapSave")
-     * @Secure(roles="ROLE_ADMIN")
      * @param \Symfony\Component\HttpFoundation\Request $request
      * @return array
      */

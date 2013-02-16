@@ -13,27 +13,22 @@
   width: 16px;
   background-image: url('../images/ajax-loader.gif');
 }
-
 // red shadow with high radius
 .red-box-shadow{
   @include box-shadow(3px -3px 50px $dark-red);
 }
-
 // main container color
 .container-background-color{
   background: #ffffff;
 }
-
 // main fonts
 .unlock{
   font-family: 'Unlock', cursive;
 }
-
 // text-align
 .center-text {
   text-align: center;
 }
-
 // messages
 .alert {
   margin-bottom: 5px;

@@ -11,19 +11,9 @@ h2 {
 #editor-menu {
   margin-bottom: 35px;
 
-  ul.choices li a{
-    &.selected {
-      border: 1px solid blue;
-    }
-    &.title {
-      clear: both;
-    }
-    &.menu-item {
-      cursor: pointer;
-      width: 50px;
-    }
+  .menu-item {
     img {
-      height: 50px;
+      height: 28px;
     }
   }
 }

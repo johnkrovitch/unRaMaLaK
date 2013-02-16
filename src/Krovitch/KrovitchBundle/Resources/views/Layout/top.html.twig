@@ -2,15 +2,15 @@
     <div id="menu-bar">
         <a href="{{ path('_homepage') }}">Home</a>
 
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        {#{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}#}
             <a href="{{ path('map') }}">Map</a>
             <a href="{{ path('editor') }}">Editor</a>
             <a href="{{ path('fos_user_security_logout') }}">Logout</a>
-        {% elseif is_granted('IS_ADMIN') %}
+        {#{% elseif is_granted('IS_ADMIN') %}#}
 
-        {% else %}
+        {#{% else %}#}
             <a href="{{ path('fos_user_security_login') }}">Login</a>
             <a href="{{ path('fos_user_registration_register') }}">Register</a>
-        {% endif %}
+        {#{% endif %}#}
     </div>
 </div>
