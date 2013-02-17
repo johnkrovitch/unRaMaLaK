@@ -4,19 +4,12 @@ var defaultBackgroundColor = '#e9e9ff';
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
-  // TODO refactor Map members (too much)
-  id: 0,
   cells: [],
   cellsData: [],
   cellPadding: 0,
-  container: '',
-  data: null,
   height: 0,
   hitCells: [],
   menu: null,
-  // contains data from menu (what kind of button has been clicked, what is its value...)
-  menuData: [],
-  menuContainer: '',
   name: 'New Map',
   numberOfSides: 0,
   onNotify: null,
@@ -34,32 +27,24 @@ $.Class('Unramalak.Map', {}, {
       this.preventBubbling();
     }
     if ($.isNotNull(context.data.cells)) {
-      this.data = context.data;
+      this.load(context.data)
     }
     this.cellPadding = context.cellPadding;
     this.height = context.data.height;
-    this.menuContainer = context.menuContainer;
     this.name = context.data.name;
     this.numberOfSides = context.numberOfSides;
     this.radius = context.radius;
     this.startingPoint = context.startingPoint;
     this.width = context.data.width;
+    // create menu
+    this.menu = new Unramalak.Menu(context.menuContainer, 'mainMenu');
   },
 
-  load: function () {
-    var _super = this;
+  load: function (data) {
     // load cells data
-    console.log('load cells', this.data);
-
-    if (this.data) {
-      this.cellsData = JSON.parse(this.data.cells);
+    if (data && data.cells) {
+      this.cellsData = JSON.parse(data.cells);
     }
-    // map must build paper.js object's before binding events on them
-    this.draw();
-    /*$.each(this.data, function (index, value) {
-     console.log('load values', value);
-     _super.cellsData[value.x] = value;
-     });*/
   },
 
   bind: function (onNotify) {
@@ -90,20 +75,16 @@ $.Class('Unramalak.Map', {}, {
       _super.menu.unselect();
       _super.unselect();
     });
-    // create menu
-    this.menu = new Unramalak.Menu(this.menuContainer, 'mainMenu');
+    // bind menu events
     this.menu.bind(this.save, this);
     this.onNotify = onNotify;
-  },
-
-  onclick: function (e, type, value) {
-    this.menuData.push({'type': type, 'value': value});
   },
 
   /**
    * Render the map with options in context
    */
-  draw: function () {
+  build: function () {
+    // build cells
     var odd = false;
     var hexagonCenterX = this.startingPoint.x;
     var hexagonCenterY = this.startingPoint.y;
@@ -124,7 +105,7 @@ $.Class('Unramalak.Map', {}, {
       for (var j = 0; j < (this.height + extraCells); j++) {
         var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
         var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
-        hexagon.strokeColor = '#a2a2f2';
+        //hexagon.strokeColor = '#a2a2f2';
         // x-radius of shape : distance between center and one of his point.
         // distance between this shape and the next is equals to a diameter (plus an optional padding)
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
@@ -141,7 +122,7 @@ $.Class('Unramalak.Map', {}, {
           cellData.background = new paper.RgbColor(cellData.background.red, cellData.background.green, cellData.background.blue, cellData.background.alpha);
         }
         // if bg data were loaded, we bind
-        hexagon.fillColor = cellData.background;
+        //hexagon.fillColor = cellData.background;
 
         this.cells.push(new Unramalak.Map.Cell(hexagon, cellData));
       }
@@ -150,6 +131,42 @@ $.Class('Unramalak.Map', {}, {
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
+  },
+
+  render: function () {
+    // set origin point
+    var origin = this.cells[0].shape.segments[0].point;
+    origin = new paper.Point(origin.x + 40, origin.y + 30);
+    
+    var rightLeg = new paper.Path();
+    rightLeg.add(origin);
+    rightLeg.add(new paper.Point(origin.x + 20, origin.y + 30));
+
+    var leftLeg = new paper.Path();
+    leftLeg.add(origin);
+    leftLeg.add(new paper.Point(origin.x - 20, origin.y + 30));
+
+    var trunk = new paper.Path();
+    trunk.add(origin);
+    trunk.add(new paper.Point(origin.x, origin.y - 35));
+
+    var headOrigin = new paper.Point(origin.x, origin.y - 44);
+    var head = new paper.Path.Circle(headOrigin, 10);
+
+    var rightArm = new paper.Path();
+    rightArm.add(new paper.Point(headOrigin.x, headOrigin.y + 10));
+    rightArm.add(new paper.Point(headOrigin.x - 20, headOrigin.y + 30));
+
+    var leftArm = new paper.Path();
+    leftArm.add(new paper.Point(headOrigin.x, headOrigin.y + 10));
+    leftArm.add(new paper.Point(headOrigin.x + 20, headOrigin.y + 30));
+
+    var body = new paper.Group(rightLeg, leftLeg, trunk, rightArm, leftArm, head);
+    body.strokeColor = 'black';
+
+    origin.selected = true;
+
+    console.log('run test', body);
   },
 
   /**
@@ -163,12 +180,11 @@ $.Class('Unramalak.Map', {}, {
 
   update: function () {
     var _super = this;
-
     // if cells have been clicked or drag
     $.each(_super.hitCells, function (index, cell) {
-      // if user clicked on editor, we handle that
-      if (_super.menuData.length > 0) {
-        cell.setBackground(_super.menuData[0].value);
+      // if a item menu button was pressed
+      if (_super.menu.hasData('land')) {
+        cell.setBackground(_super.menu.getData('land'));
       }
     });
     // then reset hitCells
@@ -212,48 +228,6 @@ $.Class('Unramalak.Map', {}, {
       e.stopPropagation();
       e.preventDefault();
     });
-  }
-});
-
-/**
- * Unramalak.Cell
- */
-$.Class('Unramalak.Map.Cell', {}, {
-  data: {
-    x: null,
-    y: null,
-    background: null
-  },
-  shape: null,
-
-  init: function (shape, data) {
-    this.data = data;
-    this.shape = shape;
-  },
-
-  bind: function (event, callback) {
-    this.shape.attach(event, callback);
-  },
-
-  setBackground: function (background) {
-    if ($.isNull(background)) {
-      background = defaultBackgroundColor
-    }
-    this.shape.fillColor = background;
-  },
-
-  toString: function () {
-    var data = {
-      x: this.data.x,
-      y: this.data.y,
-      background: {
-        red: this.shape.fillColor.red,
-        green: this.shape.fillColor.green,
-        blue: this.shape.fillColor.blue,
-        alpha: this.shape.fillColor.alpha
-      }
-    };
-    return JSON.stringify(data);
   }
 });
 

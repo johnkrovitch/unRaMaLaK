@@ -40,47 +40,12 @@ $.Class('Unramalak.Application', {}, {
   run: function () {
     // draw map and bind map's events
     this.map = new Unramalak.Map(this.mapContext);
-    //this.map.draw();
+    this.map.build();
     this.map.bind(this.notify);
-    this.map.load();
-
-    // map binding
-    /*$(this.map).bind('save',function () {
-     _super.save();
-     }).bind('load',function () {
-     // load stuff here
-     }).bind('cellClick',function () {
-     if (_super.editorContext.hasItemSelected()) {
-     _super.map.updateCell(_super.editorContext.pointerSize, $(_super.editorContext.currentCellTypeObject).clone());
-     }
-     }).bind('move',function () {
-     _super.move();
-     }).bind('unClick', function () {
-     _super.unClick();
-     });*/
+    this.map.render();
   },
 
   notify: function (message, type) {
     AlertManager.addAlert(message, type);
   }
-
-  /*move:function () {
-   if ($.isNull(this.lastPointClicked)) {
-   console.log('last point null here');
-   this.lastPointClicked = this.mapContext.click.point;
-   } else {
-   var xDelta = this.lastPointClicked.getX() - this.mapContext.click.point.getX();
-   var yDelta = this.lastPointClicked.getY() - this.mapContext.click.point.getY();
-
-   console.log('x delta', xDelta);
-   console.log('y delta', yDelta);
-
-   this.map.move(xDelta, yDelta);
-   }
-   },
-
-   unClick:function () {
-   //console.log('unClick');
-   this.lastPointClicked = null;
-   }*/
 });

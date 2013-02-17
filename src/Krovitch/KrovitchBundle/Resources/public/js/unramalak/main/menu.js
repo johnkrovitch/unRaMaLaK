@@ -3,43 +3,67 @@ $.Class('Unramalak.Menu', {}, {
   actionClicked: [],
   container: null,
   items: null,
-  itemClicked: [],
+  data: [],
   onSave: null,
-  name: '',
 
-  init: function (container, name) {
+  init: function (container) {
     this.container = $(container);
-    this.name = name;
-
-    if (this.container.length == 0 || this.name.length == 0) {
-      throw 'Menu cannot be empty';
-    }
     this.items = this.container.find('.menu-item');
     this.actions = this.container.find('.menu-action');
   },
 
   bind: function (onSave, map) {
-    // handle action like save, load...
+    var _super = this;
+    // click on actions buttons: call map callback
     this.actions.on('click', function () {
       if ($(this).data('action') == 'save') {
-        onSave.call(map||this);
+        onSave.call(map||this); // passing map in scope (maybe performances issue ?)
       }
+    });
+    // click on items buttons: save value
+    this.items.on('click', function (e) {
+      // if other items have been selected, we unselect them and select only current one
+      _super.unselect();
+      $(this).addClass('active');
+      // we save what item was pressed
+      _super.data[$(this).data('type')] = $(this).data('value');
+      // stop event propagation
+      e.stopPropagation();
+      e.preventDefault();
     });
   },
 
-  onItemClick: function (item, e) {
-    this.unselect();
-    item.addClass('active');
-    this.itemClicked.push(item.data('data-value'));
-    // stop event propagation
-    e.stopPropagation();
-    e.preventDefault();
+  /**
+   * Return true if menu has data. Data are filled when user click on items buttons
+   * If type provided, return true if menu has data of this type (ex: land...)
+   * @param type {string}
+   * @returns {boolean}
+   */
+  hasData: function (type) {
+    return ($.isNull(type)) ? (this.data.length > 0) : this.data.hasOwnProperty(type);
   },
 
+  /**
+   * Return menu data. If type provided, return menu data of this type
+   * @param type {string}
+   * @returns {*}
+   */
+  getData: function (type) {
+    var data = this.data;
+
+    if ($.isNotNull(type)) {
+      data = data[type];
+    }
+    return data;
+  },
+
+  /**
+   * Unselect menu items
+   */
   unselect: function () {
     this.items.each(function () {
       $(this).removeClass('active');
     });
-    this.itemClicked = [];
+    this.data = [];
   }
 });

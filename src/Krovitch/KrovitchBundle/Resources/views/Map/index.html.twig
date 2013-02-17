@@ -2,16 +2,14 @@
 
 {% block content %}
     <h1>La map, la map !!!</h1>
-    <a href="{{ path('_homepage') }}">Homepage</a>
 
     <div id="editor-menu">
         {% trans %}editor.map.baseLand{% endtrans %}
         <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="yellow">
             <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/></a>
 
-        <a class="btn btn-danger btn-small menu-item" data-type="" data-value=""
-           title="{% trans %}editor.map.removeBackground{% endtrans %}">
-            <i class="icon-white icon-remove"></i></a>
+        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value=""
+           title="{% trans %}editor.map.removeBackground{% endtrans %}"><i class="icon-white icon-remove"></i></a>
 
         <a href="javascript:void(0);" class="menu-action btn btn-success btn-small" data-action="save">
             <i class="icon-white icon-ok"></i>{% trans %}editor.map.save{% endtrans %}</a>
