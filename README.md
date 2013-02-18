@@ -3,11 +3,7 @@ unRamalak and Gmf Installation
 
 What's n3w ?
 
-> en cours ; créé une map en js à partir des données en base
-
-> Working on gmf
-
-> Tentative d'implémentation d'évènements dans le gmf pour gérer les chargements d'entités du modèle par exemple, je pense...
+> work on map, trying to add and move a character
 
 
 
@@ -31,7 +27,7 @@ http://getcomposer.org/ or just run the following command:
     php composer.phar update
 
 
-2) Checking your System Configuration
+3) Checking your System Configuration
 -------------------------------------
 
 Before starting coding, make sure that your local system is properly
@@ -48,13 +44,13 @@ Access the `config.php` script from a browser:
 If you get any warnings or recommendations, fix them before moving on.
 
 
-3) Setting
+4) Setting
 --------------------------------
 
 Copy & rename app/config/parameters-dist.yml to app/config/parameters.yml
 and set your own parameters, for database for example.
 
-4) Running PHPUnit tests
+5) Running PHPUnit tests
 --------------------------------
 
 Run:
