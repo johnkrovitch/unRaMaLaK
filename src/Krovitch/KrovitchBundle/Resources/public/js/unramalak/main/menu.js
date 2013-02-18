@@ -17,7 +17,7 @@ $.Class('Unramalak.Menu', {}, {
     // click on actions buttons: call map callback
     this.actions.on('click', function () {
       if ($(this).data('action') == 'save') {
-        onSave.call(map||this); // passing map in scope (maybe performances issue ?)
+        onSave.call(map||this);
       }
     });
     // click on items buttons: save value

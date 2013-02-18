@@ -4,7 +4,7 @@ var defaultBackgroundColor = '#e9e9ff';
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
-  cells: [],
+  cells: null,
   cellsData: [],
   cellPadding: 0,
   height: 0,
@@ -38,6 +38,8 @@ $.Class('Unramalak.Map', {}, {
     this.width = context.data.width;
     // create menu
     this.menu = new Unramalak.Menu(context.menuContainer, 'mainMenu');
+    //  init cell collections
+    this.cells = new Unramalak.CellCollection();
   },
 
   load: function (data) {
@@ -50,7 +52,7 @@ $.Class('Unramalak.Map', {}, {
   bind: function (onNotify) {
     var _super = this;
 
-    $.each(this.cells, function (index, cell) {
+    this.cells.each(this, function (cell) {
       // onMouseDown
       cell.bind('mousedown', function (paperEvent) {
         // get current cell state before deselecting all cells
@@ -58,16 +60,16 @@ $.Class('Unramalak.Map', {}, {
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
         // If <Ctrl> was press, we do not deselect cells
         if (!paperEvent.event.ctrlKey) {
-          _super.unselect();
+          this.unselect();
         }
         // if cell was not selected, we select it
         if (!selected) {
-          _super.hitCells.push(cell);
+          this.hitCells.push(cell);
         }
       });
       // onMouseUp
       cell.bind('mouseup', function (paperEvent) {
-        _super.update();
+        this.update();
       });
     });
     // onclick anywhere but on menu and map, unselect user choice
@@ -124,7 +126,7 @@ $.Class('Unramalak.Map', {}, {
         // if bg data were loaded, we bind
         //hexagon.fillColor = cellData.background;
 
-        this.cells.push(new Unramalak.Map.Cell(hexagon, cellData));
+        this.cells.add(new Unramalak.Cell(hexagon, cellData));
       }
       odd = !odd;
       // y-radius
@@ -135,7 +137,7 @@ $.Class('Unramalak.Map', {}, {
 
   render: function () {
     // set origin point
-    var origin = this.cells[0].shape.segments[0].point;
+    var origin = this.cells.cells[0][0].shape.segments[0].point;
     origin = new paper.Point(origin.x + 40, origin.y + 30);
     
     var rightLeg = new paper.Path();
@@ -167,6 +169,9 @@ $.Class('Unramalak.Map', {}, {
     origin.selected = true;
 
     console.log('run test', body);
+
+    // draw cells
+
   },
 
   /**
