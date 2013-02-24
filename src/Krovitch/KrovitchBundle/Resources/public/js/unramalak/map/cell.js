@@ -18,11 +18,16 @@ $.Class('Unramalak.Cell', {}, {
     this.shape.attach(event, callback);
   },
 
-  render: function (background) {
+  render: function () {
+    this.shape.fillColor = this.data.background;
+    this.shape.strokeColor = defaultStrokeColor;
+  },
+
+  setBackground: function (background) {
     if ($.isNull(background)) {
       background = defaultBackgroundColor;
     }
-    this.shape.fillColor = background;
+    this.data.background = background;
   },
 
   toString: function () {
@@ -53,8 +58,11 @@ $.Class('Unramalak.CellCollection', {}, {
     var y = cell.data.y;
 
     if ($.isNull(this.cells[x])) {
+      //console.log('new array ');
       this.cells[x] = [];
     }
+    //console.log('add cell :', x, y, this.cells);
+
     this.cells[x][y] = cell;
     // add in paper.js group for mass manipulations
     this.group.addChild(cell.shape);
@@ -64,8 +72,8 @@ $.Class('Unramalak.CellCollection', {}, {
     var row, column;
 
     for (row in this.cells) {
-      for (column in row) {
-        console.log('bind', this.cells, row, column, this.cells[row][column]);
+      for (column in this.cells[row]) {
+        //console.log('row', this.cells[row][column].data);
         callback.call(map||this, this.cells[row][column]);
       }
     }

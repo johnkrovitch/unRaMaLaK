@@ -1,4 +1,5 @@
 var defaultBackgroundColor = '#e9e9ff';
+var defaultStrokeColor = '#a2a2f2';
 
 /**
  * Map class
@@ -40,6 +41,7 @@ $.Class('Unramalak.Map', {}, {
     this.menu = new Unramalak.Menu(context.menuContainer, 'mainMenu');
     //  init cell collections
     this.cells = new Unramalak.CellCollection();
+    this.hitCells = [];
   },
 
   load: function (data) {
@@ -56,20 +58,20 @@ $.Class('Unramalak.Map', {}, {
       // onMouseDown
       cell.bind('mousedown', function (paperEvent) {
         // get current cell state before deselecting all cells
-        var selected = this.selected;
+        var selected = cell.shape.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
         // If <Ctrl> was press, we do not deselect cells
         if (!paperEvent.event.ctrlKey) {
-          this.unselect();
+          cell.shape.selected = false;
         }
         // if cell was not selected, we select it
         if (!selected) {
-          this.hitCells.push(cell);
+          _super.hitCells.push(cell);
         }
       });
       // onMouseUp
       cell.bind('mouseup', function (paperEvent) {
-        this.update();
+        _super.update();
       });
     });
     // onclick anywhere but on menu and map, unselect user choice
@@ -83,7 +85,7 @@ $.Class('Unramalak.Map', {}, {
   },
 
   /**
-   * Render the map with options in context
+   * Creates cells with theirs data
    */
   build: function () {
     // build cells
@@ -107,7 +109,6 @@ $.Class('Unramalak.Map', {}, {
       for (var j = 0; j < (this.height + extraCells); j++) {
         var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
         var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
-        //hexagon.strokeColor = '#a2a2f2';
         // x-radius of shape : distance between center and one of his point.
         // distance between this shape and the next is equals to a diameter (plus an optional padding)
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
@@ -119,13 +120,12 @@ $.Class('Unramalak.Map', {}, {
           y: j,
           background: defaultBackgroundColor
         };
+        // TODO ugly ! should be rewrite
         if (this.cellsData.length) {
+          //console.log('data', JSON.parse(this.cellsData[i * this.width + j]));
           cellData = JSON.parse(this.cellsData[i * this.width + j]);
-          cellData.background = new paper.RgbColor(cellData.background.red, cellData.background.green, cellData.background.blue, cellData.background.alpha);
+          //cellData.background = new paper.RgbColor(cellData.background.red, cellData.background.green, cellData.background.blue, cellData.background.alpha);
         }
-        // if bg data were loaded, we bind
-        //hexagon.fillColor = cellData.background;
-
         this.cells.add(new Unramalak.Cell(hexagon, cellData));
       }
       odd = !odd;
@@ -166,21 +166,36 @@ $.Class('Unramalak.Map', {}, {
     var body = new paper.Group(rightLeg, leftLeg, trunk, rightArm, leftArm, head);
     body.strokeColor = 'black';
 
-    origin.selected = true;
-
-    console.log('run test', body);
-
     // draw cells
-
+    this.cells.each(this, function (cell) {
+      cell.render();
+    });
+    console.log('paper', paper);
+    var count = 0;
+    // bind click event
+    paper.tool.onKeyUp = function (event) {
+      if (event.key == 'right') {
+        paper.project.view.onFrame = function () {
+          if (count < 50) {
+            body.translate(2, 0);
+            count++;
+          }
+        }
+      }
+      if (event.key == 'left') {
+        body.translate(-100, 0);
+      }
+      console.log(event);
+    };
   },
 
   /**
    * Unselect cells
    */
   unselect: function () {
-    $.each(this.cells, function (index, cell) {
-      cell.shape.selected = false;
-    });
+//    $.each(this.cells, function (index, cell) {
+//      cell.shape.selected = false;
+//    });
   },
 
   update: function () {
@@ -190,6 +205,7 @@ $.Class('Unramalak.Map', {}, {
       // if a item menu button was pressed
       if (_super.menu.hasData('land')) {
         cell.setBackground(_super.menu.getData('land'));
+        cell.render();
       }
     });
     // then reset hitCells
@@ -203,7 +219,7 @@ $.Class('Unramalak.Map', {}, {
     var _super = this;
 
     // save stuff here
-    $(this.cells).each(function (index, cell) {
+    this.cells.each(this, function (cell) {
       cellsValues.push(cell.toString());
     });
     jsonData = JSON.stringify(cellsValues);

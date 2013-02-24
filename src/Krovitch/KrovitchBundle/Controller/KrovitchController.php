@@ -15,6 +15,7 @@ class KrovitchController extends BaseController
 {
     /**
      * @Route("/", name="_homepage")
+     * @Route("/toto", name="_homepage")
      * @Template()
      * @return array
      */
