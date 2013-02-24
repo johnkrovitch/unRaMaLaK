@@ -8,6 +8,7 @@ $.Class('Unramalak.Map', {}, {
   cells: null,
   cellsData: [],
   cellPadding: 0,
+  control: null,
   height: 0,
   hitCells: [],
   menu: null,
@@ -16,6 +17,7 @@ $.Class('Unramalak.Map', {}, {
   onNotify: null,
   radius: 0,
   startingPoint: null,
+  units: [],
   width: 0,
 
   /**
@@ -133,60 +135,26 @@ $.Class('Unramalak.Map', {}, {
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
+    // build units
+    var origin = this.cells.cells[0][0].shape.segments[0].point;
+    origin = new paper.Point(origin.x + 43, origin.y + 30);
+    var unit = new Unramalak.Unit(origin);
+    unit.build();
+    this.units.push(unit);
+    // build controls
+    this.control = new Unramalak.Control();
+    this.control.bind(unit.shape);
   },
 
   render: function () {
-    // set origin point
-    var origin = this.cells.cells[0][0].shape.segments[0].point;
-    origin = new paper.Point(origin.x + 40, origin.y + 30);
-    
-    var rightLeg = new paper.Path();
-    rightLeg.add(origin);
-    rightLeg.add(new paper.Point(origin.x + 20, origin.y + 30));
-
-    var leftLeg = new paper.Path();
-    leftLeg.add(origin);
-    leftLeg.add(new paper.Point(origin.x - 20, origin.y + 30));
-
-    var trunk = new paper.Path();
-    trunk.add(origin);
-    trunk.add(new paper.Point(origin.x, origin.y - 35));
-
-    var headOrigin = new paper.Point(origin.x, origin.y - 44);
-    var head = new paper.Path.Circle(headOrigin, 10);
-
-    var rightArm = new paper.Path();
-    rightArm.add(new paper.Point(headOrigin.x, headOrigin.y + 10));
-    rightArm.add(new paper.Point(headOrigin.x - 20, headOrigin.y + 30));
-
-    var leftArm = new paper.Path();
-    leftArm.add(new paper.Point(headOrigin.x, headOrigin.y + 10));
-    leftArm.add(new paper.Point(headOrigin.x + 20, headOrigin.y + 30));
-
-    var body = new paper.Group(rightLeg, leftLeg, trunk, rightArm, leftArm, head);
-    body.strokeColor = 'black';
-
     // draw cells
     this.cells.each(this, function (cell) {
       cell.render();
     });
-    console.log('paper', paper);
-    var count = 0;
-    // bind click event
-    paper.tool.onKeyUp = function (event) {
-      if (event.key == 'right') {
-        paper.project.view.onFrame = function () {
-          if (count < 50) {
-            body.translate(2, 0);
-            count++;
-          }
-        }
-      }
-      if (event.key == 'left') {
-        body.translate(-100, 0);
-      }
-      console.log(event);
-    };
+    // draw units
+    this.units.forEach(function (unit) {
+      unit.render();
+    });
   },
 
   /**
@@ -248,6 +216,13 @@ $.Class('Unramalak.Map', {}, {
     $('canvas').on('click', function (e) {
       e.stopPropagation();
       e.preventDefault();
+    });
+    $(document).on('keyup', function (e) {
+      console.log('keyup');
+      e.stopPropagation();
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      return false;
     });
   }
 });
