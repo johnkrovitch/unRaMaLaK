@@ -1,7 +1,8 @@
 editor.map.baseLand: 'terrain de base'
-editor.map.sand: 'sable'
-editor.map.save: 'sauvegarder'
+editor.map.sand: sable
+editor.map.water: __editor.map.water
 editor.map.removeBackground: 'supprimer le fond'
+editor.map.save: sauvegarder
 'UnRaMaLak, la terreur de l''espace !': '__UnRaMaLak, la terreur de l''espace !'
 editor.map.title: __editor.map.title
 return: __return

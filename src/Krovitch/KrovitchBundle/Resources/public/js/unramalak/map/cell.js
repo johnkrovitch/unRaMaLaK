@@ -74,12 +74,19 @@ $.Class('Unramalak.CellCollection', {}, {
     for (row in this.cells) {
       for (column in this.cells[row]) {
         //console.log('row', this.cells[row][column].data);
-        callback.call(map||this, this.cells[row][column]);
+        callback.call(map || this, this.cells[row][column]);
       }
     }
   },
 
   reset: function () {
     this.group.background = defaultBackgroundColor;
+  },
+
+  render: function () {
+    // draw cells
+    this.each(this, function (cell) {
+      cell.render();
+    });
   }
 });

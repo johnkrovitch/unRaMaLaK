@@ -8,14 +8,15 @@ $.Class('Unramalak.Map', {}, {
   cells: null,
   cellsData: [],
   cellPadding: 0,
-  control: null,
   height: 0,
   hitCells: [],
+  keyboardControl: null,
   menu: null,
   name: 'New Map',
   numberOfSides: 0,
   onNotify: null,
   radius: 0,
+  renderer: null,
   startingPoint: null,
   units: [],
   width: 0,
@@ -23,8 +24,9 @@ $.Class('Unramalak.Map', {}, {
   /**
    * Initialize map parameters, gathering data from context
    * @param context Execution context. Should contains all data required by map (like canvasId, name, cells data...)
+   * @param renderer
    */
-  init: function (context) {
+  init: function (context, renderer) {
 
     if (context.preventBubbling) {
       this.preventBubbling();
@@ -44,6 +46,7 @@ $.Class('Unramalak.Map', {}, {
     //  init cell collections
     this.cells = new Unramalak.CellCollection();
     this.hitCells = [];
+    this.renderer = renderer;
   },
 
   load: function (data) {
@@ -84,6 +87,9 @@ $.Class('Unramalak.Map', {}, {
     // bind menu events
     this.menu.bind(this.save, this);
     this.onNotify = onNotify;
+    // bind controls
+    this.keyboardControl = new Unramalak.Keyboard();
+    this.keyboardControl.bind(this, this.move, this.units[0].shape);
   },
 
   /**
@@ -138,15 +144,23 @@ $.Class('Unramalak.Map', {}, {
     // build units
     var origin = this.cells.cells[0][0].shape.segments[0].point;
     origin = new paper.Point(origin.x + 43, origin.y + 30);
+
     var unit = new Unramalak.Unit(origin);
     unit.build();
     this.units.push(unit);
-    // build controls
-    this.control = new Unramalak.Control();
-    this.control.bind(unit.shape);
+  },
+
+  /**
+   * Move a target in a direction
+   * @param target paper.js object
+   * @param direction vector
+   */
+  move: function (target, direction) {
+    this.renderer.animate(target, direction);
   },
 
   render: function () {
+    this.renderer = new Unramalak.Renderer();
     // draw cells
     this.cells.each(this, function (cell) {
       cell.render();
@@ -218,11 +232,12 @@ $.Class('Unramalak.Map', {}, {
       e.preventDefault();
     });
     $(document).on('keyup', function (e) {
-      console.log('keyup');
+      // TODO prevent browser from scrolling
+      /*console.log('keyup');
       e.stopPropagation();
       e.preventDefault();
       e.stopImmediatePropagation();
-      return false;
+      return false;*/
     });
   }
 });

@@ -12,6 +12,7 @@ $.Class('Unramalak.Application', {}, {
   mapContext: null,
   map: null,
   lastPointClicked: null,
+  renderer: null,
 
   /**
    * Initialize map and editor objects
@@ -38,8 +39,10 @@ $.Class('Unramalak.Application', {}, {
    * Run application
    */
   run: function () {
+    // create render
+    var renderer = new Unramalak.Renderer();
     // draw map and bind map's events
-    this.map = new Unramalak.Map(this.mapContext);
+    this.map = new Unramalak.Map(this.mapContext, renderer);
     this.map.build();
     this.map.bind(this.notify);
     this.map.render();
