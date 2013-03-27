@@ -1,13 +1,13 @@
 /**
  * Unramalak.Cell
  */
-$.Class('Unramalak.Cell', {}, {
+Unramalak.Container('Unramalak.Cell', {}, {
+  shape: null,
   data: {
     x: null,
     y: null,
     background: null
   },
-  shape: null,
 
   init: function (shape, data) {
     this.data = data;
@@ -16,6 +16,14 @@ $.Class('Unramalak.Cell', {}, {
 
   bind: function (event, callback) {
     this.shape.attach(event, callback);
+  },
+
+  /**
+   * Return the point on the top of the shape
+   * @returns Point
+   */
+  getHighPoint: function () {
+    return this.shape.segments[1].point;
   },
 
   render: function () {
@@ -58,11 +66,8 @@ $.Class('Unramalak.CellCollection', {}, {
     var y = cell.data.y;
 
     if ($.isNull(this.cells[x])) {
-      //console.log('new array ');
       this.cells[x] = [];
     }
-    //console.log('add cell :', x, y, this.cells);
-
     this.cells[x][y] = cell;
     // add in paper.js group for mass manipulations
     this.group.addChild(cell.shape);
@@ -73,10 +78,13 @@ $.Class('Unramalak.CellCollection', {}, {
 
     for (row in this.cells) {
       for (column in this.cells[row]) {
-        //console.log('row', this.cells[row][column].data);
         callback.call(map || this, this.cells[row][column]);
       }
     }
+  },
+
+  getFirst: function () {
+    return this.cells[0][0];
   },
 
   reset: function () {

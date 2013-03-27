@@ -142,12 +142,14 @@ $.Class('Unramalak.Map', {}, {
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
     // build units
-    var origin = this.cells.cells[0][0].shape.segments[0].point;
-    origin = new paper.Point(origin.x + 43, origin.y + 30);
-
-    var unit = new Unramalak.Unit(origin);
+    var firstPoint = this.cells.getFirst().getHighPoint();
+    var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
+    var unit = new Unramalak.Unit(unitOrigin);
     unit.build();
     this.units.push(unit);
+
+    var originCell = this.cells.getFirst();
+    originCell.addUnit(unit);
   },
 
   /**
@@ -188,6 +190,9 @@ $.Class('Unramalak.Map', {}, {
       if (_super.menu.hasData('land')) {
         cell.setBackground(_super.menu.getData('land'));
         cell.render();
+      }
+      if (cell.hasUnit()) {
+        cell.units[0].shape.selected = true;
       }
     });
     // then reset hitCells

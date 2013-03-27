@@ -10,7 +10,7 @@ $.Class('Unramalak.Unit', {}, {
   },
 
   build: function () {
-    // set origin point
+    // TODO generalize shape build
     var rightLeg = new paper.Path();
     rightLeg.add(this.origin);
     rightLeg.add(new paper.Point(this.origin.x + 20, this.origin.y + 30));
