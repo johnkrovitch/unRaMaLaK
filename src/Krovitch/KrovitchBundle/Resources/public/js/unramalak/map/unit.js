@@ -1,13 +1,4 @@
-/**
- * Unit class
- */
-$.Class('Unramalak.Unit', {}, {
-  origin: null,
-  shape: null,
-
-  init: function (originPoint) {
-    this.origin = originPoint;
-  },
+$.Class('Unramalak.Map.BaseUnit', {}, {
 
   build: function () {
     // TODO generalize shape build
@@ -35,6 +26,31 @@ $.Class('Unramalak.Unit', {}, {
     leftArm.add(new paper.Point(headOrigin.x + 20, headOrigin.y + 30));
 
     this.shape = new paper.Group(rightLeg, leftLeg, trunk, rightArm, leftArm, head);
+  }
+});
+
+/**
+ * Unit class
+ */
+Unramalak.Map.BaseUnit('Unramalak.Unit', {}, {
+  origin: null,
+  shape: null,
+
+  init: function (originPoint) {
+    this.origin = originPoint;
+  },
+
+  /**
+   * Return true if current unit can move into this type of land
+   */
+  canTraverse: function (land) {
+    console.log('can traverse ?', land);
+    var canTraverse = false;
+    // unit can move into sand
+    if (land.type == LAND_SAND) {
+      canTraverse = true;
+    }
+    return canTraverse;
   },
 
   render: function () {

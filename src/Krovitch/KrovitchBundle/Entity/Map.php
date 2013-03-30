@@ -45,14 +45,12 @@ class Map extends Entity
 
     /**
      * Get id
-     *
      * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-
 
     public function setId($id)
     {
@@ -61,7 +59,6 @@ class Map extends Entity
 
     /**
      * Set name
-     *
      * @param string $name
      * @return Map
      */
@@ -74,7 +71,6 @@ class Map extends Entity
 
     /**
      * Get name
-     *
      * @return string
      */
     public function getName()
@@ -84,7 +80,6 @@ class Map extends Entity
 
     /**
      * Set description
-     *
      * @param string $description
      * @return Map
      */
@@ -97,7 +92,6 @@ class Map extends Entity
 
     /**
      * Get description
-     *
      * @return string
      */
     public function getDescription()
@@ -107,7 +101,6 @@ class Map extends Entity
 
     /**
      * Set content
-     *
      * @param string $content
      * @return Map
      */
@@ -120,7 +113,6 @@ class Map extends Entity
 
     /**
      * Get content
-     *
      * @return string
      */
     public function getContent()
@@ -154,7 +146,7 @@ class Map extends Entity
     }
 
     /**
-     * Serialize this map into a json string
+     * Serialize this map into a json string understandable for js map object
      */
     public function serialize()
     {

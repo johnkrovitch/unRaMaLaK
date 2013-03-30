@@ -1,10 +1,17 @@
 var Unramalak = {
+  Container: {},
+  BaseCell: {},
+  Cell: {},
   Map: {
-    Context: {}
+    Context: {},
+    Land: {},
+    Unit: {},
+    BaseUnit: {}
   },
   Renderer: {},
   Path: {
-    PathManager: {},
+    Finder: {},
     Rules: {}
-  }
+  },
+  Dimension: {}
 };

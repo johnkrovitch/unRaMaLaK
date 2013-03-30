@@ -4,7 +4,7 @@
 // notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
 
 /**
- *
+ * Main application
  */
 $.Class('Unramalak.Application', {}, {
   editorContext: null,

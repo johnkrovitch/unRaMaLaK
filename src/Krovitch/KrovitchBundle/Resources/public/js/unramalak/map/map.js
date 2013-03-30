@@ -186,6 +186,7 @@ $.Class('Unramalak.Map', {}, {
     var _super = this;
     // if cells have been clicked or drag
     $.each(_super.hitCells, function (index, cell) {
+      // TODO refactor into a event manager
       // if a item menu button was pressed
       if (_super.menu.hasData('land')) {
         cell.setBackground(_super.menu.getData('land'));
@@ -193,6 +194,15 @@ $.Class('Unramalak.Map', {}, {
       }
       if (cell.hasUnit()) {
         cell.units[0].shape.selected = true;
+
+        var dimension = new Unramalak.Dimension(10, 10);
+
+        var rules = new Unramalak.Path.Rules(cell.units[0], cell.land);
+        var pathManager = new Unramalak.Path.Finder(dimension, rules);
+
+        var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
+
+        console.log('Hey je suis là mec !', krovitch);
       }
     });
     // then reset hitCells
@@ -207,7 +217,7 @@ $.Class('Unramalak.Map', {}, {
 
     // save stuff here
     this.cells.each(this, function (cell) {
-      cellsValues.push(cell.toString());
+      cellsValues.push(cell.toJson());
     });
     jsonData = JSON.stringify(cellsValues);
     // call ajax url
@@ -265,5 +275,15 @@ $.Class('Unramalak.Map.Context', {}, {
     this.numberOfSides = mapOptions.numberOfSides;
     this.radius = mapOptions.radius;
     this.startingPoint = mapOptions.startingPoint;
+  }
+});
+
+$.Class('Unramalak.Map.Land', {}, {
+  type: null,
+  image: null,
+
+  init: function (type, image) {
+    this.type = type;
+    this.image = image;
   }
 });
