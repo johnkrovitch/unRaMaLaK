@@ -113,6 +113,7 @@ class EditorController extends BaseController
         $map = new Map();
         $route = array('name' => 'createMap', 'parameters' => array());
 
+        // is new ?
         if ($id) {
             // load existing map
             $map = $this->getManager('Map')->find($id);

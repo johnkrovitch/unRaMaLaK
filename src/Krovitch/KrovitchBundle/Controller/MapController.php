@@ -24,6 +24,7 @@ class MapController extends BaseController
     public function indexAction()
     {
         $map = $this->getManager('Map')->find(1);
+        // create data json object for map
 
         return array('map' => $map->serialize());
     }
@@ -37,9 +38,10 @@ class MapController extends BaseController
     {
         $map = $this->getManager('Map')->find(1);
         $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
-        // saving map content
-        $map->setContent($request->get('data'));
+        // save map in database
         $this->getManager('Map')->save($map);
+        // save map data into a xml file
+        $this->getManager('Map')->saveMapData($map);
 
         return new Response('0');
     }

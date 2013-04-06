@@ -19,7 +19,7 @@ class Map extends Entity
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
     protected $name;
 
@@ -42,6 +42,21 @@ class Map extends Entity
      * @ORM\Column(type="integer")
      */
     protected $height;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    protected $datafile;
+
+    protected $cells;
+
+
+    public function load()
+    {
+        if ($this->cells) {
+            // TODO load cells, ie create objects collection
+        }
+    }
 
     /**
      * Get id
@@ -145,6 +160,16 @@ class Map extends Entity
         return $this->height . ' ' . $this->width;
     }
 
+    public function getDatafile()
+    {
+        return $this->getDatafile();
+    }
+
+    public function setDatafile($datafile)
+    {
+        $this->datafile = $datafile;
+    }
+
     /**
      * Serialize this map into a json string understandable for js map object
      */
@@ -156,6 +181,8 @@ class Map extends Entity
         $mapJson->height = $this->height;
         $mapJson->width = $this->width;
         $mapJson->cells = $this->getContent();
+
+        die(var_dump($mapJson));
 
         return json_encode($mapJson);
     }

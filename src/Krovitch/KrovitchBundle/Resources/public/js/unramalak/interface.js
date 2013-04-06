@@ -2,6 +2,7 @@ var Unramalak = {
   Container: {},
   BaseCell: {},
   Cell: {},
+  CellCollection:{},
   Map: {
     Context: {},
     Land: {},
