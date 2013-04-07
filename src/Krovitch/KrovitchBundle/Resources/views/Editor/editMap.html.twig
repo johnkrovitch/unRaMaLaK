@@ -8,7 +8,7 @@
             <form action="{{ path(route.name, route.parameters) }}" method="post" {{ form_enctype(form) }}>
                 {{ form_widget(form) }}
 
-                <input type="submit"/>
+                <input type="submit" value="{% trans %}editor.save{% endtrans %}"/>
             </form>
         </div>
 

@@ -24,7 +24,8 @@ class MapController extends BaseController
     public function indexAction()
     {
         $map = $this->getManager('Map')->find(1);
-        // create data json object for map
+
+        //$this->getManager('Map')
 
         return array('map' => $map->serialize());
     }

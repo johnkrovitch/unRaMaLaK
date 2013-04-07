@@ -15,3 +15,4 @@ Hero: __Hero
 editor.modify: __editor.modify
 editor.delete: __editor.delete
 editor.map.list: __editor.map.list
+editor.map.saveSuccess: 'test'

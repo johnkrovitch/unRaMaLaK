@@ -122,8 +122,6 @@ class Map extends Entity
     public function setContent($content)
     {
         $this->content = $content;
-
-        return $this;
     }
 
     /**

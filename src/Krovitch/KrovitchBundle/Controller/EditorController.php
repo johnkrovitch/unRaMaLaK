@@ -113,19 +113,21 @@ class EditorController extends BaseController
         $map = new Map();
         $route = array('name' => 'createMap', 'parameters' => array());
 
-        // is new ?
+        // edit a existing map ?
         if ($id) {
-            // load existing map
             $map = $this->getManager('Map')->find($id);
             $route = array('name' => 'editMap', 'parameters' => array('id' => $id));
         }
         $form = $this->createForm(new MapType(), $map);
-
+        // handle form submission
         if ($request->isMethod('post')) {
             $form->bind($request);
 
             if ($form->isValid()) {
-                $this->getManager('Hero')->save($map);
+                // saving map record in database
+                $this->getManager('Map')->save($map);
+                // saving map data in a xml file
+                $this->getManager('Map')->saveMapData($map);
                 $this->setMessage('editor.map.saveSuccess', array('%map%' => $map->getName()));
             }
         }

@@ -9,11 +9,20 @@ class MapManager extends BaseManager
     public function saveMapData(Map $map)
     {
         $dom = new \DOMDocument();
-        $pattern = ('map-%s-%s');
-        $datafileName = $this->getMapDataFilePath().sprintf($pattern, $map->getId(), $map->getName());
+        // indentation
+        $dom->preserveWhiteSpace = false;
+        $dom->formatOutput = true;
+        $pattern = ('map-%s-%s.xml');
+        $datafile = $this->getMapDataFilePath() . sprintf($pattern, $map->getId(), 'name');
         // if map is new, we must create its xml file
-        if (is_file($datafileName)) {
-            $dom->load($datafileName);
+        if (is_file($datafile)) {
+            //$dom->load($datafile);
+
+            //die;
+        }
+        // no, so we should create it
+        else {
+            touch($datafile);
         }
         // create map profile node (name, size...)
         $profile = $dom->createElement('profile');
@@ -26,8 +35,9 @@ class MapManager extends BaseManager
         // for now, map is square-like (same number of cells in each row)
         $x = 0;
         $y = 0;
-
+        // build dom elements for each cell
         while ($x < $map->getHeight()) {
+            $y = 0;
             while ($y < $map->getWidth()) {
                 // create cell node: coordinates and type
                 $cell = $dom->createElement('cell');
@@ -39,8 +49,13 @@ class MapManager extends BaseManager
             }
             $x++;
         }
+        // create top nodes
+        $mapRoot = $dom->createElement('map');
+        $mapRoot->appendChild($profile);
+        $mapRoot->appendChild($cells);
+        $dom->appendChild($mapRoot);
         // save xml file
-        $dom->save($map);
+        $dom->save($datafile);
     }
 
     /**
@@ -49,7 +64,7 @@ class MapManager extends BaseManager
     public function createJsonData(Map $map)
     {
         // get map data json template file
-        $template = file_get_contents($this->getMapDataTemplatePath().'mapData.template.json');
+        $template = file_get_contents($this->getMapDataTemplatePath() . 'mapData.template.json');
         // decode data
         $data = json_decode($template);
         // fill data
@@ -64,7 +79,7 @@ class MapManager extends BaseManager
 
     public function getMapDataFilePath()
     {
-        return __DIR__ . '/Resources/maps/';
+        return __DIR__ . '/../Resources/maps/';
     }
 
     public function getMapDataTemplatePath()

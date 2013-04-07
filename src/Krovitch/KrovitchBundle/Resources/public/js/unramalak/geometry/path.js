@@ -112,4 +112,4 @@ $.Class('Unramalak.Path.Rules', {}, {
     }
     return match;
   }
-})
+});
