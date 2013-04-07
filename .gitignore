@@ -9,6 +9,7 @@ composer.lock
 vendor
 web/bundles/
 web/css/
+src/Krovitch/KrovitchBundle/Resources/maps
 
 # IDE
 .idea/*
