@@ -7,4 +7,4 @@ script: phpunit -c app/phpunit.xml
 
 before_script:
   - php init/travis/init.php
-  - composer install --prefer-source
+  - composer install --prefer-source  --no-interaction
