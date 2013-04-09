@@ -3,6 +3,8 @@ language: php
 php:
   - 5.4
 
+script: app/console krovitch:test
+
 before_script:
   - php init/travis/init.php
   - composer install --prefer-source
