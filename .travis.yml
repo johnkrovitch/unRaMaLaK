@@ -3,7 +3,7 @@ language: php
 php:
   - 5.4
 
-script: app/console krovitch:test
+script: phpunit -c app/phpunit.xml
 
 before_script:
   - php init/travis/init.php

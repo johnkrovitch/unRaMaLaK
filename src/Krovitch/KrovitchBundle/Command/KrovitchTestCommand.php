@@ -13,6 +13,7 @@ class KrovitchTestCommand extends BaseCommandLine
         $this->setName('krovitch:test');
     }
 
+    // TODO make it works for travis (return phpunit values)
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $command = 'phpunit';
