@@ -18,3 +18,5 @@ src/Krovitch/KrovitchBundle/Resources/maps
 # Compass
 .sass-cache
 config.rb
+# paper.js
+init/paperjs/
