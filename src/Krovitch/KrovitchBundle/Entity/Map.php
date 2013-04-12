@@ -160,7 +160,7 @@ class Map extends Entity
 
     public function getDatafile()
     {
-        return $this->getDatafile();
+        return $this->datafile;
     }
 
     public function setDatafile($datafile)

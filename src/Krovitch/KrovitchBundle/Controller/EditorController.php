@@ -126,8 +126,7 @@ class EditorController extends BaseController
             if ($form->isValid()) {
                 // saving map record in database
                 $this->getManager('Map')->save($map);
-                // saving map data in a xml file
-                $this->getManager('Map')->saveMapData($map);
+                // informs user save success
                 $this->setMessage('editor.map.saveSuccess', array('%map%' => $map->getName()));
             }
         }

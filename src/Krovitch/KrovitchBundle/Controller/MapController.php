@@ -23,11 +23,12 @@ class MapController extends BaseController
      */
     public function indexAction()
     {
+        // TODO make a map chooser
         $map = $this->getManager('Map')->find(1);
+        // get map json content for the view
+        $mapJson = $this->getManager('Map')->createJsonData($map);
 
-        //$this->getManager('Map')
-
-        return array('map' => $map->serialize());
+        return array('map' => $mapJson);
     }
 
     /**
@@ -41,8 +42,6 @@ class MapController extends BaseController
         $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
         // save map in database
         $this->getManager('Map')->save($map);
-        // save map data into a xml file
-        $this->getManager('Map')->saveMapData($map);
 
         return new Response('0');
     }
