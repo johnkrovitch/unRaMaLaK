@@ -3,6 +3,8 @@
 namespace Krovitch\KrovitchBundle\Utils;
 
 use Krovitch\KrovitchBundle\Entity\Map;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 /**
@@ -34,6 +36,7 @@ class MapDataXml
 
     /**
      * Create or update xml file with map data
+     * @return string map data file path
      */
     public function save()
     {
@@ -41,16 +44,39 @@ class MapDataXml
 
         // if map is new, we must create its xml file
         if (!$datafile) {
-            $this->createMapData();
-        }
-        else {
-            // if map isn't new and data file is not valid, it is not normal
-            if (!is_file($datafile)) {
-                throw new FileNotFoundException($datafile);
-            }
+            $datafile = $this->createMapData();
+        } else {
+            // here map should have a valid data file
+            $this->checkFile($datafile);
+            // TODO update data
             // map has a valid file, we should update data
         }
+        return $datafile;
+    }
 
+    public function load()
+    {
+        // load and check file
+        $datafile = $this->map->getDatafile();
+        $this->checkFile($datafile);
+        // load xml file
+        $xml = simplexml_load_file($datafile);
+        $mapData = array('profile' => array(), 'cells' => array(), 'events' => array());
+        // load profile
+        $mapData['profile']['id'] = $xml->profile->id;
+        $mapData['profile']['name'] = $xml->profile->name;
+        $mapData['profile']['width'] = $xml->profile->width;
+        $mapData['profile']['height'] = $xml->profile->height;
+        // load cells
+        foreach ($xml->cells->cell as $cell) {
+            $cellData = array(
+                'x' => (string)$cell['x'],
+                'y' => (string)$cell['y'],
+                'type' => (string)$cell['type']
+            );
+            $mapData['cells'][] = $cellData;
+        }
+        return $mapData;
     }
 
     /**
@@ -64,6 +90,28 @@ class MapDataXml
         return $this->dataFilePath . sprintf($pattern, $id, 'name');
     }
 
+    protected function checkFile($file)
+    {
+        if (!is_file($file)) {
+            throw new FileNotFoundException($file);
+        }
+        if (!is_readable($file)) {
+            throw new AccessDeniedException($file);
+        }
+    }
+
+    protected function checkData()
+    {
+        $profile = $this->document->getElementsByTagName('profile');
+        $cells = $this->document->getElementsByTagName('cells');
+        $events = $this->document->getElementsByTagName('events');
+
+        if (!$profile->length || !$cells->length || !$events->length) {
+            throw new Exception('Xml data file has no valid roots. It should have profile, cells and events root nodes.');
+        }
+        // TODO make better check of data
+    }
+
     /**
      * Converts php data into xml data
      * xml template :
@@ -72,8 +120,9 @@ class MapDataXml
      *  <cells>...</cells>
      *  <events>...</events>
      * </map>
+     * @return string datafile path
      */
-    public function createMapData()
+    protected function createMapData()
     {
         // create map profile node (name, size...)
         $profile = $this->document->createElement('profile');
@@ -99,12 +148,20 @@ class MapDataXml
             }
             $x++;
         }
+        // events
+        $events = $this->document->createElement('events');
         // create top nodes
         $mapRoot = $this->document->createElement('map');
         $mapRoot->appendChild($profile);
         $mapRoot->appendChild($cells);
+        $mapRoot->appendChild($events);
+        // save nodes into document
         $this->document->appendChild($mapRoot);
         // save xml file
-        $this->document->save($this->generateDataFile($this->map->getId()));
+        $datafile = $this->generateDataFile($this->map->getId());
+        $datafile = realpath($datafile);
+        $this->document->save($datafile);
+
+        return $datafile;
     }
 }

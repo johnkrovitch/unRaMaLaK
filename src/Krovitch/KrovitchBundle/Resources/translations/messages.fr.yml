@@ -2,18 +2,18 @@ editor.map.baseLand: 'terrain de base'
 editor.map.sand: sable
 editor.map.water: eau
 editor.map.removeBackground: 'supprimer le fond'
-editor.map.save: 'sauvegarder'
-editor.map.saveSuccess: 'Carte sauvegardée avec succès !'
+editor.map.save: sauvegarder
 'UnRaMaLak, la terreur de l''espace !': 'UnRaMaLak, la terreur de l''espace !'
 editor.map.title: Map
+editor.save: sauvegarder
 return: retour
 Editor: __Editor
 editor.title: Editeur
-'create a Hero': '__create a Hero'
+editor.hero.create: 'nouveau héro'
 editor.map.create: 'nouvelle map'
 dashboard: __dashboard
 Hero: __Hero
-editor.modify: 'modifier'
-editor.delete: 'supprimer'
-editor.save: 'sauvegarder'
-editor.map.list: 'liste'
+editor.modify: modifier
+editor.delete: supprimer
+editor.map.list: liste
+editor.map.saveSuccess: 'Carte sauvegardée avec succès !'

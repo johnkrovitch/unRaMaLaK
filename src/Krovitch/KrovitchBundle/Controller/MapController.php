@@ -26,7 +26,7 @@ class MapController extends BaseController
         // TODO make a map chooser
         $map = $this->getManager('Map')->find(1);
         // get map json content for the view
-        $mapJson = $this->getManager('Map')->createJsonData($map);
+        $mapJson = $this->getManager('Map')->load($map);
 
         return array('map' => $mapJson);
     }

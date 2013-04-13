@@ -3,6 +3,7 @@
 namespace Krovitch\KrovitchBundle\Manager;
 
 use \Krovitch\KrovitchBundle\Entity\Map;
+use Krovitch\KrovitchBundle\Utils\MapDataJson;
 use Krovitch\KrovitchBundle\Utils\MapDataXml;
 
 /**
@@ -13,34 +14,30 @@ class MapManager extends BaseManager
 {
     /**
      * Save map into database, also save its data into xml file
-     * @param $map
+     * @param Map $map
      */
     public function save($map)
     {
-        // save map first, so it has an id
-        parent::save($map);
         // map data are stored in a xml file
         $mapDataXml = new MapDataXml($map, $this->getMapDataFilePath());
-        $mapDataXml->save();
+        $dataFile = $mapDataXml->save();
+        // save map xml file
+        $map->setDatafile($dataFile);
+        // save map
+        parent::save($map);
     }
 
     /**
      * Create a json object containing data for map
      */
-    public function createJsonData(Map $map)
+    public function load(Map $map)
     {
-        // get map data json template file
-        $template = file_get_contents($this->getMapDataTemplatePath() . 'mapData.template.json');
-        // decode data
-        $data = json_decode($template);
-        // fill data
-        $data = [
-            'name' => $map->getName(),
-            'width' => $map->getWidth(),
-            'height' => $map->getHeight(),
-            'cells' => ''
-        ];
-        // TODO fill JSON data
+        // read xml data
+        $mapDataXml = new MapDataXml($map, $this->getMapDataFilePath());
+        $data = $mapDataXml->load();
+        // converts data into json
+        $mapDataJson = new MapDataJson($data);
+        return $mapDataJson->load();
     }
 
     public function getMapDataFilePath()

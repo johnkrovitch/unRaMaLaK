@@ -5,14 +5,16 @@ editor.map.removeBackground: 'delete background'
 editor.map.save: save
 'UnRaMaLak, la terreur de l''espace !': '__UnRaMaLak, la terreur de l''espace !'
 editor.map.title: __editor.map.title
+editor.save: __editor.save
 return: __return
 Editor: __Editor
 editor.title: __editor.title
-'create a Hero': '__create a Hero'
+editor.hero.create: __editor.hero.create
 editor.map.create: __editor.map.create
 dashboard: __dashboard
 Hero: __Hero
 editor.modify: __editor.modify
 editor.delete: __editor.delete
 editor.map.list: __editor.map.list
-editor.map.saveSuccess: 'test'
+'create a Hero': '__create a Hero'
+editor.map.saveSuccess: test
