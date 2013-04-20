@@ -21,3 +21,4 @@ config.rb
 # paper.js
 init/paperjs/
 init/js
+init/old
