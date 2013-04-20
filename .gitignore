@@ -20,3 +20,4 @@ src/Krovitch/KrovitchBundle/Resources/maps
 config.rb
 # paper.js
 init/paperjs/
+init/js
