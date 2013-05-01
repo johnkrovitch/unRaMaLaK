@@ -34,12 +34,9 @@ $.Class('Unramalak.Map', {}, {
       this.load(context.data);
     }
     this.cellPadding = context.cellPadding;
-    //this.height = context.data.height;
-    //this.name = context.data.name;
     this.numberOfSides = context.numberOfSides;
     this.radius = context.radius;
     this.startingPoint = context.startingPoint;
-    //this.width = context.data.width;
     // create menu
     this.menu = new Unramalak.Menu(context.menuContainer, 'mainMenu');
     //  init cell collections
@@ -72,7 +69,6 @@ $.Class('Unramalak.Map', {}, {
     // load map profile
     if (data.profile) {
       this.profile = data.profile;
-      console.log('profile', data.profile);
     }
     // TODO manage events loading
   },
@@ -80,20 +76,9 @@ $.Class('Unramalak.Map', {}, {
   bind: function (onNotify) {
     var _super = this;
 
-    console.log('alert !', this.cells.cells[0][0].shape);
-
-    this.cells.cells[0][0].shape.attach('mousedown', function(){
-      console.log('alert !');
-    });
-
     this.cells.each(this, function (cell) {
-      //console.log('each ?', cell);
-      cell.shape.attach('mousedown', function(){
-        console.log('alert !');
-      });
       // onMouseDown
-      cell.bind('mousedown', function (paperEvent) {
-        console.log('update ?', this);
+      cell.shape.attach('mousedown', function (paperEvent) {
         // get current cell state before deselecting all cells
         var selected = cell.shape.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
@@ -121,7 +106,7 @@ $.Class('Unramalak.Map', {}, {
     this.onNotify = onNotify;
     // bind controls
     this.keyboardControl = new Unramalak.Keyboard();
-    this.keyboardControl.bind(this, this.move, this.units[0].shape);
+    //this.keyboardControl.bind(this, this.move, this.units[0].shape);
   },
 
   /**
@@ -161,29 +146,30 @@ $.Class('Unramalak.Map', {}, {
         else {
           this.errors.push('An error has been encountered with cell x:' + i + ', y:' + j);
         }
-        this.cells.add(new Unramalak.Cell(hexagon, cellData));
+        /*var test = new Unramalak.Cell(hexagon, cellData);
 
-        console.log('hexagon!', hexagon);
-
-        hexagon.attach('mousedown', function(){
-          console.log('alert !');
+        test.bind('mousedown', function () {
+          console.log('click !');
         });
+
+        test.render();*/
+
+        this.cells.add(new Unramalak.Cell(hexagon, cellData));
       }
       odd = !odd;
       // y-radius
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
-    console.log('cells ?', this.cells);
     // build units
-    var firstPoint = this.cells.getFirst().getHighPoint();
+    /*var firstPoint = this.cells.getFirst().getHighPoint();
     var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
     var unit = new Unramalak.Unit(unitOrigin);
     unit.build();
     this.units.push(unit);
 
     var originCell = this.cells.getFirst();
-    originCell.addUnit(unit);
+    originCell.addUnit(unit);*/
   },
 
   /**
@@ -199,9 +185,6 @@ $.Class('Unramalak.Map', {}, {
     this.renderer = new Unramalak.Renderer();
     // draw cells
     this.cells.each(this, function (cell) {
-      cell.shape.onClick =  function(){
-        console.log('alert !');
-      };
       cell.render();
     });
     // draw units
@@ -227,7 +210,6 @@ $.Class('Unramalak.Map', {}, {
     var _super = this;
     // if cells have been clicked or drag
     $.each(_super.hitCells, function (index, cell) {
-      console.log('hit ?');
       // TODO refactor into a event manager
       // if a item menu button was pressed
       if (_super.menu.hasData('land')) {

@@ -14,10 +14,13 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     this.data = data;
     this.shape = shape;
     this.land = new Unramalak.Map.Land();
+
+    if (!this.data.background) {
+      this.data.background = defaultBackgroundColor;
+    }
   },
 
   bind: function (event, callback) {
-    //console.log('bind', event, callback);
     this.shape.attach(event, callback);
   }
 });
@@ -106,7 +109,7 @@ $.Class('Unramalak.CellCollection', {}, {
 
     for (row in this.cells) {
       for (column in this.cells[row]) {
-        callback.call(map || this, this.cells[0][0]);
+        callback.call(map || this, this.cells[row][column]);
       }
     }
   },
@@ -116,7 +119,7 @@ $.Class('Unramalak.CellCollection', {}, {
    * @returns Unramalak.Cell
    */
   getFirst: function () {
-    return this.cells[0][0];
+    return (this.cells.length > 0) ? this.cells[0][0] : null;
   },
 
   /**

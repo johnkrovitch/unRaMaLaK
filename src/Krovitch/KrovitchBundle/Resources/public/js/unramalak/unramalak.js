@@ -22,11 +22,6 @@ $.Class('Unramalak.Application', {}, {
     var canvas = document.getElementById(canvasId);
     // Create an empty project and a view for the canvas:
     paper.setup(canvas);
-
-    project.attach('mousedown', function() {
-console.log('here !');
-    } );
-
     // init map context
     this.mapContext = new Unramalak.Map.Context({
       cellPadding: 0,
