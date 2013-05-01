@@ -19,6 +19,5 @@ src/Krovitch/KrovitchBundle/Resources/maps
 .sass-cache
 config.rb
 # paper.js
-init/paperjs/
 init/js
 init/old

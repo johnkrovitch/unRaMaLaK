@@ -1,6 +1,7 @@
 var defaultBackgroundColor = '#e9e9ff';
 var defaultStrokeColor = '#a2a2f2';
 
+
 /**
  * Map class
  */
@@ -8,60 +9,91 @@ $.Class('Unramalak.Map', {}, {
   cells: null,
   cellsData: [],
   cellPadding: 0,
-  height: 0,
+  // errors encountered during some process
+  errors : [],
   hitCells: [],
   keyboardControl: null,
   menu: null,
-  name: 'New Map',
   numberOfSides: 0,
   onNotify: null,
+  profile: {},
   radius: 0,
   renderer: null,
   startingPoint: null,
   units: [],
-  width: 0,
 
   /**
    * Initialize map parameters, gathering data from context
    * @param context Execution context. Should contains all data required by map (like canvasId, name, cells data...)
-   * @param renderer
    */
-  init: function (context, renderer) {
-
+  init: function (context) {
     if (context.preventBubbling) {
       this.preventBubbling();
     }
-    if ($.isNotNull(context.data.cells)) {
-      this.load(context.data)
+    if ($.isNotNull(context.data)) {
+      this.load(context.data);
     }
     this.cellPadding = context.cellPadding;
-    this.height = context.data.height;
-    this.name = context.data.name;
+    //this.height = context.data.height;
+    //this.name = context.data.name;
     this.numberOfSides = context.numberOfSides;
     this.radius = context.radius;
     this.startingPoint = context.startingPoint;
-    this.width = context.data.width;
+    //this.width = context.data.width;
     // create menu
     this.menu = new Unramalak.Menu(context.menuContainer, 'mainMenu');
     //  init cell collections
     this.cells = new Unramalak.CellCollection();
     this.hitCells = [];
-    this.renderer = renderer;
+    this.renderer =  new Unramalak.Renderer();
   },
 
+  /**
+   * Load data from context. Those data will be used during map building
+   * @param data
+   */
   load: function (data) {
-    // load cells data
-    if (data && data.cells) {
-      this.cellsData = JSON.parse(data.cells);
+    // load cells
+    if (data.cells) {
+      var cellIndex;
+
+      for (cellIndex in data.cells) {
+        var cell = data.cells[cellIndex];
+
+        if ($.isNull(this.cellsData[cell.x])) {
+          this.cellsData[cell.x] = [];
+        }
+        if ($.isNull(this.cellsData[cell.x][cell.y])) {
+          this.cellsData[cell.x][cell.y] = [];
+        }
+        this.cellsData[cell.x][cell.y] = cell;
+      }
     }
+    // load map profile
+    if (data.profile) {
+      this.profile = data.profile;
+      console.log('profile', data.profile);
+    }
+    // TODO manage events loading
   },
 
   bind: function (onNotify) {
     var _super = this;
 
+    console.log('alert !', this.cells.cells[0][0].shape);
+
+    this.cells.cells[0][0].shape.attach('mousedown', function(){
+      console.log('alert !');
+    });
+
     this.cells.each(this, function (cell) {
+      //console.log('each ?', cell);
+      cell.shape.attach('mousedown', function(){
+        console.log('alert !');
+      });
       // onMouseDown
       cell.bind('mousedown', function (paperEvent) {
+        console.log('update ?', this);
         // get current cell state before deselecting all cells
         var selected = cell.shape.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
@@ -103,18 +135,16 @@ $.Class('Unramalak.Map', {}, {
     var xRadius = 0;
     var yRadius = 0;
 
-    for (var i = 0; i < this.width; i++) {
-      var extraCells = 0;
+    for (var i = 0; i < this.profile.width; i++) {
       hexagonCenterX = this.startingPoint.x;
 
       if (odd) {
         // case of hexagons : each row is staggered with previous
-        // += : les lignes pairs (0,2,4...) ne commencent pas au bord de la map
-        // -= : les lignes impairs (1,3...) ne commencent pas au bord de la map
+        // += : odd row started at the edge of the map
+        // -= : even row started at the edge of the map
         hexagonCenterX -= xRadius;
-        extraCells = 1;
       }
-      for (var j = 0; j < (this.height + extraCells); j++) {
+      for (var j = 0; j < (this.profile.height); j++) {
         var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
         var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
         // x-radius of shape : distance between center and one of his point.
@@ -122,25 +152,29 @@ $.Class('Unramalak.Map', {}, {
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
         hexagonCenterX += xRadius * 2 + this.cellPadding;
 
-        // create cell object to ease further manipulations
-        var cellData = {
-          x: i,
-          y: j,
-          background: defaultBackgroundColor
-        };
-        // TODO ugly ! should be rewrite
-        if (this.cellsData.length) {
-          //console.log('data', JSON.parse(this.cellsData[i * this.width + j]));
-          cellData = JSON.parse(this.cellsData[i * this.width + j]);
-          //cellData.background = new paper.RgbColor(cellData.background.red, cellData.background.green, cellData.background.blue, cellData.background.alpha);
+        // default cells
+        var cellData = {x: i, y: j, background: defaultBackgroundColor};
+
+        if ($.isNotNull(this.cellsData[i][j])) {
+          cellData = this.cellsData[i][j];
+        }
+        else {
+          this.errors.push('An error has been encountered with cell x:' + i + ', y:' + j);
         }
         this.cells.add(new Unramalak.Cell(hexagon, cellData));
+
+        console.log('hexagon!', hexagon);
+
+        hexagon.attach('mousedown', function(){
+          console.log('alert !');
+        });
       }
       odd = !odd;
       // y-radius
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
+    console.log('cells ?', this.cells);
     // build units
     var firstPoint = this.cells.getFirst().getHighPoint();
     var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
@@ -165,12 +199,19 @@ $.Class('Unramalak.Map', {}, {
     this.renderer = new Unramalak.Renderer();
     // draw cells
     this.cells.each(this, function (cell) {
+      cell.shape.onClick =  function(){
+        console.log('alert !');
+      };
       cell.render();
     });
     // draw units
     this.units.forEach(function (unit) {
       unit.render();
     });
+    // notify if error has been encountered
+    for (var i = 0; i < this.errors.length; i++) {
+      this.notify(this.errors[i], 'error');
+    }
   },
 
   /**
@@ -186,6 +227,7 @@ $.Class('Unramalak.Map', {}, {
     var _super = this;
     // if cells have been clicked or drag
     $.each(_super.hitCells, function (index, cell) {
+      console.log('hit ?');
       // TODO refactor into a event manager
       // if a item menu button was pressed
       if (_super.menu.hasData('land')) {
@@ -242,18 +284,19 @@ $.Class('Unramalak.Map', {}, {
    * Prevents canvas events bubbling
    */
   preventBubbling: function () {
-    $('canvas').on('click', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
+    /*$('canvas').on('click', function (e) {
+      console.log('click ?');
+      //e.stopPropagation();
+      //e.preventDefault();
     });
     $(document).on('keyup', function (e) {
       // TODO prevent browser from scrolling
       /*console.log('keyup');
-      e.stopPropagation();
-      e.preventDefault();
-      e.stopImmediatePropagation();
-      return false;*/
-    });
+       e.stopPropagation();
+       e.preventDefault();
+       e.stopImmediatePropagation();
+       return false;*/
+    //});
   }
 });
 

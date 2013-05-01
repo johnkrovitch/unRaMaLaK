@@ -1,17 +1,26 @@
 @import "compass";
-// resets
-@import "partials/reset";
+
 // globals
 @import "partials/base";
-@import "partials/classes";
 @import "partials/menu";
 // specific
 @import "partials/editor";
 
+body {
+  @include background(linear-gradient(top, #000000 10%, #0A0736 80%, #090540 98%));
+}
+
 #unramalak {
-  padding-top: $menu-height;
-  margin-right: auto;
-  margin-left: auto;
+  background: #dddddd;
+  border: 1px solid $grey-border;
+  padding: 20px;
+  margin: 40px auto 0 auto;
+  min-height: 800px;
+
+
+  > .row {
+
+  }
 }
 // flash notifications
 #flash-container {

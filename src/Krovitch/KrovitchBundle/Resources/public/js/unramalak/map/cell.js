@@ -14,6 +14,11 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     this.data = data;
     this.shape = shape;
     this.land = new Unramalak.Map.Land();
+  },
+
+  bind: function (event, callback) {
+    //console.log('bind', event, callback);
+    this.shape.attach(event, callback);
   }
 });
 
@@ -21,11 +26,6 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
  * Unramalak.Cell
  */
 Unramalak.BaseCell('Unramalak.Cell', {}, {
-
-  bind: function (event, callback) {
-    this.shape.attach(event, callback);
-  },
-
   /**
    * Return the point on the top of the shape
    * @returns Point
@@ -106,7 +106,7 @@ $.Class('Unramalak.CellCollection', {}, {
 
     for (row in this.cells) {
       for (column in this.cells[row]) {
-        callback.call(map || this, this.cells[row][column]);
+        callback.call(map || this, this.cells[0][0]);
       }
     }
   },

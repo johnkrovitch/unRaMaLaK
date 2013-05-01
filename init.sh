@@ -13,7 +13,9 @@ fi
 #  - logs
 #  - uploads directory
 #  - map data directory
-sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs src/Krovitch/KrovitchBundle/Resources/maps
+sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs
+# TODO change file permissions
+sudo chmod 777 src/Krovitch/KrovitchBundle/Resources/maps/
 
 # init composer
 php composer.phar update

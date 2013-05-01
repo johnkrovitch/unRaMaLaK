@@ -2,7 +2,7 @@
 $site-width:   1000px !default;
 $site-padding: 25px !default;
 
-$menu-height:  40px !default;
+$menu-height:  25px !default;
 $menu-item-width: 70px !default;
 
 // fonts
@@ -14,6 +14,7 @@ $cell-width: 15px !default;
 
 // colors
 $dark-red: rgba(161, 3, 3, 0.76);
+$grey-border: #d1d1d1;
 
 // mixins
 @function font-size-to($to-size, $from-size: $base-font-size) {
@@ -30,4 +31,47 @@ body {
 }
 .btn, .btn:focus {
   outline: none;
+}
+
+// bootstrap reset
+.alert .close {
+  float: none;
+}
+
+// useful classes
+.floatbreaker{
+  clear: both;
+  border: none;
+}
+.hidden{
+  display: none;
+}
+.loader{
+  display: none;
+  height: 16px;
+  width: 16px;
+  background-image: url('../images/ajax-loader.gif');
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+
+// red shadow with high radius
+.red-box-shadow{
+  @include box-shadow(3px -3px 50px $dark-red);
+}
+// main container color
+.container-background-color{
+  background: #ffffff;
+}
+// main fonts
+.unlock{
+  font-family: 'Unlock', cursive;
+}
+// text-align
+.center-text {
+  text-align: center;
 }

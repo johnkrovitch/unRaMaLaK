@@ -63,10 +63,10 @@ class MapDataXml
         $xml = simplexml_load_file($datafile);
         $mapData = array('profile' => array(), 'cells' => array(), 'events' => array());
         // load profile
-        $mapData['profile']['id'] = $xml->profile->id;
-        $mapData['profile']['name'] = $xml->profile->name;
-        $mapData['profile']['width'] = $xml->profile->width;
-        $mapData['profile']['height'] = $xml->profile->height;
+        $mapData['profile']['id'] = (int)$xml->profile->id;
+        $mapData['profile']['name'] = (string)$xml->profile->name;
+        $mapData['profile']['width'] = (int)$xml->profile->width;
+        $mapData['profile']['height'] = (int)$xml->profile->height;
         // load cells
         foreach ($xml->cells->cell as $cell) {
             $cellData = array(
@@ -159,7 +159,6 @@ class MapDataXml
         $this->document->appendChild($mapRoot);
         // save xml file
         $datafile = $this->generateDataFile($this->map->getId());
-        $datafile = realpath($datafile);
         $this->document->save($datafile);
 
         return $datafile;

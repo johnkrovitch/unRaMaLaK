@@ -7,12 +7,12 @@ editor.map.save: sauvegarder
 editor.map.title: Map
 editor.save: sauvegarder
 return: retour
-Editor: __Editor
+Editor: Editeur
 editor.title: Editeur
 editor.hero.create: 'nouveau héro'
 editor.map.create: 'nouvelle map'
-dashboard: __dashboard
-Hero: __Hero
+dashboard: Dashboard
+Hero: Hero
 editor.modify: modifier
 editor.delete: supprimer
 editor.map.list: liste

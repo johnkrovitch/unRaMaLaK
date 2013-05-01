@@ -42,7 +42,7 @@ class MapManager extends BaseManager
 
     public function getMapDataFilePath()
     {
-        return __DIR__ . '/../Resources/maps/';
+        return realpath(__DIR__ . '/..'). '/Resources/maps/';
     }
 
     public function getMapDataTemplatePath()

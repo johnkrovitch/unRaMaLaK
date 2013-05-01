@@ -13,7 +13,7 @@
   z-index: 10;
   color: #ffffff;
 
-  @include background(linear-gradient(top, #000000, #000000 44%, #737373 95%));
+  @include background(linear-gradient(top, #000000, #000000 56%, #737373 95%));
 
   #menu-bar {
     width: $site-width;
@@ -22,9 +22,8 @@
     a {
       color: #ffffff;
       display: block;
-      float: left;
       height: $menu-height - 10px;
-      padding: 10px 35px 0px 35px;
+      padding: 2px 35px 8px 35px;
       text-decoration: none;
 
       &:hover {
