@@ -6,6 +6,7 @@ use Krovitch\KrovitchBundle\Entity\Map;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * Class MapDataXml
@@ -36,21 +37,68 @@ class MapDataXml
 
     /**
      * Create or update xml file with map data
+     * @param $mapData
+     * @throws \Symfony\Component\Routing\Exception\InvalidParameterException
      * @return string map data file path
      */
-    public function save()
+    public function save($mapData)
     {
         $datafile = $this->map->getDatafile();
 
         // if map is new, we must create its xml file
         if (!$datafile) {
-            $datafile = $this->createMapData();
-        } else {
-            // here map should have a valid data file
-            $this->checkFile($datafile);
-            // TODO update data
-            // map has a valid file, we should update data
+            return $this->create();
         }
+        else if (!count($mapData)) {
+            throw new InvalidParameterException('Trying to save empty data');
+        }
+        // here map should have a valid data file
+        $this->checkFile($datafile);
+        // map has a valid file, we should update data
+        $xml = simplexml_load_file($datafile);
+        $cells = array();
+        // decode data from json
+        $jsonCells = json_decode($mapData->cells);
+        $index = 0;
+
+
+        foreach ($jsonCells as $jsonCell) {
+            $cell = json_decode($jsonCell);
+
+            foreach ($xml->cells->cell as $xmlCell) {
+
+                if ($xmlCell['x'] == $cell->x && $xmlCell['y'] == $cell->y) {
+                    var_dump($cell);
+                    $updatedXmlCell = $xml->cells->cell[$index];
+                    $updatedXmlCell['type'] = $cell->type;
+                    $updatedXmlCell['background'] = $cell->background;
+                }
+                $index++;
+            }
+            //var_dump($cells);
+            var_dump($xml->asXML());
+            die;
+        }
+
+
+
+
+
+        var_dump($cells);
+
+        //$xml->profile->id = $mapData['id'];
+
+
+
+
+
+        // load profile
+        //(int)$xml->profile->id = ;
+        /*$mapData['profile']['name'] = (string)$xml->profile->name;
+        $mapData['profile']['width'] = (int)$xml->profile->width;
+        $mapData['profile']['height'] = (int)$xml->profile->height;*/
+
+
         return $datafile;
     }
 
@@ -113,7 +161,7 @@ class MapDataXml
     }
 
     /**
-     * Converts php data into xml data
+     * Create xml data file
      * xml template :
      * <map>
      *  <profile>...</profile>
@@ -122,7 +170,7 @@ class MapDataXml
      * </map>
      * @return string datafile path
      */
-    protected function createMapData()
+    public function create()
     {
         // create map profile node (name, size...)
         $profile = $this->document->createElement('profile');

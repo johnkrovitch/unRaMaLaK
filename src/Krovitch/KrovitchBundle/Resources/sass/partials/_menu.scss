@@ -13,7 +13,7 @@
   z-index: 10;
   color: #ffffff;
 
-  @include background(linear-gradient(top, #000000, #000000 56%, #737373 95%));
+  @include background(linear-gradient(top, #000000, #000000 38%, #737373 85%));
 
   #menu-bar {
     width: $site-width;

@@ -18,10 +18,33 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     if (!this.data.background) {
       this.data.background = defaultBackgroundColor;
     }
+    if (!this.data.landType) {
+      this.land.type = 'default';
+    }
   },
 
   bind: function (event, callback) {
     this.shape.attach(event, callback);
+  },
+
+  /**
+   * Return a json string of the cell
+   * @returns object
+   */
+  toJson: function () {
+    console.log('landType', this);
+    var data = {
+      x: this.data.x,
+      y: this.data.y,
+      landType: this.land.type,
+      background: {
+        red: this.shape.fillColor.red,
+        green: this.shape.fillColor.green,
+        blue: this.shape.fillColor.blue,
+        alpha: this.shape.fillColor.alpha
+      }
+    };
+    return data;
   }
 });
 
@@ -38,34 +61,12 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
   },
 
   render: function () {
+    // if no background have been set, use default background
+    if ($.isNull(this.data.background)) {
+      this.data.background = defaultBackgroundColor;
+    }
     this.shape.fillColor = this.data.background;
     this.shape.strokeColor = defaultStrokeColor;
-  },
-
-  setBackground: function (background) {
-    if ($.isNull(background)) {
-      background = defaultBackgroundColor;
-    }
-    this.data.background = background;
-  },
-
-  /**
-   * Return a json string of the cell
-   * @returns string
-   */
-  toJson: function () {
-    var data = {
-      x: this.data.x,
-      y: this.data.y,
-      landType: this.land.type,
-      background: {
-        red: this.shape.fillColor.red,
-        green: this.shape.fillColor.green,
-        blue: this.shape.fillColor.blue,
-        alpha: this.shape.fillColor.alpha
-      }
-    };
-    return JSON.stringify(data);
   }
 });
 

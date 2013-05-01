@@ -38,9 +38,11 @@ class MapController extends BaseController
      */
     public function saveAction(Request $request)
     {
+        $mapData = json_decode($request->get('data'));
         $map = $this->getManager('Map')->find(1);
         $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
         // save map in database
+        $this->getManager('Map')->setData($mapData);
         $this->getManager('Map')->save($map);
 
         return new Response('0');

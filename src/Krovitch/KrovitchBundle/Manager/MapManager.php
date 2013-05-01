@@ -13,17 +13,24 @@ use Krovitch\KrovitchBundle\Utils\MapDataXml;
 class MapManager extends BaseManager
 {
     /**
+     * Map data
+     * @var
+     */
+    protected $data = array();
+
+    /**
      * Save map into database, also save its data into xml file
      * @param Map $map
      */
     public function save($map)
     {
+        // save map in db
+        parent::save($map);
         // map data are stored in a xml file
         $mapDataXml = new MapDataXml($map, $this->getMapDataFilePath());
-        $dataFile = $mapDataXml->save();
+        $dataFile = $mapDataXml->save($this->data);
         // save map xml file
         $map->setDatafile($dataFile);
-        // save map
         parent::save($map);
     }
 
@@ -38,6 +45,11 @@ class MapManager extends BaseManager
         // converts data into json
         $mapDataJson = new MapDataJson($data);
         return $mapDataJson->load();
+    }
+
+    public function setData($data)
+    {
+        $this->data = $data;
     }
 
     public function getMapDataFilePath()

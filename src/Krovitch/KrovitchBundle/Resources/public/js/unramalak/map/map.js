@@ -207,13 +207,17 @@ $.Class('Unramalak.Map', {}, {
   },
 
   update: function () {
-    var _super = this;
+    var map = this;
     // if cells have been clicked or drag
-    $.each(_super.hitCells, function (index, cell) {
-      // TODO refactor into a event manager
+    $.each(map.hitCells, function (index, cell) {
+      // TODO maybe refactor into a event manager
       // if a item menu button was pressed
-      if (_super.menu.hasData('land')) {
-        cell.setBackground(_super.menu.getData('land'));
+      if (map.menu.hasData('land')) {
+        cell.data.background = map.menu.getData('land');
+        cell.land.type = map.menu.getData('type');
+
+        console.log('hit cells', map.menu.getData());
+
         cell.render();
       }
       if (cell.hasUnit()) {
@@ -235,7 +239,6 @@ $.Class('Unramalak.Map', {}, {
 
   save: function () {
     var jsonData;
-    var mapId = this.id;
     var cellsValues = [];
     var _super = this;
 
@@ -243,12 +246,18 @@ $.Class('Unramalak.Map', {}, {
     this.cells.each(this, function (cell) {
       cellsValues.push(cell.toJson());
     });
-    jsonData = JSON.stringify(cellsValues);
+    var jsonCells = JSON.stringify(cellsValues);
+    var jsonProfile = JSON.stringify(this.profile);
+
+    jsonData = JSON.stringify({profile: jsonProfile, cells: jsonCells});
+
+    console.log(jsonData);
+
     // call ajax url
     $.ajax({
       type: 'POST',
       url: 'save',
-      data: 'id=' + mapId + '&data=' + jsonData,
+      data: 'id=' + this.profile.id + '&data=' + jsonData,
       success: function () {
         _super.notify('Map successfully saved !', 'success');
       },
