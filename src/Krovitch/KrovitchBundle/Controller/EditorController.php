@@ -102,26 +102,21 @@ class EditorController extends BaseController
     /**
      * @Route("/map/create", name="createMap")
      * @Route("/map/edit/{id}", name="editMap", requirements={"id" = "\d+"})
-     * @Route("/map/delete/{id}", name="deleteMap", requirements={"id" = "\d+"})
      * @Secure(roles="ROLE_ADMIN")
      * @Template()
      */
     public function editMapAction()
     {
-        $request = $this->getRequest();
-        $id = $request->get('id');
         $map = new Map();
-        $route = array('name' => 'createMap', 'parameters' => array());
 
-        // edit a existing map ?
-        if ($id) {
+        if ($id = $this->getRequest()->get('id', 0)) {
             $map = $this->getManager('Map')->find($id);
-            $route = array('name' => 'editMap', 'parameters' => array('id' => $id));
         }
+        $this->redirect404Unless($map, sprintf('Map not found (id:%s)', $id));
         $form = $this->createForm(new MapType(), $map);
         // handle form submission
-        if ($request->isMethod('post')) {
-            $form->bind($request);
+        if ($this->getRequest()->isMethod('post')) {
+            $form->bind($this->getRequest());
 
             if ($form->isValid()) {
                 // saving map record in database
@@ -130,7 +125,26 @@ class EditorController extends BaseController
                 $this->setMessage('editor.map.saveSuccess', array('%map%' => $map->getName()));
             }
         }
-        return array('form' => $form->createView(), 'route' => $route);
+        // route parameters
+        $parameters = array('id' => $map->getId() ? $map->getId() : 0);
+
+        return array('form' => $form->createView(), 'route' => array('name' => 'editMap', 'parameters' => $parameters));
+    }
+
+    /**
+     * @Route("/map/delete/{id}", name="deleteMap", requirements={"id" = "\d+"})
+     * @Secure(roles="ROLE_ADMIN")
+     * @Template()
+     */
+    public function deleteAction()
+    {
+        $map = $this->getManager('Map')->find($id = $this->getRequest()->get('id'));
+        $this->redirect404Unless($map, sprintf('Map not found (id:%s) ', $id));
+
+        if ($map) {
+            $this->getManager('Map')->delete($map);
+        }
+        return $this->redirect('@editor');
     }
 
 
