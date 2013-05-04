@@ -1,10 +1,8 @@
 unRamalak and Gmf Installation
 ========================
 
-What's n3w ?
-
-> work on map, trying to add and move a character
-
+Roadmap
+<https://github.com/johnkrovitch/unRaMaLaK/tree/master/src/Krovitch/KrovitchBundle/Resources/docs/roadmap.md>
 
 
 1) Cloning repository
@@ -52,6 +50,8 @@ and set your own parameters, for database for example.
 
 5) Running PHPUnit tests
 --------------------------------
+
+Useless for now
 
 Run:
 
