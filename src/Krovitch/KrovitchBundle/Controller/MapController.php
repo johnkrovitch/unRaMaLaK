@@ -24,7 +24,7 @@ class MapController extends BaseController
     public function indexAction()
     {
         // TODO make a map chooser
-        $map = $this->getManager('Map')->find(1);
+        $map = $this->getManager('Map')->findAll()[0];
         // get map json content for the view
         $mapJson = $this->getManager('Map')->load($map);
 
@@ -39,7 +39,7 @@ class MapController extends BaseController
     public function saveAction(Request $request)
     {
         $mapData = json_decode($request->get('data'));
-        $map = $this->getManager('Map')->find(1);
+        $map = $this->getManager('Map')->find($request->get('id'));
         $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
         // save map in database
         $this->getManager('Map')->setData($mapData);

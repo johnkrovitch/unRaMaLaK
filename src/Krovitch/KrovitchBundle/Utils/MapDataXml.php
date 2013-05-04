@@ -58,46 +58,18 @@ class MapDataXml
         $xml = simplexml_load_file($datafile);
         $cells = array();
         // decode data from json
-        $jsonCells = json_decode($mapData->cells);
         $index = 0;
 
-
-        foreach ($jsonCells as $jsonCell) {
-            $cell = json_decode($jsonCell);
-
+        foreach ($mapData->cells as $cell) {
             foreach ($xml->cells->cell as $xmlCell) {
 
                 if ($xmlCell['x'] == $cell->x && $xmlCell['y'] == $cell->y) {
-                    var_dump($cell);
-                    $updatedXmlCell = $xml->cells->cell[$index];
-                    $updatedXmlCell['type'] = $cell->type;
-                    $updatedXmlCell['background'] = $cell->background;
+                    $xmlCell['type'] = $cell->type;
                 }
                 $index++;
             }
-            //var_dump($cells);
-            var_dump($xml->asXML());
-            die;
         }
-
-
-
-
-
-        var_dump($cells);
-
-        //$xml->profile->id = $mapData['id'];
-
-
-
-
-
-        // load profile
-        //(int)$xml->profile->id = ;
-        /*$mapData['profile']['name'] = (string)$xml->profile->name;
-        $mapData['profile']['width'] = (int)$xml->profile->width;
-        $mapData['profile']['height'] = (int)$xml->profile->height;*/
-
+        $xml->asXML($datafile);
 
         return $datafile;
     }
@@ -174,7 +146,7 @@ class MapDataXml
     {
         // create map profile node (name, size...)
         $profile = $this->document->createElement('profile');
-        $profile->appendChild($this->document->createElement('id', 0));
+        $profile->appendChild($this->document->createElement('id', $this->map->getId()));
         $profile->appendChild($this->document->createElement('name', $this->map->getName()));
         $profile->appendChild($this->document->createElement('width', $this->map->getWidth()));
         $profile->appendChild($this->document->createElement('height', $this->map->getHeight()));

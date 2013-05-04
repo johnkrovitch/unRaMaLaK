@@ -28,10 +28,13 @@ class MapManager extends BaseManager
         parent::save($map);
         // map data are stored in a xml file
         $mapDataXml = new MapDataXml($map, $this->getMapDataFilePath());
-        $dataFile = $mapDataXml->save($this->data);
-        // save map xml file
-        $map->setDatafile($dataFile);
-        parent::save($map);
+
+        if ($this->data || !$map->getDatafile()) {
+            $dataFile = $mapDataXml->save($this->data);
+            // save map xml file
+            $map->setDatafile($dataFile);
+            parent::save($map);
+        }
     }
 
     /**

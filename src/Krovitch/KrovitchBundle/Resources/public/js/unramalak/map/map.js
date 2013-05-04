@@ -28,7 +28,7 @@ $.Class('Unramalak.Map', {}, {
    */
   init: function (context) {
     if (context.preventBubbling) {
-      this.preventBubbling();
+      this.preventBubbling();length
     }
     if ($.isNotNull(context.data)) {
       this.load(context.data);
@@ -206,21 +206,19 @@ $.Class('Unramalak.Map', {}, {
 //    });
   },
 
+  /**
+   * Update required cells
+   */
   update: function () {
     var map = this;
     // if cells have been clicked or drag
     $.each(map.hitCells, function (index, cell) {
-      // TODO maybe refactor into a event manager
       // if a item menu button was pressed
       if (map.menu.hasData('land')) {
-        cell.data.background = map.menu.getData('land');
-        cell.land.type = map.menu.getData('type');
-
-        console.log('hit cells', map.menu.getData());
-
+        cell.land.type = map.menu.getData('land');
         cell.render();
       }
-      if (cell.hasUnit()) {
+      /*if (cell.hasUnit()) {
         cell.units[0].shape.selected = true;
 
         var dimension = new Unramalak.Dimension(10, 10);
@@ -231,38 +229,32 @@ $.Class('Unramalak.Map', {}, {
         var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
 
         console.log('Hey je suis là mec !', krovitch);
-      }
+      }*/
     });
     // then reset hitCells
     this.hitCells = [];
   },
 
   save: function () {
+    var map = this;
     var jsonData;
     var cellsValues = [];
-    var _super = this;
 
     // save stuff here
     this.cells.each(this, function (cell) {
       cellsValues.push(cell.toJson());
     });
-    var jsonCells = JSON.stringify(cellsValues);
-    var jsonProfile = JSON.stringify(this.profile);
-
-    jsonData = JSON.stringify({profile: jsonProfile, cells: jsonCells});
-
-    console.log(jsonData);
-
+    jsonData = JSON.stringify({profile: this.profile, cells: cellsValues});
     // call ajax url
     $.ajax({
       type: 'POST',
       url: 'save',
       data: 'id=' + this.profile.id + '&data=' + jsonData,
       success: function () {
-        _super.notify('Map successfully saved !', 'success');
+        map.notify('Map successfully saved !', 'success');
       },
       error: function () {
-        _super.notify('An error has occurred during map save', 'error')
+        map.notify('An error has occurred during map save', 'error');
       }
     });
   },
@@ -275,19 +267,16 @@ $.Class('Unramalak.Map', {}, {
    * Prevents canvas events bubbling
    */
   preventBubbling: function () {
-    /*$('canvas').on('click', function (e) {
-      console.log('click ?');
-      //e.stopPropagation();
-      //e.preventDefault();
+    $('canvas').on('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
     });
-    $(document).on('keyup', function (e) {
+    /*$(document).on('keyup', function (e) {
       // TODO prevent browser from scrolling
-      /*console.log('keyup');
        e.stopPropagation();
        e.preventDefault();
        e.stopImmediatePropagation();
-       return false;*/
-    //});
+    });*/
   }
 });
 
@@ -313,11 +302,24 @@ $.Class('Unramalak.Map.Context', {}, {
 });
 
 $.Class('Unramalak.Map.Land', {}, {
-  type: null,
+  type: 'default',
   image: null,
 
   init: function (type, image) {
     this.type = type;
     this.image = image;
+  },
+
+  render: function () {
+    var color = defaultBackgroundColor;
+
+    if (this.type == 'sand') {
+      color = 'yellow';
+    }
+    else if (this.type == 'water') {
+      color = 'blue';
+    }
+    //console.log('type', this.type);
+    return color;
   }
 });

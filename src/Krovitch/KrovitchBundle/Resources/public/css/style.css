@@ -216,3 +216,9 @@ body {
   margin-bottom: 5px;
   opacity: 0.9;
 }
+
+/**************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000337}}
+canvas {
+  border: 1px solid #a2a2f2;
+}

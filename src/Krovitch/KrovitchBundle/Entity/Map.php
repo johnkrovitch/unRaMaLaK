@@ -44,19 +44,11 @@ class Map extends Entity
     protected $height;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     protected $datafile;
 
     protected $cells;
-
-
-    public function load()
-    {
-        if ($this->cells) {
-            // TODO load cells, ie create objects collection
-        }
-    }
 
     /**
      * Get id
