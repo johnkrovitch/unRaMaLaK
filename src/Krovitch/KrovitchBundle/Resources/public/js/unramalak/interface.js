@@ -6,14 +6,15 @@ var Unramalak = {
   Container: {},
   BaseCell: {},
   Cell: {},
+  Land: {},
   CellCollection: {},
   Control: {
     Mouse: {},
     MouseEvent: {}
   },
+  ImageLoader: {},
   Map: {
     Context: {},
-    Land: {},
     Unit: {},
     BaseUnit: {}
   },

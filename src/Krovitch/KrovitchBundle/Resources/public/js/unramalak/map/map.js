@@ -76,36 +76,22 @@ $.Class('Unramalak.Map', {}, {
   },
 
   bind: function (onNotify) {
-    var map = this;
-
     this.cells.each(this, function (cell) {
-      // TODO refactor with controls
       // onMouseDown
-      cell.bind('mousedown', function (paperEvent) {
-        //console.log('event', paperEvent);
-        // get current cell state before deselecting all cells
-        var selected = cell.shape.selected;
-        // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
-        // If <Ctrl> was press, we do not deselect cells
-        if (!paperEvent.event.ctrlKey) {
-          cell.shape.selected = false;
-        }
-        // if cell was not selected, we select it
-        if (!selected) {
-          map.hitCells.push(cell);
-        }
+      this.mouseControl.bind('mousedown', cell, this, function () {
+          this.hitCells.push(cell);
       });
       // onMouseUp
-      cell.bind('mouseup', function () {
-        map.update();
+      this.mouseControl.bind('mouseup', cell, this, function () {
+        this.update();
       });
-      /*cell.bind('mousedrag', function(paperEvent) {
-        map.move(paperEvent);
-      });*/
-      map.mouseControl.bind('mousedrag', cell, function (mouseEvent) {
-        map.move(mouseEvent.delta);
+      this.mouseControl.bind('mousedrag', cell, this, function (mouseEvent) {
+        if (mouseEvent.isRightClick()) {
+          this.move(mouseEvent.delta);
+        }
       });
     });
+    var map = this;
     // onclick anywhere but on menu and map, unselect user choice
     $(document).on('click contextmenu', function () {
       map.menu.unselect();
@@ -322,27 +308,5 @@ $.Class('Unramalak.Map.Context', {}, {
     this.numberOfSides = mapOptions.numberOfSides;
     this.radius = mapOptions.radius;
     this.startingPoint = mapOptions.startingPoint;
-  }
-});
-
-$.Class('Unramalak.Map.Land', {}, {
-  type: 'default',
-  image: null,
-
-  init: function (type, image) {
-    this.type = type;
-    this.image = image;
-  },
-
-  render: function () {
-    var color = defaultBackgroundColor;
-
-    if (this.type == 'sand') {
-      color = 'yellow';
-    }
-    else if (this.type == 'water') {
-      color = 'blue';
-    }
-    return color;
   }
 });

@@ -1,13 +1,19 @@
-var LEFT_CLICK = 1;
-var MIDDLE_CLICK = 2;
-var RIGHT_CLICK = 3;
+/**
+ * Mouse click constants
+ * @type {{leftClick: number, middleClick: number, rightClick: number}}
+ */
+var MouseClick = {
+  leftClick: 1,
+  middleClick: 4,
+  rightClick: 2
+};
 
 /**
  *
  */
 $.Class('Unramalak.Control.Mouse', {}, {
 
-  bind: function (event, target, callback, map) {
+  bind: function (event, target, map, callback) {
     // bind event on target
     target.bind(event, function (paperEvent) {
       // create mouse event object for easier manipulations
@@ -22,14 +28,24 @@ $.Class('Unramalak.Control.MouseEvent', {}, {
   hitButton: null,
   // delta (while dragging...)
   delta: null,
+  isCtrlPressed: false,
 
   init: function (paperEvent) {
-    this.hitButton = paperEvent.event.which;
+    this.hitButton = paperEvent.event.buttons;
     this.delta = paperEvent.delta;
+    this.isCtrlPressed = paperEvent.event.ctrlKey;
   },
 
-  isClick: function (hitButton) {
-    return (this.hitButton === hitButton);
+  isLeftClick: function () {
+    return (this.hitButton == MouseClick.leftClick);
+  },
+
+  isRightClick: function () {
+    return (this.hitButton == MouseClick.rightClick);
+  },
+
+  isCtrl: function () {
+    return this.isCtrl;
   }
 });
 

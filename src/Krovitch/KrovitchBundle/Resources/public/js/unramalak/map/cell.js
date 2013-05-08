@@ -12,7 +12,7 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
   init: function (shape, data) {
     this.data = data;
     this.shape = shape;
-    this.land = new Unramalak.Map.Land();
+    this.land = new Unramalak.Land();
 
     if (!this.data.background) {
       this.data.background = defaultBackgroundColor;
@@ -31,12 +31,11 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
    * @returns object
    */
   toJson: function () {
-    var data = {
+    return {
       x: this.data.x,
       y: this.data.y,
       type: this.land.type
     };
-    return data;
   }
 });
 
@@ -52,10 +51,37 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     return this.shape.segments[1].point;
   },
 
+  getCenter: function () {
+
+  },
+
   render: function () {
-    //console.log('render', this.land.render());
-    this.shape.fillColor = this.land.render();
+    var render = this.land.render();
+
+    if (render == '') {
+
+    }
+    console.log('render', this.shape.position);
+    this.shape.fillColor = render;
     this.shape.strokeColor = defaultStrokeColor;
+  }
+});
+
+
+$.Class('Unramalak.Land', {}, {
+  type: 'default',
+  image: null,
+
+  render: function () {
+    var color = defaultBackgroundColor;
+
+    if (this.type == 'sand') {
+      color = 'yellow';
+    }
+    else if (this.type == 'water') {
+      color = 'blue';
+    }
+    return color;
   }
 });
 
