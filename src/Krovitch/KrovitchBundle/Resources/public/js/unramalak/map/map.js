@@ -1,7 +1,6 @@
 var defaultBackgroundColor = '#e9e9ff';
 var defaultStrokeColor = '#a2a2f2';
 
-
 /**
  * Map class
  */
@@ -13,6 +12,7 @@ $.Class('Unramalak.Map', {}, {
   errors : [],
   hitCells: [],
   keyboardControl: null,
+  mouseControl: null,
   menu: null,
   numberOfSides: 0,
   onNotify: null,
@@ -28,7 +28,7 @@ $.Class('Unramalak.Map', {}, {
    */
   init: function (context) {
     if (context.preventBubbling) {
-      this.preventBubbling();length
+      this.preventBubbling();
     }
     if ($.isNotNull(context.data)) {
       this.load(context.data);
@@ -43,6 +43,8 @@ $.Class('Unramalak.Map', {}, {
     this.cells = new Unramalak.CellCollection();
     this.hitCells = [];
     this.renderer =  new Unramalak.Renderer();
+    // controls
+    this.mouseControl = new Unramalak.Control.Mouse();
   },
 
   /**
@@ -74,11 +76,13 @@ $.Class('Unramalak.Map', {}, {
   },
 
   bind: function (onNotify) {
-    var _super = this;
+    var map = this;
 
     this.cells.each(this, function (cell) {
+      // TODO refactor with controls
       // onMouseDown
-      cell.shape.attach('mousedown', function (paperEvent) {
+      cell.bind('mousedown', function (paperEvent) {
+        //console.log('event', paperEvent);
         // get current cell state before deselecting all cells
         var selected = cell.shape.selected;
         // click on cell: unselect others cells and add clicked cell to selected unless it's already clicked.
@@ -88,24 +92,29 @@ $.Class('Unramalak.Map', {}, {
         }
         // if cell was not selected, we select it
         if (!selected) {
-          _super.hitCells.push(cell);
+          map.hitCells.push(cell);
         }
       });
       // onMouseUp
-      cell.bind('mouseup', function (paperEvent) {
-        _super.update();
+      cell.bind('mouseup', function () {
+        map.update();
+      });
+      /*cell.bind('mousedrag', function(paperEvent) {
+        map.move(paperEvent);
+      });*/
+      map.mouseControl.bind('mousedrag', cell, function (mouseEvent) {
+        map.move(mouseEvent.delta);
       });
     });
     // onclick anywhere but on menu and map, unselect user choice
-    $(document).on('click', function () {
-      _super.menu.unselect();
-      _super.unselect();
+    $(document).on('click contextmenu', function () {
+      map.menu.unselect();
     });
     // bind menu events
     this.menu.bind(this.save, this);
     this.onNotify = onNotify;
     // bind controls
-    this.keyboardControl = new Unramalak.Keyboard();
+    //this.keyboardControl = new Unramalak.Keyboard();
     //this.keyboardControl.bind(this, this.move, this.units[0].shape);
   },
 
@@ -172,13 +181,17 @@ $.Class('Unramalak.Map', {}, {
     originCell.addUnit(unit);*/
   },
 
-  /**
-   * Move a target in a direction
-   * @param target paper.js object
-   * @param direction vector
-   */
-  move: function (target, direction) {
+  /*moveItem: function (target, direction) {
     this.renderer.animate(target, direction);
+  },*/
+
+  move: function (delta) {
+    //console.log('high point', this.cells.group.getHandleBounds());
+
+    var bounds = this.cells.getBounds();
+    this.cells.translate(delta);
+
+    //console.log('high point moved ?', this.cells.getFirst().getHighPoint());
   },
 
   render: function () {
@@ -259,6 +272,11 @@ $.Class('Unramalak.Map', {}, {
     });
   },
 
+  /**
+   * Raise on notify event with a message and its type
+   * @param message
+   * @param type
+   */
   notify: function (message, type) {
     this.onNotify(message, type);
   },
@@ -267,7 +285,13 @@ $.Class('Unramalak.Map', {}, {
    * Prevents canvas events bubbling
    */
   preventBubbling: function () {
+
+    // left click
     $('canvas').on('click', function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      // right click
+    }).on ('contextmenu', function (e) {
       e.stopPropagation();
       e.preventDefault();
     });
@@ -319,7 +343,6 @@ $.Class('Unramalak.Map.Land', {}, {
     else if (this.type == 'water') {
       color = 'blue';
     }
-    //console.log('type', this.type);
     return color;
   }
 });

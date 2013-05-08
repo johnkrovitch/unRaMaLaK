@@ -7,6 +7,10 @@ var Unramalak = {
   BaseCell: {},
   Cell: {},
   CellCollection: {},
+  Control: {
+    Mouse: {},
+    MouseEvent: {}
+  },
   Map: {
     Context: {},
     Land: {},

@@ -1,8 +1,14 @@
 <!--javascripts -->
+<!-- paper js -->
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/paperjs/paper.js"></script>
+<!-- jquery & co -->
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/jquery/jquery.extended.js"></script>
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/jquery/jquery.class.js"></script>
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/main.js"></script>
+{% if (app.environment) == 'dev' %}
+    <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/qunit/qunit-1.11.0.js"></script>
+{% endif %}
+<!-- unramalak -->
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/unramalak/main/menu.js"></script>
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/unramalak/main/container.js"></script>
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/unramalak/main/constant.js"></script>
@@ -14,6 +20,7 @@
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/unramalak/geometry/geometry.js"></script>
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/unramalak/geometry/path.js"></script>
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/unramalak/unramalak.js" data-paper-canvas="myCanvas"></script>
+<!-- launcher -->
 <script language="javascript" type="text/javascript" src="/bundles/krovitch/js/launch.js"></script>
 {##}
     {#<script language="javascript" type="text/javascript" src="/bundles/krovitch/js/main.js"></script>#}

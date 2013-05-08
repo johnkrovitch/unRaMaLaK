@@ -1,5 +1,5 @@
 /**
- * Handle keyboard's interactions
+ *
  */
 $.Class('Unramalak.Renderer', {}, {
 

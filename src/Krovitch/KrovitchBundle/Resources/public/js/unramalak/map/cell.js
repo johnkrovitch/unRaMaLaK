@@ -112,11 +112,19 @@ $.Class('Unramalak.CellCollection', {}, {
     return (this.cells.length > 0) ? this.cells[0][0] : null;
   },
 
+  getBounds: function () {
+    return this.group.getHandleBounds();
+  },
+
   /**
    * Reset cells background to default color
    */
   reset: function () {
     this.group.background = defaultBackgroundColor;
+  },
+
+  translate: function (direction) {
+    this.group.translate(direction);
   },
 
   /**

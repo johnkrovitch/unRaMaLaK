@@ -30,6 +30,7 @@ $.Class('Unramalak.Application', {}, {
       mapContainer: canvasId,
       menuContainer: '#editor-menu',
       radius: 50,
+      preventBubbling: true,
       startingPoint: new paper.Point(100, 50)
     });
   },
