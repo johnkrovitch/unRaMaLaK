@@ -5,20 +5,28 @@
 
     <div id="editor-menu">
         {% trans %}editor.map.baseLand{% endtrans %}
+        <!-- basic land type -->
         <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand">
-            <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/></a>
+            <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/>
+        </a>
         <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water">
-            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/></a>
-
-        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value=""
-           title="{% trans %}editor.map.removeBackground{% endtrans %}"><i class="icon-white icon-remove"></i></a>
-
+            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains">
+            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.plains{% endtrans %}"/>
+        </a>
+        <!-- remove background button -->
+        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="" title="{% trans %}editor.map.removeBackground{% endtrans %}">
+            <i class="icon-white icon-remove"></i>
+        </a>
+        <!-- actions buttons -->
         <a href="javascript:void(0);" class="menu-action btn btn-success btn-small" data-action="save">
-            <i class="icon-white icon-ok"></i>{% trans %}editor.map.save{% endtrans %}</a>
+            <i class="icon-white icon-ok"></i>{% trans %}editor.map.save{% endtrans %}
+        </a>
     </div>
 
     <canvas id="myCanvas" width="938" height="1000">
-        It seems that your old and ugly browser does not support canvas yet...
+        It seems that your old and ugly browser does not support canvas...
     </canvas>
 
     <script type="text/javascript" language="javascript">
@@ -27,6 +35,12 @@
 
             var ur = new Unramalak.Application('myCanvas', mapData);
             ur.run();
+
+            //var test = Unramalak.ImageLoader.loadSvg('/bundles/krovitch/img/calmar_smooth.svg');
+            //console.log('test', test.children);
         });
+        $('#calmar').on('ready', function () {
+            console.log('trace', document.getElementById('calmar'))
+        })
     </script>
 {% endblock %}

@@ -52,17 +52,27 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
   },
 
   getCenter: function () {
-
+    return this.shape.position;
   },
 
   render: function () {
     var render = this.land.render();
 
-    if (render == '') {
-
+    // default render
+    if (render.type == 'default') {
+      this.shape.fillColor = render.value;
     }
-    console.log('render', this.shape.position);
-    this.shape.fillColor = render;
+    else if (render.type == 'image') {
+      var image = Unramalak.ImageLoader.getRaster('land_plains');
+
+      image.position = this.getCenter();
+      //image.scale(0.580);
+
+      //var point = paper.Point(10, 10);
+      //point.selected = true;
+      //point.fillColor = 'red';
+    }
+    //console.log('render', this.shape.position, render);
     this.shape.strokeColor = defaultStrokeColor;
   }
 });
@@ -73,15 +83,22 @@ $.Class('Unramalak.Land', {}, {
   image: null,
 
   render: function () {
-    var color = defaultBackgroundColor;
-
+    var render = {
+      type: 'default',
+      value: defaultBackgroundColor
+    };
+    // TODO put textures here
     if (this.type == 'sand') {
-      color = 'yellow';
+      render.value = 'yellow';
     }
     else if (this.type == 'water') {
-      color = 'blue';
+      render.value = 'blue';
     }
-    return color;
+    else if (this.type == 'plains') {
+      render.type = 'image';
+      render.value = 'land_plains';
+    }
+    return render;
   }
 });
 

@@ -10,6 +10,7 @@ $.Class('Unramalak.Renderer', {}, {
     var renderIndex = 0;
 
     paper.project.view.onFrame = function () {
+      // TODO make 22 a variable depending on frame rate
       if (renderIndex < 22) {
         shape.translate(vector);
         renderIndex++;
@@ -20,17 +21,20 @@ $.Class('Unramalak.Renderer', {}, {
 });
 
 $.Class('Unramalak.ImageLoader', {
+  /**
+   * @static
+   */
   rasters: [],
 
   /**
    * Load images into body html element
    * @static
    */
-load: function (imagePaths) {
+  load: function (imagePaths) {
     var ids = [];
     var htmlImages = [];
     // images container, require to be hidden
-    var container = $('<div id="unramalak-images-container" class="hidden" />')
+    var container = $('<div id="unramalak-images-container" class="hidden" />');
     // image template
     var imagesTemplate = '<img src="%src%" id="%id%" class="map-resources" />';
 
@@ -41,9 +45,28 @@ load: function (imagePaths) {
     // append element to body
     container.append($(htmlImages.join('')));
     $('body').append(container);
+  },
 
-    $.each (ids, function (index, id) {
-      Unramalak.ImageLoader.rasters.push(new paper.Raster(id));
+  getRaster: function (raster) {
+    //if ($.isNull(this.rasters[raster])) {
+    //}
+    this.rasters[raster] = new paper.Raster(raster);
+    return this.rasters[raster];
+  },
+
+  loadSvg: function (url) {
+    var symbol = null;
+    // TODO make a better image loading
+    $.ajax({
+      type: "GET",
+      async: false,
+      url: url,
+      dataType: "xml",
+      success: function(xml){
+        //symbol = new paper.Symbol(paper.project.importSvg(xml.getElementsByTagName("svg")[0]));
+        symbol = paper.project.importSvg(xml.getElementsByTagName("svg")[0]);
+      }
     });
+    return symbol;
   }
 }, {});
