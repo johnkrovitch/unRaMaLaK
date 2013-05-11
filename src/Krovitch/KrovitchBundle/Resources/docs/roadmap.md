@@ -8,4 +8,8 @@ Features :
 
 
 * Bugs :
-    * bug on second saving map in crud
+    * bug on the second map saving in crud (PHP)
+
+* Improvements :
+    * map texture loading (remove ajax call ?) (JS, PHP)
+    * movement animation (renderer.animate()), to improves firefox performances (JS)
