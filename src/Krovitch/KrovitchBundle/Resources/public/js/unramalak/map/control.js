@@ -3,8 +3,8 @@
  * @type {{leftClick: number, middleClick: number, rightClick: number}}
  */
 var MouseClick = {
-  leftClick: 1,
-  middleClick: 4,
+  leftClick: 0,
+  middleClick: 1,
   rightClick: 2
 };
 
@@ -12,12 +12,28 @@ var MouseClick = {
  *
  */
 $.Class('Unramalak.Control.Mouse', {}, {
+  // during drag, javascript does not correctly send button click code,
+  // we need to store it
+  lastClicked: null,
 
   bind: function (event, target, map, callback) {
+    var mouseControl = this;
     // bind event on target
     target.bind(event, function (paperEvent) {
       // create mouse event object for easier manipulations
       var mouseEvent = new Unramalak.Control.MouseEvent(paperEvent);
+      // remember what button was clicked (useful during drag)
+      if (event == 'mousedown') {
+        mouseEvent.hitButton = paperEvent.event.button;
+        mouseControl.lastClicked = mouseEvent.hitButton;
+      }
+      else if (event == 'mouseup') {
+        mouseControl.lastClicked = null;
+      }
+      else if (event == 'mousedrag') {
+        mouseEvent.hitButton = mouseControl.lastClicked;
+      }
+      // callback
       callback.call(map || this, mouseEvent);
     });
   }
@@ -31,9 +47,9 @@ $.Class('Unramalak.Control.MouseEvent', {}, {
   isCtrlPressed: false,
 
   init: function (paperEvent) {
-    this.hitButton = paperEvent.event.buttons;
     this.delta = paperEvent.delta;
     this.isCtrlPressed = paperEvent.event.ctrlKey;
+    this.type = paperEvent.type;
   },
 
   isLeftClick: function () {

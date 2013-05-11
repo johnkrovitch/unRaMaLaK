@@ -271,16 +271,14 @@ $.Class('Unramalak.Map', {}, {
    * Prevents canvas events bubbling
    */
   preventBubbling: function () {
-
-    // left click
-    $('canvas').on('click', function (e) {
+    var stopPropagation = function (e) {
       e.stopPropagation();
       e.preventDefault();
-      // right click
-    }).on ('contextmenu', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    });
+    };
+    // left, right click and drag
+    $('canvas').on('click', stopPropagation)
+      .on ('contextmenu', stopPropagation)
+      .on('drag', stopPropagation);
     /*$(document).on('keyup', function (e) {
       // TODO prevent browser from scrolling
        e.stopPropagation();
