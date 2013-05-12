@@ -4,6 +4,7 @@
 Unramalak.Container('Unramalak.BaseCell', {}, {
   land: null,
   shape: null,
+  raster: null,
   data: {
     x: null,
     y: null
@@ -55,23 +56,20 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     return this.shape.position;
   },
 
+  /**
+   * Render current cell. If cell land has an image render type,
+   * it use Unramalak.ImageLoader to load paper raster
+   */
   render: function () {
     var render = this.land.render();
-
     // default render
     if (render.type == 'default') {
       this.shape.fillColor = render.value;
     }
     else if (render.type == 'image') {
-      var image = Unramalak.ImageLoader.getRaster('land_plains');
-      image.setPosition(this.getCenter());
-      //image.scale(0.580);
-
-      //var point = paper.Point(10, 10);
-      //point.selected = true;
-      //point.fillColor = 'red';
+      this.raster = Unramalak.ImageLoader.getRaster('land_plains');
+      this.raster.setPosition(this.getCenter());
     }
-    //console.log('render', this.shape.position, render);
     this.shape.strokeColor = defaultStrokeColor;
   }
 });
@@ -173,9 +171,18 @@ $.Class('Unramalak.CellCollection', {}, {
    * Render each element of the collection
    */
   render: function () {
+    var rasterGroup = [];
     // draw cells
     this.each(this, function (cell) {
       cell.render();
+
+      if ($.isNotNull(cell.raster)) {
+        this.group.addChild(cell.raster);
+      }
     });
+    // adding raster to main group
+    //this.group.addChild(rasterGroup);
+
+    console.log('render');
   }
 });

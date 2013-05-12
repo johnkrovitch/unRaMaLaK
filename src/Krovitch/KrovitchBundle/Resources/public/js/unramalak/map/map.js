@@ -183,9 +183,7 @@ $.Class('Unramalak.Map', {}, {
   render: function () {
     this.renderer = new Unramalak.Renderer();
     // draw cells
-    this.cells.each(this, function (cell) {
-      cell.render();
-    });
+    this.cells.render();
     // draw units
     this.units.forEach(function (unit) {
       unit.render();
