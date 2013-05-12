@@ -64,8 +64,7 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     }
     else if (render.type == 'image') {
       var image = Unramalak.ImageLoader.getRaster('land_plains');
-
-      image.position = this.getCenter();
+      image.setPosition(this.getCenter());
       //image.scale(0.580);
 
       //var point = paper.Point(10, 10);
