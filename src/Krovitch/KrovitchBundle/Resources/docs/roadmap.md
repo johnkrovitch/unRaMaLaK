@@ -10,7 +10,8 @@ Features :
     * map drag&drop
 
 Bugs :
-    * bug on the second map saving in crud (PHP)
+    * FIXED bug on the second map saving in crud (PHP)
+    * bug on map drag&drop : textures does not move
 
 
 2) version 0.2

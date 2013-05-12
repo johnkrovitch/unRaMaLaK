@@ -4,6 +4,7 @@ namespace Krovitch\KrovitchBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Krovitch\KrovitchBundle\Entity\Entity;
+use Krovitch\KrovitchBundle\Utils\Path;
 
 /**
  * @ORM\Entity(repositoryClass="Krovitch\KrovitchBundle\Repository\MapRepository")
@@ -150,30 +151,18 @@ class Map extends Entity
         return $this->height . ' ' . $this->width;
     }
 
-    public function getDatafile()
+    public function getDatafile($absolute = true)
     {
-        return $this->datafile;
+        $datafile = $this->datafile;
+
+        if ($absolute && $datafile) {
+            $datafile = Path::getApplicationPath() . $datafile;
+        }
+        return $datafile;
     }
 
     public function setDatafile($datafile)
     {
         $this->datafile = $datafile;
-    }
-
-    /**
-     * Serialize this map into a json string understandable for js map object
-     */
-    public function serialize()
-    {
-        $mapJson = new \stdClass();
-        $mapJson->id = $this->id;
-        $mapJson->name = $this->name;
-        $mapJson->height = $this->height;
-        $mapJson->width = $this->width;
-        $mapJson->cells = $this->getContent();
-
-        die(var_dump($mapJson));
-
-        return json_encode($mapJson);
     }
 }
