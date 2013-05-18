@@ -5,6 +5,7 @@
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <a href="{{ path('map') }}" class="left">Map</a>
             <a href="{{ path('editor') }}" class="left">Editor</a>
+            <a href="{{ path('tests') }}" class="left">Tests</a>
             <a href="{{ path('fos_user_security_logout') }}" class="right">Logout</a>
         {% elseif is_granted('IS_ADMIN') %}
 

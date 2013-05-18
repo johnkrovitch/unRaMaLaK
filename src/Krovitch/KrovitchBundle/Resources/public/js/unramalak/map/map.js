@@ -78,8 +78,10 @@ $.Class('Unramalak.Map', {}, {
   bind: function (onNotify) {
     this.cells.each(this, function (cell) {
       // onMouseDown
-      this.mouseControl.bind('mousedown', cell, this, function () {
-          this.hitCells.push(cell);
+      this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
+        console.log('mouse', '');
+
+        this.cells.hitCell(cell);
       });
       // onMouseUp
       this.mouseControl.bind('mouseup', cell, this, function () {
@@ -208,8 +210,11 @@ $.Class('Unramalak.Map', {}, {
    */
   update: function () {
     var map = this;
+
+    this.cells.update(map.menu.getData());
+
     // if cells have been clicked or drag
-    $.each(map.hitCells, function (index, cell) {
+    /*$.each(map.hitCells, function (index, cell) {
       // if a item menu button was pressed
       if (map.menu.hasData('land')) {
         cell.land.type = map.menu.getData('land');
@@ -226,8 +231,8 @@ $.Class('Unramalak.Map', {}, {
         var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
 
         console.log('Hey je suis là mec !', krovitch);
-      }*/
-    });
+      }
+    });*/
     // then reset hitCells
     this.hitCells = [];
   },

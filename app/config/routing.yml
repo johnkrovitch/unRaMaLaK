@@ -2,7 +2,7 @@ _welcome:
   pattern:  /
   defaults: { _controller: KrovitchBundle:Krovitch:index }
 
-_test:
+_home:
   resource: "@KrovitchBundle/Controller/KrovitchController.php"
   type:     annotation
 
@@ -15,8 +15,12 @@ _map:
   type:     annotation
 
 _editor:
-    resource: "@KrovitchBundle/Controller/EditorController.php"
-    type:   annotation
+  resource: "@KrovitchBundle/Controller/EditorController.php"
+  type:     annotation
+
+_tests:
+  resource: "@KrovitchBundle/Controller/TestsController.php"
+  type:     annotation
 
 # UserBundle
 fos_user_security:

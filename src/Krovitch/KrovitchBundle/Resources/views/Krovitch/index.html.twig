@@ -1,12 +1,35 @@
 {% extends mainTemplate %}
 
 {% block content %}
-    <h1>Oh yeah!</h1>
+    <h1>{% trans %}home.title{% endtrans %}</h1>
 
     <div class="row">
         <div class="span8">
             {% trans %}UnRaMaLak, la terreur de l'espace !{% endtrans %}
         </div>
     </div>
+
+    <div class="hidden">
+        {{ svgFile|raw }}
+    </div>
+
+    <canvas id="calmar" width="500" height="500">
+
+    </canvas>
+
+    <script>
+        $(document).ready(function () {
+
+            // Get a reference to the canvas object
+            var canvas = document.getElementById('calmar');
+            // Create an empty project and a view for the canvas:
+            paper.setup(canvas);
+
+            var svg = document.getElementById('svg2');
+            console.log(svg);
+            paper.project.importSvg(svg);
+
+        });
+    </script>
 
 {% endblock %}

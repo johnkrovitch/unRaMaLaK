@@ -15,14 +15,19 @@ class KrovitchUpdateCommand extends BaseCommandLine
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $command = 'app/console translation:update fr KrovitchBundle --force';
-        $command2 = 'app/console translation:update en KrovitchBundle --force';
-        $command3 = 'app/console cache:clear';
-        $arguments = array();
+        // TODO refactor this part, to make it more generic
+        // git pull
+        $gitPull = 'git pull';
+        // update i18n files
+        $translationUpdateFr = 'app/console translation:update fr KrovitchBundle --force';
+        $translationUpdateEn = 'app/console translation:update en KrovitchBundle --force';
+        // bower update
+        $bower = 'bower install paper qunit jquery jquery.ui';
+        $composer = 'php composer.phar update';
+        // clear cache
+        $cc = 'app/console cache:clear';
 
         $output->writeln('Updating Krovitch Bundle !');
-        $this->executeCommand($command, $arguments, $output);
-        $this->executeCommand($command2, $arguments, $output);
-        $this->executeCommand($command3, $arguments, $output);
+        $this->executeCommands(array($gitPull, $translationUpdateFr, $translationUpdateEn, $bower, $composer, $cc), $output);
     }
 }

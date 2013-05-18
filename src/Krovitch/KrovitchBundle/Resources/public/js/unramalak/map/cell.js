@@ -52,13 +52,13 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     return this.shape.segments[1].point;
   },
 
-  getCenter: function () {
+  getPosition: function () {
     return this.shape.position;
   },
 
   /**
    * Render current cell. If cell land has an image render type,
-   * it use Unramalak.ImageLoader to load paper raster
+   * it use ImageLoader to load paper raster
    */
   render: function () {
     var render = this.land.render();
@@ -66,15 +66,28 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     if (render.type == 'default') {
       this.shape.fillColor = render.value;
     }
+    // texture render
     else if (render.type == 'image') {
-      this.raster = Unramalak.ImageLoader.getRaster('land_plains');
-      this.raster.setPosition(this.getCenter());
+      var raster = Unramalak.ImageLoader.createRaster(render.value);
+      if (!this.raster) {
+        this.raster = raster;
+        //this.raster = raster.clone();
+        console.log('raster ', raster);
+      }
+      if (this.raster && this.raster != raster) {
+        //this.raster.remove();
+        //this.raster = raster;
+      }
+      console.log('render cell', this);
+      this.raster.setPosition(this.getPosition());
     }
     this.shape.strokeColor = defaultStrokeColor;
   }
 });
 
-
+/**
+ * Unramalak.Land
+ */
 $.Class('Unramalak.Land', {}, {
   type: 'default',
   image: null,
@@ -105,6 +118,7 @@ $.Class('Unramalak.Land', {}, {
 $.Class('Unramalak.CellCollection', {}, {
   cells: [],
   group: null,
+  hitCells: [],
 
   /**
    * Initialize a new collection
@@ -127,6 +141,7 @@ $.Class('Unramalak.CellCollection', {}, {
     this.cells[x][y] = cell;
     // add in paper.js group for mass manipulations
     this.group.addChild(cell.shape);
+    //this.group.addChild(cell.raster);
   },
 
   /**
@@ -156,6 +171,10 @@ $.Class('Unramalak.CellCollection', {}, {
     return this.group.getHandleBounds();
   },
 
+  hitCell: function (cell) {
+    this.hitCells.push(cell);
+  },
+
   /**
    * Reset cells background to default color
    */
@@ -164,25 +183,45 @@ $.Class('Unramalak.CellCollection', {}, {
   },
 
   translate: function (direction) {
+    //console.log('group', this.group.children[0].position);
     this.group.translate(direction);
+    //console.log('group', this.group.children[0].position);
+  },
+
+  update: function (data) {
+    var cellIndex, cell;
+
+    for (cellIndex in this.cells) {
+      cell = this.hitCells[cellIndex];
+
+      if (data['land']) {
+        cell.land.type = data['land'];
+        cell.render();
+        console.log('parent ?', this.group.isParent(cell.raster));
+        console.log('ancestor ?', this.group.isAncestor(cell.raster));
+        this.group.addChild(cell.raster);
+      }
+    }
   },
 
   /**
    * Render each element of the collection
    */
   render: function () {
+
     var rasterGroup = [];
-    // draw cells
     this.each(this, function (cell) {
       cell.render();
 
+
+
       if ($.isNotNull(cell.raster)) {
         this.group.addChild(cell.raster);
+
       }
     });
     // adding raster to main group
     //this.group.addChild(rasterGroup);
-
-    console.log('render');
+    // draw cells
   }
 });
