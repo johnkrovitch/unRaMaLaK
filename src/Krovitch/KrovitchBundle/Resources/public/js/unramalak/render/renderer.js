@@ -22,6 +22,7 @@ $.Class('Unramalak.Renderer', {}, {
 
 $.Class('Unramalak.ImageLoader', {
   /**
+   * Current loaded rasters
    * @static
    */
   rasters: [],
@@ -59,6 +60,7 @@ $.Class('Unramalak.ImageLoader', {
     return raster;
   },
 
+  // TODO improve this features
   loadSvg: function (url) {
     var symbol = null;
     // TODO make a better image loading
@@ -69,9 +71,44 @@ $.Class('Unramalak.ImageLoader', {
       dataType: "xml",
       success: function(xml){
         //symbol = new paper.Symbol(paper.project.importSvg(xml.getElementsByTagName("svg")[0]));
-        symbol = paper.project.importSvg(xml.getElementsByTagName("svg")[0]);
+        symbol = paper.project.importSVG(xml.getElementsByTagName("svg")[0]);
       }
     });
     return symbol;
   }
 }, {});
+
+$.Class('Unramalak.Raster', {}, {
+  // raster container
+  container: null,
+  name: '',
+  // paper.js raster object
+  shape: null,
+
+  /**
+   *
+   * @param name
+   * @param container A positionable container
+   */
+  init: function (name, container) {
+    this.container = container;
+    this.name = name;
+  },
+
+  bindToContainer: function (event, container) {
+    if (!this.shape) {
+      throw 'Raster should be rendered before binding it to its container';
+    }
+    this.shape.attach(event, function (paperEvent) {
+      container.shape.fire(event, paperEvent);
+    });
+  },
+
+  render: function () {
+    this.shape = Unramalak.ImageLoader.createRaster(this.name);
+    this.shape.setPosition(this.container.getPosition());
+    this.bindToContainer('mousedown', this.container);
+    this.bindToContainer('mouseup', this.container);
+    this.bindToContainer('mousedrag', this.container);
+  }
+});

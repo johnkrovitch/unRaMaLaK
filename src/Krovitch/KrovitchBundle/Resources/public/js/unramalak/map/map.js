@@ -176,12 +176,7 @@ $.Class('Unramalak.Map', {}, {
   },*/
 
   move: function (delta) {
-    //console.log('high point', this.cells.group.getHandleBounds());
-
-    var bounds = this.cells.getBounds();
     this.cells.translate(delta);
-
-    //console.log('high point moved ?', this.cells.getFirst().getHighPoint());
   },
 
   render: function () {
@@ -211,10 +206,6 @@ $.Class('Unramalak.Map', {}, {
    * Update required cells
    */
   update: function () {
-    var map = this;
-
-    this.cells.update(map.menu.getData());
-
     // if cells have been clicked or drag
     /*$.each(map.hitCells, function (index, cell) {
       // if a item menu button was pressed
@@ -231,11 +222,10 @@ $.Class('Unramalak.Map', {}, {
         var pathManager = new Unramalak.Path.Finder(dimension, rules);
 
         var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
-
-        console.log('Hey je suis là mec !', krovitch);
       }
     });*/
     // then reset hitCells
+    this.cells.update(this.menu.getData());
     this.hitCells = [];
   },
 

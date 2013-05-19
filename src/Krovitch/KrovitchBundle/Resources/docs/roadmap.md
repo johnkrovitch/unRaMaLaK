@@ -11,7 +11,9 @@ Features :
 
 Bugs :
     * FIXED bug on the second map saving in crud (PHP)
-    * bug on map drag&drop : textures does not move
+    * FIXED bug on map drag&drop : textures does not move
+    * bug : drag does not work on textures
+    * bug : map can be drag out of out canvas
 
 
 2) version 0.2
@@ -20,4 +22,5 @@ Bugs :
 Improvements :
     * map texture loading (remove ajax call ?) (JS, PHP)
     * movement animation (renderer.animate()), to improves firefox performances (JS)
+    * php game security
 

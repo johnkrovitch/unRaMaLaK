@@ -3,6 +3,7 @@
  */
 $.Class('Unramalak.Container', {}, {
   units: [],
+  position: null,
 
   addUnit: function(unit) {
     this.units.push(unit);
@@ -14,5 +15,10 @@ $.Class('Unramalak.Container', {}, {
    */
   hasUnit: function() {
     return !!(this.units.length > 0);
+  },
+
+  // TODO refactor this in behaviour
+  getPosition: function () {
+    return this.shape.position;
   }
 });

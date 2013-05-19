@@ -18,6 +18,7 @@ var Unramalak = {
     Unit: {},
     BaseUnit: {}
   },
+  Raster: {},
   Renderer: {},
   Path: {
     Finder: {},

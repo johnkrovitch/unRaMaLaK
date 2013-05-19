@@ -52,10 +52,6 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     return this.shape.segments[1].point;
   },
 
-  getPosition: function () {
-    return this.shape.position;
-  },
-
   /**
    * Render current cell. If cell land has an image render type,
    * it use ImageLoader to load paper raster
@@ -68,16 +64,32 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     }
     // texture render
     else if (render.type == 'image') {
+      this.raster = new Unramalak.Raster(render.value, this);
+      this.raster.render();
+      /*raster.bind('mousedown', this.shape.onmousedown, this);
+
+
       var raster = Unramalak.ImageLoader.createRaster(render.value);
 
       if (!this.raster) {
         this.raster = raster;
       }
+      // TODO make land update (texture change and old raster deletion)
       if (this.raster && this.raster != raster) {
         //this.raster.remove();
         //this.raster = raster;
       }
+      var cell = this;
       this.raster.setPosition(this.getPosition());
+      this.raster.attach('mousedown', function (e) {
+        cell.shape.fire('mousedown', e);
+      });
+      this.raster.attach('mouseup', function (e) {
+        cell.shape.fire('mouseup', e);
+      });
+      this.raster.attach('mousedrag', function (e) {
+        cell.shape.fire('mousedrag', e);
+      });*/
     }
     this.shape.strokeColor = defaultStrokeColor;
   }
@@ -192,9 +204,7 @@ $.Class('Unramalak.CellCollection', {}, {
       if (data['land']) {
         cell.land.type = data['land'];
         cell.render();
-        console.log('parent ?', this.group.isParent(cell.raster));
-        console.log('ancestor ?', this.group.isAncestor(cell.raster));
-        this.group.addChild(cell.raster);
+        this.group.addChild(cell.raster.shape);
       }
     }
     this.hitCells = [];
@@ -208,7 +218,7 @@ $.Class('Unramalak.CellCollection', {}, {
       cell.render();
 
       if ($.isNotNull(cell.raster)) {
-        this.group.addChild(cell.raster);
+        this.group.addChild(cell.raster.shape);
       }
     });
   }
