@@ -92,6 +92,13 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
       });*/
     }
     this.shape.strokeColor = defaultStrokeColor;
+  },
+
+  reset: function () {
+    // reset land type
+    this.land.reset();
+    // remove
+    this.raster.remove();
   }
 });
 
@@ -109,16 +116,22 @@ $.Class('Unramalak.Land', {}, {
     };
     // TODO put textures here
     if (this.type == 'sand') {
-      render.value = 'yellow';
+      render.type = 'image';
+      render.value = 'land_sand';
     }
     else if (this.type == 'water') {
-      render.value = 'blue';
+      render.type = 'image';
+      render.value = 'land_water';
     }
     else if (this.type == 'plains') {
       render.type = 'image';
       render.value = 'land_plains';
     }
     return render;
+  },
+
+  reset: function () {
+    this.type = 'default';
   }
 });
 
@@ -201,10 +214,19 @@ $.Class('Unramalak.CellCollection', {}, {
     for (cellIndex in this.hitCells) {
       cell = this.hitCells[cellIndex];
 
+      console.log('cell', data);
+
       if (data['land']) {
-        cell.land.type = data['land'];
-        cell.render();
-        this.group.addChild(cell.raster.shape);
+
+        if (data['land'] == 'remove') {
+          cell.reset();
+          cell.render();
+        }
+        else {
+          cell.land.type = data['land'];
+          cell.render();
+          this.group.addChild(cell.raster.shape);
+        }
       }
     }
     this.hitCells = [];

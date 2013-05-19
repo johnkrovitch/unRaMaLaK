@@ -33,7 +33,12 @@ $.Class('Unramalak.Application', {}, {
       preventBubbling: true,
       startingPoint: new paper.Point(100, 50)
     });
-    Unramalak.ImageLoader.load({'land_plains': '/bundles/krovitch/img/textures/plains/plains4.png'});
+    // TODO refactor elsewhere
+    Unramalak.ImageLoader.load({
+      'land_plains': '/bundles/krovitch/img/textures/plains/plains4.png',
+      'land_sand': '/bundles/krovitch/img/textures/sand/sand1.png',
+      'land_water': '/bundles/krovitch/img/textures/water/water1.png'
+    });
   },
 
   /**

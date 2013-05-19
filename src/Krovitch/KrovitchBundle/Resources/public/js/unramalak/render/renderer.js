@@ -110,5 +110,9 @@ $.Class('Unramalak.Raster', {}, {
     this.bindToContainer('mousedown', this.container);
     this.bindToContainer('mouseup', this.container);
     this.bindToContainer('mousedrag', this.container);
+  },
+
+  remove: function () {
+    this.shape.remove();
   }
 });

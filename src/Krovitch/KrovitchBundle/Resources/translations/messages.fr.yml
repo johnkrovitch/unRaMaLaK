@@ -1,7 +1,7 @@
 editor.map.baseLand: 'terrain de base'
 editor.map.sand: sable
 editor.map.water: eau
-editor.map.plains: __editor.map.plains
+editor.map.plains: plaine
 editor.map.removeBackground: 'supprimer le fond'
 editor.map.save: sauvegarder
 home.title: __home.title
