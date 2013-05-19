@@ -79,9 +79,11 @@ $.Class('Unramalak.Map', {}, {
     this.cells.each(this, function (cell) {
       // onMouseDown
       this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
-        console.log('mouse', '');
+        console.log('mouse', mouseEvent, mouseEvent.isLeftClick());
 
-        this.cells.hitCell(cell);
+        if (mouseEvent.isLeftClick()) {
+          this.cells.hitCell(cell);
+        }
       });
       // onMouseUp
       this.mouseControl.bind('mouseup', cell, this, function () {

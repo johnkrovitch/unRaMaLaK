@@ -69,16 +69,14 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     // texture render
     else if (render.type == 'image') {
       var raster = Unramalak.ImageLoader.createRaster(render.value);
+
       if (!this.raster) {
         this.raster = raster;
-        //this.raster = raster.clone();
-        console.log('raster ', raster);
       }
       if (this.raster && this.raster != raster) {
         //this.raster.remove();
         //this.raster = raster;
       }
-      console.log('render cell', this);
       this.raster.setPosition(this.getPosition());
     }
     this.shape.strokeColor = defaultStrokeColor;
@@ -141,7 +139,6 @@ $.Class('Unramalak.CellCollection', {}, {
     this.cells[x][y] = cell;
     // add in paper.js group for mass manipulations
     this.group.addChild(cell.shape);
-    //this.group.addChild(cell.raster);
   },
 
   /**
@@ -183,15 +180,13 @@ $.Class('Unramalak.CellCollection', {}, {
   },
 
   translate: function (direction) {
-    //console.log('group', this.group.children[0].position);
     this.group.translate(direction);
-    //console.log('group', this.group.children[0].position);
   },
 
   update: function (data) {
     var cellIndex, cell;
 
-    for (cellIndex in this.cells) {
+    for (cellIndex in this.hitCells) {
       cell = this.hitCells[cellIndex];
 
       if (data['land']) {
@@ -202,26 +197,19 @@ $.Class('Unramalak.CellCollection', {}, {
         this.group.addChild(cell.raster);
       }
     }
+    this.hitCells = [];
   },
 
   /**
    * Render each element of the collection
    */
   render: function () {
-
-    var rasterGroup = [];
     this.each(this, function (cell) {
       cell.render();
 
-
-
       if ($.isNotNull(cell.raster)) {
         this.group.addChild(cell.raster);
-
       }
     });
-    // adding raster to main group
-    //this.group.addChild(rasterGroup);
-    // draw cells
   }
 });

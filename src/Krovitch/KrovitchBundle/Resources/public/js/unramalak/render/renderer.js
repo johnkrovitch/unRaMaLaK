@@ -31,7 +31,6 @@ $.Class('Unramalak.ImageLoader', {
    * @static
    */
   load: function (imagePaths) {
-    var ids = [];
     var htmlImages = [];
     // images container, require to be hidden
     var container = $('<div id="unramalak-images-container" class="hidden"></div>');
@@ -45,16 +44,13 @@ $.Class('Unramalak.ImageLoader', {
     // append element to body
     container.append($(htmlImages.join('')));
     $('body').append(container);
-
-    console.log('ids : ', Unramalak.ImageLoader.rasters);
   },
 
   createRaster: function (name) {
     var raster = null;
 
     if ($.inArray(name, Unramalak.ImageLoader.rasters) > -1) {
-      console.log('create raster ', name);
-      this.rasters[raster] = name;
+      this.rasters.push(name);
       raster = new paper.Raster(name);
     }
     else {
