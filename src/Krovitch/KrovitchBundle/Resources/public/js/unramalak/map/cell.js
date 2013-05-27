@@ -4,6 +4,7 @@
 Unramalak.Container('Unramalak.BaseCell', {}, {
   land: null,
   shape: null,
+  raster: null,
   data: {
     x: null,
     y: null
@@ -51,33 +52,59 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     return this.shape.segments[1].point;
   },
 
-  getCenter: function () {
-    return this.shape.position;
-  },
-
+  /**
+   * Render current cell. If cell land has an image render type,
+   * it use ImageLoader to load paper raster
+   */
   render: function () {
     var render = this.land.render();
-
     // default render
     if (render.type == 'default') {
       this.shape.fillColor = render.value;
     }
+    // texture render
     else if (render.type == 'image') {
-      var image = Unramalak.ImageLoader.getRaster('land_plains');
+      this.raster = new Unramalak.Raster(render.value, this);
+      this.raster.render();
+      /*raster.bind('mousedown', this.shape.onmousedown, this);
 
-      image.position = this.getCenter();
-      //image.scale(0.580);
 
-      //var point = paper.Point(10, 10);
-      //point.selected = true;
-      //point.fillColor = 'red';
+      var raster = Unramalak.ImageLoader.createRaster(render.value);
+
+      if (!this.raster) {
+        this.raster = raster;
+      }
+      // TODO make land update (texture change and old raster deletion)
+      if (this.raster && this.raster != raster) {
+        //this.raster.remove();
+        //this.raster = raster;
+      }
+      var cell = this;
+      this.raster.setPosition(this.getPosition());
+      this.raster.attach('mousedown', function (e) {
+        cell.shape.fire('mousedown', e);
+      });
+      this.raster.attach('mouseup', function (e) {
+        cell.shape.fire('mouseup', e);
+      });
+      this.raster.attach('mousedrag', function (e) {
+        cell.shape.fire('mousedrag', e);
+      });*/
     }
-    //console.log('render', this.shape.position, render);
     this.shape.strokeColor = defaultStrokeColor;
+  },
+
+  reset: function () {
+    // reset land type
+    this.land.reset();
+    // remove
+    this.raster.remove();
   }
 });
 
-
+/**
+ * Unramalak.Land
+ */
 $.Class('Unramalak.Land', {}, {
   type: 'default',
   image: null,
@@ -89,16 +116,22 @@ $.Class('Unramalak.Land', {}, {
     };
     // TODO put textures here
     if (this.type == 'sand') {
-      render.value = 'yellow';
+      render.type = 'image';
+      render.value = 'land_sand';
     }
     else if (this.type == 'water') {
-      render.value = 'blue';
+      render.type = 'image';
+      render.value = 'land_water';
     }
     else if (this.type == 'plains') {
       render.type = 'image';
       render.value = 'land_plains';
     }
     return render;
+  },
+
+  reset: function () {
+    this.type = 'default';
   }
 });
 
@@ -108,6 +141,7 @@ $.Class('Unramalak.Land', {}, {
 $.Class('Unramalak.CellCollection', {}, {
   cells: [],
   group: null,
+  hitCells: [],
 
   /**
    * Initialize a new collection
@@ -159,6 +193,10 @@ $.Class('Unramalak.CellCollection', {}, {
     return this.group.getHandleBounds();
   },
 
+  hitCell: function (cell) {
+    this.hitCells.push(cell);
+  },
+
   /**
    * Reset cells background to default color
    */
@@ -170,13 +208,40 @@ $.Class('Unramalak.CellCollection', {}, {
     this.group.translate(direction);
   },
 
+  update: function (data) {
+    var cellIndex, cell;
+
+    for (cellIndex in this.hitCells) {
+      cell = this.hitCells[cellIndex];
+
+      console.log('cell', data);
+
+      if (data['land']) {
+
+        if (data['land'] == 'remove') {
+          cell.reset();
+          cell.render();
+        }
+        else {
+          cell.land.type = data['land'];
+          cell.render();
+          this.group.addChild(cell.raster.shape);
+        }
+      }
+    }
+    this.hitCells = [];
+  },
+
   /**
    * Render each element of the collection
    */
   render: function () {
-    // draw cells
     this.each(this, function (cell) {
       cell.render();
+
+      if ($.isNotNull(cell.raster)) {
+        this.group.addChild(cell.raster.shape);
+      }
     });
   }
 });

@@ -6,17 +6,17 @@
     <div id="editor-menu">
         {% trans %}editor.map.baseLand{% endtrans %}
         <!-- basic land type -->
-        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand">
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand" title="{% trans %}editor.map.sand{% endtrans %}">
             <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/>
         </a>
-        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water">
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water" title="{% trans %}editor.map.water{% endtrans %}">
             <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/>
         </a>
-        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains">
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains" title="{% trans %}editor.map.plains{% endtrans %}">
             <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.plains{% endtrans %}"/>
         </a>
         <!-- remove background button -->
-        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="" title="{% trans %}editor.map.removeBackground{% endtrans %}">
+        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="remove" title="{% trans %}editor.map.removeBackground{% endtrans %}">
             <i class="icon-white icon-remove"></i>
         </a>
         <!-- actions buttons -->
@@ -32,8 +32,9 @@
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             var mapData = {{ map|raw }};
+            var textures = {{ textures|raw }};
 
-            var ur = new Unramalak.Application('myCanvas', mapData);
+            var ur = new Unramalak.Application('myCanvas', mapData, textures);
             ur.run();
 
             //var test = Unramalak.ImageLoader.loadSvg('/bundles/krovitch/img/calmar_smooth.svg');

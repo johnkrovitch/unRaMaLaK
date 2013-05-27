@@ -9,19 +9,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Krovitch\KrovitchBundle\Entity\Contact;
 
 /**
- * @Route("/test")
+ * @Route("/")
  */
 class KrovitchController extends BaseController
 {
     /**
      * @Route("/", name="_homepage")
-     * @Route("/toto", name="_homepage")
      * @Template()
      * @return array
      */
     public function indexAction()
     {
-        return array();
+        $svgFile = file_get_contents('/home/afrezet/workspace/unRaMaLaK/init/resources/calmar_flat.svg');
+        return array('svgFile' => $svgFile);
     }
 
     /**

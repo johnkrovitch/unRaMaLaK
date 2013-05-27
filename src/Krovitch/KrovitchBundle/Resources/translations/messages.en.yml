@@ -1,8 +1,10 @@
 editor.map.baseLand: 'base land'
 editor.map.sand: sand
 editor.map.water: __editor.map.water
+editor.map.plains: __editor.map.plains
 editor.map.removeBackground: 'delete background'
 editor.map.save: save
+home.title: __home.title
 'UnRaMaLak, la terreur de l''espace !': '__UnRaMaLak, la terreur de l''espace !'
 editor.map.title: __editor.map.title
 editor.save: __editor.save

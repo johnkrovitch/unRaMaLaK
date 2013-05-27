@@ -108,9 +108,13 @@ class EditorController extends BaseController
     public function editMapAction()
     {
         $map = new Map();
+        $route = 'createMap';
+        $parameters = array();
 
         if ($id = $this->getRequest()->get('id', 0)) {
             $map = $this->getManager('Map')->find($id);
+            $route = 'editMap';
+            $parameters = array('id' => $id);
         }
         $this->redirect404Unless($map, sprintf('Map not found (id:%s)', $id));
         $form = $this->createForm(new MapType(), $map);
@@ -123,12 +127,11 @@ class EditorController extends BaseController
                 $this->getManager('Map')->save($map);
                 // informs user save success
                 $this->setMessage('editor.map.saveSuccess', array('%map%' => $map->getName()));
+                // redirect to list
+                return $this->redirect('@editor');
             }
         }
-        // route parameters
-        $parameters = array('id' => $map->getId() ? $map->getId() : 0);
-
-        return array('form' => $form->createView(), 'route' => array('name' => 'editMap', 'parameters' => $parameters));
+        return array('form' => $form->createView(), 'route' => array('name' => $route, 'parameters' => $parameters));
     }
 
     /**

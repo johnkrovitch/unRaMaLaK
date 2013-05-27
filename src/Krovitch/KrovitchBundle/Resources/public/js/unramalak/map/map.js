@@ -78,8 +78,12 @@ $.Class('Unramalak.Map', {}, {
   bind: function (onNotify) {
     this.cells.each(this, function (cell) {
       // onMouseDown
-      this.mouseControl.bind('mousedown', cell, this, function () {
-          this.hitCells.push(cell);
+      this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
+        console.log('mouse', mouseEvent, mouseEvent.isLeftClick());
+
+        if (mouseEvent.isLeftClick()) {
+          this.cells.hitCell(cell);
+        }
       });
       // onMouseUp
       this.mouseControl.bind('mouseup', cell, this, function () {
@@ -172,20 +176,13 @@ $.Class('Unramalak.Map', {}, {
   },*/
 
   move: function (delta) {
-    //console.log('high point', this.cells.group.getHandleBounds());
-
-    var bounds = this.cells.getBounds();
     this.cells.translate(delta);
-
-    //console.log('high point moved ?', this.cells.getFirst().getHighPoint());
   },
 
   render: function () {
     this.renderer = new Unramalak.Renderer();
     // draw cells
-    this.cells.each(this, function (cell) {
-      cell.render();
-    });
+    this.cells.render();
     // draw units
     this.units.forEach(function (unit) {
       unit.render();
@@ -209,9 +206,8 @@ $.Class('Unramalak.Map', {}, {
    * Update required cells
    */
   update: function () {
-    var map = this;
     // if cells have been clicked or drag
-    $.each(map.hitCells, function (index, cell) {
+    /*$.each(map.hitCells, function (index, cell) {
       // if a item menu button was pressed
       if (map.menu.hasData('land')) {
         cell.land.type = map.menu.getData('land');
@@ -226,11 +222,10 @@ $.Class('Unramalak.Map', {}, {
         var pathManager = new Unramalak.Path.Finder(dimension, rules);
 
         var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
-
-        console.log('Hey je suis là mec !', krovitch);
-      }*/
-    });
+      }
+    });*/
     // then reset hitCells
+    this.cells.update(this.menu.getData());
     this.hitCells = [];
   },
 
@@ -271,16 +266,14 @@ $.Class('Unramalak.Map', {}, {
    * Prevents canvas events bubbling
    */
   preventBubbling: function () {
-
-    // left click
-    $('canvas').on('click', function (e) {
+    var stopPropagation = function (e) {
       e.stopPropagation();
       e.preventDefault();
-      // right click
-    }).on ('contextmenu', function (e) {
-      e.stopPropagation();
-      e.preventDefault();
-    });
+    };
+    // left, right click and drag
+    $('canvas').on('click', stopPropagation)
+      .on ('contextmenu', stopPropagation)
+      .on('drag', stopPropagation);
     /*$(document).on('keyup', function (e) {
       // TODO prevent browser from scrolling
        e.stopPropagation();

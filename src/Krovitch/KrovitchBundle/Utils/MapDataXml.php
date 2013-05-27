@@ -24,7 +24,7 @@ class MapDataXml
      * @param Map $map
      * @param $dataFilePath
      */
-    public function __construct(Map $map, $dataFilePath)
+    public function __construct(Map $map, $dataFilePath = '')
     {
         $this->map = $map;
         $this->dataFilePath = $dataFilePath;
@@ -48,15 +48,13 @@ class MapDataXml
         // if map is new, we must create its xml file
         if (!$datafile) {
             return $this->create();
-        }
-        else if (!count($mapData)) {
+        } else if (!count($mapData)) {
             throw new InvalidParameterException('Trying to save empty data');
         }
         // here map should have a valid data file
         $this->checkFile($datafile);
         // map has a valid file, we should update data
         $xml = simplexml_load_file($datafile);
-        $cells = array();
         // decode data from json
         $index = 0;
 
@@ -71,7 +69,7 @@ class MapDataXml
         }
         $xml->asXML($datafile);
 
-        return $datafile;
+        return $this->map->getDatafile(false);
     }
 
     public function load()
@@ -100,14 +98,14 @@ class MapDataXml
     }
 
     /**
-     * Generate Map data file path according to the name pattern and map id
+     * Generate Map data file name according to the name pattern and map id
      * @param $id
      * @return string
      */
     protected function generateDataFile($id)
     {
         $pattern = ('map-%s-%s.xml');
-        return $this->dataFilePath . sprintf($pattern, $id, 'name');
+        return sprintf($pattern, $id, 'name');
     }
 
     protected function checkFile($file)
@@ -127,7 +125,7 @@ class MapDataXml
         $events = $this->document->getElementsByTagName('events');
 
         if (!$profile->length || !$cells->length || !$events->length) {
-            throw new Exception('Xml data file has no valid roots. It should have profile, cells and events root nodes.');
+            throw new Exception('Xml data file has no valid roots. It should have profile, cells and events roots nodes.');
         }
         // TODO make better check of data
     }
@@ -179,7 +177,7 @@ class MapDataXml
         $this->document->appendChild($mapRoot);
         // save xml file
         $datafile = $this->generateDataFile($this->map->getId());
-        $this->document->save($datafile);
+        $this->document->save($this->dataFilePath . $datafile);
 
         return $datafile;
     }

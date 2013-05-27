@@ -31,6 +31,16 @@ class BaseCommandLine extends ContainerAwareCommand
         return $output;
     }
 
+    public function executeCommands(array $commands, OutputInterface $printOutput = null)
+    {
+        $output = array();
+
+        foreach ($commands as $command) {
+            $output[] = $this->executeCommand($command, array(), $printOutput);
+        }
+        return $output;
+    }
+
     public function cleanCommand($command)
     {
         if (!$command) {

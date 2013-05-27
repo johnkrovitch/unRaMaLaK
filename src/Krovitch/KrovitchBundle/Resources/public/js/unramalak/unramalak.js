@@ -17,7 +17,7 @@ $.Class('Unramalak.Application', {}, {
   /**
    * Initialize map and editor objects
    */
-  init: function (canvasId, mapData) {
+  init: function (canvasId, mapData, textures) {
     // Get a reference to the canvas object
     var canvas = document.getElementById(canvasId);
     // Create an empty project and a view for the canvas:
@@ -33,7 +33,8 @@ $.Class('Unramalak.Application', {}, {
       preventBubbling: true,
       startingPoint: new paper.Point(100, 50)
     });
-    Unramalak.ImageLoader.load({'land_plains': '/bundles/krovitch/img/textures/plains/plains4.png'});
+    // load textures
+    Unramalak.ImageLoader.load(textures);
   },
 
   /**
