@@ -1,58 +1,25 @@
 unRamalak and Gmf Installation
 ========================
 
+Unramalak will be (one day...) a online js/php game. The goal is to kill, Unramalak, the giant Calmar, who takes the control of the universe.
+First you will be on your planet, with a classic hexagonal map, where you can move and attack with your units, in a tactical game mode.
+
+For now it's still in construction... You can see the roadmap to look for evolutions
+
+Current version : Flower bamboo
+Next version : Working Panda (soon...)
+
 Roadmap
 <https://github.com/johnkrovitch/unRaMaLaK/tree/master/src/Krovitch/KrovitchBundle/Resources/docs/roadmap.md>
 
 
-1) Cloning repository
-----------------------------------
-
-Run :
-
-    mkdir unRamalak && cd unRamalak
-
-    git clone https://github.com/johnkrovitch/unRaMaLaK.git .
-
-
-2) Installing with composer
-----------------------------------
-
-http://getcomposer.org/ or just run the following command:
-
-    curl -s http://getcomposer.org/installer | php
-
-    php composer.phar update
-
-
-3) Checking your System Configuration
--------------------------------------
-
-Before starting coding, make sure that your local system is properly
-configured for Symfony.
-
-Execute the `check.php` script from the command line:
-
-    php app/check.php
-
-Access the `config.php` script from a browser:
-
-    http://localhost/path/to/symfony/app/web/config.php
-
-If you get any warnings or recommendations, fix them before moving on.
-
-
-4) Setting
+Commands
 --------------------------------
 
-Copy & rename app/config/parameters-dist.yml to app/config/parameters.yml
-and set your own parameters, for database for example.
-
-5) Running PHPUnit tests
---------------------------------
-
-Useless for now
-
-Run:
+Test (not working yet ;( )
 
     app/console krovitch:test
+
+Update (works a bit)
+
+    app/console krovitch:update
