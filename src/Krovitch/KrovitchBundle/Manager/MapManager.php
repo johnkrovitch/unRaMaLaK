@@ -6,6 +6,7 @@ use \Krovitch\KrovitchBundle\Entity\Map;
 use Krovitch\KrovitchBundle\Utils\MapDataJson;
 use Krovitch\KrovitchBundle\Utils\MapDataXml;
 use Krovitch\KrovitchBundle\Utils\Path;
+use Krovitch\KrovitchBundle\Utils\Resources;
 
 /**
  * Class MapManager
@@ -28,14 +29,12 @@ class MapManager extends BaseManager
         // save map in db
         parent::save($map);
         // map data are stored in a xml file
-        //die($this->getAbsoluteXmlPath());
         $mapDataXml = new MapDataXml($map, Path::getAbsoluteXmlPath());
 
         if ($this->data || !$map->getDatafile()) {
             $filename = $mapDataXml->save($this->data);
             // save map xml file
             $map->setDatafile($filename);
-            //die($this->getRelativeXmlPath());
             parent::save($map);
         }
     }
@@ -53,20 +52,15 @@ class MapManager extends BaseManager
         return $mapDataJson->load();
     }
 
+    public function loadTextures()
+    {
+        $resources = new Resources();
+
+        return json_encode($resources->getTextures());
+    }
+
     public function setData($data)
     {
         $this->data = $data;
     }
-
-
-
-    /*public function getMapDataTemplatePath()
-    {
-        return __DIR__ . '/Resources/templates/';
-    }*/
-
-    /*public function getMapDataFilePath()
-    {
-        return realpath(__DIR__ . '/..') . '/Resources/maps/';
-    }*/
 }

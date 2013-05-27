@@ -3,8 +3,9 @@
 // Also, it keeps IDE completion, removed because of jquery class plugin
 
 var Unramalak = {
-  Container: {},
+  Application: {},
   BaseCell: {},
+  Container: {},
   Cell: {},
   Land: {},
   CellCollection: {},

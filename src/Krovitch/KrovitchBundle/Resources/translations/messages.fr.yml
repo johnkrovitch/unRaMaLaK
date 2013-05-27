@@ -4,7 +4,7 @@ editor.map.water: eau
 editor.map.plains: plaine
 editor.map.removeBackground: 'supprimer le fond'
 editor.map.save: sauvegarder
-home.title: __home.title
+home.title: 'UnRaMaLak, la terreur de l''espace !'
 'UnRaMaLak, la terreur de l''espace !': 'UnRaMaLak, la terreur de l''espace !'
 editor.map.title: Map
 editor.save: sauvegarder
@@ -16,6 +16,6 @@ editor.map.create: 'nouvelle map'
 dashboard: Dashboard
 Hero: Hero
 editor.modify: modifier
-editor.delete: supprimer
+editor.delete: supprimerupgrade
 editor.map.list: liste
 editor.map.saveSuccess: 'Carte sauvegardée avec succès !'

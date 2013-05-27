@@ -27,8 +27,10 @@ class MapController extends BaseController
         $map = $this->getManager('Map')->findAll()[0];
         // get map json content for the view
         $mapJson = $this->getManager('Map')->load($map);
+        // get map textures
+        $textures = $this->getManager('Map')->loadTextures($map);
 
-        return array('map' => $mapJson);
+        return array('map' => $mapJson, 'textures' => $textures);
     }
 
     /**

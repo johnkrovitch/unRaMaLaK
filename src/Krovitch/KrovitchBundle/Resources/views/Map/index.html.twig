@@ -32,8 +32,9 @@
     <script type="text/javascript" language="javascript">
         $(document).ready(function () {
             var mapData = {{ map|raw }};
+            var textures = {{ textures|raw }};
 
-            var ur = new Unramalak.Application('myCanvas', mapData);
+            var ur = new Unramalak.Application('myCanvas', mapData, textures);
             ur.run();
 
             //var test = Unramalak.ImageLoader.loadSvg('/bundles/krovitch/img/calmar_smooth.svg');
