@@ -29,3 +29,4 @@ Improvements :
     * movement animation (renderer.animate()), to improves firefox performances (JS)
     * php game security
     * includes smooth transitions between contiguous textures
+    * improves svg management

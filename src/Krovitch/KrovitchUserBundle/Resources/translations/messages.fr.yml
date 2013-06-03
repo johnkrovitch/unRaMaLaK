@@ -1,0 +1,29 @@
+profile.show.username: 'nom d''utilisateur'
+profile.show.email: __profile.show.email
+profile.edit.submit: __profile.edit.submit
+registration.check_email: __registration.check_email
+registration.email.subject: __registration.email.subject
+registration.email.message: __registration.email.message
+registration.confirmed: __registration.confirmed
+registration.back: __registration.back
+registration.submit: Se soumettre
+group.show.name: Nom
+group.new.submit: __group.new.submit
+group.edit.submit: __group.edit.submit
+resetting.check_email: __resetting.check_email
+resetting.email.subject: __resetting.email.subject
+resetting.email.message: __resetting.email.message
+resetting.reset.submit: __resetting.reset.submit
+resetting.password_already_requested: __resetting.password_already_requested
+resetting.request.invalid_username: __resetting.request.invalid_username
+resetting.request.username: non !
+resetting.request.submit: __resetting.request.submit
+change_password.submit: __change_password.submit
+security.login.username: login
+security.login.password: __security.login.password
+security.login.remember_me: __security.login.remember_me
+security.login.submit: __security.login.submit
+layout.logged_in_as: __layout.logged_in_as
+layout.logout: déconnexion
+layout.login: connexion
+layout.register: s'inscrire

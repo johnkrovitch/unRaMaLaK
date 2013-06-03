@@ -7,16 +7,16 @@
 @import "partials/editor";
 
 body {
-  @include background(linear-gradient(top, #000000 10%, #0A0736 80%, #090540 98%));
+  //@include background(linear-gradient(top, #000000 10%, #0A0736 80%, #090540 98%));
 }
 
 #unramalak {
-  background: #f4f4f4;
-  border: 1px solid $grey-border;
+  //background: #9f9f9f;
+  //border: 1px solid $grey-border;
   padding: 20px;
-  margin: 30px auto 0 auto;
-  min-height: 800px;
+  margin-top: 30px;
 }
+
 // flash notifications
 #flash-container {
   position: fixed;
@@ -30,5 +30,5 @@ body {
 }
 /**************/
 canvas {
-  border: 1px solid #a2a2f2;
+
 }

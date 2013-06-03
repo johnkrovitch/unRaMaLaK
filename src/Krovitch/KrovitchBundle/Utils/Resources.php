@@ -28,7 +28,7 @@ class Resources
     {
         $textures = array();
         $finder = new Finder();
-        $finder->files()->in(Path::getApplicationPath() . $this->texturesBundlePath);
+        $finder->files()->in(Path::getApplicationPath() . $this->texturesBundlePath)->exclude('test');
 
         foreach ($finder as $path) {
             $explodedPath = explode('/', $path);

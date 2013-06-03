@@ -4,28 +4,26 @@
     <h1>La map, la map !!!</h1>
 
     <div id="editor-menu">
-        {% trans %}editor.map.baseLand{% endtrans %}
+        {{ 'editor.map.baseLand'|trans }}
         <!-- basic land type -->
-        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand" title="{% trans %}editor.map.sand{% endtrans %}">
-            <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/>
-        </a>
-        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water" title="{% trans %}editor.map.water{% endtrans %}">
-            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/>
-        </a>
-        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains" title="{% trans %}editor.map.plains{% endtrans %}">
-            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.plains{% endtrans %}"/>
-        </a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand"
+           title="{{ 'editor.map.sand' }}">{{ 'editor.map.sand'|trans }}</a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water"
+           title="{{ 'editor.map.water' }}">{{ 'editor.map.water'|trans }}</a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains"
+           title="{{ 'editor.map.plains' }}">{{ 'editor.map.plains'|trans }}</a>
         <!-- remove background button -->
-        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="remove" title="{% trans %}editor.map.removeBackground{% endtrans %}">
+        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="remove"
+           title="{{ 'editor.map.removeBackground' }}">
             <i class="icon-white icon-remove"></i>
         </a>
         <!-- actions buttons -->
         <a href="javascript:void(0);" class="menu-action btn btn-success btn-small" data-action="save">
-            <i class="icon-white icon-ok"></i>{% trans %}editor.map.save{% endtrans %}
+            <i class="icon-white icon-ok"></i>{{ 'editor.map.save' }}
         </a>
     </div>
 
-    <canvas id="myCanvas" width="938" height="1000">
+    <canvas id="myCanvas" width="938" height="1000" class="hero-unit" style="padding: 10px">
         It seems that your old and ugly browser does not support canvas...
     </canvas>
 

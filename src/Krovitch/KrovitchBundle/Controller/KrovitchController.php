@@ -2,6 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
+use Krovitch\KrovitchBundle\Utils\Svg;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -20,8 +21,17 @@ class KrovitchController extends BaseController
      */
     public function indexAction()
     {
-        $svgFile = file_get_contents('/home/afrezet/workspace/unRaMaLaK/init/resources/calmar_flat.svg');
-        return array('svgFile' => $svgFile);
+        $svg = new Svg();
+        $svgContent = $svg->importFiles([
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/test_arbre_svg.svg',
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/algue_flat.svg',
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/calmar_flat_svg1_1.svg',
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/calmar_flat_svg1_1_tiny.svg',
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/coquillage_flat.svg',
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/test_arbre_svg.svg',
+            '/home/afrezet/workspace/unRaMaLaK/init/resources/textures/calmar_flat.svg',
+        ]);
+        return array('svg' => implode(' ', $svgContent), 'ids' => json_encode(array_keys($svgContent)));
     }
 
     /**

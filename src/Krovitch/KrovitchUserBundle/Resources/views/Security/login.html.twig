@@ -1,0 +1,22 @@
+{% extends "KrovitchUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div class="alert-error">{{ error }}</div>
+    {% endif %}
+
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+        <label for="username">{{ 'security.login.username'|trans }}</label>
+        <input type="text" id="username" name="_username" value="{{ last_username|trans }}" required="required"/>
+
+        <label for="password">{{ 'security.login.password'}}</label>
+        <input type="password" id="password" name="_password" required="required"/>
+
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+        <label for="remember_me">{{ 'security.login.remember_me' }}</label>
+
+        <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'security.login.submit' }}"/>
+    </form>
+{% endblock fos_user_content %}
