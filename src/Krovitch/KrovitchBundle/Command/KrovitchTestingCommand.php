@@ -17,10 +17,8 @@ class KrovitchTestingCommand extends BaseCommandLine
     // TODO make it works for travis (return phpunit values)
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $command = 'phpunit';
-        $arguments = array('-c' => 'app/phpunit.xml');
-
         $output->writeln('Testing Krovitch Bundle !');
-        $this->executeCommand($command, $arguments, $output);
+        $this->executeCommand('phpunit', array('-c' => 'app/phpunit.xml'), $output);
+        $this->executeCommand('bin/behat', array('' => '@KrovitchBundle'), $output);
     }
 }

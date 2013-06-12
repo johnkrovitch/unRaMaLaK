@@ -49,6 +49,10 @@ abstract class BaseManager
         return $this->getRepository()->find($id);
     }
 
+    /**
+     * @param null $repositoryName
+     * @return \Doctrine\ORM\EntityRepository
+     */
     protected function getRepository($repositoryName = null)
     {
         // try to find automatically the repository name
