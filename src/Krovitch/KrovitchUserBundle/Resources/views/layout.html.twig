@@ -1,7 +1,7 @@
 {% extends "KrovitchBundle:Layout:content.layout.html.twig" %}
 
 {% block content %}
-    {% for key, message in app.session.getFlashes() %}
+    {% for key, message in app.session.flashBag %}
         <div class="{{ key }}">
             {{ message|trans({}, 'FOSUserBundle') }}
         </div>

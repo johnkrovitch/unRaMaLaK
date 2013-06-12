@@ -1,9 +1,10 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Manager;
+namespace Krovitch\BaseBundle\Manager;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityNotFoundException;
+use Krovitch\BaseBundle\Utils\ClassGuesser;
 use Krovitch\KrovitchBundle\Utils\StringUtils;
 use Symfony\Component\DependencyInjection\Container;
 
@@ -50,9 +51,11 @@ abstract class BaseManager
 
     protected function getRepository($repositoryName = null)
     {
-        // try to find automatically the manager name
+        // try to find automatically the repository name
         if (!$repositoryName) {
-            $repositoryName = StringUtils::getEntityClassName($this);
+            $guesser = new ClassGuesser($this);
+            $repositoryName = $guesser->getClass(array('Manager', 'Controller'));
+            //$repositoryName = StringUtils::getEntityClassName($this);
         }
         $repositoryName = Container::camelize($repositoryName);
         // add krovitch prefix

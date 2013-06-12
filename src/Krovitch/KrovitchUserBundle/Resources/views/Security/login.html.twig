@@ -2,21 +2,28 @@
 
 {% block fos_user_content %}
     {% if error %}
-        <div class="alert-error">{{ error }}</div>
+        <div class="alert-container">
+            <div class="alert alert-error">{{ error }}</div>
+        </div>
     {% endif %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin well">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
-        <label for="username">{{ 'security.login.username'|trans }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username|trans }}" required="required"/>
+        <label for="username">
+            <input type="text" id="username" name="_username" value="{{ last_username|trans }}" required="required"
+                   placeholder="{{ 'security.login.username_email'|trans }}"/>
+        </label>
+        <label for="password">
+            <input type="password" id="password" name="_password" required="required"
+                   placeholder="{{ 'security.login.password' }}"/>
+        </label>
+        <label for="remember_me">
+            <input type="checkbox" id="remember_me" name="_remember_me"
+                   value="on"/>{{ 'security.login.remember_me'|trans }}
+        </label>
 
-        <label for="password">{{ 'security.login.password'}}</label>
-        <input type="password" id="password" name="_password" required="required"/>
-
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
-        <label for="remember_me">{{ 'security.login.remember_me' }}</label>
-
-        <input type="submit" id="_submit" name="_submit" class="btn btn-primary" value="{{ 'security.login.submit' }}"/>
+        <input type="submit" id="_submit" name="_submit" class="btn btn-primary"
+               value="{{ 'security.login.submit'|trans }}"/>
     </form>
 {% endblock fos_user_content %}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Command;
+namespace Krovitch\BaseBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Output\OutputInterface;

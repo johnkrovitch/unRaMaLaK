@@ -2,6 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Entity;
 
+use Krovitch\BaseBundle\Entity\Entity;
 use Symfony\Component\Validator\Constraint as Assert;
 use Doctrine\ORM\Mapping as ORM;
 

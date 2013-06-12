@@ -20,9 +20,10 @@ resetting.request.username: non !
 resetting.request.submit: __resetting.request.submit
 change_password.submit: __change_password.submit
 security.login.username: login
+security.login.username_email: login ou email
 security.login.password: __security.login.password
-security.login.remember_me: __security.login.remember_me
-security.login.submit: __security.login.submit
+security.login.remember_me: se souvenir de moi
+security.login.submit: se connecter
 layout.logged_in_as: __layout.logged_in_as
 layout.logout: déconnexion
 layout.login: connexion

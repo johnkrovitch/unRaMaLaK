@@ -2,7 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
-use Krovitch\KrovitchBundle\Controller\BaseController;
+use Krovitch\BaseBundle\Controller\BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class WidgetController extends BaseController

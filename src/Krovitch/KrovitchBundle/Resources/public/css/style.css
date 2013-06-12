@@ -57,7 +57,7 @@ body {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_base\.scss}line{font-family:\0000371}}
 .unlock, #menu-bar-container #menu-bar .login-hidden input[type="submit"] {
-  font-family: "Unlock", cursive;
+  font-family: 'Unlock', cursive;
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_base\.scss}line{font-family:\0000375}}
@@ -67,7 +67,7 @@ body {
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/partials\/_menu\.scss}line{font-family:\000032}}
 .menu {
-  border-right: 1px solid #eeeeee;
+  border-right: 1px solid #eee;
   padding: 5px;
 }
 
@@ -195,14 +195,32 @@ body {
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000321}}
-#flash-container {
+.alert-container {
   position: fixed;
   left: 1165px;
 }
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000326}}
-#flash-container .alert {
+.alert-container .alert {
   margin-bottom: 5px;
   opacity: 0.9;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000333}}
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px / 5px;
+  border-radius: 5px / 5px;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/KrovitchBundle\/Resources\/sass\/style\.scss}line{font-family:\0000342}}
+.form-signin div.text-center {
+  margin-top: 20px;
 }
 
 /**************/

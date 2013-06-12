@@ -2,7 +2,8 @@
 
 namespace Krovitch\KrovitchBundle\Manager;
 
-use \Krovitch\KrovitchBundle\Entity\Map;
+use Krovitch\BaseBundle\Manager\BaseManager;
+use Krovitch\KrovitchBundle\Entity\Map;
 use Krovitch\KrovitchBundle\Utils\MapDataJson;
 use Krovitch\KrovitchBundle\Utils\MapDataXml;
 use Krovitch\KrovitchBundle\Utils\Path;

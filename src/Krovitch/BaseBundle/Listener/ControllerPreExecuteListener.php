@@ -1,6 +1,6 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Listener;
+namespace Krovitch\BaseBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;

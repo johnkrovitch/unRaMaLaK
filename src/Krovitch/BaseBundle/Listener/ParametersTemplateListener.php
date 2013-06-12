@@ -1,12 +1,11 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Listener;
+namespace Krovitch\BaseBundle\Listener;
 
+use Krovitch\BaseBundle\Utils\ClassGuesser;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
 use Symfony\Component\HttpFoundation\StreamedResponse;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener;
 
 class ParametersTemplateListener extends TemplateListener
@@ -51,9 +50,14 @@ class ParametersTemplateListener extends TemplateListener
         return null;
     }
 
+    /**
+     * Return main layout name
+     * @return string
+     */
     protected function getMainTemplateName()
     {
-        $bundle = 'KrovitchBundle';
+        $guesser = new ClassGuesser($this);
+        $bundle = $guesser->getBundle();
         $template = '%s:Layout:content.layout.html.twig';
 
         return sprintf($template, $bundle);

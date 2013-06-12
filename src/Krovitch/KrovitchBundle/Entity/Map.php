@@ -2,8 +2,8 @@
 
 namespace Krovitch\KrovitchBundle\Entity;
 
+use Krovitch\BaseBundle\Entity\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use Krovitch\KrovitchBundle\Entity\Entity;
 use Krovitch\KrovitchBundle\Utils\Path;
 
 /**

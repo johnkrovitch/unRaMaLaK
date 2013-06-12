@@ -2,12 +2,12 @@
 
 namespace Krovitch\KrovitchBundle\Entity;
 
+use Krovitch\BaseBundle\Entity\Entity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\DiscriminatorColumn;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
-use Krovitch\KrovitchBundle\Entity\Entity;
 
 /**
  * @ORM\Entity(repositoryClass="Krovitch\KrovitchBundle\Repository\UnitRepository")

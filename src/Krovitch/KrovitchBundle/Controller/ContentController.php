@@ -2,6 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
+use Krovitch\BaseBundle\Controller\BaseController;
 use Krovitch\KrovitchBundle\Entity\Content;
 use Krovitch\KrovitchBundle\Form\ContentType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

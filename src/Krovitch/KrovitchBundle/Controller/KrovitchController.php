@@ -2,6 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
+use Krovitch\BaseBundle\Controller\BaseController;
 use Krovitch\KrovitchBundle\Utils\Svg;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 

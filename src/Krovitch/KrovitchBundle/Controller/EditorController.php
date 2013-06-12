@@ -2,6 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
+use Krovitch\BaseBundle\Controller\BaseController;
 use Krovitch\KrovitchBundle\Entity\Hero;
 use Krovitch\KrovitchBundle\Entity\Map;
 use Krovitch\KrovitchBundle\Form\HeroType;

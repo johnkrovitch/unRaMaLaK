@@ -1,5 +1,6 @@
 var AlertManager = {
   alerts: null,
+  doRemove: true,
 
   init: function () {
     this.alerts = $('div.alert');
@@ -21,11 +22,14 @@ var AlertManager = {
 
   launchCounter: function () {
     var alerts = this.alerts;
-    setTimeout(function () {
-      alerts.fadeOut(1000, function () {
-        $(this).remove();
-      });
-    }, 5000);
+
+    if (this.doRemove) {
+      setTimeout(function () {
+        alerts.fadeOut(1000, function () {
+          //$(this).remove();
+        });
+      }, 5000);
+    }
   }
 };
 

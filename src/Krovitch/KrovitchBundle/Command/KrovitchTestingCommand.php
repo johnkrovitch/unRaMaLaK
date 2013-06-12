@@ -2,15 +2,16 @@
 
 namespace Krovitch\KrovitchBundle\Command;
 
+use Krovitch\BaseBundle\Command\BaseCommandLine;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class KrovitchTestCommand extends BaseCommandLine
+class KrovitchTestingCommand extends BaseCommandLine
 {
     public function configure()
     {
-        $this->setName('krovitch:test');
+        $this->setName('krovitch:testing');
     }
 
     // TODO make it works for travis (return phpunit values)

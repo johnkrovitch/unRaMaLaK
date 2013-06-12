@@ -4,20 +4,22 @@ imports:
 
 framework:
     #esi:             ~
+    translator:      { fallback: en }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
-    form:            true
-    csrf_protection: true
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:  %locale%
-    trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "fr"
+    trusted_proxies: ~
     session:
-        cookie_lifetime: 14400
-        cookie_lifetime: 14400
-    translator: { fallback: en }
+        cookie_lifetime:    99999999
+    fragments:       ~
 
 # Twig Configuration
 twig:
@@ -28,7 +30,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ KrovitchBundle ]
+    bundles:        [ ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -71,7 +73,11 @@ fos_user:
 
     registration:
         form:
-            type: krovitch_user_registration
+            #type: fos_user_registration
+
+    #service:
+        #user_manager: backoffice_user_manager
+
 krovitch:
     unit:
         upload_dir: 'web/bundles/krovitch/uploads'

@@ -1,6 +1,6 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Controller;
+namespace Krovitch\BaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -92,7 +92,7 @@ abstract class BaseController extends Controller
     public function redirect404Unless($condition, $message)
     {
         if (!$condition) {
-            $this->createNotFoundException($message);
+            throw $this->createNotFoundException($message);
         }
     }
 

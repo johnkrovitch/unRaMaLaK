@@ -18,7 +18,7 @@ body {
 }
 
 // flash notifications
-#flash-container {
+.alert-container {
   position: fixed;
   left: 1165px;
 
@@ -28,6 +28,22 @@ body {
     opacity: 0.9;
   }
 }
+
+// signin form
+.form-signin {
+  max-width: 300px;
+  padding: 19px 29px 29px;
+  margin: 0 auto 20px;
+
+  @include border-radius(5px, 5px);
+  @include box-shadow(2px 2px 2px rgba(0,0,0,.05));
+}
+.form-signin  {
+  div.text-center {
+    margin-top: 20px;
+  }
+}
+
 /**************/
 canvas {
 

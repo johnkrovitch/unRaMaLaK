@@ -4,6 +4,7 @@ namespace Krovitch\KrovitchBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Krovitch\BaseBundle\Entity\Entity;
 
 /**
  * @ORM\Entity(repositoryClass="Krovitch\KrovitchBundle\Repository\UnitRepository")

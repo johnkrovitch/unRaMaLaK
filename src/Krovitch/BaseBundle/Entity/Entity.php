@@ -1,6 +1,6 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Entity;
+namespace Krovitch\BaseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

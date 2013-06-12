@@ -2,6 +2,7 @@
 
 namespace Krovitch\KrovitchBundle\Controller;
 
+use Krovitch\BaseBundle\Controller\BaseController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -24,7 +25,11 @@ class MapController extends BaseController
     public function indexAction()
     {
         // TODO make a map chooser
-        $map = $this->getManager('Map')->findAll()[0];
+        $maps = $this->getManager('Map')->findAll();
+
+        $this->redirect404Unless(count($maps), 'What the hell ?!!! Not map found !');
+        $map = $maps[0];
+
         // get map json content for the view
         $mapJson = $this->getManager('Map')->load($map);
         // get map textures

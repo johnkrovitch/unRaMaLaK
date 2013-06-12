@@ -3,12 +3,12 @@
 {% block layout %}
 <div class="row">
     <!-- main column -->
-    <div class="span8 text-center">
+    <div class="span12 text-center">
         {% block content %}{% endblock %}
     </div>
     <!-- right column -->
-    <div class="span4">
-        {% render 'KrovitchBundle:Widget:list' with {'context': 'right'} %}
-    </div>
+    {#<div class="span4">#}
+        {#{%  render controller('KrovitchBundle:Widget:list', {'context' : 'right'}) %}#}
+    {#</div>#}
 </div>
 {% endblock %}

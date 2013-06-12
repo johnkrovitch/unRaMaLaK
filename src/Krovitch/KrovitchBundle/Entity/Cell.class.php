@@ -2,6 +2,8 @@
 
 namespace Krovitch\KrovitchBundle\Entity;
 
+use Krovitch\BaseBundle\Entity\Entity;
+
 class Cell extends Entity
 {
     protected $x;
