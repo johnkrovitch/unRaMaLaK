@@ -1,0 +1,30 @@
+{% extends mainTemplate %}
+
+{% block content %}
+    <div id="editor-home" class="row">
+        <div class="">
+            {{ form_errors(form) }}
+        </div>
+
+        <div class="span6">
+            <form class="well" action="{{ path('createMedia') }}" method="post" {{ form_enctype(form) }}>
+                <fieldset>
+                    <legend>{{ 'media.create'|trans }}</legend>
+                    {{ form_label(form.file) }}
+                    {{ form_errors(form.file) }}
+                    {{ form_widget(form.file) }}
+                    {{ form_rest(form) }}
+
+                    <div class="form-actions">
+                        <input type="submit" value="{{ 'editor.save'|trans }}" class="btn btn-primary"/>
+                        <a href="{{ path('media') }}" class="btn">{{ 'editor.cancel'|trans }}</a>
+
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="span12"></div>
+
+    </div>
+{% endblock %}

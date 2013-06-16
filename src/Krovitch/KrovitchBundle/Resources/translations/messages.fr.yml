@@ -8,6 +8,7 @@ home.title: 'UnRaMaLak, la terreur de l''espace !'
 'UnRaMaLak, la terreur de l''espace !': 'UnRaMaLak, la terreur de l''espace !'
 editor.map.title: Map
 editor.save: sauvegarder
+editor.cancel: annuler
 return: retour
 Editor: Editeur
 editor.title: Editeur
@@ -16,6 +17,7 @@ editor.map.create: 'nouvelle map'
 dashboard: Dashboard
 Hero: Hero
 editor.modify: modifier
-editor.delete: supprimerupgrade
+editor.delete: supprimer
 editor.map.list: liste
 editor.map.saveSuccess: 'Carte sauvegardée avec succès !'
+media.create: Créer un média

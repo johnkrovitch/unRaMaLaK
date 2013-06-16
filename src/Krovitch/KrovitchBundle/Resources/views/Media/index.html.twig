@@ -1,0 +1,16 @@
+{% extends mainTemplate %}
+
+{% block content %}
+    <div id="editor-home" class="row">
+        <h1>{{ 'unramalak.media.title'|trans }}</h1>
+
+        <div class="span12">
+            <ul class="nav nav-pills">
+                <li><a href="{{ path('createMedia') }}">{{ 'unramalak.media.create'|trans }}</a></li>
+            </ul>
+        </div>
+
+        <div class="span12"></div>
+
+    </div>
+{% endblock %}

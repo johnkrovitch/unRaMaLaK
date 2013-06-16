@@ -23,14 +23,49 @@
             var canvas = document.getElementById('calmar');
             // Create an empty project and a view for the canvas:
             paper.setup(canvas);
+            var items = [];
 
             for (var i in ids) {
-                console.log('import', ids[i], i);
+                console.log('in progess', ids[i]);
                 var svg = document.getElementById(ids[i]);
-                paper.project.importSVG(svg);
+                items.push(paper.project.importSVG(svg));
             }
+            console.log('items', items);
+            var calmar = items[0];
 
+            var children = calmar.getChildren();
 
+            for (var i in children) {
+                if (children[i].getName() == 'Calque_12') {
+                    var child = children[i];
+                }
+            }
+            var test = 0;
+            var count= 0;
+            var even = true;
+
+            paper.project.view.onFrame = function () {
+                count++;
+                if (count % 50) {
+                    return;
+                }
+                if (test == 1) {
+                    console.log('resest');
+                    even = !even;
+                    test = 0;
+                }
+                console.log('test', test, even);
+                if (even) {
+                    child.translate(new paper.Point(-1, -1));
+                    console.log('++');
+                }
+                else { // odd
+                    child.translate(new paper.Point(1, 1));
+                    console.log('--');
+                }
+                test++;
+
+            };
         });
     </script>
 

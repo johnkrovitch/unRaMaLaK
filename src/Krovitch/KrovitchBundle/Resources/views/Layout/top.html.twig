@@ -6,13 +6,14 @@
             <div class="nav-collapse collapse">
                 <ul class="nav pull-right">
                     {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-                        <!-- public stuff -->
-                        <li><a href="{{ path('map') }}" class="left active">Map</a></li>
+                        <!-- logged stuff -->
+                        <li><a href="{{ path('map') }}" class="active">Map</a></li>
+                        <li><a href="{{ path('tests') }}">Tests</a></li>
+                        <li><a href="{{ path('media') }}">Medias</a></li>
 
                         {% if is_granted('ROLE_ADMIN') %}
                             <!-- admin stuff -->
-                            <li><a href="{{ path('editor') }}" class="left">Editor</a></li>
-                            <li><a href="{{ path('tests') }}" class="left">Tests</a></li>
+                            <li><a href="{{ path('editor') }}">Editor</a></li>
                         {% endif %}
                         <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans }}</a></li>
                     {% else %}

@@ -41,7 +41,7 @@ class EditorController extends BaseController
         $form = $this->createForm(new HeroType(), $hero);
 
         if ($request->isMethod('post')) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($form->isValid()) {
                 $hero->setLevel(0);
@@ -67,7 +67,7 @@ class EditorController extends BaseController
         $form = $this->createForm(new HeroType(), $hero);
 
         if ($request->isMethod('post')) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($form->isValid()) {
                 // set upload dir before saving hero
@@ -121,7 +121,7 @@ class EditorController extends BaseController
         $form = $this->createForm(new MapType(), $map);
         // handle form submission
         if ($this->getRequest()->isMethod('post')) {
-            $form->bind($this->getRequest());
+            $form->submit($this->getRequest());
 
             if ($form->isValid()) {
                 // saving map record in database

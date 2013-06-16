@@ -78,6 +78,14 @@ fos_user:
     #service:
         #user_manager: backoffice_user_manager
 
+services:
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]
+
 krovitch:
     unit:
         upload_dir: 'web/bundles/krovitch/uploads'
