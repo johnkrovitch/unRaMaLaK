@@ -1,13 +1,10 @@
+# Unramalak
 _welcome:
   pattern:  /
   defaults: { _controller: KrovitchBundle:Krovitch:index }
 
 _home:
   resource: "@KrovitchBundle/Controller/KrovitchController.php"
-  type:     annotation
-
-_content:
-  resource: "@KrovitchBundle/Controller/ContentController.php"
   type:     annotation
 
 _map:
@@ -20,6 +17,10 @@ _editor:
 
 _tests:
   resource: "@KrovitchBundle/Controller/TestsController.php"
+  type:     annotation
+
+_medias:
+  resource: "@KrovitchBundle/Controller/MediaController.php"
   type:     annotation
 
 # UserBundle

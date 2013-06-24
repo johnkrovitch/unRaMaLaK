@@ -24,6 +24,8 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+            // Bootstrap bundle
+            new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
             // Unramalak bundles
             new Krovitch\BaseBundle\BaseBundle(),
             new Krovitch\KrovitchBundle\KrovitchBundle(),

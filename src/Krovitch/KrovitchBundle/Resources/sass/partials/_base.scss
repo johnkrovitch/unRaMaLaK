@@ -32,6 +32,10 @@ body {
 .btn, .btn:focus {
   outline: none;
 }
+a.btn {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
 
 // bootstrap reset
 .alert .close {

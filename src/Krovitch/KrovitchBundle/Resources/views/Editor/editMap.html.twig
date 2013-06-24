@@ -4,16 +4,19 @@
     <div id="editor-home" class="row">
         <h1>{% trans %}editor.map.title{% endtrans %}</h1>
 
-        <div class="span8">
-            <form action="{{ path(route.name, route.parameters) }}" method="post" {{ form_enctype(form) }}>
+        <div class="span6">
+            <form action="{{ path(route.name, route.parameters) }}" method="post" {{ form_enctype(form) }} class="well">
+                <legend>{{ 'editor.map.create'|trans }}</legend>
                 {{ form_widget(form) }}
 
-                <input type="submit" value="{% trans %}editor.save{% endtrans %}"/>
+                <div class="form-actions">
+                    <a href="{{ path('editor') }}">{{ 'editor.cancel'|trans }}</a>
+                    <input type="submit" value="{{ 'editor.save'|trans }}" class="btn btn-primary right"/>
+                </div>
             </form>
         </div>
 
         <div class="actions">
-            <a href="{{ path('editor') }}">{% trans %}return{% endtrans %}</a>
         </div>
     </div>
 {% endblock %}
