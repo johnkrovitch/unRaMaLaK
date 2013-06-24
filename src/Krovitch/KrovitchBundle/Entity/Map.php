@@ -154,9 +154,10 @@ class Map extends Entity
     public function getDatafile($absolute = true)
     {
         $datafile = $this->datafile;
+        $path = new Path();
 
         if ($absolute && $datafile) {
-            $datafile = Path::getApplicationPath() . $datafile;
+            $datafile = $path->getXmlPath() . DIRECTORY_SEPARATOR . $datafile;
         }
         return $datafile;
     }

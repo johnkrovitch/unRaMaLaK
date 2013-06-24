@@ -9,17 +9,19 @@ namespace Krovitch\KrovitchBundle\Utils;
  */
 class Path
 {
-    static function getRelativeXmlPath()
+    protected $xmlPath = '/src/Krovitch/KrovitchBundle/Resources/maps/';
+
+    public function getXmlPath($absolute = true)
     {
-        return '/src/Krovitch/KrovitchBundle/Resources/maps/';
+        $path = $this->xmlPath;
+
+        if ($absolute) {
+            $path = $this->getApplicationPath().$path;
+        }
+        return $path;
     }
 
-    static function getAbsoluteXmlPath()
-    {
-        return self::getApplicationPath() . self::getRelativeXmlPath();
-    }
-
-    static function getApplicationPath()
+    public function getApplicationPath()
     {
         return realpath(__DIR__ . '/../../../..');
     }

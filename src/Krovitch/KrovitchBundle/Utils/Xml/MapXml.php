@@ -1,6 +1,6 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Utils;
+namespace Krovitch\KrovitchBundle\Utils\Xml;
 
 use Krovitch\KrovitchBundle\Entity\Map;
 use Symfony\Component\Config\Definition\Exception\Exception;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
  * Interface between php and xml. Unramalak maps store its data (cells, events...) in a xml file
  * @package Krovitch\KrovitchBundle\Utils
  */
-class MapDataXml
+class MapXml
 {
     protected $map;
     protected $document;

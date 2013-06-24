@@ -1,13 +1,12 @@
 <?php
 
 namespace Krovitch\KrovitchBundle\Manager;
-
 use Krovitch\BaseBundle\Manager\BaseManager;
 use Krovitch\KrovitchBundle\Entity\Map;
-use Krovitch\KrovitchBundle\Utils\MapDataJson;
-use Krovitch\KrovitchBundle\Utils\MapDataXml;
+use Krovitch\KrovitchBundle\Utils\Json\MapJson;
 use Krovitch\KrovitchBundle\Utils\Path;
 use Krovitch\KrovitchBundle\Utils\Resources;
+use Krovitch\KrovitchBundle\Utils\Xml\MapXml;
 
 /**
  * Class MapManager
@@ -27,10 +26,11 @@ class MapManager extends BaseManager
      */
     public function save($map)
     {
+        $path = new Path();
         // save map in db
         parent::save($map);
         // map data are stored in a xml file
-        $mapDataXml = new MapDataXml($map, Path::getAbsoluteXmlPath());
+        $mapDataXml = new MapXml($map, $path->getXmlPath());
 
         if ($this->data || !$map->getDatafile()) {
             $filename = $mapDataXml->save($this->data);
@@ -46,10 +46,10 @@ class MapManager extends BaseManager
     public function load(Map $map)
     {
         // read xml data
-        $mapDataXml = new MapDataXml($map);
+        $mapDataXml = new MapXml($map);
         $data = $mapDataXml->load();
         // converts data into json
-        $mapDataJson = new MapDataJson($data);
+        $mapDataJson = new MapJson($data);
         return $mapDataJson->load();
     }
 

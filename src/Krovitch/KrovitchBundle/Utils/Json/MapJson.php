@@ -1,8 +1,8 @@
 <?php
 
-namespace Krovitch\KrovitchBundle\Utils;
+namespace Krovitch\KrovitchBundle\Utils\Json;
 
-class MapDataJson
+class MapJson
 {
     protected $data;
 

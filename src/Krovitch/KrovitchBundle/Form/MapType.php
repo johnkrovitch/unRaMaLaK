@@ -14,7 +14,7 @@ class MapType extends AbstractType
     {
         $builder->add('id', 'hidden');
         $builder->add('name', 'text');
-        $builder->add('description');
+        $builder->add('description', 'textarea');
         $builder->add('width', 'integer');
         $builder->add('height', 'integer');
 
