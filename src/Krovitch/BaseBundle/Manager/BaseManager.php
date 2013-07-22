@@ -59,9 +59,9 @@ abstract class BaseManager
         if (!$repositoryName) {
             $guesser = new ClassGuesser($this);
             $repositoryName = $guesser->getClass(array('Manager', 'Controller'));
-            //$repositoryName = StringUtils::getEntityClassName($this);
         }
         $repositoryName = Container::camelize($repositoryName);
+        // TODO generalize this behavior
         // add krovitch prefix
         if (substr($repositoryName, 0, 7) != 'krovitch') {
             $repositoryName = 'KrovitchBundle:' . $repositoryName;

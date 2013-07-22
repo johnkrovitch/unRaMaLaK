@@ -2,14 +2,23 @@
 
 namespace Krovitch\BaseBundle\Controller;
 
+use Krovitch\BaseBundle\Utils\ClassGuesser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Bundle\FrameworkBundle\Translation\Translator;
-use Krovitch\KrovitchBundle\Utils\StringUtils;
 
+/**
+ * Class BaseController
+ * Abstract BaseController. Contains useful methods
+ * @package Krovitch\BaseBundle\Controller
+ */
 abstract class BaseController extends Controller
 {
+    /**
+     * PreExecute hook. PreExecuteListener should be activated
+     */
     public function preExecute()
     {
     }
@@ -40,23 +49,19 @@ abstract class BaseController extends Controller
     /**
      * Return the manager linked with this controller
      * @param null $managerName
-     * @return \Krovitch\KrovitchBundle\Manager\BaseManager
+     * @return \Krovitch\BaseBundle\Manager\BaseManager
      */
     protected function getManager($managerName = null)
     {
-        $managerName = strtolower($managerName);
-
-        // try to find automatically the manager name
+        // try to find automatically the repository name
         if (!$managerName) {
-            $managerName = StringUtils::getEntityClassName($this);
+            $guesser = new ClassGuesser($this);
+            $managerName = $guesser->getClass(array('Manager', 'Controller'));
         }
+        $managerName = Container::camelize($managerName);
         // add krovitch prefix
         if (substr($managerName, 0, 7) != 'krovitch') {
-            $managerName = 'krovitch.' . $managerName;
-        }
-        // add suffix
-        if (substr($managerName, -7) != 'manager') {
-            $managerName .= '_manager';
+            $managerName = 'krovitch.' . $managerName.'_manager';
         }
         return $this->get($managerName);
     }
@@ -100,4 +105,23 @@ abstract class BaseController extends Controller
     {
         return $this->getTranslator()->trans($string, $parameters);
     }
+
+
+    public function getPager()
+    {
+        // TODO in configuration
+        return $this->get('knp_paginator');
+    }
+
+    /*public function log(\Exception $e, $notify = false, $message = '')
+    {
+        // on loggue l'erreur et on informe l'utilisateur que la création du fichier ne s'est pas correctement terminée
+        $this->getManager('Log')->create($e->getMessage(), $e->getTraceAsString());
+        $this->get('logger')->err($e->getMessage());
+
+        if ($notify) {
+            // on informe l'utilisateur qu'une erreur s'est déroulée
+            $this->setMessage($message, array(), 'error');
+        }
+    }*/
 }
