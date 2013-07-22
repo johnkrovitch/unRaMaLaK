@@ -18,7 +18,7 @@ framework:
     default_locale:  "fr"
     trusted_proxies: ~
     session:
-        cookie_lifetime:    99999999
+        cookie_lifetime:    3600
     fragments:       ~
 
 # Twig Configuration
@@ -92,6 +92,10 @@ services:
             - { name: doctrine.event_subscriber, connection: default }
         calls:
             - [ setAnnotationReader, [ @annotation_reader ] ]
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - { name: twig.extension }
 
 krovitch:
     unit:
