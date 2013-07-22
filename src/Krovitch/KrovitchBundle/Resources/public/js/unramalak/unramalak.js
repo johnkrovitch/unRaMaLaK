@@ -17,10 +17,17 @@ $.Class('Unramalak.Application', {}, {
   /**
    * Initialize map and editor objects
    */
-  init: function (canvasId, mapData, textures) {
-    // Get a reference to the canvas object
+  init: function () {
+
+  },
+
+  /**
+   * Load a map
+   */
+  load: function (canvasId, mapData, textures) {
+    // get a reference to the canvas object
     var canvas = document.getElementById(canvasId);
-    // Create an empty project and a view for the canvas:
+    // create an empty project and a view for the canvas:
     paper.setup(canvas);
     // init map context
     this.mapContext = new Unramalak.Map.Context({
@@ -52,3 +59,58 @@ $.Class('Unramalak.Application', {}, {
     AlertManager.addAlert(message, type);
   }
 });
+
+
+var MapLauncher = {
+  dialog: null,
+
+  init: function (dialogSelector, onClickSelector, url) {
+    // setting dialog
+    this.dialog = $(dialogSelector);
+    // binding events
+    JsEvent.onReady(JsEvent.onClick, [onClickSelector, this.getMap, [url]]);
+  },
+
+  getMap: function (url) {
+    // TODO do not depend on Jquery
+    $.ajax({
+      url: url,
+      data: {id: 1},
+      dataType: 'json',
+      success: MapLauncher.launch,
+      error: function (status, machin, error) {
+        // TODO gérer les erreurs
+        console.log('error', error);
+      },
+      complete: function () {
+        console.log('panda');
+      }
+    });
+  },
+
+  launch: function (data) {
+    // TODO make a loader
+
+    // launch unramalak application
+    var unramalak = new Unramalak.Application();
+    unramalak.load('myCanvas', data.mapData, data.textures);
+    unramalak.run();
+    // TODO event management to hide dialog when map is loaded (maybe ?)
+    MapLauncher.dialog.remove();
+  }
+};
+
+// TODO comments
+var JsEvent = {
+  onReady: function (callback, parameters) {
+    $(document).on('ready', function () {
+      callback.apply(this, parameters);
+    });
+  },
+
+  onClick: function (selector, callback, parameters) {
+    $(selector).on('click', function () {
+      callback.apply(this, parameters);
+    });
+  }
+};

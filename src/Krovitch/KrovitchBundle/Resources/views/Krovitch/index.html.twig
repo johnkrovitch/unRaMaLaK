@@ -17,20 +17,20 @@
 
             var ids = {{ ids|raw }};
 
-            console.log('ids', ids);
+            //console.log('ids', ids);
 
             // Get a reference to the canvas object
             var canvas = document.getElementById('calmar');
-            // Create an empty project and a view for the canvas:
+            // Create a view for the canvas:
             paper.setup(canvas);
             var items = [];
 
             for (var i in ids) {
-                console.log('in progess', ids[i]);
+                //console.log('in progess', ids[i]);
                 var svg = document.getElementById(ids[i]);
                 items.push(paper.project.importSVG(svg));
             }
-            console.log('items', items);
+            //console.log('items', items);
             var calmar = items[0];
 
             var children = calmar.getChildren();
@@ -40,20 +40,105 @@
                     var child = children[i];
                 }
             }
-            var test = 0;
-            var count= 0;
-            var even = true;
 
-            paper.project.view.onFrame = function () {
-                count++;
+            ////////////// limit to the infinity ///////////////////
+
+
+
+//            var points = this.points;
+//            var speed = this.vector.length;
+//            var pieceLength = 5 + speed * 0.3;
+//            var point = points[0] = this.position.clone();
+//            var lastVector = this.vector.clone();
+//
+//            for (var i = 1, l = points.length; i < l; i++) {
+//                this.count += speed * 15;
+//                var vector = point - points[i];
+//                var rotated = lastVector.rotate(90);
+//                rotated.length = Math.sin((this.count + i * 3) * 0.003);
+//                lastVector.length = -pieceLength;
+//                point += lastVector;
+//                points[i] = point + rotated;
+//                lastVector = vector;
+//            }
+
+            var test = true;
+
+            paper.project.view.onFrame = function (event) {
+                //if (!test) return;
+                test = false;
+
+                var paths = child.getChildren();
+
+                console.log('path', paths);
+
+
+                for (i in paths) {
+
+                    var path = paths[i];
+
+                    path.translate(new paper.Point(1, 1));
+
+                    return;
+
+                    var segments = paths[i].segments;
+                    $.each(segments, function (index, segment) {
+
+                        var speed = 10;
+                        var pieceLength = 5 + speed * 0.3;
+                        var point = segment.point.clone();
+                        var lastVector = segment.point.clone();
+
+
+
+                    });
+
+                    console.log(paths[i].segments[0]);
+                }
+
+
+
+//
+
+//                pathHeight += (center.y - mousePos.y - pathHeight) / 10;
+//
+//                for (var i = 1; i < 10; i++) {
+//                    var sinSeed = event.count + (i + i % 10) * 100;
+//                    var sinHeight = Math.sin(sinSeed / 200) * pathHeight;
+//                    var yPos = Math.sin(sinSeed / 100) * sinHeight + height;
+//
+//                    console.log(child, child.getChildren()[0].segments[i]);
+//break;
+//                    if ($.isNotNull(child.getChildren()[0].segments[i])) {
+//                        //console.log('MOVE !');
+//                        child.getChildren()[0].segments[i].point.y = yPos + 1000;
+//                        child.getChildren()[0].segments[i].point.x = yPos + 1000;
+//                        child.getChildren()[0].smooth();
+//                    }
+//
+//                    //child.getChildren()[1].segments[i].point.y = yPos;
+//                    //child.getChildren()[2].segments[i].point.y = yPos;
+//                    //child.getChildren()[3].segments[i].point.y = yPos;
+//                    //child.getChildren()[4].segments[i].point.y = yPos;
+//                }
+//
+//                //child.smooth();
+//                test = false;
+//
+
+                /*count++;
                 if (count % 50) {
                     return;
                 }
                 if (test == 1) {
-                    console.log('resest');
+                    console.log('reset');
                     even = !even;
                     test = 0;
                 }
+                var sinSeed = event.count + (i + i % 10) * 100;
+                var sinHeight = Math.sin(sinSeed / 200) * pathHeight;
+                var yPos = Math.sin(sinSeed / 100) * sinHeight + height;
+                //path.segments[i].point.y = yPos;
                 console.log('test', test, even);
                 if (even) {
                     child.translate(new paper.Point(-1, -1));
@@ -63,7 +148,7 @@
                     child.translate(new paper.Point(1, 1));
                     console.log('--');
                 }
-                test++;
+                test++;*/
 
             };
         });

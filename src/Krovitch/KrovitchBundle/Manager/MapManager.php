@@ -41,15 +41,19 @@ class MapManager extends BaseManager
     }
 
     /**
-     * Create a json object containing data for map
+     * Create a json object containing data for map.
+     * Json contains either map data and textures
      */
     public function load(Map $map)
     {
-        // read xml data
+        // read xml map data
         $mapDataXml = new MapXml($map);
         $data = $mapDataXml->load();
+        // load textures
+        $textures = (new Resources())->getTextures();
         // converts data into json
-        $mapDataJson = new MapJson($data);
+        $mapDataJson = new MapJson($data, $textures);
+
         return $mapDataJson->load();
     }
 

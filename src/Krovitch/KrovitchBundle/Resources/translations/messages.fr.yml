@@ -18,5 +18,7 @@ editor.modify: modifier
 editor.delete: supprimer
 
 media.create: ajouter un média
+map.choose: choisis le terrain, mec
+map.chooseMap: choisir
 
 home.title: 'UnRaMaLak, la terreur de l''espace !'

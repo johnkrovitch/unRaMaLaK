@@ -1,7 +1,6 @@
 <?php
 
 namespace Krovitch\KrovitchBundle\Controller;
-
 use Krovitch\BaseBundle\Controller\BaseController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -19,7 +18,6 @@ class MapController extends BaseController
     /**
      * @Route("/", name="map")
      * @Template()
-     *
      * @return array
      */
     public function indexAction()
@@ -28,14 +26,34 @@ class MapController extends BaseController
         $maps = $this->getManager('Map')->findAll();
 
         $this->redirect404Unless(count($maps), 'What the hell ?!!! Not map found !');
-        $map = $maps[0];
 
+
+
+        return array('maps' => $maps);
+    }
+
+    /**
+     * @Route("/load", name="mapLoad")
+     */
+    public function loadMapAction()
+    {
+        // TODO check permissions
+        $id = $this->getRequest()->get('id');
+        $map = $this->getManager()->find($id);
+        $this->redirect404Unless($map, 'Map not found (id: ' . $id . ')');
         // get map json content for the view
         $mapJson = $this->getManager('Map')->load($map);
-        // get map textures
-        $textures = $this->getManager('Map')->loadTextures($map);
 
-        return array('map' => $mapJson, 'textures' => $textures);
+        return $this->renderJson($mapJson);
+    }
+
+    protected function renderJson($content)
+    {
+        $response = new Response();
+        $response->setContent($content);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
