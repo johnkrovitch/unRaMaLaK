@@ -27,7 +27,7 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources:
-            - "KrovitchBundle:Form:form_div_layout.html.twig"
+            - "UnramalakBundle:Form:form_div_layout.html.twig"
 
 # Assetic Configuration
 assetic:
@@ -76,7 +76,7 @@ swiftmailer:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: Krovitch\KrovitchBundle\Entity\User
+    user_class: Krovitch\UnramalakBundle\Entity\User
 
     registration:
         form:
@@ -96,7 +96,3 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
-
-krovitch:
-    unit:
-        upload_dir: 'web/bundles/krovitch/uploads'

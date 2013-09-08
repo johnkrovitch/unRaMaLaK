@@ -26,9 +26,10 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             // Bootstrap bundle
             new Bc\Bundle\BootstrapBundle\BcBootstrapBundle(),
+            // Base bundle
+            new \GeorgetteParty\BaseBundle\GeorgettePartyBaseBundle(),
             // Unramalak bundles
-            new Krovitch\BaseBundle\BaseBundle(),
-            new Krovitch\KrovitchBundle\KrovitchBundle(),
+            new Krovitch\UnramalakBundle\UnramalakBundle(),
             new Krovitch\KrovitchUserBundle\KrovitchUserBundle(),
         );
 

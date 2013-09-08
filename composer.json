@@ -14,6 +14,10 @@
     {
       "type": "vcs",
       "url": "git@github.com:GeorgetteParty/UnicodeTesselationBundle.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/GeorgetteParty/BaseBundle.git"
     }
   ],
   "require": {
@@ -44,6 +48,7 @@
     "behat/mink-selenium2-driver": "*",
     "behat/symfony2-extension": "*@dev",
     "georgette-party/gmf-bundle": "*",
+    "georgette-party/base-bundle": "*",
     "georgette-party/unicode-tesselation-bundle": "*",
     "twitter/bootstrap": "dev-master",
     "phpunit/phpunit": "dev-master"

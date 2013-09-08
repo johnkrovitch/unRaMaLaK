@@ -1,0 +1,29 @@
+parameters:
+    # managers
+    krovitch.content_manager.class: Krovitch\UnramalakBundle\Manager\ContentManager
+    krovitch.hero_manager.class: Krovitch\UnramalakBundle\Manager\HeroManager
+    krovitch.map_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
+    krovitch.media_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
+
+    sensio_framework_extra.view.listener.class: GeorgetteParty\BaseBundle\Listener\ParametersTemplateListener
+services:
+    # managers
+    krovitch.content_manager:
+        class: %krovitch.content_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+    krovitch.hero_manager:
+        class: %krovitch.hero_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+    krovitch.map_manager:
+        class: %krovitch.map_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+    krovitch.media_manager:
+        class: %krovitch.media_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    # login form
+    krovitch_user.registration.form.type:
+        class: Krovitch\KrovitchUserBundle\Form\RegistrationFormType
+        arguments: ['plain_value', %fos_user.model.user.class%]
+        tags:
+            - {name: form.type, alias: krovitch_user_registration}

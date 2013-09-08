@@ -10,7 +10,7 @@ Current version : Flower bamboo
 Next version : Working Panda (soon...)
 
 Roadmap
-<https://github.com/johnkrovitch/unRaMaLaK/tree/master/src/Krovitch/KrovitchBundle/Resources/docs/roadmap.md>
+<https://github.com/johnkrovitch/unRaMaLaK/tree/master/src/Krovitch/UnramalakBundle/Resources/docs/roadmap.md>
 
 
 Commands

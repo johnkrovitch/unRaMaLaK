@@ -2,10 +2,10 @@
 
 # Set this to the root of your project when deployed:
 http_path = "web"
-css_dir = "src/Krovitch/KrovitchBundle/Resources/public/css"
-sass_dir = "src/Krovitch/KrovitchBundle/Resources/sass"
-images_dir = "src/Krovitch/KrovitchBundle/Resources/images"
-javascripts_dir = "src/Krovitch/KrovitchBundle/Resources/public/js"
+css_dir = "src/Krovitch/UnramalakBundle/Resources/public/css"
+sass_dir = "src/Krovitch/UnramalakBundle/Resources/sass"
+images_dir = "src/Krovitch/UnramalakBundle/Resources/images"
+javascripts_dir = "src/Krovitch/UnramalakBundle/Resources/public/js"
 
 relative_assets = true
 

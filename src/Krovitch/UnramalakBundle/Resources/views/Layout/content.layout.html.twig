@@ -1,0 +1,14 @@
+{% extends 'UnramalakBundle::layout.html.twig' %}
+
+{% block layout %}
+<div class="row">
+    <!-- main column -->
+    <div class="span12">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- right column -->
+    {#<div class="span4">#}
+        {#{%  render controller('UnramalakBundle:Widget:list', {'context' : 'right'}) %}#}
+    {#</div>#}
+</div>
+{% endblock %}

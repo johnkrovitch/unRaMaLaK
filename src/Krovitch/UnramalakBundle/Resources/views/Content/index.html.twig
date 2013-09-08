@@ -1,0 +1,48 @@
+{% extends "UnramalakBundle::layout.html.twig" %}
+
+{% block content %}
+
+<div class="menu">
+  <ul>
+    <li><a href="{{ path('_content') }}">List</a></li>
+    <li><a href="{{ path('_content_create') }}">Create</a></li>
+  </ul>
+</div>
+
+<h1>The Content Way of Life</h1>
+
+{% block display %}
+
+<h2>Contents list</h2>
+
+  {% if contents %}
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+
+      {% for content in contents %}
+      <tr>
+        <td>{{ content.title }}</td>
+        <td>{{ content.content | slice(0, 20) }}</td>
+        <td><a href="{{ path('_content_edit', {'id': content.id}) }}">Edit</a></td>
+        <td><a href="{{ path('_content_delete', {'id': content.id}) }}">Delete</a></td>
+      </tr>
+      {% endfor %}
+
+      </tbody>
+      <tfoot>
+      </tfoot>
+    </table>
+
+{% else %}
+<span>No content yet</span>
+{% endif %}
+
+{% endblock %}
+
+{% endblock %}

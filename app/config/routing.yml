@@ -1,26 +1,26 @@
 # Unramalak
 _welcome:
   pattern:  /
-  defaults: { _controller: KrovitchBundle:Krovitch:index }
+  defaults: { _controller: UnramalakBundle:Krovitch:index }
 
 _home:
-  resource: "@KrovitchBundle/Controller/KrovitchController.php"
+  resource: "@UnramalakBundle/Controller/KrovitchController.php"
   type:     annotation
 
 _map:
-  resource: "@KrovitchBundle/Controller/MapController.php"
+  resource: "@UnramalakBundle/Controller/MapController.php"
   type:     annotation
 
 _editor:
-  resource: "@KrovitchBundle/Controller/EditorController.php"
+  resource: "@UnramalakBundle/Controller/EditorController.php"
   type:     annotation
 
 _tests:
-  resource: "@KrovitchBundle/Controller/TestsController.php"
+  resource: "@UnramalakBundle/Controller/TestsController.php"
   type:     annotation
 
 _medias:
-  resource: "@KrovitchBundle/Controller/MediaController.php"
+  resource: "@UnramalakBundle/Controller/MediaController.php"
   type:     annotation
 
 # UserBundle

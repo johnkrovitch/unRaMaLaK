@@ -4,8 +4,8 @@ if [ ! -d "web/bundles/krovitch/uploads" ]; then
 fi
 
 # create maps directory if required
-if [ ! -d "src/Krovitch/KrovitchBundle/Resources/maps" ]; then
-  mkdir "src/Krovitch/KrovitchBundle/Resources/maps"
+if [ ! -d "src/Krovitch/UnramalakBundle/Resources/maps" ]; then
+  mkdir "src/Krovitch/UnramalakBundle/Resources/maps"
 fi
 
 # set permissions for :
@@ -15,7 +15,7 @@ fi
 #  - map data directory
 sudo setfacl -R -m u:www-data:rwx -m u:`whoami`:rwx app/cache app/logs
 # TODO change file permissions
-sudo chmod 777 src/Krovitch/KrovitchBundle/Resources/maps/
+sudo chmod 777 src/Krovitch/UnramalakBundle/Resources/maps/
 
 # init composer
 php composer.phar update
