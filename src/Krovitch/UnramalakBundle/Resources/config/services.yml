@@ -8,16 +8,16 @@ parameters:
     sensio_framework_extra.view.listener.class: GeorgetteParty\BaseBundle\Listener\ParametersTemplateListener
 services:
     # managers
-    krovitch.content_manager:
+    krovitch_unramalak.content_manager:
         class: %krovitch.content_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
-    krovitch.hero_manager:
+    krovitch_unramalak.hero_manager:
         class: %krovitch.hero_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
-    krovitch.map_manager:
+    krovitch_unramalak.map_manager:
         class: %krovitch.map_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
-    krovitch.media_manager:
+    krovitch_unramalak.media_manager:
         class: %krovitch.media_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
 

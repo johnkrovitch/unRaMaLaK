@@ -96,3 +96,9 @@ services:
         class: Twig_Extensions_Extension_Text
         tags:
             - { name: twig.extension }
+
+georgette_party_base: ~
+
+#test:
+#    unit:
+#        upload_dir: 'web/bundles/krovitch/uploads'

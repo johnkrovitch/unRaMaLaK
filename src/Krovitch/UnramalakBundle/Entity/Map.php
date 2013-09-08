@@ -2,7 +2,6 @@
 
 namespace Krovitch\UnramalakBundle\Entity;
 
-use Krovitch\BaseBundle\Entity\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Krovitch\UnramalakBundle\Utils\Path;
 

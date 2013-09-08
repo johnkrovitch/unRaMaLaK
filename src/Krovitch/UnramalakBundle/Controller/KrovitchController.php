@@ -40,7 +40,6 @@ class KrovitchController extends BaseController
      */
     public function contactAction()
     {
-        die('lol');
         $contact = new Contact();
 
         $builder = $this->createFormBuilder($contact);

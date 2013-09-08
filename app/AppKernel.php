@@ -29,7 +29,7 @@ class AppKernel extends Kernel
             // Base bundle
             new \GeorgetteParty\BaseBundle\GeorgettePartyBaseBundle(),
             // Unramalak bundles
-            new Krovitch\UnramalakBundle\UnramalakBundle(),
+            new Krovitch\UnramalakBundle\KrovitchUnramalakBundle(),
             new Krovitch\KrovitchUserBundle\KrovitchUserBundle(),
         );
 
