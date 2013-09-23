@@ -14,44 +14,35 @@ use Symfony\Component\HttpFoundation\Response;
 class MapController extends BaseController
 {
     /**
+     * Display the map chooser
      * @Route("/", name="map")
      * @Template()
      * @return array
      */
     public function indexAction()
     {
-        // TODO make a map chooser
         $maps = $this->getManager('Map')->findAll();
-
         $this->redirect404Unless(count($maps), 'What the hell ?!!! Not map found !');
-
-
 
         return array('maps' => $maps);
     }
 
     /**
-     * @Route("/load", name="mapLoad")
+     * Display the map
+     * @Route("/{id}", name="map-display")
+     * @Template()
      */
-    public function loadMapAction()
+    public function displayAction($id)
     {
         // TODO check permissions
-        $id = $this->getRequest()->get('id');
         $map = $this->getManager()->find($id);
         $this->redirect404Unless($map, 'Map not found (id: ' . $id . ')');
         // get map json content for the view
         $mapJson = $this->getManager('Map')->load($map);
+        // get map textures
+        $textures = $this->getManager('Map')->loadTextures($map);
 
-        return $this->renderJson($mapJson);
-    }
-
-    protected function renderJson($content)
-    {
-        $response = new Response();
-        $response->setContent($content);
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+        return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
     }
 
     /**
@@ -70,4 +61,13 @@ class MapController extends BaseController
 
         return new Response('0');
     }
+
+//    protected function renderJson($content)
+//    {
+//        $response = new Response();
+//        $response->setContent($content);
+//        $response->headers->set('Content-Type', 'application/json');
+//
+//        return $response;
+//    }
 }

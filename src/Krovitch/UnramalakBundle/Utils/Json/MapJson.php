@@ -15,8 +15,9 @@ class MapJson
 
     public function load()
     {
-        $data = array('mapData' => $this->data, 'textures' => $this->textures);
-        $json = json_encode($data, JSON_PRETTY_PRINT);
+        // adding textures to data
+        $this->data['textures']  = $this->textures;
+        $json = json_encode($this->data, JSON_PRETTY_PRINT);
 
         return $json;
     }

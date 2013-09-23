@@ -1,8 +1,3 @@
-// unramalak map API
-
-// use jQuery plugin jclass (old and hard to find now, but do the job).
-// notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
-
 /**
  * Main application
  */
@@ -29,6 +24,8 @@ $.Class('Unramalak.Application', {}, {
     var canvas = document.getElementById(canvasId);
     // create an empty project and a view for the canvas:
     paper.setup(canvas);
+
+    console.log('map Data', textures);
     // init map context
     this.mapContext = new Unramalak.Map.Context({
       cellPadding: 0,
@@ -40,9 +37,17 @@ $.Class('Unramalak.Application', {}, {
       preventBubbling: true,
       startingPoint: new paper.Point(100, 50)
     });
+
+
     // load textures
     Unramalak.ImageLoader.load(textures);
+
   },
+
+// unramalak map API
+
+// use jQuery plugin jclass (old and hard to find now, but do the job).
+// notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
 
   /**
    * Run application
@@ -59,58 +64,3 @@ $.Class('Unramalak.Application', {}, {
     AlertManager.addAlert(message, type);
   }
 });
-
-
-var MapLauncher = {
-  dialog: null,
-
-  init: function (dialogSelector, onClickSelector, url) {
-    // setting dialog
-    this.dialog = $(dialogSelector);
-    // binding events
-    JsEvent.onReady(JsEvent.onClick, [onClickSelector, this.getMap, [url]]);
-  },
-
-  getMap: function (url) {
-    // TODO do not depend on Jquery
-    $.ajax({
-      url: url,
-      data: {id: 1},
-      dataType: 'json',
-      success: MapLauncher.launch,
-      error: function (status, machin, error) {
-        // TODO gérer les erreurs
-        console.log('error', error);
-      },
-      complete: function () {
-        console.log('panda');
-      }
-    });
-  },
-
-  launch: function (data) {
-    // TODO make a loader
-
-    // launch unramalak application
-    var unramalak = new Unramalak.Application();
-    unramalak.load('myCanvas', data.mapData, data.textures);
-    unramalak.run();
-    // TODO event management to hide dialog when map is loaded (maybe ?)
-    MapLauncher.dialog.remove();
-  }
-};
-
-// TODO comments
-var JsEvent = {
-  onReady: function (callback, parameters) {
-    $(document).on('ready', function () {
-      callback.apply(this, parameters);
-    });
-  },
-
-  onClick: function (selector, callback, parameters) {
-    $(selector).on('click', function () {
-      callback.apply(this, parameters);
-    });
-  }
-};

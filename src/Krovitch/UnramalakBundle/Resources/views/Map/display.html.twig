@@ -1,0 +1,46 @@
+{% extends mainTemplate %}
+
+{% block content %}
+    <h1>{{ title }}</h1>
+
+    <div id="editor-menu">
+        {{ 'editor.map.baseLand'|trans }}
+        <!-- basic land type -->
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand"
+           title="{% trans %}editor.map.sand{% endtrans %}">
+            <img src="/bundles/krovitchunramalak/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water"
+           title="{% trans %}editor.map.water{% endtrans %}">
+            <img src="/bundles/krovitchunramalak/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains"
+           title="{% trans %}editor.map.plains{% endtrans %}">
+            <img src="/bundles/krovitchunramalak/img/water.png" alt="{% trans %}editor.map.plains{% endtrans %}"/>
+        </a>
+        <!-- remove background button -->
+        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="remove"
+           title="{% trans %}editor.map.removeBackground{% endtrans %}">
+            <i class="icon-white icon-remove"></i>
+        </a>
+        <!-- actions buttons -->
+        <a href="javascript:void(0);" class="menu-action btn btn-success btn-small" data-action="save">
+            <i class="icon-white icon-ok"></i>{{ 'editor.map.save' }}
+        </a>
+    </div>
+
+    <canvas id="myCanvas" width="938" height="1000" class="hero-unit" style="padding: 10px">
+        loading into the deep space...
+    </canvas>
+
+    <script>
+        $(document).ready(function () {
+            var mapData = {{ data|raw }};
+            var textures = {{ textures|raw }};
+
+            var ur = new Unramalak.Application();
+            ur.load('myCanvas', mapData, textures);
+            ur.run();
+        });
+    </script>
+{% endblock %}

@@ -50,7 +50,7 @@
                                 <td>{{ map.description|truncate('50', true, '...') }}</td>
                                 <td>{{ map.size }}</td>
                                 <td>
-                                    <button class="map-chooser btn btn-small btn-primary">{{ 'map.chooseMap'|trans }}</button>
+                                    <button class="map-chooser btn btn-small btn-primary" data-url="{{ path('map-display', {id: map.id}) }}">{{ 'map.chooseMap'|trans }}</button>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -68,6 +68,11 @@
     </canvas>
 
     <script>
-        MapLauncher.init('#map-chooser', '.map-chooser', '{{ path('mapLoad') }}');
+        $(document).on('ready', function () {
+            $('button.map-chooser').on('click', function () {
+                window.location = $(this).data('url');
+            });
+        });
+        {#MapLauncher.init('#map-chooser', '.map-chooser', '{{ path('mapLoad') }}');#}
     </script>
 {% endblock %}
