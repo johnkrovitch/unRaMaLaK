@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class MapControllerTest extends WebTestCase
 {
-    public function testIndex()
-    {
-        $client = static::createClient();
-        $crawler = $client->request('GET', '/editor');
-
-        $this->assertTrue(true);
-    }
+//    public function testIndex()
+//    {
+//        $client = static::createClient();
+//        $crawler = $client->request('GET', '/editor');
+//
+//        $this->assertTrue(true);
+//    }
 }

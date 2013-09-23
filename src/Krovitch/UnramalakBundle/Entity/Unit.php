@@ -2,7 +2,6 @@
 
 namespace Krovitch\UnramalakBundle\Entity;
 
-use Krovitch\BaseBundle\Entity\Entity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
