@@ -29,7 +29,7 @@ class MapController extends BaseController
 
     /**
      * Display the map
-     * @Route("/{id}", name="map-display")
+     * @Route("/display/{id}", name="map-display")
      * @Template()
      */
     public function displayAction($id)
@@ -52,6 +52,7 @@ class MapController extends BaseController
      */
     public function saveAction(Request $request)
     {
+        // TODO check security
         $mapData = json_decode($request->get('data'));
         $map = $this->getManager('Map')->find($request->get('id'));
         $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
