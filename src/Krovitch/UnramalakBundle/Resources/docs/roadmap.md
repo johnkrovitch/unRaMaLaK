@@ -1,7 +1,7 @@
 unRamalak and Gmf Installation
 ========================
 
-1) version 0.1 "Working Panda" (summer 2013 ?)
+1) version 0.1 "Working Panda" (summer 2013 ? lol)
 ----------------------------------
 
 TODO :
