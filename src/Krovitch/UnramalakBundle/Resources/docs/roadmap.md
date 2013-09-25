@@ -16,8 +16,9 @@ Features :
 Bugs :
     * FIXED bug on the second map saving in crud (PHP)
     * FIXED bug on map drag&drop : textures does not move
-    * bug : drag does not work on textures
+    * FIXED : drag does not work on textures
     * bug : map can be drag out of out canvas
+    * bug : notifications does not work anymore
 
 
 2) version 0.2 "Tested Bamboo"
