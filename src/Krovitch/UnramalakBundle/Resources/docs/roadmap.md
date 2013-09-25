@@ -19,6 +19,7 @@ Bugs :
     * FIXED : drag does not work on textures
     * bug : map can be drag out of out canvas
     * bug : notifications does not work anymore
+    * bug : units selection does not work (CURRENT)
 
 
 2) version 0.2 "Tested Bamboo"
