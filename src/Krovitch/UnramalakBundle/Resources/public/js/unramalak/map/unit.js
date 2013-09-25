@@ -44,7 +44,6 @@ Unramalak.Map.BaseUnit('Unramalak.Unit', {}, {
    * Return true if current unit can move into this type of land
    */
   canTraverse: function (land) {
-    console.log('can traverse ?', land);
     var canTraverse = false;
     // unit can move into sand
     if (land.type == LAND_SAND) {

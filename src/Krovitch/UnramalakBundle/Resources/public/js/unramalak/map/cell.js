@@ -44,12 +44,34 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
  * Unramalak.Cell
  */
 Unramalak.BaseCell('Unramalak.Cell', {}, {
+  units: [],
+  position: null,
+
   /**
    * Return the point on the top of the shape
    * @returns Point
    */
   getHighPoint: function () {
     return this.shape.segments[1].point;
+  },
+
+  addUnit: function(unit) {
+    this.units.push(unit);
+  },
+
+  /**
+   * Return true if this container has unit
+   * @returns {boolean}
+   */
+  hasUnit: function() {
+    console.log('units ?', this);
+
+    return (this.units.length > 0);
+  },
+
+  // TODO refactor this in behaviour
+  getPosition: function () {
+    return this.shape.position;
   },
 
   /**
@@ -67,10 +89,7 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
       this.raster = new Unramalak.Raster(render.value, this);
       this.raster.render();
       /*raster.bind('mousedown', this.shape.onmousedown, this);
-
-
       var raster = Unramalak.ImageLoader.createRaster(render.value);
-
       if (!this.raster) {
         this.raster = raster;
       }
@@ -99,39 +118,6 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     this.land.reset();
     // remove
     this.raster.remove();
-  }
-});
-
-/**
- * Unramalak.Land
- */
-$.Class('Unramalak.Land', {}, {
-  type: 'default',
-  image: null,
-
-  render: function () {
-    var render = {
-      type: 'default',
-      value: defaultBackgroundColor
-    };
-    // TODO put textures here
-    if (this.type == 'sand') {
-      render.type = 'image';
-      render.value = 'land_sand';
-    }
-    else if (this.type == 'water') {
-      render.type = 'image';
-      render.value = 'land_water';
-    }
-    else if (this.type == 'plains') {
-      render.type = 'image';
-      render.value = 'land_plains';
-    }
-    return render;
-  },
-
-  reset: function () {
-    this.type = 'default';
   }
 });
 
@@ -214,7 +200,7 @@ $.Class('Unramalak.CellCollection', {}, {
     for (cellIndex in this.hitCells) {
       cell = this.hitCells[cellIndex];
 
-      console.log('cell', data);
+      //console.log('cell', data);
 
       if (data['land']) {
 
@@ -243,5 +229,38 @@ $.Class('Unramalak.CellCollection', {}, {
         this.group.addChild(cell.raster.shape);
       }
     });
+  }
+});
+
+/**
+ * Unramalak.Land
+ */
+$.Class('Unramalak.Land', {}, {
+  type: 'default',
+  image: null,
+
+  render: function () {
+    var render = {
+      type: 'default',
+      value: defaultBackgroundColor
+    };
+    // TODO put textures here
+    if (this.type == 'sand') {
+      render.type = 'image';
+      render.value = 'land_sand';
+    }
+    else if (this.type == 'water') {
+      render.type = 'image';
+      render.value = 'land_water';
+    }
+    else if (this.type == 'plains') {
+      render.type = 'image';
+      render.value = 'land_plains';
+    }
+    return render;
+  },
+
+  reset: function () {
+    this.type = 'default';
   }
 });

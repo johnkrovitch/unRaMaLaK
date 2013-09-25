@@ -19,6 +19,7 @@ var Unramalak = {
     Unit: {},
     BaseUnit: {}
   },
+  Menu: {},
   Raster: {},
   Renderer: {},
   Path: {

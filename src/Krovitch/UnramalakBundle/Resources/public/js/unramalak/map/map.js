@@ -1,5 +1,9 @@
 var defaultBackgroundColor = '#e9e9ff';
 var defaultStrokeColor = '#a2a2f2';
+var mapMode = {
+  build: 'BUILD_MODE',
+  play: 'PLAY_MODE'
+};
 
 /**
  * Map class
@@ -14,6 +18,10 @@ $.Class('Unramalak.Map', {}, {
   keyboardControl: null,
   mouseControl: null,
   menu: null,
+  /**
+   * According to the mode, map will not act the same. For example, in build mode, map has no units
+   */
+  mode: null,
   numberOfSides: 0,
   onNotify: null,
   profile: {},
@@ -33,6 +41,7 @@ $.Class('Unramalak.Map', {}, {
     if ($.isNotNull(context.data)) {
       this.load(context.data);
     }
+    // geometric parameters
     this.cellPadding = context.cellPadding;
     this.numberOfSides = context.numberOfSides;
     this.radius = context.radius;
@@ -45,6 +54,8 @@ $.Class('Unramalak.Map', {}, {
     this.renderer =  new Unramalak.Renderer();
     // controls
     this.mouseControl = new Unramalak.Control.Mouse();
+    // map mode
+    this.mode = context.mode;
   },
 
   /**
@@ -79,10 +90,8 @@ $.Class('Unramalak.Map', {}, {
     this.cells.each(this, function (cell) {
       // onMouseDown
       this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
-        console.log('mouse', mouseEvent, mouseEvent.isLeftClick());
-
         if (mouseEvent.isLeftClick()) {
-          this.cells.hitCell(cell);
+          this.cells.hitCells.push(cell);
         }
       });
       // onMouseUp
@@ -161,14 +170,15 @@ $.Class('Unramalak.Map', {}, {
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
     // build units
-    /*var firstPoint = this.cells.getFirst().getHighPoint();
+    var firstPoint = this.cells.getFirst().getHighPoint();
     var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
     var unit = new Unramalak.Unit(unitOrigin);
     unit.build();
     this.units.push(unit);
 
     var originCell = this.cells.getFirst();
-    originCell.addUnit(unit);*/
+    originCell.addUnit(unit);
+    originCell.shape.selected = true;
   },
 
   /*moveItem: function (target, direction) {
@@ -206,15 +216,17 @@ $.Class('Unramalak.Map', {}, {
    * Update required cells
    */
   update: function () {
+    // TODO little improvement here
+    var map = this;
     // if cells have been clicked or drag
-    /*$.each(map.hitCells, function (index, cell) {
+    $.each(map.cells.hitCells, function (index, cell) {
       // if a item menu button was pressed
       if (map.menu.hasData('land')) {
         cell.land.type = map.menu.getData('land');
         cell.render();
       }
-      /*if (cell.hasUnit()) {
-        cell.units[0].shape.selected = true;
+      if (cell.hasUnit()) {
+        cell.units[0].shape.selected = !cell.units[0].shape.selected;
 
         var dimension = new Unramalak.Dimension(10, 10);
 
@@ -223,10 +235,10 @@ $.Class('Unramalak.Map', {}, {
 
         var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
       }
-    });*/
+    });
     // then reset hitCells
     this.cells.update(this.menu.getData());
-    this.hitCells = [];
+    this.cells.hitCells = [];
   },
 
   save: function () {
@@ -242,7 +254,7 @@ $.Class('Unramalak.Map', {}, {
     // call ajax url
     $.ajax({
       type: 'POST',
-      url: 'save',
+      url: '/map/save', // TODO make this dynamic
       data: 'id=' + this.profile.id + '&data=' + jsonData,
       success: function () {
         map.notify('Map successfully saved !', 'success');
@@ -288,6 +300,7 @@ $.Class('Unramalak.Map.Context', {}, {
   cellPadding: 0,
   mapContainer: '',
   menuContainer: '',
+  mode: '',
   numberOfSides: 0,
   preventBubbling: true, // not customizable now
   radius: 0,

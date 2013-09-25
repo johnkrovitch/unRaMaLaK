@@ -1,3 +1,8 @@
+// unramalak map API
+
+// use jQuery plugin jclass (old and hard to find now, but do the job).
+// notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
+
 /**
  * Main application
  */
@@ -9,11 +14,7 @@ $.Class('Unramalak.Application', {}, {
   lastPointClicked: null,
   renderer: null,
 
-  /**
-   * Initialize map and editor objects
-   */
   init: function () {
-
   },
 
   /**
@@ -25,7 +26,6 @@ $.Class('Unramalak.Application', {}, {
     // create an empty project and a view for the canvas:
     paper.setup(canvas);
 
-    console.log('map Data', textures);
     // init map context
     this.mapContext = new Unramalak.Map.Context({
       cellPadding: 0,
@@ -37,17 +37,9 @@ $.Class('Unramalak.Application', {}, {
       preventBubbling: true,
       startingPoint: new paper.Point(100, 50)
     });
-
-
     // load textures
     Unramalak.ImageLoader.load(textures);
-
   },
-
-// unramalak map API
-
-// use jQuery plugin jclass (old and hard to find now, but do the job).
-// notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
 
   /**
    * Run application

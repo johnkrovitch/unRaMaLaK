@@ -18,10 +18,9 @@ $.Class('Unramalak.Path.Finder', {}, {
     while (remainingMovement > 0) {
       // find all potential positions
       var potentialPositions = this.getNearbyPositions(position);
-      console.log('potential positions', potentialPositions);
       // get all potential who match the rules (land)
       var validPositions = this.matchRules(potentialPositions);
-      console.log('valid positions', validPositions);
+
       if (validPositions.length > 0) {
         positions.push(potentialPositions);
       }
@@ -51,7 +50,6 @@ $.Class('Unramalak.Path.Finder', {}, {
 
     // we keep only the valid positions
     $.each(positions, function (index, position) {
-      console.log('loop positions', position);
       var x = position[0];
       var y = position[1];
 
