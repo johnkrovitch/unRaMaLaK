@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             // Unramalak bundles
             new Krovitch\UnramalakBundle\KrovitchUnramalakBundle(),
             new Krovitch\KrovitchUserBundle\KrovitchUserBundle(),
+            new Krovitch\UnramalakFrontBundle\KrovitchUnramalakFrontBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

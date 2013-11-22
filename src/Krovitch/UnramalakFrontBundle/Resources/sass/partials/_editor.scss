@@ -1,0 +1,19 @@
+// editor's styles
+
+h1 {
+  @extend .center-text;
+}
+
+h2 {
+  @extend .center-text;
+}
+
+#editor-menu {
+  margin-bottom: 35px;
+
+  .menu-item {
+    img {
+      height: 28px;
+    }
+  }
+}

@@ -1,7 +1,6 @@
 # Unramalak
-_unramalak:
-  pattern:  /
-  defaults: { _controller: KrovitchUnramalakBundle:Krovitch:index }
+unramalak_front:
+  resource: @KrovitchUnramalakFrontBundle/Resources/config/routing.yml
 
 _home:
   resource: "@KrovitchUnramalakBundle/Controller/KrovitchController.php"

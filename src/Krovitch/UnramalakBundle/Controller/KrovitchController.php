@@ -9,12 +9,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Krovitch\UnramalakBundle\Entity\Contact;
 
 /**
- * @Route("/")
+ *
  */
 class KrovitchController extends BaseController
 {
     /**
-     * @Route("/", name="_homepage")
+     * @Route("/old", name="_homepage")
      * @Template()
      * @return array
      */

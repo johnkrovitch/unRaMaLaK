@@ -1,0 +1,96 @@
+// generals
+.menu {
+  border-right: 1px solid #eee;
+  padding:  5px;
+}
+
+// main top menu
+#menu-bar-container {
+  height: $menu-height;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  color: #ffffff;
+
+  @include background(linear-gradient(top, #000000, #000000 38%, #737373 85%));
+
+  #menu-bar {
+    width: $site-width;
+    margin: 0px auto;
+
+    a {
+      color: #ffffff;
+      display: block;
+      height: $menu-height - 10px;
+      padding: 2px 35px 8px 35px;
+      text-decoration: none;
+
+      &:hover {
+        @include background(linear-gradient(top, #737373, #000000 44%, #000000 95%));
+      }
+      &:active {
+        opacity: 0.8;
+      }
+      &.active {
+        text-decoration: underline;
+        color: #d10000;
+      }
+      &.login {
+        float: right;
+        background: url("../images/icons/down_arrow.png") no-repeat scroll right transparent;
+      }
+    }
+    .main_menu {
+      margin: 0px auto 0px auto;
+      font-size: 12px;
+
+      // items
+      li {
+        height: $menu-height;
+        text-align: center;
+      }
+    }
+    .login-hidden {
+      // hidden login form
+      //@extend .unlock;
+      @include background(linear-gradient(top, #000000, #000000 44%, #737373 95%));
+
+      width: 412px;
+      position: absolute;
+      padding: 0 10px 10px 10px;
+      z-index: 10;
+      color: #ffffff;
+
+      h2 {
+        margin: 5px;
+      }
+      span {
+        // span required for better display on jquery.show()
+        width: 412px;
+        display: block;
+      }
+      input[type="submit"] {
+        @extend .unlock;
+        @include border-radius(50px);
+        @include box-shadow(0 1px 0 rgba(0, 0, 0, 0.3));
+        @include background(liner-gradient(19% 75% 90deg, #E0E0E0, #FAFAFA));
+
+        color: #4A4A4A;
+        padding: 2px;
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.7);
+        font-size: 12px;
+      }
+    }
+    .logged {
+      float: right;
+      padding: 10px;
+
+      a {
+        display: inline;
+        padding: 0px;
+      }
+    }
+  }
+
+}

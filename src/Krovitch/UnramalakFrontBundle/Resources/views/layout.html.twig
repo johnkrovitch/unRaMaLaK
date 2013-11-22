@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {%  include 'KrovitchUnramalakFrontBundle:Layout:include.html.twig' %}
+</head>
+<body>
+    {% include 'KrovitchUnramalakFrontBundle:Layout:header.html.twig' %}
+
+    <div id="unramalak" class="container container-fluid">
+        {% include 'KrovitchUnramalakFrontBundle:Layout:flash.html.twig' %}
+
+        <div class="row-fluid">
+            {% block layout %}{% endblock %}
+        </div>
+
+    </div>
+
+    {% include 'KrovitchUnramalakFrontBundle:Layout:footer.html.twig' %}
+</body>
+</html>

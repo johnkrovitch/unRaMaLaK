@@ -1,0 +1,3 @@
+krovitch_unramalak_homepage:
+    path:  /
+    defaults: { _controller: KrovitchUnramalakFrontBundle:Home:index }

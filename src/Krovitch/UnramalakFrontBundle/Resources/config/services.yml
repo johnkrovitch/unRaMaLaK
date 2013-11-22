@@ -1,0 +1,7 @@
+parameters:
+#    krovitch_unramalak_front.example.class: Krovitch\UnramalakFrontBundle\Example
+
+services:
+#    krovitch_unramalak_front.example:
+#        class: %krovitch_unramalak_front.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
