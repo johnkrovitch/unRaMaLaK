@@ -1,12 +1,12 @@
 <?php
 
-namespace Krovitch\UnramalakBundle\Entity;
+namespace Krovitch\KrovitchUserBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Krovitch\UnramalakBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Krovitch\KrovitchUserBundle\Repository\UserRepository")
  * @ORM\Table(name="fos_user")
  */
 class User extends BaseUser
