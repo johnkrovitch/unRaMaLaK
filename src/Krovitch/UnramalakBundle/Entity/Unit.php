@@ -2,6 +2,9 @@
 
 namespace Krovitch\UnramalakBundle\Entity;
 
+use Krovitch\UnramalakBundle\Entity\Behavior\EventDispatcher;
+use Krovitch\UnramalakBundle\Entity\Behavior\Levelable;
+use Krovitch\UnramalakBundle\Entity\Behavior\Living;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,27 +21,14 @@ use Doctrine\ORM\Mapping\DiscriminatorMap;
  */
 class Unit extends Entity
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    use Living, Levelable;
 
     /**
+     * Name of the unit
+     *
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $level;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $life;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -144,29 +134,6 @@ class Unit extends Entity
     public function getLevel()
     {
         return $this->level;
-    }
-
-    /**
-     * Set life
-     *
-     * @param integer $life
-     * @return Unit
-     */
-    public function setLife($life)
-    {
-        $this->life = $life;
-
-        return $this;
-    }
-
-    /**
-     * Get life
-     *
-     * @return integer
-     */
-    public function getLife()
-    {
-        return $this->life;
     }
 
     /**
