@@ -27,7 +27,7 @@ twig:
     strict_variables: %kernel.debug%
     form:
         resources:
-            - "UnramalakBundle:Form:form_div_layout.html.twig"
+            - "KrovitchUnramalakBundle:Form:form_div_layout.html.twig"
 
 # Assetic Configuration
 assetic:

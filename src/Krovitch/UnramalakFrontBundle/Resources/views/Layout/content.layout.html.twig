@@ -1,4 +1,4 @@
-{% extends 'KrovitchUnramalakBundle::layout.html.twig' %}
+{% extends 'KrovitchUnramalakFrontBundle::layout.html.twig' %}
 
 {% block layout %}
 <div class="row">
@@ -8,7 +8,7 @@
     </div>
     <!-- right column -->
     <div class="span3">
-
+        {% block right %}{% endblock %}
     </div>
 </div>
 {% endblock %}

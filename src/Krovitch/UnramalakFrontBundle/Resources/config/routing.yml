@@ -1,3 +1,7 @@
-krovitch_unramalak_homepage:
-    path:  /
+homepage:
+    path:  "/"
     defaults: { _controller: KrovitchUnramalakFrontBundle:Home:index }
+
+register:
+    path:  "/register"
+    defaults: { _controller: KrovitchUnramalakFrontBundle:Home:register }
