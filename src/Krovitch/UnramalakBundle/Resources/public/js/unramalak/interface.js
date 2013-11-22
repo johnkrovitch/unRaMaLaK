@@ -7,13 +7,17 @@ var Unramalak = {
   BaseCell: {},
   Container: {},
   Cell: {},
-  Land: {},
   CellCollection: {},
   Control: {
     Mouse: {},
     MouseEvent: {}
   },
+  Event: {
+    EventManager: {},
+    Event: {}
+  },
   ImageLoader: {},
+  Land: {},
   Map: {
     Context: {},
     Unit: {},

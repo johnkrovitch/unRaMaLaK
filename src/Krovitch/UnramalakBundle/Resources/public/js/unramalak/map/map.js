@@ -154,14 +154,6 @@ $.Class('Unramalak.Map', {}, {
         else {
           this.errors.push('An error has been encountered with cell x:' + i + ', y:' + j);
         }
-        /*var test = new Unramalak.Cell(hexagon, cellData);
-
-        test.bind('mousedown', function () {
-          console.log('click !');
-        });
-
-        test.render();*/
-
         this.cells.add(new Unramalak.Cell(hexagon, cellData));
       }
       odd = !odd;
@@ -169,6 +161,7 @@ $.Class('Unramalak.Map', {}, {
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
+    // TODO move this in Cell ?
     // build units
     var firstPoint = this.cells.getFirst().getHighPoint();
     var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
@@ -178,7 +171,6 @@ $.Class('Unramalak.Map', {}, {
 
     var originCell = this.cells.getFirst();
     originCell.addUnit(unit);
-    originCell.shape.selected = true;
   },
 
   /*moveItem: function (target, direction) {
@@ -226,14 +218,14 @@ $.Class('Unramalak.Map', {}, {
         cell.render();
       }
       if (cell.hasUnit()) {
-        cell.units[0].shape.selected = !cell.units[0].shape.selected;
+        //cell.units[0].shape.selected = !cell.units[0].shape.selected;
 
-        var dimension = new Unramalak.Dimension(10, 10);
+        //var dimension = new Unramalak.Dimension(10, 10);
 
-        var rules = new Unramalak.Path.Rules(cell.units[0], cell.land);
-        var pathManager = new Unramalak.Path.Finder(dimension, rules);
+        //var rules = new Unramalak.Path.Rules(cell.units[0], cell.land);
+        //var pathManager = new Unramalak.Path.Finder(dimension, rules);
 
-        var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
+        //var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
       }
     });
     // then reset hitCells
