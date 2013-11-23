@@ -55,7 +55,12 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     return this.shape.segments[1].point;
   },
 
-  addUnit: function(unit) {
+  /**
+   * Attach an unit to the cell
+   *
+   * @param unit
+   */
+  attachUnit: function(unit) {
     this.units.push(unit);
   },
 
@@ -64,8 +69,6 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
    * @returns {boolean}
    */
   hasUnit: function() {
-    console.log('units ?', this);
-
     return (this.units.length > 0);
   },
 

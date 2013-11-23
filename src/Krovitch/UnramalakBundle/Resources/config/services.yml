@@ -11,12 +11,15 @@ services:
     krovitch_unramalak.content_manager:
         class: %krovitch.content_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
+
     krovitch_unramalak.hero_manager:
         class: %krovitch.hero_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
+
     krovitch_unramalak.map_manager:
         class: %krovitch.map_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
+
     krovitch_unramalak.media_manager:
         class: %krovitch.media_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']

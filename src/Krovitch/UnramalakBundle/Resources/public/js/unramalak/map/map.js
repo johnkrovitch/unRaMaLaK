@@ -19,7 +19,7 @@ $.Class('Unramalak.Map', {}, {
   mouseControl: null,
   menu: null,
   /**
-   * According to the mode, map will not act the same. For example, in build mode, map has no units
+   * According to the mode, map will not act the same
    */
   mode: null,
   numberOfSides: 0,
@@ -28,7 +28,6 @@ $.Class('Unramalak.Map', {}, {
   radius: 0,
   renderer: null,
   startingPoint: null,
-  units: [],
 
   /**
    * Initialize map parameters, gathering data from context
@@ -138,8 +137,10 @@ $.Class('Unramalak.Map', {}, {
         hexagonCenterX -= xRadius;
       }
       for (var j = 0; j < (this.profile.height); j++) {
+        // we build an new hexagonal cell
         var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
         var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
+
         // x-radius of shape : distance between center and one of his point.
         // distance between this shape and the next is equals to a diameter (plus an optional padding)
         xRadius = hexagonCenter.x - hexagon.segments[0].point.x;
@@ -161,16 +162,20 @@ $.Class('Unramalak.Map', {}, {
       yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
       hexagonCenterY += yRadius * 3 + this.cellPadding;
     }
+
+    console.log('cells data', this.cellsData);
+
+
     // TODO move this in Cell ?
     // build units
-    var firstPoint = this.cells.getFirst().getHighPoint();
-    var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
-    var unit = new Unramalak.Unit(unitOrigin);
-    unit.build();
-    this.units.push(unit);
-
-    var originCell = this.cells.getFirst();
-    originCell.addUnit(unit);
+//    var firstPoint = this.cells.getFirst().getHighPoint();
+//    var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
+//    var unit = new Unramalak.Unit(unitOrigin);
+//    unit.build();
+//    this.units.push(unit);
+//
+//    var originCell = this.cells.getFirst();
+//    originCell.addUnit(unit);
   },
 
   /*moveItem: function (target, direction) {
