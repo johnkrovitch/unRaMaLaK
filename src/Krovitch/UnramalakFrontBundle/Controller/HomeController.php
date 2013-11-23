@@ -14,4 +14,12 @@ class HomeController extends BaseController
     {
         return [];
     }
+
+    /**
+     * @Template()
+     */
+    public function registerAction()
+    {
+        return [];
+    }
 }

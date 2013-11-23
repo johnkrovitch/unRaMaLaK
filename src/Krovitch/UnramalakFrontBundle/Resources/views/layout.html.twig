@@ -11,13 +11,10 @@
 <body>
     {% include 'KrovitchUnramalakFrontBundle:Layout:header.html.twig' %}
 
-    <div id="unramalak" class="container container-fluid">
+    <div id="unramalak" class="container">
         {% include 'KrovitchUnramalakFrontBundle:Layout:flash.html.twig' %}
 
-        <div class="row-fluid">
-            {% block layout %}{% endblock %}
-        </div>
-
+        {% block layout %}{% endblock %}
     </div>
 
     {% include 'KrovitchUnramalakFrontBundle:Layout:footer.html.twig' %}

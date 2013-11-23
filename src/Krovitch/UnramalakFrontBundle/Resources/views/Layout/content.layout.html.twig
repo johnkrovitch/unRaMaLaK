@@ -1,14 +1,16 @@
 {% extends 'KrovitchUnramalakFrontBundle::layout.html.twig' %}
 
 {% block layout %}
-<div class="row">
-    <!-- main content -->
-    <div class="span9">
-        {% block content %}{% endblock %}
+
+    <div class="row">
+        <!-- main content -->
+        <div class="col-md-9">
+            {% block content %}{% endblock %}
+        </div>
+        <!-- right column -->
+        <div class="col-md-3">
+            {% block right %}{% endblock %}
+        </div>
     </div>
-    <!-- right column -->
-    <div class="span3">
-        {% block right %}{% endblock %}
-    </div>
-</div>
+
 {% endblock %}
