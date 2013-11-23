@@ -50,7 +50,6 @@
     "georgette-party/gmf-bundle": "*",
     "georgette-party/base-bundle": "*",
     "georgette-party/unicode-tesselation-bundle": "*",
-    "twitter/bootstrap": "dev-master",
     "phpunit/phpunit": "dev-master"
   },
   "scripts": {
