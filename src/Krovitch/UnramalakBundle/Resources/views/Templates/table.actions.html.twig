@@ -1,0 +1,13 @@
+{% if (id is defined) %}
+
+    <span class="glyphicon glyphicon-pencil"></span>
+    <a href="{{ path('admin_action', {action: 'edit', id: id}) }}">
+        {{ 'unramalak.admin.edit'|trans }}
+    </a>
+
+    <span class="glyphicon glyphicon-remove"></span>
+    <a href="{{ path('admin_action', {action: 'delete', id: id}) }}">
+        {{ 'unramalak.admin.delete'|trans }}
+    </a>
+
+{% endif %}

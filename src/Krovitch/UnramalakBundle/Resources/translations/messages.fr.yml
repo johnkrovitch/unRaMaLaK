@@ -1,24 +1,37 @@
-editor.map.title: Map
-editor.map.list: liste
-editor.map.sand: sable
-editor.map.water: eau
-editor.map.plains: plaine
-editor.map.removeBackground: 'supprimer le fond'
-editor.map.save: sauvegarder
-editor.map.saveSuccess: 'Carte sauvegardée avec succès !'
-editor.map.baseLand: 'terrain de base'
-editor.map.create: 'nouvelle map'
+# admin list
+unramalak.admin.id: id
+unramalak.admin.name: nom
+unramalak.admin.description: description
 
-editor.hero.create: 'nouveau héro'
+# admin actions
+unramalak.admin.edit: editer
+unramalak.admin.delete: supprimer
 
-editor.save: sauvegarder
-editor.cancel: annuler
-editor.title: Editeur
-editor.modify: modifier
-editor.delete: supprimer
+# admin entities
+unramalak.admin.maps: Les Maps
 
-media.create: ajouter un média
-map.choose: choisis le terrain, mec
-map.chooseMap: choisir
 
-home.title: 'UnRaMaLak, la terreur de l''espace !'
+#editor.map.title: Map
+#editor.map.list: liste
+#editor.map.sand: sable
+#editor.map.water: eau
+#editor.map.plains: plaine
+#editor.map.removeBackground: 'supprimer le fond'
+#editor.map.save: sauvegarder
+#editor.map.saveSuccess: 'Carte sauvegardée avec succès !'
+#editor.map.baseLand: 'terrain de base'
+#editor.map.create: 'nouvelle map'
+#
+#editor.hero.create: 'nouveau héro'
+#
+#editor.save: sauvegarder
+#editor.cancel: annuler
+#editor.title: Editeur
+#editor.modify: modifier
+#editor.delete: supprimer
+#
+#media.create: ajouter un média
+#map.choose: choisis le terrain, mec
+#map.chooseMap: choisir
+#
+#home.title: 'UnRaMaLak, la terreur de l''espace !'

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>{% block title %}Unramalak, la terreur de l'espace{% endblock %}</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="Description" content="{% block desc %}{{ 'unramalak.meta.description'|trans }}{% endblock %}" />
+    <meta name="Keywords" content="{% block keywords %}{{ 'unramalak.meta.keywords'|trans }}{% endblock %}" />
+    {%  include 'KrovitchUnramalakBundle:Layout:include.html.twig' %}
+</head>
+<body>
+    {% include 'KrovitchUnramalakBundle:Layout:header.html.twig' %}
+
+    <div id="unramalak" class="container">
+        {% include 'KrovitchUnramalakBundle:Layout:flash.html.twig' %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    {% include 'KrovitchUnramalakBundle:Layout:footer.html.twig' %}
+</body>
+</html>

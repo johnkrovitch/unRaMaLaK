@@ -2,25 +2,8 @@
 unramalak_front:
   resource: @KrovitchUnramalakFrontBundle/Resources/config/routing.yml
 
-_home:
-  resource: "@KrovitchUnramalakBundle/Controller/KrovitchController.php"
-  type:     annotation
-
-_map:
-  resource: "@KrovitchUnramalakBundle/Controller/MapController.php"
-  type:     annotation
-
-_editor:
-  resource: "@KrovitchUnramalakBundle/Controller/EditorController.php"
-  type:     annotation
-
-_tests:
-  resource: "@KrovitchUnramalakBundle/Controller/TestsController.php"
-  type:     annotation
-
-_medias:
-  resource: "@KrovitchUnramalakBundle/Controller/MediaController.php"
-  type:     annotation
+unramalak_admin:
+  resource: @KrovitchUnramalakBundle/Resources/config/routing.yml
 
 # UserBundle
 fos_user_security:

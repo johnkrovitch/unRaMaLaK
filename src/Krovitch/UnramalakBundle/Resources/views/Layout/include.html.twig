@@ -1,0 +1,15 @@
+<!--javascripts -->
+<!-- jquery & co -->
+<script language="javascript" type="text/javascript" src="/bundles/unramalak/js/jquery/jquery.extended.js"></script>
+<script language="javascript" type="text/javascript" src="/bundles/unramalak/js/main.js"></script>
+{% if (app.environment) == 'dev' %}
+    <script language="javascript" type="text/javascript" src="/bundles/unramalak/js/qunit/qunit-1.11.0.js"></script>
+{% endif %}
+
+<script language="javascript" type="text/javascript" src="/bundles/unramalak/js/admin.js"></script>
+
+<!--stylesheets -->
+<link href="{{ asset('bundles/krovitchunramalakfront/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('bundles/krovitchunramalakfront/css/bootstrap-theme.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/bundles/krovitchunramalakfront/css/darkstrap.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/bundles/krovitchunramalakfront/css/style.css') }}" rel="stylesheet" type="text/css" />

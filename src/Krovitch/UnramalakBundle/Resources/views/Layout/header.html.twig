@@ -1,0 +1,29 @@
+{% set route = app.request.get('_route') %}
+
+<div class="navbar navbar-fixed-top">
+    <div class="container">
+
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{{ path('homepage') }}" class="navbar-brand">Unramalak Admin</a>
+        </div>
+
+        <div class="collapse navbar-collapse bs-navbar-collapse">
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if is_granted('ROLE_ADMIN') %}
+
+                    <li><a href="{{ path('admin') }}" class="active">Admin</a></li>
+                    <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans }}</a></li>
+
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</div>

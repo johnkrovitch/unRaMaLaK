@@ -1,0 +1,7 @@
+admin:
+    path:  "/admin"
+    defaults: { _controller: KrovitchUnramalakBundle:Admin:index }
+
+admin_action:
+    path:  "/admin/{action}/{id}"
+    defaults: { _controller: KrovitchUnramalakBundle:Admin:index, id: 0 }

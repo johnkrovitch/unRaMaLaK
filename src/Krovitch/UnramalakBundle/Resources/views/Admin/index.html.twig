@@ -1,0 +1,43 @@
+{% extends 'KrovitchUnramalakBundle::layout.html.twig' %}
+
+{% block content %}
+
+    <a href="#" class="toggle-container" data-target=".map-container">Afficher/Masquer les maps <span
+                class="caret"></span></a>
+
+    <div class="row map-container">
+        <div class="col-md-8">
+
+            {# Maps #}
+            {% if (maps|length > 0) %}
+                <h3>{{ 'unramalak.admin.maps'|trans }}</h3>
+                <hr/>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ 'unramalak.admin.id'|trans }}</th>
+                        <th>{{ 'unramalak.admin.name'|trans }}</th>
+                        <th>{{ 'unramalak.admin.description'|trans }}</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for map in maps %}
+
+                        <tr>
+                            <td>{{ map.id }}</td>
+                            <td>{{ map.name }}</td>
+                            <td>{{ map.description|truncate('100', true, '...') }}</td>
+                            <td>{% include 'KrovitchUnramalakBundle:Templates:table.actions.html.twig' with {id: map.id} %}</td>
+                        </tr>
+
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
