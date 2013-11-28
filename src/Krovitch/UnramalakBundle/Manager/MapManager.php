@@ -59,6 +59,21 @@ class MapManager extends BaseManager
         return $mapDataJson->load();
     }
 
+    /**
+     * Regenerate maps data file
+     *
+     * @param Map $map
+     */
+    public function regenerate(Map $map)
+    {
+        // read xml map data
+        $mapDataXml = new MapXml($map);
+        // recreate xml file
+        $dataFile = $mapDataXml->create();
+        // saving new location
+        $map->setDatafile($dataFile);
+    }
+
     public function loadTextures()
     {
         $resources = new Resources();

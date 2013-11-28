@@ -22,8 +22,8 @@ class EditorController extends BaseController
      */
     public function indexAction()
     {
-        $heroes = $this->getManager('Hero')->findAll();
-        $maps = $this->getManager('Map')->findAll();
+        $heroes = $this->get('krovitch_unramalak.hero_manager')->findAll();
+        $maps = $this->get('krovitch_unramalak.map_manager')->findAll();
 
         return array('heroes' => $heroes, 'maps' => $maps);
     }

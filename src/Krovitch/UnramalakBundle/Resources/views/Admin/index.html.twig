@@ -29,7 +29,10 @@
                             <td>{{ map.id }}</td>
                             <td>{{ map.name }}</td>
                             <td>{{ map.description|truncate('100', true, '...') }}</td>
-                            <td>{% include 'KrovitchUnramalakBundle:Templates:table.actions.html.twig' with {id: map.id} %}</td>
+                            <td>
+                                <a href="{{ path('admin_action', {action: 'regenerate', id: map.id, entity: 'map'}) }}">{{ 'unramalak.admin.map.regenerate' }}</a>
+                                {% include 'KrovitchUnramalakBundle:Templates:table.actions.html.twig' with {id: map.id, entity: 'map'} %}
+                            </td>
                         </tr>
 
                     {% endfor %}
