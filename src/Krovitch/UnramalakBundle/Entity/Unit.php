@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping\DiscriminatorMap;
  */
 class Unit extends Entity
 {
-    use Living, Levelable;
+    use Living, Levelable, EventDispatcher;
 
     /**
      * Name of the unit

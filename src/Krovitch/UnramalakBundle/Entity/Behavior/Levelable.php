@@ -11,7 +11,6 @@ use Krovitch\UnramalakBundle\Constants\Event;
  */
 trait Levelable
 {
-    use EventDispatcher;
     /**
      * Current level
      *
