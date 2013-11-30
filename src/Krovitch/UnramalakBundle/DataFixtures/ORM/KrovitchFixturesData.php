@@ -5,7 +5,6 @@ namespace Krovitch\UnramalakBundle\DataFixtures;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Krovitch\UnramalakBundle\Entity\Race;
-use Krovitch\UnramalakBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
