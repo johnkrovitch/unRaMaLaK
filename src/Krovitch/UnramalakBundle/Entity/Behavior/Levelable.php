@@ -3,6 +3,7 @@
 namespace Krovitch\UnramalakBundle\Entity\Behavior;
 
 use Krovitch\UnramalakBundle\Constants\Event;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Levelable
@@ -11,7 +12,11 @@ use Krovitch\UnramalakBundle\Constants\Event;
  */
 trait Levelable
 {
-    use EventDispatcher;
+    /**
+     * @return EventDispatcher
+     */
+    abstract function getEventDispatcher();
+
     /**
      * Current level
      *
