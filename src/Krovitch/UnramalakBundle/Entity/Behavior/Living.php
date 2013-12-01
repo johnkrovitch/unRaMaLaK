@@ -13,7 +13,12 @@ use Krovitch\UnramalakBundle\Entity\UnramalakEvent;
  */
 trait Living
 {
-    use EventDispatcher;
+    /**
+     * Return event dispatcher
+     *
+     * @return EventDispatcher
+     */
+    abstract function getEventDispatcher();
 
     /**
      * @ORM\Column(type="integer")

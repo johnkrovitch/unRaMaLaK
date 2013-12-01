@@ -2,8 +2,6 @@
 
 namespace Krovitch\UnramalakBundle\Entity;
 
-use Krovitch\BaseBundle\Entity\Entity;
-
 class Cell extends Entity
 {
     protected $x;

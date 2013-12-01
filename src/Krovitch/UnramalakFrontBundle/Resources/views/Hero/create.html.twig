@@ -1,0 +1,20 @@
+{% extends 'KrovitchUnramalakFrontBundle:Layout:content.layout.html.twig' %}
+
+{% block content %}
+    <h2>{{ 'unramalak.hero.title'|trans }}</h2>
+    <hr/>
+
+    <div class="row">
+        <div class="panel panel-default col-md-8">
+            <div class="panel-body">
+                <form action="" method="post" role="form">
+
+                    {{ form_row(form.name) }}
+
+                    {{ form_rest(form) }}
+                    <button type="submit" class="btn">{{ 'unramalak.form.submit'|trans }}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

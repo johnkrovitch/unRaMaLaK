@@ -5,3 +5,7 @@ homepage:
 register:
     path:  "/register"
     defaults: { _controller: KrovitchUnramalakFrontBundle:Home:register }
+
+hero.create:
+    path: "/hero/creation"
+    defaults: { _controller: KrovitchUnramalakFrontBundle:Hero:create }

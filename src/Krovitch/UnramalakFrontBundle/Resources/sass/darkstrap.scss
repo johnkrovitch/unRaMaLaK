@@ -1,6 +1,5 @@
 @import "compass";
 
-
 // migration to bootstrap 3
 .navbar {
   background-color: #363636;
@@ -25,9 +24,24 @@
   }
 }
 
+// panels
+.panel {
+  background-color: #444444;
+  border-color: #222222;
+}
 
+// inputs
+select, input.form-control, .uneditable-input {
+  color: white;
+}
 
+input[type=submit], button.btn {
+  background-color: #1C1C1C;
 
+  &:hover {
+    background-color: #222222;
+  }
+}
 
 /*
  * Darkstrap v0.9.2
@@ -410,26 +424,6 @@ legend {
   box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
   border-bottom: 1px solid #121212;
   color: #fff;
-}
-
-select,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-  color: white;
-  height: 21px;
 }
 
 select:-moz-placeholder,

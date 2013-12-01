@@ -1,0 +1,55 @@
+{% block form_start %}
+    {% spaceless %}
+        {% set method = method|upper %}
+        {% if method in ["GET", "POST"] %}
+            {% set form_method = method %}
+        {% else %}
+            {% set form_method = "POST" %}
+        {% endif %}
+        {% if form_type is defined %}
+            {% set attr_form = attr|merge({'class': (attr.class|default('') ~ ' well form-' ~ form_type)|trim}) %}
+        {% else %}
+            {% set attr_form = attr %}
+        {% endif %}
+        <form role="form"
+              method="{{ form_method|lower }}" action="{{ action }}"{% for attrname, attrvalue in attr_form %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
+        {% if form_method != method %}
+            <input type="hidden" name="_method" value="{{ method }}"/>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_start %}
+
+{% block form_rows %}
+    {% spaceless %}
+        {% set child_vars = {} %}
+        {% if form_type is defined %}
+            {% set child_vars = child_vars|merge({'form_type': form_type}) %}
+        {% endif %}
+
+        {% for child in form %}
+            {{ form_row(child, child_vars) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock form_rows %}
+
+{% block form_row %}
+    {% spaceless %}
+        {% if form_type is defined and form_type == 'inline' %}
+            <div class="form-group">
+                {{ block('inline_row') }}
+            </div>
+        {% elseif form_type is defined and form_type == 'horizontal' %}
+            <div class="form-group">
+                {{ block('horizontal_row') }}
+            </div>
+        {% else %}
+
+            <div class="form-group">
+                {{ form_label(form) }}
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+            </div>
+
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_row %}

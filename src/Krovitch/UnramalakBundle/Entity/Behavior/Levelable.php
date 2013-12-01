@@ -13,6 +13,8 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 trait Levelable
 {
     /**
+     * Return event dispatcher
+     *
      * @return EventDispatcher
      */
     abstract function getEventDispatcher();

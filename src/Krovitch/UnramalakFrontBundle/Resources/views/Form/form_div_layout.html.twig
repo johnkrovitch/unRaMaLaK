@@ -1,59 +1,10 @@
-{% block form_start %}
-    {% spaceless %}
-        {% set method = method|upper %}
-        {% if method in ["GET", "POST"] %}
-            {% set form_method = method %}
-        {% else %}
-            {% set form_method = "POST" %}
-        {% endif %}
-        {% if form_type is defined %}
-            {% set attr_form = attr|merge({'class': (attr.class|default('') ~ ' well form-' ~ form_type)|trim}) %}
-        {% else %}
-            {% set attr_form = attr %}
-        {% endif %}
-        <form method="{{ form_method|lower }}" class="well" action="{{ action }}"{% for attrname, attrvalue in attr_form %} {{ attrname }}="{{ attrvalue }}"{% endfor %}{% if multipart %} enctype="multipart/form-data"{% endif %}>
-        {% if form_method != method %}
-            <input type="hidden" name="_method" value="{{ method }}" />
-        {% endif %}
-    {% endspaceless %}
-{% endblock form_start %}
+{% use 'KrovitchUnramalakFrontBundle:Form:form.html.twig' %}
+{% use 'KrovitchUnramalakFrontBundle:Form:widgets.html.twig' %}
+{% use 'KrovitchUnramalakFrontBundle:Form:fields.html.twig' %}
 
 {# Widgets #}
 
-{% block form_widget %}
-    {% spaceless %}
-        {% if compound %}
-            {{ block('form_widget_compound') }}
-        {% else %}
-            {{ block('form_widget_simple') }}
-        {% endif %}
-    {% endspaceless %}
-{% endblock form_widget %}
 
-{% block form_widget_simple %}
-    {% spaceless %}
-        {% set type = type|default('text') %}
-        {% if attr.placeholder is defined %}
-            {% set attr = attr|merge({'placeholder': attr.placeholder|trans({}, translation_domain) }) %}
-        {% endif %}
-        {% if attr.prepend_input is defined and attr.append_input is defined and attr.prepend_input is not empty and attr.append_input is not empty %}
-            {{ block('form_widget_prepend_append_input') }}
-        {% elseif attr.prepend_input is defined and attr.prepend_input is not empty %}
-            {{ block('form_widget_prepend_input') }}
-        {% elseif attr.append_input is defined and attr.append_input is not empty %}
-            {{ block('form_widget_append_input') }}
-        {% else %}
-            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
-        {% endif %}
-        {% if attr.help is defined and attr.help is not empty %}
-            {{ block('help_inline') }}
-        {% endif %}
-        {{ form_errors(form) }}
-        {% if attr.help_block is defined and attr.help_block is not empty %}
-            {{ block('help_block') }}
-        {% endif %}
-    {% endspaceless %}
-{% endblock form_widget_simple %}
 
 {% block form_widget_prepend_append_input %}
     {% spaceless %}
@@ -112,17 +63,6 @@
     {% endspaceless %}
 {% endblock form_widget_append_input %}
 
-{% block form_widget_compound %}
-    {% spaceless %}
-        <div {{ block('widget_container_attributes') }}>
-            {% if form.parent is empty %}
-                {{ form_errors(form) }}
-            {% endif %}
-            {{ block('form_rows') }}
-            {{ form_rest(form) }}
-        </div>
-    {% endspaceless %}
-{% endblock form_widget_compound %}
 
 {% block collection_widget %}
     {% spaceless %}
@@ -472,19 +412,6 @@
     {% endspaceless %}
 {% endblock repeated_row %}
 
-{% block form_row %}
-    {% spaceless %}
-        {% if form_type is defined and form_type == 'inline' %}
-            {{ block('inline_row') }}
-        {% elseif form_type is defined and form_type == 'horizontal' %}
-            {{ block('horizontal_row') }}
-        {% else %}
-            {{ form_label(form) }}
-            {{ form_widget(form) }}
-            {{ form_errors(form) }}
-        {% endif %}
-    {% endspaceless %}
-{% endblock form_row %}
 
 {% block inline_row %}
     {{ form_widget(form) }}&nbsp;
@@ -622,18 +549,7 @@
 
 {# Support #}
 
-{% block form_rows %}
-    {% spaceless %}
-        {% set child_vars = {} %}
-        {% if form_type is defined %}
-            {% set child_vars = child_vars|merge({'form_type': form_type}) %}
-        {% endif %}
 
-        {% for child in form %}
-            {{ form_row(child, child_vars) }}
-        {% endfor %}
-    {% endspaceless %}
-{% endblock form_rows %}
 
 {% block widget_attributes %}
     {% spaceless %}

@@ -1,0 +1,38 @@
+{% block form_widget %}
+    {% spaceless %}
+        {% if compound %}
+            {{ block('form_widget_compound') }}
+        {% else %}
+            {{ block('form_widget_simple') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_widget %}
+
+{% block form_widget_simple %}
+    {% spaceless %}
+        {% set type = type|default('text') %}
+        {% if attr.placeholder is defined %}
+            {% set attr = attr|merge({'placeholder': attr.placeholder|trans({}, translation_domain) }) %}
+        {% endif %}
+
+        {# bootrap css #}
+        {% set attr = attr|merge({'class': (attr.class|default('') ~ ' form-control')|trim}) %}
+
+        {% if attr.prepend_input is defined and attr.append_input is defined and attr.prepend_input is not empty and attr.append_input is not empty %}
+            {{ block('form_widget_prepend_append_input') }}
+        {% elseif attr.prepend_input is defined and attr.prepend_input is not empty %}
+            {{ block('form_widget_prepend_input') }}
+        {% elseif attr.append_input is defined and attr.append_input is not empty %}
+            {{ block('form_widget_append_input') }}
+        {% else %}
+            <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}>
+        {% endif %}
+        {% if attr.help is defined and attr.help is not empty %}
+            {{ block('help_inline') }}
+        {% endif %}
+        {{ form_errors(form) }}
+        {% if attr.help_block is defined and attr.help_block is not empty %}
+            {{ block('help_block') }}
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_widget_simple %}

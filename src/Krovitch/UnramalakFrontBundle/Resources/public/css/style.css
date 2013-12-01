@@ -194,24 +194,24 @@ a.btn {
   height: 28px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000313}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000312}}
 #unramalak {
   padding: 20px;
   margin-top: 30px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000320}}
 .alert-container {
   position: fixed;
   left: 1165px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000325}}
 .alert-container .alert {
   margin-bottom: 5px;
   opacity: 0.9;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000332}}
 .form-signin {
   max-width: 300px;
   padding: 19px 29px 29px;
@@ -230,3 +230,23 @@ a.btn {
 }
 
 /**************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000354}}
+.avatars img.avatar {
+  height: 50px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000360}}
+.media-collection ul {
+  clear: both;
+  display: inline-block;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000364}}
+.media-collection ul li {
+  display: block;
+  float: left;
+  padding: 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000369}}
+.media-collection ul li img {
+  cursor: pointer;
+}
