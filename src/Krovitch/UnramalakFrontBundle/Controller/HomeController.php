@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use GeorgetteParty\BaseBundle\Controller\BaseController;
 use Krovitch\KrovitchUserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class HomeController extends BaseController
 {
@@ -32,10 +34,21 @@ class HomeController extends BaseController
 
         if ($form->isValid()) {
             $userManager->updateUser($user);
+            $this->logUser($user);
             // redirect to hero creation
             return $this->redirect('@hero.create');
         }
 
         return ['form' => $form->createView()];
+    }
+
+    public function logUser(User $user)
+    {
+        $token = new UsernamePasswordToken($user, null, "your_firewall_name", $user->getRoles());
+        $this->get("security.context")->setToken($token); // now the user is logged in
+
+        // now dispatch the login event
+        $event = new InteractiveLoginEvent($this->getRequest(), $token);
+        $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
     }
 }
