@@ -6,7 +6,7 @@
                 class="caret"></span></a>
 
     <div class="row map-container">
-        <div class="col-md-8">
+        <div class="col-md-12">
 
             {# Maps #}
             {% if (maps|length > 0) %}
@@ -30,7 +30,13 @@
                             <td>{{ map.name }}</td>
                             <td>{{ map.description|truncate('100', true, '...') }}</td>
                             <td>
-                                <a href="{{ path('admin_action', {action: 'regenerate', id: map.id, entity: 'map'}) }}">{{ 'unramalak.admin.map.regenerate' }}</a>
+                                <a href="{{ path('map.test', {id: map.id}) }}">
+                                    <span class="glyphicon glyphicon-globe"></span>
+                                    {{ 'unramalak.admin.map.test'|trans }}
+                                </a>
+                                <a href="{{ path('map.regenerate', {id: map.id}) }}">
+                                    {{ 'unramalak.admin.map.regenerate'|trans }}
+                                </a>
                                 {% include 'KrovitchUnramalakBundle:Templates:table.actions.html.twig' with {id: map.id, entity: 'map'} %}
                             </td>
                         </tr>

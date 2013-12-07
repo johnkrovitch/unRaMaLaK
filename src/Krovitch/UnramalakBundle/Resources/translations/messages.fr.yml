@@ -6,9 +6,13 @@ unramalak.admin.description: description
 # admin actions
 unramalak.admin.edit: editer
 unramalak.admin.delete: supprimer
+unramalak.admin.map.regenerate: regénéner
+unramalak.admin.map.test: tester
 
 # admin entities
 unramalak.admin.maps: Les Maps
+
+
 
 
 #editor.map.title: Map

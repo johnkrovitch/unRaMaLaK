@@ -14,7 +14,7 @@ use Symfony\Component\Security\Acl\Exception\Exception;
  */
 class Resources
 {
-    public $texturesBundlePath = '/src/Krovitch/UnramalakBundle/Resources/public/img/textures/';
+    public $texturesBundlePath = '/src/Krovitch/UnramalakFrontBundle/Resources/public/img/textures/';
     public $texturesWebPath = '/bundles/krovitchunramalak/img/textures/';
     public $allowedTextures = ['sand', 'water', 'plains'];
 

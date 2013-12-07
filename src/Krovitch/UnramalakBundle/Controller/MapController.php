@@ -1,9 +1,13 @@
 <?php
 
 namespace Krovitch\UnramalakBundle\Controller;
+
 use GeorgetteParty\BaseBundle\Controller\BaseController;
+use Krovitch\UnramalakBundle\Entity\Map;
+use Krovitch\UnramalakBundle\Manager\MapManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -55,7 +59,7 @@ class MapController extends BaseController
         // TODO check security
         $mapData = json_decode($request->get('data'));
         $map = $this->getManager('Map')->find($request->get('id'));
-        $this->redirect404Unless($map, 'Unable to find map with id '.$this->getRequest()->get('id'));
+        $this->redirect404Unless($map, 'Unable to find map with id ' . $this->getRequest()->get('id'));
         // save map in database
         $this->getManager('Map')->setData($mapData);
         $this->getManager('Map')->save($map);
@@ -63,12 +67,28 @@ class MapController extends BaseController
         return new Response('0');
     }
 
-//    protected function renderJson($content)
-//    {
-//        $response = new Response();
-//        $response->setContent($content);
-//        $response->headers->set('Content-Type', 'application/json');
-//
-//        return $response;
-//    }
+    /**
+     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     * @Template()
+     */
+    public function testAction(Map $map)
+    {
+        // get map json content for the view
+        $mapJson = $this->getManager('Map')->load($map);
+        // get map textures
+        $textures = $this->getManager('Map')->loadTextures($map);
+
+        return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
+    }
+
+    /**
+     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     */
+    public function regenerateAction(Map $map)
+    {
+        $this->getManager('Map')->regenerate($map);
+        $this->setMessage('Map was regenerated succesfully !');
+
+        return $this->redirect($this->getRequest()->headers->get('referer'));
+    }
 }

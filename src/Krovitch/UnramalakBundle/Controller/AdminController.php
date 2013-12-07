@@ -29,22 +29,8 @@ class AdminController extends BaseController
      */
     public function executeAction($action, $entity, $id)
     {
-        if ($entity == 'map') {
 
-
-        }
     }
 
-    protected function handleMap($action, $id)
-    {
-        /** @var MapManager $manager */
-        $manager = $this->getManager('Map');
-        $map = $manager->find($id);
-        $this->redirect404Unless($map, 'Unable to find map (id="'.$id.'")');
 
-        if ($action == 'regenerate') {
-            $manager->regenerate($map);
-            $this->setMessage('Map was regenerated succesfully !');
-        }
-    }
 }

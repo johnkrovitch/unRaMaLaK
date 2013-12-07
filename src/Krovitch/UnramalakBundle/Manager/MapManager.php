@@ -1,6 +1,7 @@
 <?php
 
 namespace Krovitch\UnramalakBundle\Manager;
+
 use GeorgetteParty\BaseBundle\Manager\BaseManager;
 use Krovitch\UnramalakBundle\Entity\Map;
 use Krovitch\UnramalakBundle\Utils\Json\MapJson;
@@ -14,6 +15,7 @@ use Krovitch\UnramalakBundle\Utils\Xml\MapXml;
  */
 class MapManager extends BaseManager
 {
+    protected $mapFilePath = '';
     /**
      * Map data
      * @var
@@ -66,8 +68,9 @@ class MapManager extends BaseManager
      */
     public function regenerate(Map $map)
     {
+        $path = new Path();
         // read xml map data
-        $mapDataXml = new MapXml($map);
+        $mapDataXml = new MapXml($map, $path->getXmlPath());
         // recreate xml file
         $dataFile = $mapDataXml->create();
         // saving new location
