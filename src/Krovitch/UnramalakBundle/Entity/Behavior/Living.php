@@ -14,6 +14,13 @@ use Krovitch\UnramalakBundle\Entity\UnramalakEvent;
 trait Living
 {
     /**
+     * Return event dispatcher
+     *
+     * @return EventDispatcher
+     */
+    abstract function getEventDispatcher();
+
+    /**
      * @ORM\Column(type="integer")
      */
     protected $life;

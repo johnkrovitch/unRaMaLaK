@@ -1,5 +1,4 @@
 @import "compass";
-
 // globals
 @import "partials/base";
 @import "partials/menu";
@@ -36,9 +35,10 @@ body {
   margin: 0 auto 20px;
 
   @include border-radius(5px, 5px);
-  @include box-shadow(2px 2px 2px rgba(0,0,0,.05));
+  @include box-shadow(2px 2px 2px rgba(0, 0, 0, .05));
 }
-.form-signin  {
+
+.form-signin {
   div.text-center {
     margin-top: 20px;
   }
@@ -47,4 +47,28 @@ body {
 /**************/
 canvas {
 
+}
+
+// media collection
+.avatars {
+  img.avatar {
+    height: 50px;
+  }
+}
+
+.media-collection {
+  ul {
+    clear: both;
+    display: inline-block;
+
+    li {
+      display: block;
+      float: left;
+      padding: 0 10px;
+
+      img {
+        cursor: pointer;
+      }
+    }
+  }
 }

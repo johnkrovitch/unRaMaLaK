@@ -31,6 +31,15 @@ class Unit extends Entity
     protected $name;
 
     /**
+     * Attributes (like strength, dexterity...) of the unit
+     *
+     * @ORM\OneToMany(targetEntity="UnitAttribute", mappedBy="unit")
+     */
+    protected $attributes;
+
+
+    // before refactoring
+    /**
      * @ORM\Column(type="string", length=100)
      * @Assert\File(maxSize = "2M", mimeTypes = {"image/png", "image/jpeg"}, mimeTypesMessage = "Please upload a png or a jpg lower than 2M")
      */
@@ -180,5 +189,21 @@ class Unit extends Entity
     public function getRace()
     {
         return $this->race;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttributes()
+    {
+        return $this->attributes;
+    }
+
+    /**
+     * @param mixed $attributes
+     */
+    public function setAttributes($attributes)
+    {
+        $this->attributes = $attributes;
     }
 }

@@ -1,6 +1,5 @@
 @import "compass";
 
-
 // migration to bootstrap 3
 .navbar {
   background-color: #363636;
@@ -25,9 +24,32 @@
   }
 }
 
+// panels
+.panel {
+  background-color: #444444;
+  border-color: #222222;
+}
 
+// inputs
+select, input.form-control, .uneditable-input {
+  color: white;
+}
 
+input[type=submit], button.btn {
+  background-color: #1C1C1C;
 
+  &:hover {
+    background-color: #222222;
+  }
+}
+
+.form-group.has-error {
+  .control-label,
+  .help-block,
+  .help-inline {
+    color: #fc5b5e;
+  }
+}
 
 /*
  * Darkstrap v0.9.2
@@ -412,26 +434,6 @@ legend {
   color: #fff;
 }
 
-select,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-  color: white;
-  height: 21px;
-}
-
 select:-moz-placeholder,
 input[type="text"]:-moz-placeholder,
 input[type="password"]:-moz-placeholder,
@@ -601,12 +603,6 @@ select {
   -webkit-box-shadow: 0 0 6px #fc5b5e;
   -moz-box-shadow: 0 0 6px #fc5b5e;
   box-shadow: 0 0 6px #fc5b5e;
-}
-
-.control-group.error .control-label,
-.control-group.error .help-block,
-.control-group.error .help-inline {
-  color: #fc5b5e;
 }
 
 .control-group.info input, .control-group.info select, .control-group.info textarea {

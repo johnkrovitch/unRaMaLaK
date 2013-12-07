@@ -1,0 +1,71 @@
+{% block media_collection_widget %}
+    <div class="avatars media-collection {{ form.vars.id }}-container">
+        {% if (form.vars.data|length > 0) %}
+
+            <ul>
+                {% for media in form.vars.data %}
+                    <li>
+                        <img class="avatar" src="{{ asset(media.file) }}" alt="{{ media.name }}"/>
+                        <span class="help-block">{{ media.name }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <input type="hidden" name="{{ form.vars.name }}" value="" id="{{ form.vars.id }}">
+        {% else %}
+            {{ 'unramalak.media.no_media_available'|trans }}
+        {% endif %}
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var container = $('.{{ form.vars.id }}-container');
+            var input = container.find('#{{ form.vars.id }}');
+
+            container.find('li img').on('click', function () {
+                input.val($(this).attr('src'));
+                // TODO add class active
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block attributes_collection_widget %}
+    <div class="form-group attributes-container">
+
+        <span class="help-block">
+            <label for="{{ form.vars.id ~ '-remaining-points' }}">
+                {{ 'unramalak.hero.remaining-points'|trans }}
+            </label>
+            <input type="text" readonly="true" id="{{ form.vars.id ~ '-remaining-points' }}" class="remaining-points"
+                   value="20"/>
+        </span>
+
+        {% if (attributes|length > 0) %}
+
+            {% for attribute in attributes %}
+                <div class="attribute">
+
+                    <label for="{{ form.vars.id ~ '-' ~ attribute.name }}">{{ attribute.name }}</label>
+                    <input type="number" min="{{ minLimit }}" max="{{ maxLimit }}" value="0"
+                           id="{{ form.vars.id ~ '-' ~ attribute.name }}"/>
+
+                    <button class="btn btn-plus">+</button>
+                    <button class="btn btn-minus">-</button>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            {{ 'unramalak.hero.no_attribute_available'|trans }}
+        {% endif %}
+
+        <script>
+            $(document).on('ready', function () {
+                AttributesForm.init('{{ minLimit }}', '{{ maxLimit }}', 20);
+                AttributesForm.bind('.attributes-container');
+            });
+        </script>
+
+    </div>
+{% endblock %}
