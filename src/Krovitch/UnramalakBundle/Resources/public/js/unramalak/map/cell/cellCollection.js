@@ -25,8 +25,21 @@ $.Class('Unramalak.CellCollection', {}, {
       this.cells[x] = [];
     }
     this.cells[x][y] = cell;
-    // add in paper.js group for mass manipulations
+    // add to paper.js group for mass manipulations
     this.group.addChild(cell.shape);
+  },
+
+  /***
+   * Attach a unit to cell
+   *
+   * @param unit
+   * @param cell
+   */
+  attachUnit: function(unit, cell) {
+    // add to paper.js group for mass manipulations
+    this.group.addChild(unit);
+    // add unit to cell
+    cell.attachUnit(unit);
   },
 
   /**
@@ -76,8 +89,6 @@ $.Class('Unramalak.CellCollection', {}, {
 
     for (cellIndex in this.hitCells) {
       cell = this.hitCells[cellIndex];
-
-      //console.log('cell', data);
 
       if (data['land']) {
 
