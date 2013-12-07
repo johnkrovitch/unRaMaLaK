@@ -46,12 +46,19 @@ input[type=submit]:hover, button.btn:hover {
   background-color: #222222;
 }
 
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000349}}
+.form-group.has-error .control-label,
+.form-group.has-error .help-block,
+.form-group.has-error .help-inline {
+  color: #fc5b5e;
+}
+
 /*
  * Darkstrap v0.9.2
  * By danneu (http://github.com/danneu/darkstrap)
  * Based off Twitter Bootstrap v2.2.2
  */
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000355}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000363}}
 tr.warning,
 tr.success,
 tr.error,
@@ -59,18 +66,18 @@ tr.info {
   color: #fff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000359}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000367}}
 body {
   color: #c6c6c6;
   background-color: #2f2f2f;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000372}}
 a:hover {
   color: #1ab2ff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000383}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000391}}
 textarea,
 input[type="text"],
 input[type="password"],
@@ -90,156 +97,156 @@ input[type="color"],
   background-color: #cccccc;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000387}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000395}}
 select {
   background-color: #cccccc;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000392}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003100}}
 .uneditable-input,
 .uneditable-textarea {
   background-color: #c9c9c9;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000397}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003105}}
 input:-moz-placeholder,
 textarea:-moz-placeholder {
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003102}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003110}}
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003107}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003115}}
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003112}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003120}}
 .control-group.warning .input-prepend .add-on,
 .control-group.warning .input-append .add-on {
   background-color: #faa732;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003117}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003125}}
 .control-group.error .input-prepend .add-on,
 .control-group.error .input-append .add-on {
   background-color: #fc5b5e;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003122}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003130}}
 .control-group.success .input-prepend .add-on,
 .control-group.success .input-append .add-on {
   background-color: #5bb75b;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003127}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003135}}
 .control-group.info .input-prepend .add-on,
 .control-group.info .input-append .add-on {
   background-color: #3a87ad;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003131}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003139}}
 .form-actions {
   background-color: #444444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003136}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003144}}
 .help-block,
 .help-inline {
   color: #ececec;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003141}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003149}}
 .table th,
 .table td {
   border-top: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003145}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003153}}
 .table tbody + tbody {
   border-top: 2px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003149}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003157}}
 .table .table {
   background-color: #2f2f2f;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003153}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003161}}
 .table-bordered {
   border: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003158}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003166}}
 .table-bordered th,
 .table-bordered td {
   border-left: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003163}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003171}}
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
   background-color: #444444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003168}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003176}}
 .table-hover tbody tr:hover td,
 .table-hover tbody tr:hover th {
   background-color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003180}}
 .table tbody tr.success td {
   background-color: #5bb75b;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003184}}
 .table tbody tr.error td {
   background-color: #fc5b5e;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003180}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003188}}
 .table tbody tr.warning td {
   background-color: #faa732;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003184}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003192}}
 .table tbody tr.info td {
   background-color: #3a87ad;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003188}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003196}}
 .table-hover tbody tr.success:hover td {
   background-color: #4cad4c;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003192}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003200}}
 .table-hover tbody tr.error:hover td {
   background-color: #fc4245;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003196}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003204}}
 .table-hover tbody tr.warning:hover td {
   background-color: #f99c19;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003200}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003208}}
 .table-hover tbody tr.info:hover td {
   background-color: #34789a;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003205}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003213}}
 [class^="icon-"],
 [class*=" icon-"] {
   background-image: url("../../../UnramalakBundle/Resources/public/img/glyphicons-halflings.png");
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003221}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003229}}
 .icon-white,
 .nav-pills > .active > a > [class^="icon-"],
 .nav-pills > .active > a > [class*=" icon-"],
@@ -256,76 +263,76 @@ textarea::-webkit-input-placeholder {
   background-image: url("../../../UnramalakBundle/Resources/public/img/glyphicons-halflings-white.png");
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003225}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003233}}
 .btn-link:hover {
   color: #1ab2ff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003229}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003237}}
 .alert {
   background-color: #faa732;
   border: 1px solid #fa7d23;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003234}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003242}}
 .alert-success {
   background-color: #5bb75b;
   border-color: #5cad4c;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003240}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003248}}
 .alert-danger,
 .alert-error {
   background-color: #fc5b5e;
   border-color: #fc4c6d;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003245}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003253}}
 .alert-info {
   background-color: #3a87ad;
   border-color: #318292;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003251}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003259}}
 .nav-tabs > .active > a,
 .nav-tabs > .active > a:hover {
   background-color: #2f2f2f;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003255}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003263}}
 .nav .dropdown-toggle:hover .caret {
   border-top-color: #1ab2ff;
   border-bottom-color: #1ab2ff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003264}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003272}}
 .navbar-text {
   color: #c6c6c6;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003268}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003276}}
 .navbar-link {
   color: #c6c6c6;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003272}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003280}}
 .navbar-link:hover {
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003276}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003284}}
 .navbar .divider-vertical {
   border-left: 1px solid #222222;
   border-right: 1px solid #444444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003281}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003289}}
 .navbar .nav > li > a {
   color: #c6c6c6;
   text-shadow: 0 1px 0 #444444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003288}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003296}}
 .navbar .nav > .active > a,
 .navbar .nav > .active > a:hover,
 .navbar .nav > .active > a:focus {
@@ -333,7 +340,7 @@ textarea::-webkit-input-placeholder {
   background-color: #151515;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003293}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003301}}
 .navbar .btn-navbar {
   background-color: #292929;
   background-image: -moz-linear-gradient(top, #373737, #151515);
@@ -346,24 +353,24 @@ textarea::-webkit-input-placeholder {
   *background-color: #151515;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003305}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003313}}
 .navbar .btn-navbar:hover, .navbar .btn-navbar:active, .navbar .btn-navbar.active, .navbar .btn-navbar.disabled, .navbar .btn-navbar[disabled] {
   background-color: #151515;
   *background-color: #090909;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003310}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003318}}
 .navbar .btn-navbar:active, .navbar .btn-navbar.active {
   background-color: black \9;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003314}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003322}}
 .navbar .nav li.dropdown > a:hover .caret {
   border-top-color: white;
   border-bottom-color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003321}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003329}}
 .navbar .nav li.dropdown.open > .dropdown-toggle,
 .navbar .nav li.dropdown.active > .dropdown-toggle,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle {
@@ -371,13 +378,13 @@ textarea::-webkit-input-placeholder {
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003326}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003334}}
 .navbar .nav li.dropdown > .dropdown-toggle .caret {
   border-top-color: #c6c6c6;
   border-bottom-color: #c6c6c6;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003333}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003341}}
 .navbar .nav li.dropdown.open > .dropdown-toggle .caret,
 .navbar .nav li.dropdown.active > .dropdown-toggle .caret,
 .navbar .nav li.dropdown.open.active > .dropdown-toggle .caret {
@@ -385,7 +392,7 @@ textarea::-webkit-input-placeholder {
   border-bottom-color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003338}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003346}}
 .well {
   -webkit-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
   -moz-box-shadow: rgba(255, 255, 255, 0.1) 0 1px 0, rgba(0, 0, 0, 0.8) 0 1px 7px 0px inset;
@@ -395,7 +402,7 @@ textarea::-webkit-input-placeholder {
   border: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003362}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003370}}
 .darkwell, .breadcrumb, code, pre, select,
 input[type="text"],
 input[type="password"],
@@ -420,17 +427,17 @@ input[type="color"],
   border: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003371}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003379}}
 .breadcrumb {
   border: 0;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003383}}
 .breadcrumb li {
   text-shadow: 0 1px 0 black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003379}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003387}}
 .page-header {
   -webkit-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
   -moz-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
@@ -438,27 +445,27 @@ input[type="color"],
   border-bottom: 1px solid #121212;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003394}}
 h1, h2, h3, h4, h5, h6 {
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003390}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003398}}
 h6 {
   color: #999;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003394}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003402}}
 blockquote {
   border-left-color: #111;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003398}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003406}}
 blockquote.pull-right {
   border-right-color: #111;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003402}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003410}}
 hr {
   -webkit-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
   -moz-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
@@ -467,20 +474,20 @@ hr {
   border-top: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003410}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003418}}
 code {
   border: none;
   padding: 2px 4px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003415}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003423}}
 pre {
   border: none;
   color: #c6c6c6;
   padding: 8px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003421}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003429}}
 legend {
   -webkit-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
   -moz-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
@@ -489,7 +496,7 @@ legend {
   color: #fff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003444}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003452}}
 select:-moz-placeholder,
 input[type="text"]:-moz-placeholder,
 input[type="password"]:-moz-placeholder,
@@ -509,7 +516,7 @@ input[type="color"]:-moz-placeholder,
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003463}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003471}}
 select:-ms-input-placeholder,
 input[type="text"]:-ms-input-placeholder,
 input[type="password"]:-ms-input-placeholder,
@@ -529,7 +536,7 @@ input[type="color"]:-ms-input-placeholder,
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003482}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003490}}
 select::-webkit-input-placeholder,
 input[type="text"]::-webkit-input-placeholder,
 input[type="password"]::-webkit-input-placeholder,
@@ -549,32 +556,32 @@ input[type="color"]::-webkit-input-placeholder,
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003486}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003494}}
 textarea {
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003490}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003498}}
 textarea:-moz-placeholder {
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003494}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003502}}
 textarea:-ms-input-placeholder {
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003498}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003506}}
 textarea::-webkit-input-placeholder {
   color: #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003502}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003510}}
 select {
   height: 29px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003507}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003515}}
 .input-prepend .add-on,
 .input-append .add-on {
   background: #444;
@@ -583,12 +590,12 @@ select {
   text-shadow: 0 1px 0 black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003514}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003522}}
 .form-actions {
   border-top-color: #222;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003518}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003526}}
 .well .form-actions {
   border-top-color: #000;
   background-color: rgba(0, 0, 0, 0.3);
@@ -597,13 +604,13 @@ select {
   margin-bottom: -17px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003527}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003535}}
 .help-inline,
 .help-block {
   color: #999;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003531}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003539}}
 .control-group.warning input, .control-group.warning select, .control-group.warning textarea {
   color: #faa732;
   border-color: #faa732;
@@ -614,7 +621,7 @@ select {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003543}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003551}}
 .control-group.warning input:focus,
 .control-group.warning select:focus,
 .control-group.warning textarea:focus {
@@ -624,14 +631,14 @@ select {
   box-shadow: 0 0 6px #faa732;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003552}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003560}}
 .control-group.warning .control-label,
 .control-group.warning .help-block,
 .control-group.warning .help-inline {
   color: #faa732;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003556}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003564}}
 .control-group.success input, .control-group.success select, .control-group.success textarea {
   color: #5bb75b;
   border-color: #5bb75b;
@@ -642,7 +649,7 @@ select {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003568}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003576}}
 .control-group.success input:focus,
 .control-group.success select:focus,
 .control-group.success textarea:focus {
@@ -652,14 +659,14 @@ select {
   box-shadow: 0 0 6px #5bb75b;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003577}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003585}}
 .control-group.success .control-label,
 .control-group.success .help-block,
 .control-group.success .help-inline {
   color: #5bb75b;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003581}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003589}}
 .control-group.error input, .control-group.error select, .control-group.error textarea {
   color: #fc5b5e;
   border-color: #fc5b5e;
@@ -670,7 +677,7 @@ select {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003593}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003601}}
 .control-group.error input:focus,
 .control-group.error select:focus,
 .control-group.error textarea:focus {
@@ -680,14 +687,7 @@ select {
   box-shadow: 0 0 6px #fc5b5e;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003602}}
-.control-group.error .control-label,
-.control-group.error .help-block,
-.control-group.error .help-inline {
-  color: #fc5b5e;
-}
-
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003606}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003608}}
 .control-group.info input, .control-group.info select, .control-group.info textarea {
   color: #3a87ad;
   border-color: #3a87ad;
@@ -698,7 +698,7 @@ select {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003618}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003620}}
 .control-group.info input:focus,
 .control-group.info select:focus,
 .control-group.info textarea:focus {
@@ -708,21 +708,21 @@ select {
   box-shadow: 0 0 6px #3a87ad;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003627}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003629}}
 .control-group.info .control-label,
 .control-group.info .help-block,
 .control-group.info .help-inline {
   color: #3a87ad;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003633}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003635}}
 input:focus:invalid,
 textarea:focus:invalid,
 select:focus:invalid {
   border-color: #fc5b5e;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003639}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003641}}
 input:focus:invalid:focus,
 textarea:focus:invalid:focus,
 select:focus:invalid:focus {
@@ -730,18 +730,18 @@ select:focus:invalid:focus {
   box-shadow: 0 0 6px #fc5b5e;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003644}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003646}}
 .btn-link {
   text-shadow: none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003648}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003650}}
 .img-polaroid {
   background-color: #111;
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003655}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003657}}
 .nav-tabs .open .dropdown-toggle,
 .nav-pills .open .dropdown-toggle,
 .nav > .open.active > a:hover {
@@ -749,135 +749,135 @@ select:focus:invalid:focus {
   border-color: transparent transparent #666666 transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003660}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003662}}
 .nav > .dropdown.active > a:hover {
   color: #fff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003665}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003667}}
 .nav-tabs .active .dropdown-toggle .caret,
 .nav-pills .active .dropdown-toggle .caret {
   border-top-color: #fff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003669}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003671}}
 .nav-tabs {
   border-bottom: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003673}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003675}}
 .nav-tabs > .active > a, .nav-tabs > .active > a:hover {
   background-color: #2f2f2f;
   color: #fff;
   border-color: #666666 #666666 transparent #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003679}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003681}}
 .nav-tabs > li > a:hover {
   border-color: #2f2f2f #2f2f2f #666666 #2f2f2f;
   background-color: rgba(0, 0, 0, 0.25);
   color: #00aaff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003685}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003687}}
 .nav-tabs.nav-stacked > li > a, .nav-tabs.nav-stacked > li > a:hover {
   border-color: #666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003689}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003691}}
 .well > .nav-tabs > .active > a, .well > .nav-tabs > .active > a:hover {
   background-color: #202020;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003693}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003695}}
 .nav-pills > li > a:hover {
   background-color: rgba(0, 0, 0, 0.25);
   color: #00aaff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003699}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003701}}
 .nav-list > li > a,
 .nav-list .nav-header {
   text-shadow: 0 1px 0 black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003703}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003705}}
 .nav-list > li > a:hover {
   background-color: rgba(0, 0, 0, 0.25);
   color: #00aaff;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003708}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003710}}
 .nav-list .active > a:hover {
   background-color: #0088cc;
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003713}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003715}}
 .tabs-below .nav-tabs {
   border-top: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003717}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003719}}
 .tabs-left .nav-tabs {
   border-right: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003721}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003723}}
 .tabs-right .nav-tabs {
   border-left: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003725}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003727}}
 .tabs-below .nav-tabs > li > a:hover {
   border-top: 1px solid #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003729}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003731}}
 .tabs-left .nav-tabs > li > a:hover {
   border-color: transparent #666666 transparent transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003733}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003735}}
 .tabs-right .nav-tabs > li > a:hover {
   border-color: transparent transparent transparent #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003738}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003740}}
 .tabs-below .nav-tabs .active > a,
 .tabs-below .nav-tabs .active > a:hover {
   border-color: transparent #666666 #666666 #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003743}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003745}}
 .tabs-left .nav-tabs .active > a,
 .tabs-left .nav-tabs .active > a:hover {
   border-color: #666666 transparent #666666 #666666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003748}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003750}}
 .tabs-right .nav-tabs .active > a,
 .tabs-right .nav-tabs .active > a:hover {
   border-color: #666666 #666666 #666666 transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003753}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003755}}
 .nav-list > li > a,
 .nav-list .nav-header {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003757}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003759}}
 .nav-tabs > li > a:hover {
   border-color: transparent transparent #666666 transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003761}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003763}}
 .nav > .disabled > a:hover {
   color: #999;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003765}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003767}}
 .nav-list .divider {
   background-color: transparent;
   -webkit-box-shadow: rgba(255, 255, 255, 0.07) 0 1px 0;
@@ -886,12 +886,12 @@ select:focus:invalid:focus {
   border-bottom: 1px solid #121212;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003773}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003775}}
 .navbar .brand {
   text-shadow: 0 1px 0 black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003777}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003779}}
 .navbar .divider-vertical {
   border: transparent;
   -webkit-box-shadow: rgba(255, 255, 255, 0.07) 1px 0 0;
@@ -900,18 +900,18 @@ select:focus:invalid:focus {
   border-right: 1px solid #121212;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003785}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003787}}
 .navbar-inverse .brand {
   color: #555;
   text-shadow: 0 1px 0 white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003790}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003792}}
 .navbar-inverse .brand:hover {
   color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003794}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003796}}
 .navbar-inverse .navbar-inner {
   background: #fafafa;
   border: 1px solid #030303;
@@ -925,17 +925,17 @@ select:focus:invalid:focus {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#999999', GradientType=0);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003807}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003809}}
 .navbar-inverse .nav > li > a {
   color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003811}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003813}}
 .navbar-inverse .nav > li > a:hover {
   color: #333;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003816}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003818}}
 .navbar-inverse .nav > .active > a,
 .navbar-inverse .nav > .active > a:hover {
   background-color: #e5e5e5;
@@ -943,7 +943,7 @@ select:focus:invalid:focus {
   color: #555555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003824}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003826}}
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
@@ -951,20 +951,20 @@ select:focus:invalid:focus {
   color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003829}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003831}}
 .navbar-inverse .nav li.dropdown > a:hover .caret {
   border-top-color: #555;
   color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003835}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003837}}
 .navbar-inverse .nav > li > a:focus,
 .navbar-inverse .nav > li > a:hover {
   background-color: transparent;
   color: #333;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003842}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003844}}
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle,
 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle {
@@ -972,7 +972,7 @@ select:focus:invalid:focus {
   color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003849}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003851}}
 .navbar-inverse .nav li.dropdown.open > .dropdown-toggle .caret,
 .navbar-inverse .nav li.dropdown.active > .dropdown-toggle .caret,
 .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle .caret {
@@ -981,14 +981,14 @@ select:focus:invalid:focus {
   color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003855}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003857}}
 .navbar-inverse .navbar-search .search-query {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6) inset;
   background-color: white;
   color: #333;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003861}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003863}}
 .navbar-inverse .navbar-search input.search-query:focus {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6) inset, 0 0 8px rgba(82, 168, 236, 0.6);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6) inset, 0 0 8px rgba(82, 168, 236, 0.9);
@@ -996,156 +996,156 @@ select:focus:invalid:focus {
   outline: 0 none;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003868}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003870}}
 .navbar-inverse .nav li.dropdown > .dropdown-toggle .caret {
   border-bottom-color: #555;
   border-top-color: #555;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003873}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003875}}
 .navbar-inverse .nav li.dropdown > a:hover .caret {
   border-bottom-color: #333;
   border-top-color: #333;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003878}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003880}}
 .navbar-inverse .navbar-search .search-query:-moz-placeholder {
   color: #999;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003883}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003885}}
 .pagination ul > li > a,
 .pagination ul > li > span {
   background: transparent;
   border-color: #666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003890}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003892}}
 .pagination ul > li > a:hover,
 .pagination ul > .active > a,
 .pagination ul > .active > span {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003894}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003896}}
 .pager li > a, .pager li > span {
   background-color: transparent;
   border-color: #666;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003899}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003901}}
 .pager li > a:hover {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003905}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003907}}
 .pager .disabled > a,
 .pager .disabled > a:hover,
 .pager .disabled > span {
   background-color: transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003910}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003912}}
 .label,
 .badge {
   text-shadow: 1px 1px 0 black;
   box-shadow: 1px 1px 0 black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003916}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003918}}
 .label-inverse,
 .badge-inverse {
   background-color: #111;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003920}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003922}}
 .hero-unit {
   background: #111;
   color: #ccc;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003925}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003927}}
 .thumbnail {
   border-color: #666;
   box-shadow: 0 1px 3px black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003930}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003932}}
 .thumbnail .caption {
   color: #999;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003934}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003936}}
 .alert {
   color: white;
   border-color: #a86404;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003940}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003942}}
 .alert h1, .alert h2, .alert h3, .alert h4, .alert h5, .alert h6 {
   color: #c17305;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003944}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003946}}
 .alert-error {
   border-color: #d40408;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003948}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003950}}
 .alert-error h1, .alert-error h2, .alert-error h3, .alert-error h4, .alert-error h5, .alert-error h6 {
   color: #ed0409;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003952}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003954}}
 .alert-success {
   border-color: #2d662d;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003956}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003958}}
 .alert-success h1, .alert-success h2, .alert-success h3, .alert-success h4, .alert-success h5, .alert-success h6 {
   color: #347834;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003960}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003962}}
 .alert-info {
   border-color: #1a3c4e;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003964}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003966}}
 .alert-info h1, .alert-info h2, .alert-info h3, .alert-info h4, .alert-info h5, .alert-info h6 {
   color: #204B61;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003968}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003970}}
 select::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 11px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003973}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003975}}
 select::-webkit-scrollbar-thumb {
   border-radius: 8px;
   border: 2px solid #202020;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003979}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003981}}
 .modal {
   background-color: #444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003983}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003985}}
 .modal-header {
   border-bottom: 1px solid #222222;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003987}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003989}}
 .modal-body p {
   color: #c6c6c6;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003991}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003993}}
 .modal-footer {
   background-color: #373737;
   border-top: 1px solid #222222;
@@ -1155,35 +1155,35 @@ select::-webkit-scrollbar-thumb {
   box-shadow: 0 1px 0 #333333 inset;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031000}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031002}}
 .popover {
   background: #444;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border: 1px solid black;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031006}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031008}}
 .popover-title {
   background: #373737;
   border-bottom-color: #222;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031011}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031013}}
 .popover.top .arrow:after {
   border-top-color: #444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031015}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031017}}
 .popover.right .arrow:after {
   border-right-color: #444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031019}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031021}}
 .popover.bottom .arrow:after {
   border-bottom-color: #444;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031023}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\000031025}}
 .popover.left .arrow:after {
   border-left-color: #444;
 }
