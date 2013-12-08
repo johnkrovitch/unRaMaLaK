@@ -9,6 +9,9 @@ var mapMode = {
  * Map class
  */
 $.Class('Unramalak.Map', {}, {
+    /**
+     * @property {Unramalak.CellCollection}
+     */
     cells: null,
     cellsData: [],
     cellPadding: 0,
@@ -28,9 +31,14 @@ $.Class('Unramalak.Map', {}, {
     radius: 0,
     renderer: null,
     startingPoint: null,
+    /**
+     * @property {Unramalak.Unit.UnitCollection}
+     */
+    units: null,
 
     /**
      * Initialize map parameters, gathering data from context
+     *
      * @param context Execution context. Should contains all data required by map (like canvasId, name, cells data...)
      */
     init: function (context) {
@@ -59,6 +67,7 @@ $.Class('Unramalak.Map', {}, {
 
     /**
      * Load data from context. Those data will be used during map building
+     *
      * @param data
      */
     load: function (data) {
@@ -104,13 +113,19 @@ $.Class('Unramalak.Map', {}, {
             });
         });
         var map = this;
-        // onclick anywhere but on menu and map, unselect user choice
         $(document).on('click contextmenu', function () {
             map.menu.unselect();
         });
+        // TODO bind events with eventManager
+        // binding menu actions
         // bind menu events
+        // onclick anywhere but on menu and map, unselect user choice
         this.menu.bind(this.save, this);
+
         this.onNotify = onNotify;
+        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
+
+
         // bind controls
         //this.keyboardControl = new Unramalak.Keyboard();
         //this.keyboardControl.bind(this, this.move, this.units[0].shape);
@@ -163,7 +178,7 @@ $.Class('Unramalak.Map', {}, {
             hexagonCenterY += yRadius * 3 + this.cellPadding;
         }
 
-        console.log('cells data', this.cellsData);
+        //console.log('cells data', this.cellsData);
 
 
         // TODO move this in Cell ?
@@ -191,9 +206,9 @@ $.Class('Unramalak.Map', {}, {
         // draw cells
         this.cells.render();
         // draw units
-        this.units.forEach(function (unit) {
-            unit.render();
-        });
+//        this.units.forEach(function (unit) {
+//            unit.render();
+//        });
         // notify if error has been encountered
         for (var i = 0; i < this.errors.length; i++) {
             this.notify(this.errors[i], 'error');
@@ -260,6 +275,21 @@ $.Class('Unramalak.Map', {}, {
                 map.notify('An error has occurred during map save', 'error');
             }
         });
+    },
+
+    /**
+     *
+     * @param {Unramalak.Event.Event} event
+     */
+    addUnit: function (event) {
+        // by default, the unit will be at 0,0
+        var position = new Unramalak.Position(0, 0);
+        // creating a default unit
+        var unit = new Unramalak.Unit();
+        // attach to a cell
+        this.cells.attachUnit(unit, position);
+        // TODO see if util
+        //this.units.add(unit);
     },
 
     /**

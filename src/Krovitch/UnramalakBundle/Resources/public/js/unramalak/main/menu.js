@@ -16,9 +16,14 @@ $.Class('Unramalak.Menu', {}, {
         var _super = this;
         // click on actions buttons: call map callback
         this.actions.on('click', function () {
+            var event = $(this).data('event');
+
+            // TODO remove the old way
             if ($(this).data('action') == 'save') {
                 onSave.call(map || this);
             }
+            // event handle with EventManager
+            EventManager.dispatch(event);
         });
         // click on items buttons: save value
         this.items.on('click', function (e) {

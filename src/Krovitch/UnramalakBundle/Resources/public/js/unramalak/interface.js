@@ -3,32 +3,42 @@
 // Also, it keeps IDE completion, removed because of jquery class plugin
 
 var Unramalak = {
-  Application: {},
-  BaseCell: {},
-  Container: {},
-  Cell: {},
-  CellCollection: {},
-  Control: {
-    Mouse: {},
-    MouseEvent: {}
-  },
-  Event: {
-    EventManager: {},
-    Event: {}
-  },
-  ImageLoader: {},
-  Land: {},
-  Map: {
-    Context: {},
-    Unit: {},
-    BaseUnit: {}
-  },
-  Menu: {},
-  Raster: {},
-  Renderer: {},
-  Path: {
-    Finder: {},
-    Rules: {}
-  },
-  Dimension: {}
+    Application: {},
+    BaseCell: {},
+    Container: {},
+    Cell: {},
+    CellCollection: {},
+    Control: {
+        Mouse: {},
+        MouseEvent: {}
+    },
+    Dimension: {},
+    Event: {
+        EventManager: {},
+        Event: {},
+        EventSubscription: {}
+    },
+    ImageLoader: {},
+    Land: {},
+    Map: {
+
+        Context: {}
+    },
+    Menu: {},
+    Path: {
+        Finder: {},
+        Rules: {}
+    },
+    Position: {
+        x: 0,
+        y: 0
+    },
+    Raster: {},
+    Renderer: {},
+    Unit: {
+        BaseUnit: {},
+        Unit: {},
+        UnitManager: {},
+        UnitCollection: {}
+    }
 };
