@@ -37,15 +37,6 @@ select, input.form-control, .uneditable-input {
   color: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000338}}
-input[type=submit], button.btn {
-  background-color: #1C1C1C;
-}
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000341}}
-input[type=submit]:hover, button.btn:hover {
-  background-color: #222222;
-}
-
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\0000349}}
 .form-group.has-error .control-label,
 .form-group.has-error .help-block,
