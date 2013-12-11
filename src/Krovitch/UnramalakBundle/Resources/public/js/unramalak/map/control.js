@@ -8,6 +8,8 @@ var MouseClick = {
     rightClick: 2
 };
 
+//$.extend(MouseEventManager, EventManager);
+
 /**
  *
  */
@@ -36,7 +38,22 @@ $.Class('Unramalak.Control.Mouse', {}, {
             // callback
             callback.call(map || this, mouseEvent);
         });
+    },
+
+    onMouseEvent: function (map, event) {
+        // create mouse event according to paper js mouse event
+        var mouseEvent = new Unramalak.Control.MouseEvent(event.data);
+
+        console.log('left click');
+
+        if (mouseEvent.isLeftClick()) {
+            console.log('left click');
+            map.cells.hitCells.push(cell);
+        }
+
     }
+
+
 });
 
 $.Class('Unramalak.Control.MouseEvent', {}, {

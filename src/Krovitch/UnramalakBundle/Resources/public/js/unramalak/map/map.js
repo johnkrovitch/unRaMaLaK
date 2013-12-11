@@ -95,23 +95,28 @@ $.Class('Unramalak.Map', {}, {
     },
 
     bind: function (onNotify) {
+//        this.cells.each(this, function (cell) {
+//            // onMouseDown
+//            this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
+//                if (mouseEvent.isLeftClick()) {
+//                    this.cells.hitCells.push(cell);
+//                }
+//            });
+//            // onMouseUp
+//            this.mouseControl.bind('mouseup', cell, this, function () {
+//                this.update();
+//            });
+//            this.mouseControl.bind('mousedrag', cell, this, function (mouseEvent) {
+//                if (mouseEvent.isRightClick()) {
+//                    this.move(mouseEvent.delta);
+//                }
+//            });
+//        });
         this.cells.each(this, function (cell) {
-            // onMouseDown
-            this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
-                if (mouseEvent.isLeftClick()) {
-                    this.cells.hitCells.push(cell);
-                }
-            });
-            // onMouseUp
-            this.mouseControl.bind('mouseup', cell, this, function () {
-                this.update();
-            });
-            this.mouseControl.bind('mousedrag', cell, this, function (mouseEvent) {
-                if (mouseEvent.isRightClick()) {
-                    this.move(mouseEvent.delta);
-                }
-            });
+            cell.bind();
         });
+
+
         var map = this;
         $(document).on('click contextmenu', function () {
             map.menu.unselect();
@@ -121,10 +126,12 @@ $.Class('Unramalak.Map', {}, {
         // bind menu events
         // onclick anywhere but on menu and map, unselect user choice
         this.menu.bind(this.save, this);
-
         this.onNotify = onNotify;
-        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
 
+        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
+        EventManager.subscribe('unramalak.map.mouseDown', this.mouseControl.onMouseEvent, [this], this.mouseControl);
+
+        //}, []);
 
         // bind controls
         //this.keyboardControl = new Unramalak.Keyboard();

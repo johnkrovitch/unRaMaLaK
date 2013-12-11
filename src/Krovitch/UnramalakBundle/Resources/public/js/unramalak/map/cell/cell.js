@@ -1,5 +1,9 @@
 /**
- * Unramalak.BaseCell
+ * BaseCell
+ *
+ * Has basic binding, rendering functions for cell
+ *
+ * @namespace {Unramalak.BaseCell}
  */
 Unramalak.Container('Unramalak.BaseCell', {}, {
     land: null,
@@ -23,8 +27,13 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         }
     },
 
-    bind: function (event, callback) {
-        this.shape.attach(event, callback);
+    bind: function () {
+        this.shape.attach('mousedown', function () {
+            console.log('trace', this);
+
+            var event = Unramalak.Event.Event('');
+            EventManager.dispatch('unramalak.map.mouseDown');
+        });
     },
 
     /**
@@ -41,7 +50,11 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
 });
 
 /**
- * Unramalak.Cell
+ * Cell
+ *
+ * Handle map behaviors (cells, units...)
+ *
+ * @namespace {Unramalak.Cell}
  */
 Unramalak.BaseCell('Unramalak.Cell', {}, {
     units: [],

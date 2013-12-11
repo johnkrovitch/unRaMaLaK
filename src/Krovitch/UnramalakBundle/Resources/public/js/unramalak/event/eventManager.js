@@ -16,8 +16,8 @@ var EventManager = {
         if ($.isNull(eventName)) {
             throw new Error('Trying to subscribe to an empty event');
         }
-        if ($.isNull(callback)) {
-            throw new Error('Passing an empty callback in event subscription');
+        if (typeof callback == 'Function') {
+            throw new Error('Passing an invalid callback in event subscription');
         }
         if (!$.isArray(parameters)) {
             throw new Error('Invalid callback parameters in event subscription');
@@ -40,8 +40,9 @@ var EventManager = {
      *
      *
      * @param eventName
+     * @param [data]
      */
-    dispatch: function (eventName) {
+    dispatch: function (eventName, data) {
         // if there is no subscription to the event, we do nothing
         if (!this.events.hasOwnProperty(eventName)) {
             return;
@@ -53,10 +54,11 @@ var EventManager = {
                 return;
             }
             // creating the event object
-            var event = new Unramalak.Event.Event();
+            var event = new Unramalak.Event.Event(data);
             var subscription = subscriptions[index];
             // adding event to callback parameters
             subscription.parameters.push(event);
+            console.log('dispatch event', eventName, subscription);
             subscription.callback.apply(subscription.thisObject, subscription.parameters);
         }
     }
@@ -89,8 +91,21 @@ $.Class('Unramalak.Event.EventSubscription', {}, {
  * Event
  */
 $.Class('Unramalak.Event.Event', {}, {
+    /**
+     * Event name
+     */
     name: '',
+    /**
+     * Event optional data
+     */
     data: null,
-    thisObject: null,
-    callback: null
+
+    /**
+     * Event constructor
+     *
+     * @param [data]
+     */
+    init: function(data) {
+        this.data = data;
+    }
 });
