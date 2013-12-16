@@ -28,11 +28,18 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     },
 
     bind: function () {
-        this.shape.attach('mousedown', function () {
-            console.log('trace', this);
+        var cell = this;
 
-            var event = Unramalak.Event.Event('');
-            EventManager.dispatch('unramalak.map.mouseDown');
+        this.shape.attach('mousedown', function (paperEvent) {
+            var data = {
+                event: paperEvent,
+                cell: cell
+            };
+            var event = new Unramalak.Event.Event('unramalak.map.mousedown', paperEvent);
+
+            console.log('on mousedown', this, event, event.name);
+
+            EventManager.dispatch(event.name, event);
         });
     },
 
@@ -59,6 +66,8 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
 Unramalak.BaseCell('Unramalak.Cell', {}, {
     units: [],
     position: null,
+    selected: false,
+
 
     /**
      * Return the point on the top of the shape
@@ -95,6 +104,9 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
      * it use ImageLoader to load paper raster
      */
     render: function () {
+
+        console.log('cell render');
+
         var render = this.land.render();
         // default render
         if (render.type == 'default') {
@@ -138,6 +150,16 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
         this.land.reset();
         // remove
         this.raster.remove();
+    },
+
+
+    /**
+     * Notify cell as selected
+     */
+    select: function () {
+        this.selected = true;
+        // cell must be rendered again
+        EventManager.subscribe(UNRAMALAK_MAP_RENDER, this.render, [], this);
     }
 });
 

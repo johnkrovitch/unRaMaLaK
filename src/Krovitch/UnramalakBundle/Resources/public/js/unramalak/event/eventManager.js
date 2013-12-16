@@ -37,12 +37,12 @@ var EventManager = {
     },
 
     /**
-     *
+     * Dispatch an event to the list of its subscribers
      *
      * @param eventName
-     * @param [data]
+     * @param [event]
      */
-    dispatch: function (eventName, data) {
+    dispatch: function (eventName, event) {
         // if there is no subscription to the event, we do nothing
         if (!this.events.hasOwnProperty(eventName)) {
             return;
@@ -53,12 +53,15 @@ var EventManager = {
             if (!subscriptions.hasOwnProperty(index)) {
                 return;
             }
-            // creating the event object
-            var event = new Unramalak.Event.Event(data);
+            if ($.isNull(event)) {
+                // creating a default event object
+                event = new Unramalak.Event.Event(eventName);
+            }
             var subscription = subscriptions[index];
             // adding event to callback parameters
             subscription.parameters.push(event);
             console.log('dispatch event', eventName, subscription);
+            // using apply() to have separated parameters in callback
             subscription.callback.apply(subscription.thisObject, subscription.parameters);
         }
     }
@@ -73,18 +76,18 @@ $.Class('Unramalak.Event.EventSubscription', {}, {
      */
     eventName: '',
     /**
-     * Callback to call
-     */
-    callback: function () {
-    },
-    /**
      * Callback parameters
      */
     parameters: [],
     /**
      * Optional "this" object passed to callback
      */
-    thisObject: null
+    thisObject: null,
+    /**
+     * Callback to call
+     */
+    callback: function () {
+    }
 });
 
 /**
@@ -103,9 +106,14 @@ $.Class('Unramalak.Event.Event', {}, {
     /**
      * Event constructor
      *
+     * @param [name]
      * @param [data]
      */
-    init: function(data) {
+    init: function(name, data) {
+        this.name = name;
         this.data = data;
     }
 });
+
+// events constants
+var UNRAMALAK_MAP_RENDER = 'unramalak.map.render';

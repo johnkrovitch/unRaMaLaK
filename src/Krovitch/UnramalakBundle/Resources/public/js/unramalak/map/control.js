@@ -17,7 +17,10 @@ $.Class('Unramalak.Control.Mouse', {}, {
     // during drag, javascript does not correctly send button click code,
     // we need to store it
     lastClicked: null,
+    // cells clicked
+    clickedCells: [],
 
+    // old stuff
     bind: function (event, target, map, callback) {
         var mouseControl = this;
         // bind event on target
@@ -40,20 +43,29 @@ $.Class('Unramalak.Control.Mouse', {}, {
         });
     },
 
-    onMouseEvent: function (map, event) {
+    onMouseEvent: function (event) {
         // create mouse event according to paper js mouse event
-        var mouseEvent = new Unramalak.Control.MouseEvent(event.data);
+        var paperEvent = event.data;
+        var mouseEvent = new Unramalak.Control.MouseEvent(paperEvent);
 
-        console.log('left click');
-
-        if (mouseEvent.isLeftClick()) {
-            console.log('left click');
-            map.cells.hitCells.push(cell);
+        // remember what button was clicked (useful during drag)
+        if (event.name == 'unramalak.map.mousedown') {
+            mouseEvent.hitButton = paperEvent.event.button;
+            this.lastClicked = mouseEvent.hitButton;
         }
+//        else if (event == 'mouseup') {
+//            this.lastClicked = null;
+//        }
+//        else if (event == 'mousedrag') {
+//            this.hitButton = mouseControl.lastClicked;
+//        }
+        console.log('left click ?', mouseEvent.isLeftClick(), event.data, this);
 
+        // on left click, we store the cell which need an update
+        if (mouseEvent.isLeftClick()) {
+            event.data.select();
+        }
     }
-
-
 });
 
 $.Class('Unramalak.Control.MouseEvent', {}, {

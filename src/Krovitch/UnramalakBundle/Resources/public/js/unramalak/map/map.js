@@ -95,27 +95,10 @@ $.Class('Unramalak.Map', {}, {
     },
 
     bind: function (onNotify) {
-//        this.cells.each(this, function (cell) {
-//            // onMouseDown
-//            this.mouseControl.bind('mousedown', cell, this, function (mouseEvent) {
-//                if (mouseEvent.isLeftClick()) {
-//                    this.cells.hitCells.push(cell);
-//                }
-//            });
-//            // onMouseUp
-//            this.mouseControl.bind('mouseup', cell, this, function () {
-//                this.update();
-//            });
-//            this.mouseControl.bind('mousedrag', cell, this, function (mouseEvent) {
-//                if (mouseEvent.isRightClick()) {
-//                    this.move(mouseEvent.delta);
-//                }
-//            });
-//        });
+
         this.cells.each(this, function (cell) {
             cell.bind();
         });
-
 
         var map = this;
         $(document).on('click contextmenu', function () {
@@ -129,13 +112,7 @@ $.Class('Unramalak.Map', {}, {
         this.onNotify = onNotify;
 
         EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
-        EventManager.subscribe('unramalak.map.mouseDown', this.mouseControl.onMouseEvent, [this], this.mouseControl);
-
-        //}, []);
-
-        // bind controls
-        //this.keyboardControl = new Unramalak.Keyboard();
-        //this.keyboardControl.bind(this, this.move, this.units[0].shape);
+        EventManager.subscribe('unramalak.map.mousedown', this.mouseControl.onMouseEvent, [], this.mouseControl);
     },
 
     /**
@@ -200,15 +177,19 @@ $.Class('Unramalak.Map', {}, {
 //    originCell.addUnit(unit);
     },
 
-    /*moveItem: function (target, direction) {
-     this.renderer.animate(target, direction);
-     },*/
-
     move: function (delta) {
         this.cells.translate(delta);
     },
 
     render: function () {
+
+        // we update clicked cell
+        for (var i in this.mouseControl.clickedCells) {
+            var cell = this.mouseControl.clickedCells[i];
+            cell.select();
+        }
+
+
         this.renderer = new Unramalak.Renderer();
         // draw cells
         this.cells.render();
