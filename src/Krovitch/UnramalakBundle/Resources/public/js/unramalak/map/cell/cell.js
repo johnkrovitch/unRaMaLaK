@@ -30,17 +30,18 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     bind: function () {
         var cell = this;
 
+        // binding paper.js mouseDown event
         this.shape.attach('mousedown', function (paperEvent) {
+            // we pass paper.js event and current cell
             var data = {
                 event: paperEvent,
                 cell: cell
             };
-            var event = new Unramalak.Event.Event('unramalak.map.mousedown', paperEvent);
-
-            console.log('on mousedown', this, event, event.name);
-
+            var event = new Unramalak.Event.Event(UNRAMALAK_MAP_MOUSE_DOWN, data);
             EventManager.dispatch(event.name, event);
         });
+        // on first map rendering, we should render the cell
+        EventManager.subscribe(UNRAMALAK_MAP_RENDER, this.render, [], this);
     },
 
     /**
@@ -53,6 +54,30 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
             y: this.data.y,
             type: this.land.type
         };
+    },
+
+
+    reset: function () {
+        // reset land type
+        this.land.reset();
+        // remove
+        this.raster.remove();
+    },
+
+    /**
+     * Select cell
+     */
+    select: function () {
+        this.selected = !this.selected;
+        var selected = this.selected;
+
+        if (this.hasUnit()) {
+            $.each(this.units, function (index, unit) {
+                unit.select(selected);
+            });
+        }
+        // cell must be rendered again
+        this.render();
     }
 });
 
@@ -67,7 +92,6 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     units: [],
     position: null,
     selected: false,
-
 
     /**
      * Return the point on the top of the shape
@@ -104,9 +128,6 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
      * it use ImageLoader to load paper raster
      */
     render: function () {
-
-        console.log('cell render');
-
         var render = this.land.render();
         // default render
         if (render.type == 'default') {
@@ -143,23 +164,13 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
             this.units[index].render();
         }
         this.shape.strokeColor = defaultStrokeColor;
-    },
 
-    reset: function () {
-        // reset land type
-        this.land.reset();
-        // remove
-        this.raster.remove();
-    },
+        // selection render
+        this.shape.selected = this.selected;
 
-
-    /**
-     * Notify cell as selected
-     */
-    select: function () {
-        this.selected = true;
-        // cell must be rendered again
-        EventManager.subscribe(UNRAMALAK_MAP_RENDER, this.render, [], this);
+        if (this.selected && this.hasUnit()) {
+            this.unit.select();
+        }
     }
 });
 

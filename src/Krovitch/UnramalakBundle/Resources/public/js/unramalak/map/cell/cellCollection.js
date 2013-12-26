@@ -51,17 +51,12 @@ $.Class('Unramalak.CellCollection', {}, {
     /**
      * Loop through items collection
      *
-     * @param map
      * @param callback
      */
-    each: function (map, callback) {
-        var row, column;
-
-        for (row in this.cells) {
-            for (column in this.cells[row]) {
-                callback.call(map || this, this.cells[row][column]);
-            }
-        }
+    each: function (callback) {
+        $.each(this.cells, function (rowIndex, row) {
+            $.each(row, callback);
+        });
     },
 
     /**
@@ -85,6 +80,15 @@ $.Class('Unramalak.CellCollection', {}, {
             throw new Error('Unable to find cell in cell collection');
         }
         return cell;
+    },
+
+    /**
+     * Return the number of cells
+     *
+     * @returns {Number}
+     */
+    count: function () {
+        return this.cells.length;
     },
 
     /**
@@ -140,7 +144,7 @@ $.Class('Unramalak.CellCollection', {}, {
      * Render each element of the collection
      */
     render: function () {
-        this.each(this, function (cell) {
+        this.each(function (index, cell) {
             cell.render();
 
             if ($.isNotNull(cell.raster)) {

@@ -1,15 +1,10 @@
-//$.Class('Unramalak.Unit.BaseUnit', {}, {
-//
-//
-//});
-//Unramalak.Unit.BaseUnit('Unramalak.Unit', {}, {
-
 /**
  * Unit class
  */
 $.Class('Unramalak.Unit', {}, {
     origin: null,
     shape: null,
+    selected: false,
 
     init: function () {
         this.origin = new paper.Point(100, 50);
@@ -42,8 +37,6 @@ $.Class('Unramalak.Unit', {}, {
         leftArm.add(new paper.Point(headOrigin.x + 20, headOrigin.y + 30));
 
         this.shape = new paper.Group(rightLeg, leftLeg, trunk, rightArm, leftArm, head);
-
-
     },
 
     /**
@@ -60,5 +53,10 @@ $.Class('Unramalak.Unit', {}, {
 
     render: function () {
         this.shape.strokeColor = 'black';
+        this.shape.selected = this.selected;
+    },
+
+    select: function (selected) {
+        this.selected = selected;
     }
 });

@@ -76,6 +76,9 @@ $.Class('Unramalak.Map', {}, {
             var cellIndex;
 
             for (cellIndex in data.cells) {
+                if (!data.cells.hasOwnProperty(cellIndex)) {
+                    continue;
+                }
                 var cell = data.cells[cellIndex];
 
                 if ($.isNull(this.cellsData[cell.x])) {
@@ -96,9 +99,11 @@ $.Class('Unramalak.Map', {}, {
 
     bind: function (onNotify) {
 
-        this.cells.each(this, function (cell) {
+        this.cells.each(function (index, cell) {
             cell.bind();
         });
+
+        console.log('map bind', this.cells.count());
 
         var map = this;
         $(document).on('click contextmenu', function () {
@@ -112,7 +117,9 @@ $.Class('Unramalak.Map', {}, {
         this.onNotify = onNotify;
 
         EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
-        EventManager.subscribe('unramalak.map.mousedown', this.mouseControl.onMouseEvent, [], this.mouseControl);
+        EventManager.subscribe(UNRAMALAK_MAP_MOUSE_DOWN, this.mouseControl.onMouseEvent, [], this.mouseControl, true);
+        // binding render
+        EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this, true);
     },
 
     /**
@@ -161,10 +168,6 @@ $.Class('Unramalak.Map', {}, {
             yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
             hexagonCenterY += yRadius * 3 + this.cellPadding;
         }
-
-        //console.log('cells data', this.cellsData);
-
-
         // TODO move this in Cell ?
         // build units
 //    var firstPoint = this.cells.getFirst().getHighPoint();
@@ -182,21 +185,21 @@ $.Class('Unramalak.Map', {}, {
     },
 
     render: function () {
+        var event = new Unramalak.Event.Event(UNRAMALAK_MAP_RENDER);
+        EventManager.dispatch(UNRAMALAK_MAP_RENDER, event);
 
         // we update clicked cell
-        for (var i in this.mouseControl.clickedCells) {
-            var cell = this.mouseControl.clickedCells[i];
-            cell.select();
-        }
-
-
-        this.renderer = new Unramalak.Renderer();
-        // draw cells
-        this.cells.render();
-        // draw units
-//        this.units.forEach(function (unit) {
-//            unit.render();
-//        });
+//        for (var i in this.mouseControl.clickedCells) {
+//            var cell = this.mouseControl.clickedCells[i];
+//            cell.select();
+//        }
+//        this.renderer = new Unramalak.Renderer();
+//        // draw cells
+//        this.cells.render();
+//        // draw units
+////        this.units.forEach(function (unit) {
+////            unit.render();
+////        });
         // notify if error has been encountered
         for (var i = 0; i < this.errors.length; i++) {
             this.notify(this.errors[i], 'error');
@@ -274,10 +277,9 @@ $.Class('Unramalak.Map', {}, {
         var position = new Unramalak.Position(0, 0);
         // creating a default unit
         var unit = new Unramalak.Unit();
+        console.log('here ?');
         // attach to a cell
         this.cells.attachUnit(unit, position);
-        // TODO see if util
-        //this.units.add(unit);
     },
 
     /**

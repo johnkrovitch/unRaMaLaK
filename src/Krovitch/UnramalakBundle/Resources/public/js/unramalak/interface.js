@@ -21,8 +21,8 @@ var Unramalak = {
     ImageLoader: {},
     Land: {},
     Map: {
-
-        Context: {}
+        Context: {},
+        Element: {}
     },
     Menu: {},
     Path: {

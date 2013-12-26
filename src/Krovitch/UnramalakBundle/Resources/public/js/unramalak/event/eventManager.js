@@ -9,8 +9,9 @@ var EventManager = {
      * @param callback
      * @param parameters
      * @param [thisObject]
+     * @param [persistent]
      */
-    subscribe: function (eventName, callback, parameters, thisObject) {
+    subscribe: function (eventName, callback, parameters, thisObject, persistent) {
 
         // null checks
         if ($.isNull(eventName)) {
@@ -22,9 +23,12 @@ var EventManager = {
         if (!$.isArray(parameters)) {
             throw new Error('Invalid callback parameters in event subscription');
         }
-        // if event does not exist, we create it
+        // if event index does not exist, we create it
         if ($.isNull(this.events[eventName])) {
             this.events[eventName] = [];
+        }
+        if ($.isNull(persistent)) {
+            persistent = false;
         }
         // creating a subscription object to store events parameters
         var subscription = new Unramalak.Event.EventSubscription();
@@ -32,6 +36,12 @@ var EventManager = {
         subscription.callback = callback;
         subscription.parameters = parameters;
         subscription.thisObject = thisObject;
+        subscription.persistent = persistent;
+        if (subscription.persistent) {
+            // remove subscription
+            console.log(subscription);
+        }
+
         // adding callback to queue
         this.events[eventName].push(subscription);
     },
@@ -48,6 +58,7 @@ var EventManager = {
             return;
         }
         var subscriptions = this.events[eventName];
+        var persistentSubscriptions = [];
 
         for (var index in subscriptions) {
             if (!subscriptions.hasOwnProperty(index)) {
@@ -60,9 +71,16 @@ var EventManager = {
             var subscription = subscriptions[index];
             // adding event to callback parameters
             subscription.parameters.push(event);
-            console.log('dispatch event', eventName, subscription);
             // using apply() to have separated parameters in callback
             subscription.callback.apply(subscription.thisObject, subscription.parameters);
+
+            if (subscription.persistent) {
+                // remove subscription
+                console.log(subscription);
+                persistentSubscriptions.push(subscription);
+            }
+            // we keep only persistent subscriptions
+            this.events[eventName] = persistentSubscriptions;
         }
     }
 };
@@ -83,6 +101,10 @@ $.Class('Unramalak.Event.EventSubscription', {}, {
      * Optional "this" object passed to callback
      */
     thisObject: null,
+    /**
+     * If true, subscription will not be removed after event dispatching
+     */
+    persistent: false,
     /**
      * Callback to call
      */
@@ -117,3 +139,5 @@ $.Class('Unramalak.Event.Event', {}, {
 
 // events constants
 var UNRAMALAK_MAP_RENDER = 'unramalak.map.render';
+var UNRAMALAK_MAP_REQUIRED_RENDER = 'unramalak.map.required_render';
+var UNRAMALAK_MAP_MOUSE_DOWN = 'unramalak.map.mousedown';
