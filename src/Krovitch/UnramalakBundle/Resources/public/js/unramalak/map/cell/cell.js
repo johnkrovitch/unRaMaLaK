@@ -38,6 +38,9 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
                 cell: cell
             };
             var event = new Unramalak.Event.Event(UNRAMALAK_MAP_MOUSE_DOWN, data);
+
+            console.log('mousedown ?', event, cell);
+
             EventManager.dispatch(event.name, event);
         });
         // on first map rendering, we should render the cell

@@ -12,7 +12,6 @@ var EventManager = {
      * @param [persistent]
      */
     subscribe: function (eventName, callback, parameters, thisObject, persistent) {
-
         // null checks
         if ($.isNull(eventName)) {
             throw new Error('Trying to subscribe to an empty event');
@@ -37,11 +36,6 @@ var EventManager = {
         subscription.parameters = parameters;
         subscription.thisObject = thisObject;
         subscription.persistent = persistent;
-        if (subscription.persistent) {
-            // remove subscription
-            console.log(subscription);
-        }
-
         // adding callback to queue
         this.events[eventName].push(subscription);
     },
@@ -68,19 +62,23 @@ var EventManager = {
                 // creating a default event object
                 event = new Unramalak.Event.Event(eventName);
             }
+
             var subscription = subscriptions[index];
+
+            //console.log('dispatch ?', subscription, 'event.data', event.data);
             // adding event to callback parameters
-            subscription.parameters.push(event);
+            var parameters = subscription.parameters;
+            //parameters.push(event);
+
             // using apply() to have separated parameters in callback
-            subscription.callback.apply(subscription.thisObject, subscription.parameters);
+            subscription.callback.apply(subscription.thisObject, subscription.parameters.concat([event]));
 
             if (subscription.persistent) {
-                // remove subscription
-                console.log(subscription);
+                // save subscription
                 persistentSubscriptions.push(subscription);
             }
             // we keep only persistent subscriptions
-            this.events[eventName] = persistentSubscriptions;
+            //this.events[eventName] = persistentSubscriptions;
         }
     }
 };
