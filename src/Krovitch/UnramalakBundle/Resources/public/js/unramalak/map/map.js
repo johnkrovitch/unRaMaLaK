@@ -31,10 +31,6 @@ $.Class('Unramalak.Map', {}, {
     radius: 0,
     renderer: null,
     startingPoint: null,
-    /**
-     * @property {Unramalak.Unit.UnitCollection}
-     */
-    units: null,
 
     /**
      * Initialize map parameters, gathering data from context

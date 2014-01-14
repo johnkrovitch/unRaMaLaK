@@ -6,19 +6,28 @@
  * @namespace {Unramalak.BaseCell}
  */
 Unramalak.Container('Unramalak.BaseCell', {}, {
-    units: [],
     land: null,
-    shape: null,
+    position: {},
     raster: null,
+    shape: null,
     data: {
         x: null,
         y: null
     },
+    units: [],
 
+
+    /**
+     * Constructor of cells
+     *
+     * @param shape
+     * @param data
+     */
     init: function (shape, data) {
         this.data = data;
         this.shape = shape;
         this.land = new Unramalak.Land();
+        this.units = [];
 
         if (!this.data.background) {
             this.data.background = defaultBackgroundColor;
@@ -26,8 +35,15 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         if (this.data.type) {
             this.land.type = this.data.type;
         }
+        if (this.data.x && this.data.x) {
+            this.position.x = this.data.x;
+            this.position.y = this.data.y;
+        }
     },
 
+    /**
+     * Bind cell event (like mousedown...)
+     */
     bind: function () {
         var cell = this;
 
@@ -77,14 +93,9 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         this.selected = !this.selected;
         var selected = this.selected;
 
-        if (this.hasUnit()) {
-
-
-            $.each(this.units, function (index, unit) {
-                console.log('has Unit ?', this);
-                unit.select(selected);
-            });
-        }
+        $.each(this.units, function (index, unit) {
+            unit.select(selected);
+        });
         this.render();
     },
 
@@ -93,59 +104,12 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         if (this.selected) {
             this.selected = false;
 
-//            if (this.hasUnit()) {
-//                $.each(this.units, function (index, unit) {
-//                    unit.select(false);
-//                });
-//            }
+            $.each(this.units, function (index, unit) {
+                unit.select(false);
+            });
             this.render();
         }
 
-    },
-    /**
-     * Attach an unit to the cell
-     *
-     * @param unit
-     */
-    attachUnit: function (unit) {
-        console.log('attach unit in cell', this, this.units);
-
-        //this.units.push(unit);
-    }
-});
-
-/**
- * Cell
- *
- * Handle map behaviors (cells, units...)
- *
- * @namespace {Unramalak.Cell}
- */
-Unramalak.BaseCell('Unramalak.Cell', {}, {
-    position: null,
-    selected: false,
-
-    /**
-     * Return the point on the top of the shape
-     * @returns Point
-     */
-    getHighPoint: function () {
-        return this.shape.segments[1].point;
-    },
-
-
-
-    /**
-     * Return true if this container has unit
-     * @returns {boolean}
-     */
-    hasUnit: function () {
-        return (this.units.length > 0);
-    },
-
-    // TODO refactor this in behaviour
-    getPosition: function () {
-        return this.shape.position;
     },
 
     /**
@@ -186,7 +150,7 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
         }
         // units render
         for (var index in this.units) {
-            //this.units[index].render();
+            this.units[index].render();
         }
         this.shape.strokeColor = defaultStrokeColor;
 
@@ -196,9 +160,51 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
         if (this.selected && this.hasUnit()) {
             for (index in this.units) {
                 console.log('this', this);
-                //this.units[index].select();
+                this.units[index].select();
             }
         }
+    }
+
+});
+
+/**
+ * Cell
+ *
+ * Handle map behaviors (cells, units...)
+ *
+ * @namespace {Unramalak.Cell}
+ */
+Unramalak.BaseCell('Unramalak.Cell', {}, {
+    selected: false,
+
+    /**
+     * Return the point on the top of the shape
+     * @returns Point
+     */
+    getHighPoint: function () {
+        return this.shape.segments[1].point;
+    },
+
+    /**
+     * Attach an unit to the cell
+     *
+     * @param unit
+     */
+    attachUnit: function (unit) {
+        this.units.push(unit);
+    },
+
+    /**
+     * Return true if this container has unit
+     * @returns {boolean}
+     */
+    hasUnit: function () {
+        return (this.units.length > 0);
+    },
+
+    // TODO refactor this in behaviour
+    getPosition: function () {
+        return this.shape.position;
     }
 });
 
