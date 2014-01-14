@@ -38,14 +38,18 @@ $.Class('Unramalak.CellCollection', {}, {
      * @param {Unramalak.Position} position
      */
     attachUnit: function (unit, position) {
+        console.log('attach unit in collection 0', this, cell);
         // get a cell by its position
         var cell = this.get(position);
+        console.log('attach unit in collection 1', this, cell);
         // add to paper.js group for mass manipulations
-        this.group.addChild(unit.shape);
+        //this.group.addChild(unit.shape);
         // add unit to cell
-        cell.attachUnit(unit);
+        //cell.attachUnit(unit);
+        cell.units.push(unit);
+        console.log('attach unit in collection 2', this, cell);
         // refresh cell display
-        cell.render();
+        //cell.render();
     },
 
     /**

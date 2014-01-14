@@ -37,6 +37,13 @@ class Unit extends Entity
      */
     protected $attributes;
 
+    /**
+     * Army which this unit belong
+     *
+     * @ORM\ManyToOne(targetEntity="Army", inversedBy="units")
+     */
+    protected $army;
+
 
     // before refactoring
     /**

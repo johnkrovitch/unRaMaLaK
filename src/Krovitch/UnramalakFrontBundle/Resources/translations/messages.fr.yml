@@ -11,3 +11,7 @@ unramalak.home.title: "Rejoignez le monde d'Unramalak !!!"
 # map
 unramalak.map.addUnit: ajouter une unité
 unramalak.register.title: "Inscrivez-vous dans le monde terrifiant d'Unramalak"
+
+# hero
+unramalak.hero.title: Invoquer votre héros
+unramalak.hero.redirectForCreation: Vous devez choisir un héros pour guider vos armées vers la destinée

@@ -15,6 +15,7 @@ class UserType extends AbstractType
             'attr' => ['placeholder' => 'Saisissez un email...']
         ]);
         $builder->add('plainPassword', 'password', [
+            'label' => 'Mot de passe',
             'attr' => [
                 'class' => 'password-field',
                 'placeholder' => 'Saisissez un VRAI mot de passe...'
@@ -24,7 +25,6 @@ class UserType extends AbstractType
             'label' => 'Votre nom',
             'attr' => ['placeholder' => 'Choisissez un nom pas trop débile...']
         ]);
-
     }
 
     public function getName()

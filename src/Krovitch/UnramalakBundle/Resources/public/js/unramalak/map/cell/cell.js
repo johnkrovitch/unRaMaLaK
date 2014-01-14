@@ -6,6 +6,7 @@
  * @namespace {Unramalak.BaseCell}
  */
 Unramalak.Container('Unramalak.BaseCell', {}, {
+    units: [],
     land: null,
     shape: null,
     raster: null,
@@ -38,13 +39,11 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
                 cell: cell
             };
             var event = new Unramalak.Event.Event(UNRAMALAK_MAP_MOUSE_DOWN, data);
-
-            console.log('mousedown ?', event, cell);
-
-            EventManager.dispatch(event.name, event);
+            EventManager.dispatch(UNRAMALAK_MAP_MOUSE_DOWN, event);
         });
-        // on first map rendering, we should render the cell
+        // on map rendering, we render the cell
         EventManager.subscribe(UNRAMALAK_MAP_RENDER, this.render, [], this);
+        EventManager.subscribe(UNRAMALAK_MAP_UNSELECT, this.unselect, [], this);
     },
 
     /**
@@ -71,16 +70,47 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
      * Select cell
      */
     select: function () {
+
+        if (!this.selected) {
+            EventManager.dispatch(UNRAMALAK_MAP_UNSELECT);
+        }
         this.selected = !this.selected;
         var selected = this.selected;
 
         if (this.hasUnit()) {
+
+
             $.each(this.units, function (index, unit) {
+                console.log('has Unit ?', this);
                 unit.select(selected);
             });
         }
-        // cell must be rendered again
         this.render();
+    },
+
+    unselect: function () {
+
+        if (this.selected) {
+            this.selected = false;
+
+//            if (this.hasUnit()) {
+//                $.each(this.units, function (index, unit) {
+//                    unit.select(false);
+//                });
+//            }
+            this.render();
+        }
+
+    },
+    /**
+     * Attach an unit to the cell
+     *
+     * @param unit
+     */
+    attachUnit: function (unit) {
+        console.log('attach unit in cell', this, this.units);
+
+        //this.units.push(unit);
     }
 });
 
@@ -92,7 +122,6 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
  * @namespace {Unramalak.Cell}
  */
 Unramalak.BaseCell('Unramalak.Cell', {}, {
-    units: [],
     position: null,
     selected: false,
 
@@ -104,14 +133,7 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
         return this.shape.segments[1].point;
     },
 
-    /**
-     * Attach an unit to the cell
-     *
-     * @param unit
-     */
-    attachUnit: function (unit) {
-        this.units.push(unit);
-    },
+
 
     /**
      * Return true if this container has unit
@@ -164,7 +186,7 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
         }
         // units render
         for (var index in this.units) {
-            this.units[index].render();
+            //this.units[index].render();
         }
         this.shape.strokeColor = defaultStrokeColor;
 
@@ -172,7 +194,10 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
         this.shape.selected = this.selected;
 
         if (this.selected && this.hasUnit()) {
-            this.unit.select();
+            for (index in this.units) {
+                console.log('this', this);
+                //this.units[index].select();
+            }
         }
     }
 });

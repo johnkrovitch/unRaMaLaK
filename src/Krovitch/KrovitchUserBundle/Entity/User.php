@@ -23,6 +23,11 @@ class User extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="Krovitch\UnramalakBundle\Entity\Army", mappedBy="user")
+     */
+    protected $armies;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -30,5 +35,33 @@ class User extends BaseUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Return the armies of the player
+     *
+     * @return mixed
+     */
+    public function getArmies()
+    {
+        return $this->armies;
+    }
+
+    /**
+     * Set the armies of the player
+     *
+     * @param mixed $armies
+     */
+    public function setArmies($armies)
+    {
+        $this->armies = $armies;
+    }
+
+    /**
+     * Return true if player has at least an army
+     */
+    public function hasArmies()
+    {
+        return count($this->armies) > 0;
     }
 }

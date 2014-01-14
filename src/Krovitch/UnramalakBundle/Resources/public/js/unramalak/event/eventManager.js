@@ -9,9 +9,8 @@ var EventManager = {
      * @param callback
      * @param parameters
      * @param [thisObject]
-     * @param [persistent]
      */
-    subscribe: function (eventName, callback, parameters, thisObject, persistent) {
+    subscribe: function (eventName, callback, parameters, thisObject) {
         // null checks
         if ($.isNull(eventName)) {
             throw new Error('Trying to subscribe to an empty event');
@@ -26,16 +25,12 @@ var EventManager = {
         if ($.isNull(this.events[eventName])) {
             this.events[eventName] = [];
         }
-        if ($.isNull(persistent)) {
-            persistent = false;
-        }
         // creating a subscription object to store events parameters
         var subscription = new Unramalak.Event.EventSubscription();
         subscription.eventName = eventName;
         subscription.callback = callback;
         subscription.parameters = parameters;
         subscription.thisObject = thisObject;
-        subscription.persistent = persistent;
         // adding callback to queue
         this.events[eventName].push(subscription);
     },
@@ -52,7 +47,6 @@ var EventManager = {
             return;
         }
         var subscriptions = this.events[eventName];
-        var persistentSubscriptions = [];
 
         for (var index in subscriptions) {
             if (!subscriptions.hasOwnProperty(index)) {
@@ -62,23 +56,13 @@ var EventManager = {
                 // creating a default event object
                 event = new Unramalak.Event.Event(eventName);
             }
-
+            // current subscription
             var subscription = subscriptions[index];
-
-            //console.log('dispatch ?', subscription, 'event.data', event.data);
             // adding event to callback parameters
-            var parameters = subscription.parameters;
-            //parameters.push(event);
+            var parameters = subscription.parameters.concat([event]);
 
             // using apply() to have separated parameters in callback
-            subscription.callback.apply(subscription.thisObject, subscription.parameters.concat([event]));
-
-            if (subscription.persistent) {
-                // save subscription
-                persistentSubscriptions.push(subscription);
-            }
-            // we keep only persistent subscriptions
-            //this.events[eventName] = persistentSubscriptions;
+            subscription.callback.apply(subscription.thisObject, parameters);
         }
     }
 };
@@ -137,5 +121,6 @@ $.Class('Unramalak.Event.Event', {}, {
 
 // events constants
 var UNRAMALAK_MAP_RENDER = 'unramalak.map.render';
+var UNRAMALAK_MAP_UNSELECT = 'unramalak.map.unselect';
 var UNRAMALAK_MAP_REQUIRED_RENDER = 'unramalak.map.required_render';
 var UNRAMALAK_MAP_MOUSE_DOWN = 'unramalak.map.mousedown';

@@ -9,8 +9,13 @@
         </div>
         <!-- right column -->
         <div class="col-md-3">
-            {% block right %}{% endblock %}
+            {% block right %}
+                {% if (widgets is defined) %}
+                    {% for widget in widgets %}
+                        {{ widget.html }}
+                    {% endfor %}
+                {% endif %}
+            {% endblock %}
         </div>
     </div>
-
 {% endblock %}

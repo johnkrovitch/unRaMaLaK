@@ -102,9 +102,6 @@ $.Class('Unramalak.Map', {}, {
         this.cells.each(function (index, cell) {
             cell.bind();
         });
-
-        console.log('map bind', this.cells.count());
-
         var map = this;
         $(document).on('click contextmenu', function () {
             map.menu.unselect();
@@ -116,10 +113,10 @@ $.Class('Unramalak.Map', {}, {
         this.menu.bind(this.save, this);
         this.onNotify = onNotify;
 
-        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
-        EventManager.subscribe(UNRAMALAK_MAP_MOUSE_DOWN, this.mouseControl.onMouseEvent, [], this.mouseControl, true);
+        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [null], this);
+        EventManager.subscribe(UNRAMALAK_MAP_MOUSE_DOWN, this.mouseControl.onMouseEvent, [], this.mouseControl);
         // binding render
-        EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this, true);
+        EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
     },
 
     /**
@@ -168,16 +165,6 @@ $.Class('Unramalak.Map', {}, {
             yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
             hexagonCenterY += yRadius * 3 + this.cellPadding;
         }
-        // TODO move this in Cell ?
-        // build units
-//    var firstPoint = this.cells.getFirst().getHighPoint();
-//    var unitOrigin = new paper.Point(firstPoint.x, firstPoint.y + this.radius);
-//    var unit = new Unramalak.Unit(unitOrigin);
-//    unit.build();
-//    this.units.push(unit);
-//
-//    var originCell = this.cells.getFirst();
-//    originCell.addUnit(unit);
     },
 
     move: function (delta) {
@@ -270,14 +257,16 @@ $.Class('Unramalak.Map', {}, {
 
     /**
      *
-     * @param {Unramalak.Event.Event} event
+     * @param position
      */
-    addUnit: function (event) {
-        // by default, the unit will be at 0,0
-        var position = new Unramalak.Position(0, 0);
+    addUnit: function (position) {
+
+        if ($.isNull(position)) {
+            // by default, the unit will be at 0,0
+            position = new Unramalak.Position(0, 0);
+        }
         // creating a default unit
         var unit = new Unramalak.Unit();
-        console.log('here ?');
         // attach to a cell
         this.cells.attachUnit(unit, position);
     },

@@ -15,8 +15,13 @@ class HomeController extends BaseController
     /**
      * @Template()
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        // if the player has no hero, we should create one
+        if ($this->getUser() && !$this->getUser()->hasArmies()) {
+            $this->setMessage('unramalak.hero.redirectForCreation');
+            return $this->redirect('@unramalak.hero.create');
+        }
         return [];
     }
 
@@ -36,7 +41,7 @@ class HomeController extends BaseController
             $userManager->updateUser($user);
             $this->logUser($user);
             // redirect to hero creation
-            return $this->redirect('@hero.create');
+            return $this->redirect('@unramalak.hero.create');
         }
 
         return ['form' => $form->createView()];

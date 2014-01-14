@@ -59,8 +59,6 @@ $.Class('Unramalak.Control.Mouse', {}, {
 //        else if (event == 'mousedrag') {
 //            this.hitButton = mouseControl.lastClicked;
 //        }
-        console.log('left click ?', arguments);
-
         // on left click, we store the cell which need an update
         if (mouseEvent.isLeftClick()) {
             event.data.cell.select();
