@@ -16,7 +16,6 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     },
     units: [],
 
-
     /**
      * Constructor of cells
      *
@@ -86,16 +85,27 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
      * Select cell
      */
     select: function () {
-
+        // we inform map that other cells should be unselected
         if (!this.selected) {
             EventManager.dispatch(UNRAMALAK_MAP_UNSELECT);
         }
         this.selected = !this.selected;
-        var selected = this.selected;
-
+        var cell = this;
+        // if cell has units, we select them
         $.each(this.units, function (index, unit) {
-            unit.select(selected);
+            unit.select(cell.selected);
+
+            if (cell.selected) {
+                // we inform map that it should display cells that units can reached
+                var data = {
+                    cell: cell,
+                    unit: unit
+                };
+                var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
+                EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
+            }
         });
+        // cell should now be rendered
         this.render();
     },
 

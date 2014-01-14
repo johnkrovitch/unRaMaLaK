@@ -2,13 +2,20 @@
  * Unit class
  */
 $.Class('Unramalak.Unit', {}, {
+    movement: 0,
+    name: '',
+    position: '',
     origin: null,
-    shape: null,
     selected: false,
+    shape: null,
 
     init: function () {
         this.origin = new paper.Point(100, 50);
         this.build();
+        // TODO import this parameters
+        this.name = 'ToTo L\'asticot';
+        this.position = {x: 0, y: 0};
+        this.movement = 5;
     },
 
     build: function () {

@@ -20,6 +20,7 @@ $.Class('Unramalak.Map', {}, {
     hitCells: [],
     keyboardControl: null,
     mouseControl: null,
+    unitManager: null,
     menu: null,
     /**
      * According to the mode, map will not act the same
@@ -59,6 +60,8 @@ $.Class('Unramalak.Map', {}, {
         this.mouseControl = new Unramalak.Control.Mouse();
         // map mode
         this.mode = context.mode;
+        // unit manager
+        this.unitManager = new Unramalak.Unit.UnitManager();
     },
 
     /**
@@ -111,6 +114,7 @@ $.Class('Unramalak.Map', {}, {
 
         EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [null], this);
         EventManager.subscribe(UNRAMALAK_MAP_MOUSE_DOWN, this.mouseControl.onMouseEvent, [], this.mouseControl);
+        EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [], this.unitManager);
         // binding render
         EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
     },
@@ -263,6 +267,7 @@ $.Class('Unramalak.Map', {}, {
         }
         // creating a default unit
         var unit = new Unramalak.Unit();
+        unit.build();
         // attach to a cell
         this.cells.attachUnit(unit, position);
     },

@@ -122,5 +122,8 @@ $.Class('Unramalak.Event.Event', {}, {
 // events constants
 var UNRAMALAK_MAP_RENDER = 'unramalak.map.render';
 var UNRAMALAK_MAP_UNSELECT = 'unramalak.map.unselect';
-var UNRAMALAK_MAP_REQUIRED_RENDER = 'unramalak.map.required_render';
+var UNRAMALAK_MAP_REQUIRED_RENDER = 'unramalak.map.renderRequired';
 var UNRAMALAK_MAP_MOUSE_DOWN = 'unramalak.map.mousedown';
+
+// units
+var UNRAMALAK_UNIT_MOVEMENT_DISPLAY = 'unramalak.unit.movementDisplay';
