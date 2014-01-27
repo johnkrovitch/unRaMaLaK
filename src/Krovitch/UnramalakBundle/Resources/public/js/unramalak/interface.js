@@ -9,20 +9,21 @@ var Unramalak = {
     Cell: {},
     CellCollection: {},
     Control: {
-        Mouse: {},
-        MouseEvent: {}
+        Mouse: {}
     },
     Dimension: {},
     Event: {
         EventManager: {},
         Event: {},
-        EventSubscription: {}
+        EventSubscription: {},
+        MouseEvent: {}
     },
     ImageLoader: {},
     Land: {},
     Map: {
         Context: {},
-        Element: {}
+        Element: {},
+        CellManager: {}
     },
     Menu: {},
     Path: {

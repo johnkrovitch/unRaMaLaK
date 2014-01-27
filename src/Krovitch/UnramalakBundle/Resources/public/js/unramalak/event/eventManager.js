@@ -59,8 +59,7 @@ var EventManager = {
             // current subscription
             var subscription = subscriptions[index];
             // adding event to callback parameters
-            var parameters = subscription.parameters.concat([event]);
-
+            var parameters = [event].concat(subscription.parameters);
             // using apply() to have separated parameters in callback
             subscription.callback.apply(subscription.thisObject, parameters);
         }
@@ -68,6 +67,8 @@ var EventManager = {
 };
 
 /**
+ * EventSubscription
+ *
  * Subscription to an event
  */
 $.Class('Unramalak.Event.EventSubscription', {}, {
@@ -93,37 +94,3 @@ $.Class('Unramalak.Event.EventSubscription', {}, {
     callback: function () {
     }
 });
-
-/**
- * Event
- */
-$.Class('Unramalak.Event.Event', {}, {
-    /**
-     * Event name
-     */
-    name: '',
-    /**
-     * Event optional data
-     */
-    data: null,
-
-    /**
-     * Event constructor
-     *
-     * @param [name]
-     * @param [data]
-     */
-    init: function(name, data) {
-        this.name = name;
-        this.data = data;
-    }
-});
-
-// events constants
-var UNRAMALAK_MAP_RENDER = 'unramalak.map.render';
-var UNRAMALAK_MAP_UNSELECT = 'unramalak.map.unselect';
-var UNRAMALAK_MAP_REQUIRED_RENDER = 'unramalak.map.renderRequired';
-var UNRAMALAK_MAP_MOUSE_DOWN = 'unramalak.map.mousedown';
-
-// units
-var UNRAMALAK_UNIT_MOVEMENT_DISPLAY = 'unramalak.unit.movementDisplay';

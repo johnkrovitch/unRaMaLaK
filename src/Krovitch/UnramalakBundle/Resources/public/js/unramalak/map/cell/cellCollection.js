@@ -20,8 +20,8 @@ $.Class('Unramalak.CellCollection', {}, {
      * @param cell
      */
     add: function (cell) {
-        var x = cell.data.x;
-        var y = cell.data.y;
+        var x = cell.position.x;
+        var y = cell.position.y;
 
         if ($.isNull(this.cells[x])) {
             this.cells[x] = [];
@@ -40,7 +40,10 @@ $.Class('Unramalak.CellCollection', {}, {
     attachUnit: function (unit, position) {
         // get a cell by its position
         var cell = this.get(position);
-        //console.log('attach unit in collection 1', cell.units, this.cells[0][1].units === this.cells[0][0].units);
+
+        if ($.isNull(cell)) {
+            throw new Error('Unable to find cell at position ' + position.toString);
+        }
         // add to paper.js group for mass manipulations
         this.group.addChild(unit.shape);
         // add unit to cell
@@ -66,7 +69,7 @@ $.Class('Unramalak.CellCollection', {}, {
      * @param {Unramalak.Position} position
      * @returns {Unramalak.Cell}
      */
-    get: function(position) {
+    get: function (position) {
 
         if (this.cells[position.x].length == 0) {
             throw new Error('Unable to find row in cell collection');

@@ -6,12 +6,24 @@ $.Class('Unramalak.Path.Finder', {}, {
     dimension: null,
     rules: null,
 
-
+    /**
+     * Initialize a path finder with a dimension and rules
+     *
+     * @param dimension Collection of items to be searched
+     * @param rules Rules to decrement movement
+     */
     init: function (dimension, rules) {
         this.dimension = dimension;
         this.rules = rules;
     },
 
+    /**
+     * Returns valid positions according to movement
+     *
+     * @param position
+     * @param movement
+     * @returns {Array}
+     */
     find: function (position, movement) {
         var positions = [];
         var remainingMovement = movement;
@@ -25,12 +37,19 @@ $.Class('Unramalak.Path.Finder', {}, {
             if (validPositions.length > 0) {
                 positions.push(potentialPositions);
             }
+            // TODO decreasing movement points according to tha land type
             // decrease movement points
             remainingMovement--;
         }
         return positions;
     },
 
+    /**
+     * Returns matching positions according to the "Rules"
+     *
+     * @param positions Positions to be matched
+     * @returns {Array} Matching positions
+     */
     matchRules: function (positions) {
         var matchingPositions = [];
 
@@ -43,6 +62,12 @@ $.Class('Unramalak.Path.Finder', {}, {
         return matchingPositions;
     },
 
+    /**
+     * Return valid positions which are next to a position
+     *
+     * @param position
+     * @returns {Array}
+     */
     getNearbyPositions: function (position) {
         // get all nearby positions
         var positions = this.getNearbyPosition(position);
@@ -62,6 +87,12 @@ $.Class('Unramalak.Path.Finder', {}, {
         return validPositions;
     },
 
+    /**
+     * Return positions next to a specified position (return position could be invalid)
+     *
+     * @param position
+     * @returns {Array}
+     */
     getNearbyPosition: function (position) {
         var x = position.x;
         var y = position.y;
@@ -70,7 +101,7 @@ $.Class('Unramalak.Path.Finder', {}, {
             throw new Error('Invalid position (x and y should be positive or equal to 0), given : ' + position.toString());
         }
         // a cell can have 6 nearby cells
-        var nearbyCellsPositions = [
+        return [
             [x - 1, y - 1], // left top
             [x - 1, y], // left
             [x - 1, y + 1], // left bottom
@@ -78,10 +109,8 @@ $.Class('Unramalak.Path.Finder', {}, {
             [x + 1, y], // right
             [x + 1, y - 1] // right top
         ];
-        return nearbyCellsPositions;
     }
-})
-;
+});
 
 /**
  * Rules to move or not according to unit and type of land
@@ -92,6 +121,7 @@ $.Class('Unramalak.Path.Rules', {}, {
 
     /**
      * Initialize a Rule for given unit and land
+     *
      * @param unit
      * @param land
      */
@@ -102,6 +132,7 @@ $.Class('Unramalak.Path.Rules', {}, {
 
     /**
      * Return true if unit can move into this type of land
+     *
      * @returns {boolean}
      */
     match: function () {

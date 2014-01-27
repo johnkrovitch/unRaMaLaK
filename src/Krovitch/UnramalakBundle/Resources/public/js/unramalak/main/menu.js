@@ -12,29 +12,29 @@ $.Class('Unramalak.Menu', {}, {
         this.actions = this.container.find('.menu-action');
     },
 
-    bind: function (onSave, map) {
+    bind: function () {
         var _super = this;
         // click on actions buttons: call map callback
         this.actions.on('click', function () {
-            var event = $(this).data('event');
-
-            // TODO remove the old way
-            if ($(this).data('action') == 'save') {
-                onSave.call(map || this);
-            }
+            // menu actions should have an event name
+            var eventName = $(this).data('event');
             // event handle with EventManager
-            EventManager.dispatch(event);
+            EventManager.dispatch(eventName);
         });
         // click on items buttons: save value
-        this.items.on('click', function (e) {
+        this.items.on('click', function () {
             // if other items have been selected, we unselect them and select only current one
             _super.unselect();
             $(this).addClass('active');
-            // we save what item was pressed
-            _super.data[$(this).data('type')] = $(this).data('value');
-            // stop event propagation
-            e.stopPropagation();
-            e.preventDefault();
+
+            // creating a item click event
+            var data = {
+                type: $(this).data('type'),
+                value: $(this).data('value')
+            };
+            var event = new Unramalak.Event.Event(UNRAMALAK_MENU_ITEM_CLICK, data);
+            // dispatch
+            EventManager.dispatch(UNRAMALAK_MENU_ITEM_CLICK, event);
         });
     },
 

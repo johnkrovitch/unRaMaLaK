@@ -8,7 +8,7 @@ var mapMode = {
 /**
  * Map class
  */
-$.Class('Unramalak.Map', {}, {
+$.Class('Unramalak.Map.Map', {}, {
     /**
      * @property {Unramalak.CellCollection}
      */
@@ -20,6 +20,7 @@ $.Class('Unramalak.Map', {}, {
     hitCells: [],
     keyboardControl: null,
     mouseControl: null,
+    cellManager: null,
     unitManager: null,
     menu: null,
     /**
@@ -60,8 +61,9 @@ $.Class('Unramalak.Map', {}, {
         this.mouseControl = new Unramalak.Control.Mouse();
         // map mode
         this.mode = context.mode;
-        // unit manager
+        // initialize managers
         this.unitManager = new Unramalak.Unit.UnitManager();
+        this.cellManager = new Unramalak.Map.CellManager();
     },
 
     /**
@@ -109,12 +111,14 @@ $.Class('Unramalak.Map', {}, {
         // binding menu actions
         // bind menu events
         // onclick anywhere but on menu and map, unselect user choice
-        this.menu.bind(this.save, this);
+        this.menu.bind();
         this.onNotify = onNotify;
 
-        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [null], this);
-        EventManager.subscribe(UNRAMALAK_MAP_MOUSE_DOWN, this.mouseControl.onMouseEvent, [], this.mouseControl);
-        EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [], this.unitManager);
+        this.cellManager.bind();
+
+        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
+
+        EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [this.cells], this.unitManager);
         // binding render
         EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
     },
@@ -172,21 +176,10 @@ $.Class('Unramalak.Map', {}, {
     },
 
     render: function () {
+        // render event
         var event = new Unramalak.Event.Event(UNRAMALAK_MAP_RENDER);
+        // dispatching event to all objects who need render
         EventManager.dispatch(UNRAMALAK_MAP_RENDER, event);
-
-        // we update clicked cell
-//        for (var i in this.mouseControl.clickedCells) {
-//            var cell = this.mouseControl.clickedCells[i];
-//            cell.select();
-//        }
-//        this.renderer = new Unramalak.Renderer();
-//        // draw cells
-//        this.cells.render();
-//        // draw units
-////        this.units.forEach(function (unit) {
-////            unit.render();
-////        });
         // notify if error has been encountered
         for (var i = 0; i < this.errors.length; i++) {
             this.notify(this.errors[i], 'error');
@@ -257,9 +250,10 @@ $.Class('Unramalak.Map', {}, {
 
     /**
      *
+     * @param event
      * @param position
      */
-    addUnit: function (position) {
+    addUnit: function (event, position) {
 
         if ($.isNull(position)) {
             // by default, the unit will be at 0,0

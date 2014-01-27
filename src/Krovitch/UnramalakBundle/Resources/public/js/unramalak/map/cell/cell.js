@@ -3,40 +3,34 @@
  *
  * Has basic binding, rendering functions for cell
  *
- * @namespace {Unramalak.BaseCell}
+ * @name {Unramalak.BaseCell}
  */
 Unramalak.Container('Unramalak.BaseCell', {}, {
     land: null,
     position: {},
     raster: null,
     shape: null,
-    data: {
-        x: null,
-        y: null
-    },
-    units: [],
 
     /**
-     * Constructor of cells
+     * Cell constructor
      *
      * @param shape
      * @param data
+     * @constructor
      */
     init: function (shape, data) {
-        this.data = data;
         this.shape = shape;
         this.land = new Unramalak.Land();
-        this.units = [];
+        this.unit = null;
 
-        if (!this.data.background) {
-            this.data.background = defaultBackgroundColor;
+        if (!data.background) {
+            data.background = defaultBackgroundColor;
         }
-        if (this.data.type) {
-            this.land.type = this.data.type;
+        if (data.type) {
+            this.land.type = data.type;
         }
-        if (this.data.x && this.data.x) {
-            this.position.x = this.data.x;
-            this.position.y = this.data.y;
+        if (data.x && data.x) {
+            this.position = new Unramalak.Position(parseInt(data.x), parseInt(data.y));
         }
     },
 
@@ -50,11 +44,13 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         this.shape.attach('mousedown', function (paperEvent) {
             // we pass paper.js event and current cell
             var data = {
-                event: paperEvent,
+                paperEvent: paperEvent,
                 cell: cell
             };
-            var event = new Unramalak.Event.Event(UNRAMALAK_MAP_MOUSE_DOWN, data);
-            EventManager.dispatch(UNRAMALAK_MAP_MOUSE_DOWN, event);
+            // creating mouse event
+            var event = new Unramalak.Event.MouseEvent(UNRAMALAK_MAP_CELL_CLICK, data);
+            // dispatching
+            EventManager.dispatch(UNRAMALAK_MAP_CELL_CLICK, event);
         });
         // on map rendering, we render the cell
         EventManager.subscribe(UNRAMALAK_MAP_RENDER, this.render, [], this);
@@ -73,7 +69,6 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         };
     },
 
-
     reset: function () {
         // reset land type
         this.land.reset();
@@ -89,22 +84,23 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         if (!this.selected) {
             EventManager.dispatch(UNRAMALAK_MAP_UNSELECT);
         }
+        // we select/unselect cell
         this.selected = !this.selected;
-        var cell = this;
-        // if cell has units, we select them
-        $.each(this.units, function (index, unit) {
-            unit.select(cell.selected);
 
-            if (cell.selected) {
-                // we inform map that it should display cells that units can reached
+        // we inform map that it should display cells that unit can reached
+        if (this.hasUnit()) {
+
+            if (this.selected) {
                 var data = {
-                    cell: cell,
-                    unit: unit
+                    cell: this,
+                    unit: this.unit
                 };
+                // creating event
                 var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
+                // dispatching event
                 EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
             }
-        });
+        }
         // cell should now be rendered
         this.render();
     },
@@ -114,9 +110,9 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         if (this.selected) {
             this.selected = false;
 
-            $.each(this.units, function (index, unit) {
-                unit.select(false);
-            });
+            if (this.hasUnit()) {
+                this.unit.select(false);
+            }
             this.render();
         }
 
@@ -158,20 +154,16 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
              cell.shape.fire('mousedrag', e);
              });*/
         }
-        // units render
-        for (var index in this.units) {
-            this.units[index].render();
-        }
+        // default border color
         this.shape.strokeColor = defaultStrokeColor;
 
         // selection render
         this.shape.selected = this.selected;
 
-        if (this.selected && this.hasUnit()) {
-            for (index in this.units) {
-                console.log('this', this);
-                this.units[index].select();
-            }
+        if (this.hasUnit()) {
+            this.unit.select(this.selected);
+            // units render
+            this.unit.render();
         }
     }
 
@@ -179,13 +171,26 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
 
 /**
  * Cell
- *
  * Handle map behaviors (cells, units...)
  *
  * @namespace {Unramalak.Cell}
  */
 Unramalak.BaseCell('Unramalak.Cell', {}, {
     selected: false,
+    unit: null,
+
+    /**
+     * Attach an unit to the cell
+     *
+     * @param unit
+     */
+    attachUnit: function (unit) {
+        // if cell has already a cell, throw an error
+        if (this.hasUnit()) {
+            throw new Error('Trying to attach an unit to a cell which already have one');
+        }
+        this.unit = unit;
+    },
 
     /**
      * Return the point on the top of the shape
@@ -196,20 +201,12 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     },
 
     /**
-     * Attach an unit to the cell
-     *
-     * @param unit
-     */
-    attachUnit: function (unit) {
-        this.units.push(unit);
-    },
-
-    /**
      * Return true if this container has unit
+     *
      * @returns {boolean}
      */
     hasUnit: function () {
-        return (this.units.length > 0);
+        return $.isNotNull(this.unit);
     },
 
     // TODO refactor this in behaviour

@@ -1,0 +1,33 @@
+<div id="editor-menu">
+    {{ 'editor.map.baseLand'|trans }}
+
+    <!-- basic land type -->
+    <a href="javascript:void(0);" class="btn btn-small btn-default menu-item" data-type="land" data-value="sand"
+       title="{% trans %}editor.map.sand{% endtrans %}">
+        <img src="/bundles/krovitchunramalakfront/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/>
+    </a>
+    <a href="javascript:void(0);" class="btn btn-small btn-default menu-item" data-type="land" data-value="water"
+       title="{% trans %}editor.map.water{% endtrans %}">
+        <img src="/bundles/krovitchunramalakfront/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/>
+    </a>
+    <a href="javascript:void(0);" class="btn btn-small btn-default menu-item" data-type="land" data-value="plains"
+       title="{% trans %}editor.map.plains{% endtrans %}">
+        <img src="/bundles/krovitchunramalakfront/img/plains.png" alt="{% trans %}editor.map.plains{% endtrans %}"/>
+    </a>
+
+    <!-- remove background button -->
+    <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="remove"
+       title="{% trans %}editor.map.removeBackground{% endtrans %}">
+        <i class="icon-white icon-remove"></i>
+    </a>
+
+    <!-- actions buttons -->
+    <a type="button" class="btn btn-default btn-small menu-action" data-event="unramalak.map.addUnit">
+        <span class="glyphicon glyphicon-plus-sign"></span>
+        {{ 'unramalak.map.addUnit'|trans }}
+    </a>
+
+    <a href="javascript:void(0);" class="btn btn-success btn-small menu-action" data-action="save">
+        <i class="icon-white icon-ok"></i>{{ 'unramalak.admin.map.save'|trans }}
+    </a>
+</div>

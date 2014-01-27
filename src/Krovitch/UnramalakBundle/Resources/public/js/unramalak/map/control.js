@@ -42,54 +42,28 @@ $.Class('Unramalak.Control.Mouse', {}, {
 //            callback.call(map || this, mouseEvent);
 //        });
 //    },
-
-    onMouseEvent: function (event) {
-        // create mouse event according to paper js mouse event
-        var paperEvent = event.data.event;
-        var mouseEvent = new Unramalak.Control.MouseEvent(paperEvent);
-
-        // remember what button was clicked (useful during drag)
-        if (event.name == 'unramalak.map.mousedown') {
-            mouseEvent.hitButton = paperEvent.event.button;
-            this.lastClicked = mouseEvent.hitButton;
-        }
-//        else if (event == 'mouseup') {
-//            this.lastClicked = null;
+//
+//    onMouseEvent: function (event) {
+//        // create mouse event according to paper js mouse event
+//        var paperEvent = event.data.event;
+//        var mouseEvent = new Unramalak.Control.MouseEvent(paperEvent);
+//
+//        // remember what button was clicked (useful during drag)
+//        if (event.name == 'unramalak.map.mousedown') {
+//            mouseEvent.hitButton = paperEvent.event.button;
+//            this.lastClicked = mouseEvent.hitButton;
 //        }
-//        else if (event == 'mousedrag') {
-//            this.hitButton = mouseControl.lastClicked;
+////        else if (event == 'mouseup') {
+////            this.lastClicked = null;
+////        }
+////        else if (event == 'mousedrag') {
+////            this.hitButton = mouseControl.lastClicked;
+////        }
+//        // on left click, we store the cell which need an update
+//        if (mouseEvent.isLeftClick()) {
+//            event.data.cell.select();
 //        }
-        // on left click, we store the cell which need an update
-        if (mouseEvent.isLeftClick()) {
-            event.data.cell.select();
-        }
-    }
-});
-
-$.Class('Unramalak.Control.MouseEvent', {}, {
-    // which button was pressed
-    hitButton: null,
-    // delta (while dragging...)
-    delta: null,
-    isCtrlPressed: false,
-
-    init: function (paperEvent) {
-        this.delta = paperEvent.delta;
-        this.isCtrlPressed = paperEvent.event.ctrlKey;
-        this.type = paperEvent.type;
-    },
-
-    isLeftClick: function () {
-        return (this.hitButton == MouseClick.leftClick);
-    },
-
-    isRightClick: function () {
-        return (this.hitButton == MouseClick.rightClick);
-    },
-
-    isCtrl: function () {
-        return this.isCtrl;
-    }
+//    }
 });
 
 /**

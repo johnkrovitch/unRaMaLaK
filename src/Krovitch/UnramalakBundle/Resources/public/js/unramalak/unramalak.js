@@ -3,6 +3,8 @@
 // use jQuery plugin jclass (old and hard to find now, but do the job).
 // notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
 
+"use strict";
+
 /**
  * Main application
  */
@@ -46,7 +48,7 @@ $.Class('Unramalak.Application', {}, {
    */
   run: function () {
     // draw map and bind map's events
-    this.map = new Unramalak.Map(this.mapContext);
+    this.map = new Unramalak.Map.Map(this.mapContext);
     this.map.build();
     this.map.bind(this.notify);
     this.map.render();

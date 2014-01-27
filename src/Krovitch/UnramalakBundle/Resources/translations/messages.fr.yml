@@ -8,6 +8,7 @@ unramalak.admin.edit: editer
 unramalak.admin.delete: supprimer
 unramalak.admin.map.regenerate: regénéner
 unramalak.admin.map.test: tester
+unramalak.admin.map.save: Sauvegarder
 
 # admin entities
 unramalak.admin.maps: Les Maps
