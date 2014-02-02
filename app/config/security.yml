@@ -38,10 +38,10 @@ security:
             security: false
 
         secured_area:
-            pattern:    ^/demo/secured/
+            pattern:    ^/admin
             form_login:
-                check_path: _security_check
-                login_path: _demo_login
+                check_path: /admin/login_check
+                login_path: /admin/login
 
             logout:
                 path:   _demo_logout

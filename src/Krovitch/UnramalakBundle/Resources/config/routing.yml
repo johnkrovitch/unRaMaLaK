@@ -1,3 +1,14 @@
+### MAPS ###
+# url that allow to play map for testing purpose
+map.test:
+    path:  "/admin/map/test/{id}"
+    defaults: { _controller: KrovitchUnramalakBundle:Map:test}
+
+map.regenerate:
+    path:  "/map/regenerate/{id}"
+    defaults: { _controller: KrovitchUnramalakBundle:Map:regenerate}
+###########
+
 admin:
     path:  "/admin"
     defaults: { _controller: KrovitchUnramalakBundle:Admin:index }
@@ -5,14 +16,3 @@ admin:
 admin_action:
     path:  "/admin/{action}/{entity}/{id}"
     defaults: { _controller: KrovitchUnramalakBundle:Admin:execute, id: 0, entity: 0 }
-
-### MAPS ###
-# url that allow to play map for testing purpose
-map.test:
-    path:  "/map/test/{id}"
-    defaults: { _controller: KrovitchUnramalakBundle:Map:test}
-
-map.regenerate:
-    path:  "/map/regenerate/{id}"
-    defaults: { _controller: KrovitchUnramalakBundle:Map:regenerate}
-###########
