@@ -99,25 +99,17 @@ $.Class('Unramalak.Map.Map', {}, {
     },
 
     bind: function (onNotify) {
-
         this.cells.each(function (index, cell) {
             cell.bind();
         });
-        var map = this;
-        $(document).on('click contextmenu', function () {
-            map.menu.unselect();
-        });
+
         // TODO bind events with eventManager
-        // binding menu actions
-        // bind menu events
-        // onclick anywhere but on menu and map, unselect user choice
-        this.menu.bind();
         this.onNotify = onNotify;
 
+        this.menu.bind();
         this.cellManager.bind();
 
         EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
-
         EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [this.cells], this.unitManager);
         // binding render
         EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
@@ -280,19 +272,15 @@ $.Class('Unramalak.Map.Map', {}, {
      */
     preventBubbling: function () {
         var stopPropagation = function (e) {
+            e.stopImmediatePropagation();
             e.stopPropagation();
             e.preventDefault();
+            return false;
         };
         // left, right click and drag
         $('canvas').on('click', stopPropagation)
             .on('contextmenu', stopPropagation)
             .on('drag', stopPropagation);
-        /*$(document).on('keyup', function (e) {
-         // TODO prevent browser from scrolling
-         e.stopPropagation();
-         e.preventDefault();
-         e.stopImmediatePropagation();
-         });*/
     }
 });
 

@@ -58,67 +58,6 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     },
 
     /**
-     * Return a json string of the cell
-     * @returns object
-     */
-    toJson: function () {
-        return {
-            x: this.data.x,
-            y: this.data.y,
-            type: this.land.type
-        };
-    },
-
-    reset: function () {
-        // reset land type
-        this.land.reset();
-        // remove
-        this.raster.remove();
-    },
-
-    /**
-     * Select cell
-     */
-    select: function () {
-        // we inform map that other cells should be unselected
-        if (!this.selected) {
-            EventManager.dispatch(UNRAMALAK_MAP_UNSELECT);
-        }
-        // we select/unselect cell
-        this.selected = !this.selected;
-
-        // we inform map that it should display cells that unit can reached
-        if (this.hasUnit()) {
-
-            if (this.selected) {
-                var data = {
-                    cell: this,
-                    unit: this.unit
-                };
-                // creating event
-                var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
-                // dispatching event
-                EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
-            }
-        }
-        // cell should now be rendered
-        this.render();
-    },
-
-    unselect: function () {
-
-        if (this.selected) {
-            this.selected = false;
-
-            if (this.hasUnit()) {
-                this.unit.select(false);
-            }
-            this.render();
-        }
-
-    },
-
-    /**
      * Render current cell. If cell land has an image render type,
      * it use ImageLoader to load paper raster
      */
@@ -130,7 +69,12 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         }
         // texture render
         else if (render.type == 'image') {
-            this.raster = new Unramalak.Raster(render.value, this);
+
+            console.log('render raster', render);
+
+            if (!this.raster) {
+                this.raster = new Unramalak.Raster(render.value);
+            }
             this.raster.render();
             /*raster.bind('mousedown', this.shape.onmousedown, this);
              var raster = Unramalak.ImageLoader.createRaster(render.value);
@@ -165,15 +109,81 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
             // units render
             this.unit.render();
         }
-    }
+    },
 
+    reset: function () {
+        // reset land type
+        this.land.reset();
+        // remove
+        this.raster.remove();
+    },
+
+    /**
+     * Select cell
+     */
+    select: function () {
+        // we inform map that other cells should be unselected
+        if (!this.selected) {
+            EventManager.dispatch(UNRAMALAK_MAP_UNSELECT);
+        }
+        // we select/unselect cell
+        this.selected = !this.selected;
+
+        // we inform map that it should display cells that unit can reached
+        if (this.hasUnit()) {
+
+            if (this.selected) {
+                var data = {
+                    cell: this,
+                    unit: this.unit
+                };
+                var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
+
+                EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
+            }
+        }
+        this.render();
+    },
+
+    setLandType: function (landType) {
+        this.land.type = landType;
+        this.render();
+    },
+
+    /**
+     * Return a json string of the cell
+     * @returns object
+     */
+    toJson: function () {
+        return {
+            x: this.data.x,
+            y: this.data.y,
+            type: this.land.type
+        };
+    },
+
+    /**
+     * Deselect the cell
+     */
+    unselect: function () {
+
+        if (this.selected) {
+            this.selected = false;
+
+            if (this.hasUnit()) {
+                this.unit.select(false);
+            }
+            this.render();
+        }
+    }
 });
 
 /**
  * Cell
+ *
  * Handle map behaviors (cells, units...)
  *
- * @namespace {Unramalak.Cell}
+ * @name {Unramalak.Cell}
  */
 Unramalak.BaseCell('Unramalak.Cell', {}, {
     selected: false,

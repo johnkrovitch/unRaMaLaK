@@ -27,26 +27,6 @@ $.Class('Unramalak.ImageLoader', {
      */
     rasters: [],
 
-    /**
-     * Load images into body html element
-     * @static
-     */
-    load: function (imagePaths) {
-        var htmlImages = [];
-        // images container, require to be hidden
-        var container = $('<div id="unramalak-images-container" class="hidden"></div>');
-        // image template
-        var imagesTemplate = '<img src="%src%" id="%id%" class="map-resources" />';
-
-        $.each(imagePaths, function (id, path) {
-            htmlImages.push(imagesTemplate.replace('%src%', path).replace('%id%', id));
-            Unramalak.ImageLoader.rasters.push(id);
-        });
-        // append element to body
-        container.append($(htmlImages.join('')));
-        $('body').append(container);
-    },
-
     createRaster: function (name) {
         var raster = null;
 

@@ -8,5 +8,6 @@ var UNRAMALAK_MAP_CELL_CLICK = 'unramalak.map.cellClick';
 
 // menu
 var UNRAMALAK_MENU_ITEM_CLICK = 'unramalak.menu.itemClick';
+var UNRAMALAK_MENU_DESELECT = 'unramalak.menu.deselect';
 // units
 var UNRAMALAK_UNIT_MOVEMENT_DISPLAY = 'unramalak.unit.movementDisplay';

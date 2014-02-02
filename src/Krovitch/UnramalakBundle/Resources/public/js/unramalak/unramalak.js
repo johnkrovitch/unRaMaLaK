@@ -40,7 +40,7 @@ $.Class('Unramalak.Application', {}, {
             startingPoint: new paper.Point(100, 50)
         });
         // load textures
-        Unramalak.ImageLoader.load(textures);
+        //Unramalak.ImageLoader.load(textures);
     },
 
     /**

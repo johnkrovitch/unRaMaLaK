@@ -1,17 +1,21 @@
+/**
+ * Menu
+ *
+ * Manages map toolbar menu
+ */
 $.Class('Unramalak.Menu', {}, {
     actions: null,
-    actionClicked: [],
-    container: null,
     items: null,
     data: [],
-    onSave: null,
 
-    init: function (container) {
-        this.container = $(container);
+    init: function () {
         this.items = this.container.find('.menu-item');
         this.actions = this.container.find('.menu-action');
     },
 
+    /**
+     * Bind menu events (click on button, deselect)
+     */
     bind: function () {
         var _super = this;
         // click on actions buttons: call map callback
@@ -20,6 +24,8 @@ $.Class('Unramalak.Menu', {}, {
             var eventName = $(this).data('event');
             // event handle with EventManager
             EventManager.dispatch(eventName);
+
+            return false;
         });
         // click on items buttons: save value
         this.items.on('click', function () {
@@ -35,6 +41,13 @@ $.Class('Unramalak.Menu', {}, {
             var event = new Unramalak.Event.Event(UNRAMALAK_MENU_ITEM_CLICK, data);
             // dispatch
             EventManager.dispatch(UNRAMALAK_MENU_ITEM_CLICK, event);
+
+            return false;
+        });
+        $('html:not(canvas)').on('click', function () {
+            _super.unselect();
+            // triggering event to inform map to clear menu data
+            EventManager.dispatch(UNRAMALAK_MENU_DESELECT);
         });
     },
 

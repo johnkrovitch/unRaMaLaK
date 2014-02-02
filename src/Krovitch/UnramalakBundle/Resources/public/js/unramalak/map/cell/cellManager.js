@@ -5,16 +5,17 @@
  *
  */
 $.Class('Unramalak.Map.CellManager', {}, {
-    menuData: [],
+    menuData: null,
 
     /**
      * Bind CellManager events :
-     *   - cellClick
-     *   - ...
+     *   - cell click
+     *   - menu item click
      */
     bind: function () {
         EventManager.subscribe(UNRAMALAK_MAP_CELL_CLICK, this.onCellClick, [], this);
         EventManager.subscribe(UNRAMALAK_MENU_ITEM_CLICK, this.onMenuItemClick, [], this);
+        EventManager.subscribe(UNRAMALAK_MENU_DESELECT, this.onMenuItemClick, [], this);
     },
 
     /**
@@ -23,21 +24,28 @@ $.Class('Unramalak.Map.CellManager', {}, {
      * @param mouseEvent
      */
     onCellClick: function (mouseEvent) {
+        // the guilty cell
+        var cell = mouseEvent.data.cell;
+
         // on left click, we select a cell
         if (mouseEvent.isLeftClick()) {
-            mouseEvent.data.cell.select();
+
+            // if menu has been clicked, we maybe should alter the cell
+            if (this.menuData) {
+                // modify land type
+                if (this.menuData.type == 'land') {
+                    cell.setLandType(this.menuData.value);
+                    console.log('land changed', cell);
+                }
+            }
+            else {
+                // default behavior : we select the cell
+                cell.select();
+            }
         }
     },
 
     onMenuItemClick: function (event) {
-
-        if (event.data.type == 'land') {
-            this.menuData = event.data;
-
-
-            console.log('?');
-        }
-
-
+        this.menuData = event.data;
     }
 });
