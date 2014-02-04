@@ -16,6 +16,7 @@ class AttributeCollectionType extends AbstractType
         $view->vars['attributes'] = $options['availables_attributes'];
         $view->vars['minLimit'] = $options['min_limit'];
         $view->vars['maxLimit'] = $options['max_limit'];
+        $view->vars['remainingPoints'] = $options['remainingPoints'];
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -23,7 +24,8 @@ class AttributeCollectionType extends AbstractType
         $resolver->setDefaults([
             'availables_attributes' => [],
             'min_limit' => 0,
-            'max_limit' => 20
+            'max_limit' => 20,
+            'remainingPoints' => 20
         ]);
     }
 
