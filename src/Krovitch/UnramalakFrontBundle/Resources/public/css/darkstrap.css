@@ -234,7 +234,7 @@ textarea::-webkit-input-placeholder {
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003213}}
 [class^="icon-"],
 [class*=" icon-"] {
-  background-image: url("../../../UnramalakBundle/Resources/public/img/glyphicons-halflings.png");
+  background-image: url("../img/glyphicons-halflings-white.png");
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003229}}
@@ -251,7 +251,7 @@ textarea::-webkit-input-placeholder {
 .dropdown-menu > .active > a > [class*=" icon-"],
 .dropdown-submenu:hover > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: url("../../../UnramalakBundle/Resources/public/img/glyphicons-halflings-white.png");
+  background-image: url("../img/glyphicons-halflings-white.png");
 }
 
 @media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/darkstrap\.scss}line{font-family:\00003233}}

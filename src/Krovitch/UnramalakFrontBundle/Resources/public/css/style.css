@@ -234,19 +234,23 @@ a.btn {
 .avatars img.avatar {
   height: 50px;
 }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000357}}
+.avatars img.avatar.active {
+  border: 1px solid grey;
+}
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000360}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000364}}
 .media-collection ul {
   clear: both;
   display: inline-block;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000368}}
 .media-collection ul li {
   display: block;
   float: left;
   padding: 0 10px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000369}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/afrezet\/workspace\/unRaMaLaK\/src\/Krovitch\/UnramalakFrontBundle\/Resources\/sass\/style\.scss}line{font-family:\0000373}}
 .media-collection ul li img {
   cursor: pointer;
 }

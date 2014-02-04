@@ -7,9 +7,14 @@
                     <li>
                         <img class="avatar" src="{{ asset(media.file) }}" alt="{{ media.name }}"/>
                         <span class="help-block">{{ media.name }}</span>
+                        <span class="media-hidden-description hide">{{ media.description }}</span>
                     </li>
                 {% endfor %}
             </ul>
+
+            <span class="description">
+
+            </span>
 
             <input type="hidden" name="{{ form.vars.name }}" value="" id="{{ form.vars.id }}">
         {% else %}
@@ -25,7 +30,11 @@
 
             container.find('li img').on('click', function () {
                 input.val($(this).attr('src'));
-                // TODO add class active
+                // css class
+                $(this).parents('ul').find('img').removeClass('active');
+                $(this).addClass('active');
+                // setting description
+                container.find('.description').text($(this).parent().find('.media-hidden-description').text());
             });
         });
     </script>
@@ -38,9 +47,15 @@
             <label for="{{ form.vars.id ~ '-remaining-points' }}">
                 {{ 'unramalak.hero.remaining-points'|trans }}
             </label>
-            <input type="text" readonly="true" id="{{ form.vars.id ~ '-remaining-points' }}" class="remaining-points"
-                   value="20"/>
         </span>
+
+        <div class="row">
+            <div class="col-xs-2">
+                <span id="{{ form.vars.id ~ '-remaining-points' }}" class="remaining-points">
+                    {{ form.vars.remainingPointss }}
+                </span>
+            </div>
+        </div>
 
         {% if (attributes|length > 0) %}
 

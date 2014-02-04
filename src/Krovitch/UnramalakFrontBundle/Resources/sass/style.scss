@@ -53,6 +53,10 @@ canvas {
 .avatars {
   img.avatar {
     height: 50px;
+
+    &.active {
+      border: 1px solid grey;
+    }
   }
 }
 
@@ -71,4 +75,9 @@ canvas {
       }
     }
   }
+}
+
+// attributes collection
+.attributes-container {
+
 }

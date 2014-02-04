@@ -14,6 +14,10 @@ unramalak.admin.map.save: Sauvegarder
 unramalak.admin.maps: Les Maps
 
 
+# heroes
+unramalak.hero.name: Nom
+unramalak.hero.avatar: Avatar
+unramalak.hero.remaining-points: Points restants
 
 
 #editor.map.title: Map

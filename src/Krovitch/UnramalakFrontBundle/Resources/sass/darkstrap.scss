@@ -211,7 +211,7 @@ textarea::-webkit-input-placeholder {
 
 [class^="icon-"],
 [class*=" icon-"] {
-  background-image: url("../../../UnramalakBundle/Resources/public/img/glyphicons-halflings.png");
+  background-image: url("../img/glyphicons-halflings-white.png");
 }
 
 .icon-white,
@@ -227,7 +227,7 @@ textarea::-webkit-input-placeholder {
 .dropdown-menu > .active > a > [class*=" icon-"],
 .dropdown-submenu:hover > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"] {
-  background-image: url("../../../UnramalakBundle/Resources/public/img/glyphicons-halflings-white.png");
+  background-image: url("../img/glyphicons-halflings-white.png");
 }
 
 .btn-link:hover {

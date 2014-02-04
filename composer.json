@@ -48,7 +48,7 @@
     "behat/mink-selenium2-driver": "*",
     "behat/symfony2-extension": "*@dev",
     "georgette-party/gmf-bundle": "*",
-    "georgette-party/base-bundle": "*",
+    "georgette-party/base-bundle": "1.0.0",
     "georgette-party/unicode-tesselation-bundle": "*",
     "phpunit/phpunit": "dev-master"
   },

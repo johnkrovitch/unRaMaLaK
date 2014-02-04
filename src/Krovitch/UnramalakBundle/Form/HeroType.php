@@ -11,27 +11,40 @@ class HeroType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name', 'text');
-        $builder->add('avatar', 'media_collection', ['data' => $this->getMedias()]);
+        $builder->add('name', 'text', [
+            'label' => 'unramalak.hero.name'
+        ]);
+        $builder->add('avatar', 'media_collection', [
+            'label' => 'unramalak.hero.avatar',
+            'data' => $this->getMedias()
+        ]);
         $builder->add('attributes', 'attributes_collection', [
+            'label' => 'unramalak.hero.remaining-points',
             'availables_attributes' => $options['availables_attributes']
         ]);
-
         return $builder;
     }
 
     protected function getMedias()
     {
+        // TODO move to a better world
         $avatarPath = '/bundles/krovitchunramalakfront/img/avatars/';
         $medias = [];
         $data = [
-            'human' => 'human1.jpg',
-            'undead' => 'undead1.jpg'
+            'human' => [
+                'avatar' => 'human1.jpg',
+                'description' => 'Ceci est un humain de fort bel constitution'
+            ],
+            'undead' => [
+                'avatar' => 'undead1.jpg',
+                'description' => 'Un beau zombie avec le bras qui tombe'
+            ]
         ];
-        foreach ($data as $name => $file) {
+        foreach ($data as $race => $raceData) {
             $media = new Media();
-            $media->setName($name);
-            $media->setFile($avatarPath.$file);
+            $media->setName($race);
+            $media->setFile($avatarPath . $raceData['avatar']);
+            $media->setDescription($raceData['description']);
             $medias[] = $media;
         }
         return $medias;
