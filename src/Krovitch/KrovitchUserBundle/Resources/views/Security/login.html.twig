@@ -13,30 +13,32 @@
             <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
 
-                <div class="from-group">
+                <div class="form-group">
                     <label for="username">
                         {{ 'security.login.username_email'|trans }}
                     </label>
                     <input type="text" id="username" name="_username" value="{{ last_username|trans }}"
                            required="required" class="form-control"
                            placeholder="{{ 'security.login.username_email'|trans }}"/>
-
                 </div>
-                <div class="from-group">
+
+                <div class="form-group">
                     <label for="password">
-                        {{ 'security.login.password' }}
+                        {{ 'security.login.password'|trans }}
                     </label>
                     <input type="password" id="password" name="_password" required="required" class="form-control"
                            placeholder="{{ 'security.login.password' }}"/>
                 </div>
-                <div class="from-group">
+
+                <div class="form-group">
                     <label for="remember_me">
-                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                        <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
                         {{ 'security.login.remember_me'|trans }}
                     </label>
                 </div>
 
-                <input type="submit" id="_submit" name="_submit" class="btn pull-right" value="{{ 'security.login.submit'|trans }}"/>
+                <input type="submit" id="_submit" name="_submit" class="btn pull-right"
+                       value="{{ 'security.login.submit'|trans }}"/>
             </form>
 
         </div>
