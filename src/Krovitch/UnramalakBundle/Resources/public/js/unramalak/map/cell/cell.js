@@ -69,9 +69,6 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         }
         // texture render
         else if (render.type == 'image') {
-
-            console.log('render raster', render);
-
             this.raster = new Unramalak.Raster(this.shape, render.value);
             this.raster.render();
         }

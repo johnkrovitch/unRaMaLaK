@@ -26,6 +26,7 @@ $.Class('Unramalak.Raster', {}, {
         }
         this.id = imageId;
         this.container = container;
+        this.shape = null;
     },
 
     /**
@@ -35,13 +36,11 @@ $.Class('Unramalak.Raster', {}, {
         if (!this.shape) {
             throw 'Raster should be rendered before binding it to its container';
         }
-        var events = ['mousedown', 'mouseup', 'mousedrag'];
+        var raster = this;
 
-        for(var i in events) {
-            this.shape.attach(events[i], function (paperEvent) {
-                this.container.fire(event, paperEvent);
-            });
-        }
+        this.shape.attach('mousedown', function (paperEvent) {
+            raster.container.fire('mousedown', paperEvent);
+        });
     },
 
     /**
@@ -55,5 +54,7 @@ $.Class('Unramalak.Raster', {}, {
         // we create raster here cause paper.js render raster on its creation, so we "delayed" render here
         this.shape = new paper.Raster(this.id);
         this.shape.position = this.container.getPosition();
+        // binding events to container
+        this.bind();
     }
 });
