@@ -72,31 +72,8 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
 
             console.log('render raster', render);
 
-            if (!this.raster) {
-                this.raster = new Unramalak.Raster(render.value);
-            }
+            this.raster = new Unramalak.Raster(this.shape, render.value);
             this.raster.render();
-            /*raster.bind('mousedown', this.shape.onmousedown, this);
-             var raster = Unramalak.ImageLoader.createRaster(render.value);
-             if (!this.raster) {
-             this.raster = raster;
-             }
-             // TODO make land update (texture change and old raster deletion)
-             if (this.raster && this.raster != raster) {
-             //this.raster.remove();
-             //this.raster = raster;
-             }
-             var cell = this;
-             this.raster.setPosition(this.getPosition());
-             this.raster.attach('mousedown', function (e) {
-             cell.shape.fire('mousedown', e);
-             });
-             this.raster.attach('mouseup', function (e) {
-             cell.shape.fire('mouseup', e);
-             });
-             this.raster.attach('mousedrag', function (e) {
-             cell.shape.fire('mousedrag', e);
-             });*/
         }
         // default border color
         this.shape.strokeColor = defaultStrokeColor;

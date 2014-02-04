@@ -29,7 +29,10 @@ $.Class('Unramalak.Map.Map', {}, {
     mode: null,
     numberOfSides: 0,
     onNotify: null,
-    profile: {},
+    profile: {
+        id: 0,
+        name: ''
+    },
     radius: 0,
     renderer: null,
     startingPoint: null,
@@ -52,7 +55,7 @@ $.Class('Unramalak.Map.Map', {}, {
         this.radius = context.radius;
         this.startingPoint = context.startingPoint;
         // create menu
-        this.menu = new Unramalak.Menu(context.menuContainer, 'mainMenu');
+        this.menu = new Unramalak.Menu(context.menuContainer);
         //  init cell collections
         this.cells = new Unramalak.CellCollection();
         this.hitCells = [];
@@ -67,7 +70,7 @@ $.Class('Unramalak.Map.Map', {}, {
     },
 
     /**
-     * Load data from context. Those data will be used during map building
+     * Load data from context
      *
      * @param data
      */
@@ -94,6 +97,9 @@ $.Class('Unramalak.Map.Map', {}, {
         // load map profile
         if (data.profile) {
             this.profile = data.profile;
+        }
+        if (data.routing) {
+            this.routing = data.routing;
         }
         // TODO manage events loading
     },
@@ -176,44 +182,8 @@ $.Class('Unramalak.Map.Map', {}, {
         for (var i = 0; i < this.errors.length; i++) {
             this.notify(this.errors[i], 'error');
         }
-    },
-
-    /**
-     * Unselect cells
-     */
-    unselect: function () {
-//    $.each(this.cells, function (index, cell) {
-//      cell.shape.selected = false;
-//    });
-    },
-
-    /**
-     * Update required cells
-     */
-    update: function () {
-        // TODO little improvement here
-        var map = this;
-        // if cells have been clicked or drag
-        $.each(map.cells.hitCells, function (index, cell) {
-            // if a item menu button was pressed
-            if (map.menu.hasData('land')) {
-                cell.land.type = map.menu.getData('land');
-                cell.render();
-            }
-            if (cell.hasUnit()) {
-                //cell.units[0].shape.selected = !cell.units[0].shape.selected;
-
-                //var dimension = new Unramalak.Dimension(10, 10);
-
-                //var rules = new Unramalak.Path.Rules(cell.units[0], cell.land);
-                //var pathManager = new Unramalak.Path.Finder(dimension, rules);
-
-                //var krovitch = pathManager.find(new Unramalak.Position(1, 1), 1);
-            }
-        });
-        // then reset hitCells
-        this.cells.update(this.menu.getData());
-        this.cells.hitCells = [];
+        // paper js draw
+        paper.view.draw();
     },
 
     save: function () {
@@ -284,6 +254,13 @@ $.Class('Unramalak.Map.Map', {}, {
     }
 });
 
+
+/**
+ * Map context
+ *
+ * A context should allow to reload map at specific state
+ *
+ */
 $.Class('Unramalak.Map.Context', {}, {
     data: null,
     cellPadding: 0,
@@ -293,6 +270,9 @@ $.Class('Unramalak.Map.Context', {}, {
     numberOfSides: 0,
     preventBubbling: true, // not customizable now
     radius: 0,
+    routing: {
+        'save': ''
+    },
     startingPoint: null,
 
     init: function (mapOptions) {
@@ -303,5 +283,6 @@ $.Class('Unramalak.Map.Context', {}, {
         this.numberOfSides = mapOptions.numberOfSides;
         this.radius = mapOptions.radius;
         this.startingPoint = mapOptions.startingPoint;
+        this.routing = mapOptions.routing;
     }
 });

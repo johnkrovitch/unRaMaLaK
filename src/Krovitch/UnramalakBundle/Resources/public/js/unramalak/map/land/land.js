@@ -13,15 +13,15 @@ $.Class('Unramalak.Land', {}, {
         // TODO put textures here
         if (this.type == 'sand') {
             render.type = 'image';
-            render.value = 'land_sand';
+            render.value = 'land_sand_1';
         }
         else if (this.type == 'water') {
             render.type = 'image';
-            render.value = 'land_water';
+            render.value = 'land_water_1';
         }
         else if (this.type == 'plains') {
             render.type = 'image';
-            render.value = 'land_plains';
+            render.value = 'land_plains_1';
         }
         return render;
     },

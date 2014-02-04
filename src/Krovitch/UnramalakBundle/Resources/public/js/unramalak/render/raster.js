@@ -4,6 +4,7 @@
  * A raster manipulate an image. It encapsulates paper.js raster
  */
 $.Class('Unramalak.Raster', {}, {
+    id: '',
     // raster container
     container: null,
     name: '',
@@ -11,35 +12,48 @@ $.Class('Unramalak.Raster', {}, {
     shape: null,
 
 
-    init: function (imageId) {
+    /**
+     * Initializes a raster
+     *
+     * @param container paper.js container object
+     * @param imageId id of image used for raster
+     */
+    init: function (container, imageId) {
         var image = $('#' + imageId);
 
-        if ($.isNull(image)) {
-            throw new Error('Trying to create a raster on an empty image');
+        if ($.isNull(image) || $.isNull(container)) {
+            throw new Error('Trying to create a raster on an empty image or without container');
         }
-       // this.shape = new paper.Raster(image);
+        this.id = imageId;
+        this.container = container;
     },
 
-//    bindToContainer: function (event, container) {
-//        if (!this.shape) {
-//            throw 'Raster should be rendered before binding it to its container';
-//        }
-//        this.shape.attach(event, function (paperEvent) {
-//            container.shape.fire(event, paperEvent);
-//        });
-//    },
-//
+    /**
+     * Bind mouse canvas event to fire to container (cell...)
+     */
+    bind: function () {
+        if (!this.shape) {
+            throw 'Raster should be rendered before binding it to its container';
+        }
+        var events = ['mousedown', 'mouseup', 'mousedrag'];
+
+        for(var i in events) {
+            this.shape.attach(events[i], function (paperEvent) {
+                this.container.fire(event, paperEvent);
+            });
+        }
+    },
+
+    /**
+     * Render raster. If a raster already exist, it will be removed
+     */
     render: function () {
-
-
-//        //this.shape = Unramalak.ImageLoader.createRaster(this.name);
-//        this.shape.setPosition(this.container.getPosition());
-//        this.bindToContainer('mousedown', this.container);
-//        this.bindToContainer('mouseup', this.container);
-//        this.bindToContainer('mousedrag', this.container);
+        // if a paper raster already exist, we should remove it
+        if (this.shape) {
+            this.shape.remove();
+        }
+        // we create raster here cause paper.js render raster on its creation, so we "delayed" render here
+        this.shape = new paper.Raster(this.id);
+        this.shape.position = this.container.getPosition();
     }
-//
-//    remove: function () {
-//        this.shape.remove();
-//    }
 });

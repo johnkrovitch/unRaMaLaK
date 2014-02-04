@@ -35,7 +35,6 @@ $.Class('Unramalak.Map.CellManager', {}, {
                 // modify land type
                 if (this.menuData.type == 'land') {
                     cell.setLandType(this.menuData.value);
-                    console.log('land changed', cell);
                 }
             }
             else {

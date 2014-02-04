@@ -8,9 +8,9 @@ $.Class('Unramalak.Menu', {}, {
     items: null,
     data: [],
 
-    init: function () {
-        this.items = this.container.find('.menu-item');
-        this.actions = this.container.find('.menu-action');
+    init: function (container) {
+        this.items = $(container).find('.menu-item');
+        this.actions = $(container).find('.menu-action');
     },
 
     /**

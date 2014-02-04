@@ -35,6 +35,9 @@ $.Class('Unramalak.Application', {}, {
             numberOfSides: 6,
             mapContainer: canvasId,
             menuContainer: '#editor-menu',
+            routing: {
+                'save': '/map/save'
+            },
             radius: 50,
             preventBubbling: true,
             startingPoint: new paper.Point(100, 50)
