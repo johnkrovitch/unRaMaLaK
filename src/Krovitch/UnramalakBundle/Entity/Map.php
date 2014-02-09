@@ -3,6 +3,8 @@
 namespace Krovitch\UnramalakBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Krovitch\UnramalakBundle\Entity\Behavior\Descriptionable;
+use Krovitch\UnramalakBundle\Entity\Behavior\Nameable;
 use Krovitch\UnramalakBundle\Utils\Path;
 
 /**
@@ -11,22 +13,7 @@ use Krovitch\UnramalakBundle\Utils\Path;
  */
 class Map extends Entity
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
-
-    /**
-     * @ORM\Column(type="string", length=100, unique=true)
-     */
-    protected $name;
-
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true)
-     */
-    protected $description;
+    use Nameable, Descriptionable;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -48,63 +35,12 @@ class Map extends Entity
      */
     protected $datafile;
 
+    /**
+     * Map cells
+     *
+     * @ORM\OneToMany(targetEntity="Cell", mappedBy="map")
+     */
     protected $cells;
-
-    /**
-     * Get id
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * Set name
-     * @param string $name
-     * @return Map
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * Set description
-     * @param string $description
-     * @return Map
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * Get description
-     * @return string
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
 
     /**
      * Set content
