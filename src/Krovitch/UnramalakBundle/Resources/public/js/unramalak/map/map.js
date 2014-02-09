@@ -29,10 +29,7 @@ $.Class('Unramalak.Map.Map', {}, {
     mode: null,
     numberOfSides: 0,
     onNotify: null,
-    profile: {
-        id: 0,
-        name: ''
-    },
+    profile: {},
     radius: 0,
     renderer: null,
     startingPoint: null,
@@ -47,6 +44,7 @@ $.Class('Unramalak.Map.Map', {}, {
             this.preventBubbling();
         }
         if ($.isNotNull(context.data)) {
+            // load cell data and map profile
             this.load(context.data);
         }
         // geometric parameters
@@ -62,8 +60,6 @@ $.Class('Unramalak.Map.Map', {}, {
         this.renderer = new Unramalak.Renderer();
         // controls
         this.mouseControl = new Unramalak.Control.Mouse();
-        // map mode
-        this.mode = context.mode;
         // initialize managers
         this.unitManager = new Unramalak.Unit.UnitManager();
         this.cellManager = new Unramalak.Map.CellManager();
@@ -98,9 +94,6 @@ $.Class('Unramalak.Map.Map', {}, {
         if (data.profile) {
             this.profile = data.profile;
         }
-        if (data.routing) {
-            this.routing = data.routing;
-        }
         // TODO manage events loading
     },
 
@@ -117,8 +110,8 @@ $.Class('Unramalak.Map.Map', {}, {
 
         EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
         EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [this.cells], this.unitManager);
-        // binding render
         EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
+        EventManager.subscribe(UNRAMALAK_MAP_SAVE, this.save, [], this);
     },
 
     /**
@@ -186,25 +179,27 @@ $.Class('Unramalak.Map.Map', {}, {
         paper.view.draw();
     },
 
+    /**
+     * Save map context in ajax
+     */
     save: function () {
         var map = this;
-        var jsonData;
-        var cellsValues = [];
 
-        // save stuff here
-        this.cells.each(this, function (cell) {
-            cellsValues.push(cell.toJson());
-        });
-        jsonData = JSON.stringify({profile: this.profile, cells: cellsValues});
+        var mapData = Unramalak.Application.createContextFromMap(this, this.cells.save());
+        var json = JSON.stringify(mapData);
+        var url = map.profile.routing.save;
+        console.log('save map', mapData, url, this.cells.save());
         // call ajax url
         $.ajax({
             type: 'POST',
-            url: '/map/save', // TODO make this dynamic
-            data: 'id=' + this.profile.id + '&data=' + jsonData,
+            url: url,
+            data: 'data=' + json,
             success: function () {
+                // TODO handle with event manager
                 map.notify('Map successfully saved !', 'success');
             },
             error: function () {
+                // TODO handle with event manager
                 map.notify('An error has occurred during map save', 'error');
             }
         });
@@ -216,7 +211,6 @@ $.Class('Unramalak.Map.Map', {}, {
      * @param position
      */
     addUnit: function (event, position) {
-
         if ($.isNull(position)) {
             // by default, the unit will be at 0,0
             position = new Unramalak.Position(0, 0);
@@ -262,6 +256,7 @@ $.Class('Unramalak.Map.Map', {}, {
  *
  */
 $.Class('Unramalak.Map.Context', {}, {
+    cells: [],
     data: null,
     cellPadding: 0,
     mapContainer: '',
@@ -269,13 +264,14 @@ $.Class('Unramalak.Map.Context', {}, {
     mode: '',
     numberOfSides: 0,
     preventBubbling: true, // not customizable now
+    profile: {},
     radius: 0,
-    routing: {
-        'save': ''
-    },
     startingPoint: null,
 
     init: function (mapOptions) {
+        if ($.isNull(mapOptions)) {
+            throw new Error('Trying to create a context with empty data');
+        }
         this.cellPadding = mapOptions.cellPadding;
         this.data = mapOptions.data;
         this.mapContainer = mapOptions.mapContainer;
@@ -283,6 +279,8 @@ $.Class('Unramalak.Map.Context', {}, {
         this.numberOfSides = mapOptions.numberOfSides;
         this.radius = mapOptions.radius;
         this.startingPoint = mapOptions.startingPoint;
-        this.routing = mapOptions.routing;
+        //this.routing = mapOptions.routing;
+        this.profile = mapOptions.profile;
+        this.cells = mapOptions.cells;
     }
 });

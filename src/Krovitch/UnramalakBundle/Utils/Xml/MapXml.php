@@ -85,6 +85,7 @@ class MapXml
         $mapData['profile']['name'] = (string)$xml->profile->name;
         $mapData['profile']['width'] = (int)$xml->profile->width;
         $mapData['profile']['height'] = (int)$xml->profile->height;
+        $mapData['profile']['height'] = (int)$xml->profile->height;
         // load cells
         foreach ($xml->cells->cell as $cell) {
             $cellData = array(

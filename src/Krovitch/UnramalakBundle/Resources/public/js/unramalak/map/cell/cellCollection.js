@@ -155,5 +155,14 @@ $.Class('Unramalak.CellCollection', {}, {
                 this.group.addChild(cell.raster.shape);
             }
         });
+    },
+
+    save: function () {
+        var data = [];
+
+        this.each(function (index, cell) {
+            data.push(cell.save());
+        });
+        return data;
     }
 });

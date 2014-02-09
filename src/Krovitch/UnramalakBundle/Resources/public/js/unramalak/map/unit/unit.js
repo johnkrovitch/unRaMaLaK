@@ -3,6 +3,7 @@
  */
 $.Class('Unramalak.Unit', {}, {
     movement: 0,
+    movementLeft: 0,
     name: '',
     position: '',
     origin: null,
@@ -16,6 +17,7 @@ $.Class('Unramalak.Unit', {}, {
         this.name = 'ToTo L\'asticot';
         this.position = {x: 0, y: 0};
         this.movement = 5;
+        this.movementLeft = 5;
     },
 
     build: function () {
@@ -65,5 +67,18 @@ $.Class('Unramalak.Unit', {}, {
 
     select: function (selected) {
         this.selected = selected;
+    },
+
+    /**
+     * Return a object containing unit data :
+     *   - name
+     *   - remaining movement points
+     *
+     */
+    save: function () {
+        return {
+            name: this.name,
+            movementLeft: this.movementLeft
+        }
     }
 });

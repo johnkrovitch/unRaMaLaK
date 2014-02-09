@@ -12,10 +12,14 @@ parameters:
     unramalak.type.media_collection: Krovitch\UnramalakBundle\Form\MediaCollectionType
     unramalak.type.attributes_collection: Krovitch\UnramalakBundle\Form\AttributeCollectionType
 
+    # converter
+    unramalak.map.transformer: Krovitch\UnramalakBundle\Utils\Map\JsonTransformer
+
     sensio_framework_extra.view.listener.class: GeorgetteParty\BaseBundle\Listener\ParametersTemplateListener
 
 services:
-    # managers
+
+    ### managers ###
     krovitch_unramalak.content_manager:
         class: %krovitch.content_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
@@ -27,6 +31,8 @@ services:
     krovitch_unramalak.map_manager:
         class: %krovitch.map_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
+        calls:
+          - [setTransformer, [@unramalak.map.transformer]]
 
     krovitch_unramalak.media_manager:
         class: %krovitch.media_manager.class%
@@ -35,15 +41,17 @@ services:
     krovitch_unramalakfront.attribute_manager:
         class: %krovitch.attribute.manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
+    ################
 
-    # login form
+    ### login form ###
     krovitch_user.registration.form.type:
         class: Krovitch\KrovitchUserBundle\Form\RegistrationFormType
         arguments: ['plain_value', %fos_user.model.user.class%]
         tags:
             - {name: form.type, alias: krovitch_user_registration}
+    ################
 
-    # form types
+    ### form types ###
     unramalak.type.user:
         class: %unramalak.type.user%
         tags:
@@ -63,3 +71,11 @@ services:
         class: %unramalak.type.attributes_collection%
         tags:
             - { name: form.type, alias: attributes_collection }
+    ################
+
+    ### converter ###
+    unramalak.map.transformer:
+        class: %unramalak.map.transformer%
+        calls:
+            - [setMapManager, [@krovitch_unramalak.map_manager]]
+    ################

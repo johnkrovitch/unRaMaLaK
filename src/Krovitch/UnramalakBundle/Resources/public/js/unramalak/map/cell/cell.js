@@ -125,15 +125,19 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
     },
 
     /**
-     * Return a json string of the cell
-     * @returns object
+     * Return a object containing cell, land and unit data
      */
-    toJson: function () {
-        return {
-            x: this.data.x,
-            y: this.data.y,
-            type: this.land.type
+    save: function () {
+        var data = {
+            x: this.position.x,
+            y: this.position.y,
+            land: this.land.save()
         };
+
+        if (this.hasUnit()) {
+            data.unit = this.unit.save();
+        }
+        return data;
     },
 
     /**

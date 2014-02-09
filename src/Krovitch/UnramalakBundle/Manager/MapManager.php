@@ -7,6 +7,7 @@ use Krovitch\UnramalakBundle\Entity\Map;
 use Krovitch\UnramalakBundle\Utils\Json\MapJson;
 use Krovitch\UnramalakBundle\Utils\Path;
 use Krovitch\UnramalakBundle\Utils\Resources;
+use Krovitch\UnramalakBundle\Utils\TransformerInterface;
 use Krovitch\UnramalakBundle\Utils\Xml\MapXml;
 
 /**
@@ -16,6 +17,12 @@ use Krovitch\UnramalakBundle\Utils\Xml\MapXml;
 class MapManager extends BaseManager
 {
     protected $mapFilePath = '';
+
+    /**
+     * @var TransformerInterface
+     */
+    protected $transformer;
+
     /**
      * Map data
      * @var
@@ -23,25 +30,36 @@ class MapManager extends BaseManager
     protected $data = array();
 
     /**
-     * Save map into database, also save its data into xml file
+     * Save map into database
      * @param Map $map
-     * @param bool $flush
+     * @param $data
      * @return \GeorgetteParty\BaseBundle\Manager\BaseManager|void
      */
-    public function save($map, $flush = true)
+    public function saveMap(Map $map, $data)
     {
-        $path = new Path();
-        // save map in db
-        parent::save($map);
-        // map data are stored in a xml file
-        $mapDataXml = new MapXml($map, $path->getXmlPath());
+        $this->getTransformer()->transform($data);
 
-        if ($this->data || !$map->getDatafile()) {
-            $filename = $mapDataXml->save($this->data);
-            // save map xml file
-            $map->setDatafile($filename);
-            parent::save($map, $flush);
-        }
+        //$jsonConverter = new MapJson($map, $data);
+        //$jsonConverter->fromJson();
+        die('ok');
+
+//        $path = new Path();
+//        // save map in db
+//        parent::save($map);
+//        // map data are stored in a xml file
+//        $mapDataXml = new MapXml($map, $path->getXmlPath());
+//
+//        if ($this->data || !$map->getDatafile()) {
+//            $filename = $mapDataXml->save($this->data);
+//            // save map xml file
+//            $map->setDatafile($filename);
+//            parent::save($map, $flush);
+//        }
+    }
+
+    public function findWithCells($id)
+    {
+        return $this->getRepository('Krovitch\UnramalakBundle\Entity\Map')->findWithCells($id);
     }
 
     /**
@@ -56,9 +74,9 @@ class MapManager extends BaseManager
         // load textures
         $textures = (new Resources())->getTextures();
         // converts data into json
-        $mapDataJson = new MapJson($data, $textures);
+        $mapDataJson = new MapJson($map, []);
 
-        return $mapDataJson->load();
+        return $mapDataJson->toJson($data, $textures);
     }
 
     /**
@@ -87,5 +105,25 @@ class MapManager extends BaseManager
     public function setData($data)
     {
         $this->data = $data;
+    }
+
+    /**
+     * Set map transformer
+     *
+     * @param TransformerInterface $transformer
+     */
+    public function setTransformer(TransformerInterface $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+    /**
+     * Return map transformer
+     *
+     * @return TransformerInterface
+     */
+    public function getTransformer()
+    {
+        return $this->transformer;
     }
 }

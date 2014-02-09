@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
  * @Route("/map")
@@ -49,14 +50,20 @@ class MapController extends BaseController
         return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
     }
 
-    /**
-     * @Route("/save", name="mapSave")
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     * @return array
-     */
-    public function saveAction(Request $request)
+
+    public function saveAction()
     {
-        // TODO check security
+        $data = json_decode($this->getRequest()->get('data'), false);
+
+        if (!$data || !$data->profile || !$data->profile->id) {
+            throw new InvalidParameterException('Invalid map profile');
+        }
+        $map = $this->getManager('Map')->find($data->profile->id);
+        $this->getManager('Map')->saveMap($map, $data);
+
+        return new Response('0');
+
+        // TODO security
         $mapData = json_decode($request->get('data'));
         $map = $this->getManager('Map')->find($request->get('id'));
         $this->redirect404Unless($map, 'Unable to find map with id ' . $this->getRequest()->get('id'));

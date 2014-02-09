@@ -10,7 +10,6 @@ $.Class('Unramalak.Land', {}, {
             type: 'default',
             value: defaultBackgroundColor
         };
-        // TODO put textures here
         if (this.type == 'sand') {
             render.type = 'image';
             render.value = 'land_sand_1';
@@ -28,5 +27,11 @@ $.Class('Unramalak.Land', {}, {
 
     reset: function () {
         this.type = 'default';
+    },
+
+    save: function () {
+        return {
+            type: this.type
+        }
     }
 });

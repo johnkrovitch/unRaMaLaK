@@ -21,9 +21,8 @@ $.Class('Unramalak.Menu', {}, {
         // click on actions buttons: call map callback
         this.actions.on('click', function () {
             // menu actions should have an event name
-            var eventName = $(this).data('event');
-            // event handle with EventManager
-            EventManager.dispatch(eventName);
+            EventManager.dispatch($(this).data('event'));
+            $(this).blur();
 
             return false;
         });

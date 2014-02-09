@@ -1,5 +1,5 @@
 ### MAPS ###
-# url that allow to play map for testing purpose
+# url that allow to play map for testing purpose (only in admin)
 map.test:
     path:  "/admin/map/test/{id}"
     defaults: { _controller: KrovitchUnramalakBundle:Map:test}
@@ -7,6 +7,11 @@ map.test:
 map.regenerate:
     path:  "/map/regenerate/{id}"
     defaults: { _controller: KrovitchUnramalakBundle:Map:regenerate}
+
+unramalak.map.save:
+    path: /map/save
+    defaults: { _controller: KrovitchUnramalakBundle:Map:save}
+
 ###########
 
 admin:

@@ -9,6 +9,8 @@ namespace Krovitch\UnramalakBundle\Utils;
  */
 class Path
 {
+    //protected
+
     protected $xmlPath = '/src/Krovitch/UnramalakBundle/Resources/maps/';
 
     public function getXmlPath($absolute = true)
@@ -21,7 +23,7 @@ class Path
         return $path;
     }
 
-    public function getApplicationPath()
+    static function getApplicationPath()
     {
         return realpath(__DIR__ . '/../../../..');
     }

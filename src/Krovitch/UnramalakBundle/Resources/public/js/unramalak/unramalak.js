@@ -1,14 +1,29 @@
 // unramalak map API
 
-// use jQuery plugin jclass (old and hard to find now, but do the job).
-// notes: init method are called when calling __constructor (new Krovitch() call Krovitch.init())
-
-"use strict";
-
 /**
  * Main application
  */
-$.Class('Unramalak.Application', {}, {
+$.Class('Unramalak.Application', {
+    /**
+     * Return a context from a map
+     *
+     * @static
+     * @param map
+     * @param cellsData
+     */
+    createContextFromMap: function (map, cellsData) {
+        // create context from map data
+        var mapOptions = {
+            cellPadding: map.cellPadding,
+            profile: map.profile,
+            cells: cellsData,
+            numberOfSides: map.numberOfSides,
+            radius: map.radius,
+            startingPoint: map.startingPoint
+        };
+        return new Unramalak.Map.Context(mapOptions);
+    }
+}, {
     editorContext: null,
     editor: null,
     mapContext: null,
@@ -22,7 +37,7 @@ $.Class('Unramalak.Application', {}, {
     /**
      * Load a map
      */
-    load: function (canvasId, mapData, textures) {
+    load: function (canvasId, mapData) {
         // get a reference to the canvas object
         var canvas = document.getElementById(canvasId);
         // create an empty project and a view for the canvas:
@@ -35,15 +50,10 @@ $.Class('Unramalak.Application', {}, {
             numberOfSides: 6,
             mapContainer: canvasId,
             menuContainer: '#editor-menu',
-            routing: {
-                'save': '/map/save'
-            },
             radius: 50,
             preventBubbling: true,
             startingPoint: new paper.Point(100, 50)
         });
-        // load textures
-        //Unramalak.ImageLoader.load(textures);
     },
 
     /**
