@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs">
+    {% set adminMenu = [
+        {route: 'unramalak.admin.home', text: 'unramalak.admin.home'},
+        {route: 'unramalak.admin.land', text: 'unramalak.admin.landType'}
+    ] %}
+
+    {% for item in adminMenu %}
+        {% set activeCss = (app.request.get('_route') == item.route) ? ' class="active"' : '' %}
+
+        <li{{ activeCss|raw }}>
+            <a href="{{ path(item.route) }}">{{ item.text|trans }}</a>
+        </li>
+    {% endfor %}
+</ul>

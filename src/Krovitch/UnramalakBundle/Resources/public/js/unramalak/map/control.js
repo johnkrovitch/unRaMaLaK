@@ -1,70 +1,11 @@
 /**
  * Mouse click constants
- * @type {{leftClick: number, middleClick: number, rightClick: number}}
  */
 var MouseClick = {
     leftClick: 0,
     middleClick: 1,
     rightClick: 2
 };
-
-//$.extend(MouseEventManager, EventManager);
-
-/**
- *
- */
-$.Class('Unramalak.Control.Mouse', {}, {
-    // during drag, javascript does not correctly send button click code,
-    // we need to store it
-    lastClicked: null,
-    // cells clicked
-    clickedCells: [],
-//
-//    // old stuff
-//    bind: function (event, target, map, callback) {
-//        var mouseControl = this;
-//        // bind event on target
-//        target.bind(event, function (paperEvent) {
-//            // create mouse event object for easier manipulations
-//            var mouseEvent = new Unramalak.Control.MouseEvent(paperEvent);
-//            // remember what button was clicked (useful during drag)
-//            if (event == 'mousedown') {
-//                mouseEvent.hitButton = paperEvent.event.button;
-//                mouseControl.lastClicked = mouseEvent.hitButton;
-//            }
-//            else if (event == 'mouseup') {
-//                mouseControl.lastClicked = null;
-//            }
-//            else if (event == 'mousedrag') {
-//                mouseEvent.hitButton = mouseControl.lastClicked;
-//            }
-//            // callback
-//            callback.call(map || this, mouseEvent);
-//        });
-//    },
-//
-//    onMouseEvent: function (event) {
-//        // create mouse event according to paper js mouse event
-//        var paperEvent = event.data.event;
-//        var mouseEvent = new Unramalak.Control.MouseEvent(paperEvent);
-//
-//        // remember what button was clicked (useful during drag)
-//        if (event.name == 'unramalak.map.mousedown') {
-//            mouseEvent.hitButton = paperEvent.event.button;
-//            this.lastClicked = mouseEvent.hitButton;
-//        }
-////        else if (event == 'mouseup') {
-////            this.lastClicked = null;
-////        }
-////        else if (event == 'mousedrag') {
-////            this.hitButton = mouseControl.lastClicked;
-////        }
-//        // on left click, we store the cell which need an update
-//        if (mouseEvent.isLeftClick()) {
-//            event.data.cell.select();
-//        }
-//    }
-});
 
 /**
  * Handle keyboard's interactions

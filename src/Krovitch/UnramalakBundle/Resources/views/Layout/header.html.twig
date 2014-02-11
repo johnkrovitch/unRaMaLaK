@@ -18,7 +18,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('ROLE_ADMIN') %}
 
-                    <li><a href="{{ path('admin') }}" class="active">Admin</a></li>
+                    <li><a href="{{ path('unramalak.admin.home') }}" class="active">Admin</a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans }}</a></li>
 
                 {% endif %}

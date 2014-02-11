@@ -1,11 +1,11 @@
 ### MAPS ###
 # url that allow to play map for testing purpose (only in admin)
 map.test:
-    path:  "/admin/map/test/{id}"
+    path:  /admin/map/test/{id}
     defaults: { _controller: KrovitchUnramalakBundle:Map:test}
 
 map.regenerate:
-    path:  "/map/regenerate/{id}"
+    path:  /map/regenerate/{id}
     defaults: { _controller: KrovitchUnramalakBundle:Map:regenerate}
 
 unramalak.map.save:
@@ -13,11 +13,17 @@ unramalak.map.save:
     defaults: { _controller: KrovitchUnramalakBundle:Map:save}
 
 ###########
-
-admin:
-    path:  "/admin"
+unramalak.admin.home:
+    path:  /admin
     defaults: { _controller: KrovitchUnramalakBundle:Admin:index }
 
+unramalak.admin.land:
+    path: /admin/land
+    defaults: { _controller: KrovitchUnramalakBundle:Land:index}
+
+
+# ça pas sur....
 admin_action:
-    path:  "/admin/{action}/{entity}/{id}"
-    defaults: { _controller: KrovitchUnramalakBundle:Admin:execute, id: 0, entity: 0 }
+    path:  /admin/{action}/{entity}/{id}
+    defaults: { _controller: KrovitchUnramalakBundle:Admin:execute, id: 0, entity: '' }
+# fin pas sur

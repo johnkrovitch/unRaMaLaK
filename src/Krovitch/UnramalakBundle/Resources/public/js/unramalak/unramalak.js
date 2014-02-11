@@ -19,7 +19,7 @@ $.Class('Unramalak.Application', {
             cells: cellsData,
             numberOfSides: map.numberOfSides,
             radius: map.radius,
-            startingPoint: map.startingPoint
+            startingPoint: {x: map.startingPoint.x, y: map.startingPoint.y}
         };
         return new Unramalak.Map.Context(mapOptions);
     }

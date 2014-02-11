@@ -2,9 +2,11 @@
 
 namespace Krovitch\UnramalakBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Krovitch\UnramalakBundle\Entity\Behavior\Descriptionable;
 use Krovitch\UnramalakBundle\Entity\Behavior\Nameable;
+use Krovitch\UnramalakBundle\Entity\Behavior\Sizable;
 use Krovitch\UnramalakBundle\Utils\Path;
 
 /**
@@ -13,22 +15,12 @@ use Krovitch\UnramalakBundle\Utils\Path;
  */
 class Map extends Entity
 {
-    use Nameable, Descriptionable;
+    use Nameable, Descriptionable, Sizable;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
     protected $content;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $width;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    protected $height;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -38,52 +30,52 @@ class Map extends Entity
     /**
      * Map cells
      *
-     * @ORM\OneToMany(targetEntity="Cell", mappedBy="map")
+     * @ORM\OneToMany(targetEntity="Cell", mappedBy="map", cascade={"remove", "persist"})
+     * @var ArrayCollection
      */
     protected $cells;
 
     /**
-     * Set content
-     * @param string $content
-     * @return Map
+     * Padding between each cell
+     *
+     * @ORM\Column(name="cell_padding", type="integer")
      */
+    protected $cellPadding;
+
+    /**
+     * Number of cell sides (by default, hexagons)
+     *
+     * @ORM\Column(name="number_of_sides", type="integer", options={"default": 5})
+     */
+    protected $numberOfSides;
+
+    /**
+     * Starting point in canvas for map
+     *
+     * @ORM\ManyToOne(targetEntity="Position", cascade={"remove", "persist"})
+     */
+    protected $startingPoint;
+
+    /**
+     * Cell shape radius (by default, 50)
+     *
+     * @ORM\Column(type="integer", options={"default": 50})
+     */
+    protected $radius;
+
+    public function __construct()
+    {
+        $this->cells = new ArrayCollection();
+    }
+
     public function setContent($content)
     {
         $this->content = $content;
     }
 
-    /**
-     * Get content
-     * @return string
-     */
     public function getContent()
     {
         return $this->content;
-    }
-
-    public function getHeight()
-    {
-        return $this->height;
-    }
-
-    public function setHeight($height)
-    {
-        $this->height = $height;
-    }
-
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    public function setWidth($width)
-    {
-        $this->width = $width;
-    }
-
-    public function getSize()
-    {
-        return $this->height . ' ' . $this->width;
     }
 
     public function getDatafile($absolute = true)
@@ -100,5 +92,88 @@ class Map extends Entity
     public function setDatafile($datafile)
     {
         $this->datafile = $datafile;
+    }
+
+    public function getCellPadding()
+    {
+        return $this->cellPadding;
+    }
+
+    public function setCellPadding($cellPadding)
+    {
+        $this->cellPadding = $cellPadding;
+    }
+
+    public function getNumberOfSides()
+    {
+        return $this->numberOfSides;
+    }
+
+    public function setNumberOfSides($numberOfSides)
+    {
+        $this->numberOfSides = $numberOfSides;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStartingPoint()
+    {
+        return $this->startingPoint;
+    }
+
+    /**
+     * @param mixed $startingPoint
+     */
+    public function setStartingPoint($startingPoint)
+    {
+        $this->startingPoint = $startingPoint;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRadius()
+    {
+        return $this->radius;
+    }
+
+    /**
+     * @param mixed $radius
+     */
+    public function setRadius($radius)
+    {
+        $this->radius = $radius;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCells()
+    {
+        return $this->cells;
+    }
+
+    /**
+     * @param mixed $cells
+     */
+    public function setCells($cells)
+    {
+        $this->cells = $cells;
+    }
+
+    public function addCell(Cell $cell)
+    {
+        $this->cells->add($cell);
+    }
+
+    public function removeCell(Cell $cell)
+    {
+        $this->cells->remove($cell);
+    }
+
+    public function removeCells()
+    {
+        $this->cells->clear();
     }
 }

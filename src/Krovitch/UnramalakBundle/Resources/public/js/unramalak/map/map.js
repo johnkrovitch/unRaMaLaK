@@ -59,7 +59,7 @@ $.Class('Unramalak.Map.Map', {}, {
         this.hitCells = [];
         this.renderer = new Unramalak.Renderer();
         // controls
-        this.mouseControl = new Unramalak.Control.Mouse();
+        //this.mouseControl = new Unramalak.Control.Mouse();
         // initialize managers
         this.unitManager = new Unramalak.Unit.UnitManager();
         this.cellManager = new Unramalak.Map.CellManager();

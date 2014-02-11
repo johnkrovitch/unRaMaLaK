@@ -1,12 +1,18 @@
 {% extends 'KrovitchUnramalakBundle::layout.html.twig' %}
 
 {% block content %}
-
-    <a href="#" class="toggle-container" data-target=".map-container">Afficher/Masquer les maps <span
-                class="caret"></span></a>
-
     <div class="row map-container">
         <div class="col-md-12">
+
+            {% include 'KrovitchUnramalakBundle:Admin:menu.html.twig' %}
+
+            {% block admin %}
+                {# admin content here #}
+            {% endblock %}
+
+            <a href="#" class="toggle-container" data-target=".map-container">Afficher/Masquer les maps <span
+                        class="caret"></span></a>
+
 
             {# Maps #}
             {% if (maps|length > 0) %}

@@ -5,6 +5,7 @@ parameters:
     krovitch.map_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
     krovitch.media_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
     krovitch.attribute.manager.class: Krovitch\UnramalakBundle\Manager\AttributeManager
+    unramalak.manager.land_manager.class: Krovitch\UnramalakBundle\Manager\LandManager
 
     # form types
     unramalak.type.user: Krovitch\KrovitchUserBundle\Form\UserType
@@ -40,6 +41,10 @@ services:
 
     krovitch_unramalakfront.attribute_manager:
         class: %krovitch.attribute.manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    unramalak.manager.land_manager:
+        class: %unramalak.manager.land_manager.class%
         arguments: [@doctrine.orm.entity_manager, 'service']
     ################
 
@@ -78,4 +83,5 @@ services:
         class: %unramalak.map.transformer%
         calls:
             - [setMapManager, [@krovitch_unramalak.map_manager]]
+            - [setLandManager, [@unramalak.manager.land_manager]]
     ################

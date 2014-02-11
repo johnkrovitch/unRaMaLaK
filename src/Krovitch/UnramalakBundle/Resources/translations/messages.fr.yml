@@ -10,6 +10,11 @@ unramalak.admin.map.regenerate: regénéner
 unramalak.admin.map.test: tester
 unramalak.admin.map.save: Sauvegarder
 
+# admin routes
+unramalak.admin.home: Accueil
+unramalak.admin.landType: Types de terrain
+
+
 # admin entities
 unramalak.admin.maps: Les Maps
 

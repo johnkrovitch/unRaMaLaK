@@ -16,4 +16,11 @@ use Krovitch\UnramalakBundle\Entity\Behavior\Typeable;
 class Land extends Entity
 {
     use Nameable, Typeable;
+
+    /**
+     * Land medias. A land can have a or more medias
+     *
+     * @ORM\ManyToOne(targetEntity="Media")
+     */
+    protected $medias;
 } 

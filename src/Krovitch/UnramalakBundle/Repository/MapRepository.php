@@ -6,10 +6,21 @@ use Doctrine\ORM\EntityRepository;
 
 class MapRepository extends EntityRepository
 {
+    /**
+     * Return a map with its cells and starting position
+     *
+     * @param $id
+     * @return mixed
+     */
     public function findWithCells($id)
     {
-        die('in progress...');
-//        return $this->createQueryBuilder('map')
-//            ->join('cells')
+        return $this->createQueryBuilder('map')
+            ->addSelect('cells', 'point')
+            ->leftJoin('map.cells', 'cells')
+            ->leftJoin('map.startingPoint', 'point')
+            ->where('map.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 }
