@@ -16,13 +16,13 @@ class HeroType extends AbstractType
         $builder->add('name', 'text', [
             'label' => 'unramalak.hero.name'
         ]);
-        $builder->add('avatar', 'media_collection', [
-            'label' => 'unramalak.hero.avatar',
-            'data' => $this->getMedias()
-        ]);
+//        $builder->add('avatar', 'media_diaporama', [
+//            'label' => 'unramalak.hero.avatar',
+//            'data' => $this->getMedias()
+//        ]);
         $builder->add('attributes', 'attributes_collection', [
             'label' => 'unramalak.hero.remaining-points',
-            'availables_attributes' => $options['availables_attributes']
+            'available_attributes' => $options['available_attributes']
         ]);
         return $builder;
     }
@@ -55,7 +55,7 @@ class HeroType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'availables_attributes' => []
+            'available_attributes' => []
         ]);
     }
 

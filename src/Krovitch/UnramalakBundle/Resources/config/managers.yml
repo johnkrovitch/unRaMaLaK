@@ -1,0 +1,36 @@
+parameters:
+    # managers
+    krovitch.content_manager.class: Krovitch\UnramalakBundle\Manager\ContentManager
+    krovitch.hero_manager.class: Krovitch\UnramalakBundle\Manager\HeroManager
+    krovitch.media_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
+    krovitch.attribute.manager.class: Krovitch\UnramalakBundle\Manager\AttributeManager
+    unramalak.manager.land.class: Krovitch\UnramalakBundle\Manager\LandManager
+    unramalak.manager.map.class: Krovitch\UnramalakBundle\Manager\MapManager
+
+services:
+    ### managers ###
+    krovitch_unramalak.content_manager:
+        class: %krovitch.content_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    krovitch_unramalak.hero_manager:
+        class: %krovitch.hero_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    krovitch_unramalak.media_manager:
+        class: %krovitch.media_manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    krovitch_unramalakfront.attribute_manager:
+        class: %krovitch.attribute.manager.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    unramalak.manager.land:
+        class: %unramalak.manager.land.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+
+    unramalak.manager.map:
+        class: %unramalak.manager.map.class%
+        arguments: [@doctrine.orm.entity_manager, 'service']
+        calls:
+            - [setTransformer, [@unramalak.map.transformer]]

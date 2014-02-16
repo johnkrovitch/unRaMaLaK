@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Krovitch\UnramalakBundle\Utils;
+namespace Krovitch\UnramalakBundle\Map\Resources;
 
 
 use Symfony\Component\Finder\Finder;
@@ -12,12 +12,11 @@ use Symfony\Component\Security\Acl\Exception\Exception;
  * Manage map resources like textures, sound....
  * @package Krovitch\UnramalakBundle\Utils
  */
-class Resources
+class ResourcesFinder
 {
     public $texturesBundlePath = '/src/Krovitch/UnramalakFrontBundle/Resources/public/img/textures/';
     public $texturesWebPath = '/bundles/krovitchunramalak/img/textures/';
     public $allowedTextures = ['sand', 'water', 'plains'];
-
 
     /**
      * Return map required textures

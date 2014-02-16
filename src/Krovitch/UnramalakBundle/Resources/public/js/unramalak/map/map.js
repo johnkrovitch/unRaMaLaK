@@ -40,13 +40,14 @@ $.Class('Unramalak.Map.Map', {}, {
      * @param context Execution context. Should contains all data required by map (like canvasId, name, cells data...)
      */
     init: function (context) {
+        if ($.isNull(context)) {
+            throw new Error('Invalid map context');
+        }
         if (context.preventBubbling) {
             this.preventBubbling();
         }
-        if ($.isNotNull(context.data)) {
-            // load cell data and map profile
-            this.load(context.data);
-        }
+        // load cell data and map profile
+        this.load(context);
         // geometric parameters
         this.cellPadding = context.cellPadding;
         this.numberOfSides = context.numberOfSides;
@@ -68,18 +69,18 @@ $.Class('Unramalak.Map.Map', {}, {
     /**
      * Load data from context
      *
-     * @param data
+     * @param context
      */
-    load: function (data) {
+    load: function (context) {
         // load cells
-        if (data.cells) {
+        if (context.cells) {
             var cellIndex;
 
-            for (cellIndex in data.cells) {
-                if (!data.cells.hasOwnProperty(cellIndex)) {
+            for (cellIndex in context.cells) {
+                if (!context.cells.hasOwnProperty(cellIndex)) {
                     continue;
                 }
-                var cell = data.cells[cellIndex];
+                var cell = context.cells[cellIndex];
 
                 if ($.isNull(this.cellsData[cell.x])) {
                     this.cellsData[cell.x] = [];
@@ -91,17 +92,21 @@ $.Class('Unramalak.Map.Map', {}, {
             }
         }
         // load map profile
-        if (data.profile) {
-            this.profile = data.profile;
+        if (context.profile) {
+            this.profile = context.profile;
         }
         // TODO manage events loading
     },
 
+    /**
+     * Bind map events
+     *
+     * @param onNotify
+     */
     bind: function (onNotify) {
         this.cells.each(function (index, cell) {
             cell.bind();
         });
-
         // TODO bind events with eventManager
         this.onNotify = onNotify;
 
@@ -125,8 +130,10 @@ $.Class('Unramalak.Map.Map', {}, {
         var xRadius = 0;
         var yRadius = 0;
 
-        for (var i = 0; i < this.profile.width; i++) {
+        for (var i = 0; i < this.cellsData.length; i++) {
             hexagonCenterX = this.startingPoint.x;
+
+            console.log('center', hexagonCenterX);
 
             if (odd) {
                 // case of hexagons : each row is staggered with previous
@@ -134,7 +141,7 @@ $.Class('Unramalak.Map.Map', {}, {
                 // -= : even row started at the edge of the map
                 hexagonCenterX -= xRadius;
             }
-            for (var j = 0; j < (this.profile.height); j++) {
+            for (var j = 0; j < this.cellsData[i].length; j++) {
                 // we build an new hexagonal cell
                 var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
                 var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
@@ -160,27 +167,28 @@ $.Class('Unramalak.Map.Map', {}, {
             yRadius = hexagonCenter.y - hexagon.segments[0].point.y;
             hexagonCenterY += yRadius * 3 + this.cellPadding;
         }
+        // var is not used anymore
+        this.cellsData = [];
     },
 
     move: function (delta) {
         this.cells.translate(delta);
     },
 
+    /**
+     * Dispatch map render event and redraw paper.js view
+     */
     render: function () {
         // render event
         var event = new Unramalak.Event.Event(UNRAMALAK_MAP_RENDER);
         // dispatching event to all objects who need render
         EventManager.dispatch(UNRAMALAK_MAP_RENDER, event);
-        // notify if error has been encountered
-        for (var i = 0; i < this.errors.length; i++) {
-            this.notify(this.errors[i], 'error');
-        }
-        // paper js draw
+        // paper.js draw
         paper.view.draw();
     },
 
     /**
-     * Save map context in ajax
+     * Save map context (ajax request)
      */
     save: function () {
         var map = this;
@@ -188,7 +196,6 @@ $.Class('Unramalak.Map.Map', {}, {
         var mapData = Unramalak.Application.createContextFromMap(this, this.cells.save());
         var json = JSON.stringify(mapData);
         var url = map.profile.routing.save;
-        console.log('save map', mapData, url, this.cells.save());
         // call ajax url
         $.ajax({
             type: 'POST',

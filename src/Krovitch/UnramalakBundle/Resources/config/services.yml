@@ -1,87 +1,13 @@
 parameters:
-    # managers
-    krovitch.content_manager.class: Krovitch\UnramalakBundle\Manager\ContentManager
-    krovitch.hero_manager.class: Krovitch\UnramalakBundle\Manager\HeroManager
-    krovitch.map_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
-    krovitch.media_manager.class: Krovitch\UnramalakBundle\Manager\MapManager
-    krovitch.attribute.manager.class: Krovitch\UnramalakBundle\Manager\AttributeManager
-    unramalak.manager.land_manager.class: Krovitch\UnramalakBundle\Manager\LandManager
-
-    # form types
-    unramalak.type.user: Krovitch\KrovitchUserBundle\Form\UserType
-    unramalak.type.hero: Krovitch\UnramalakBundle\Form\HeroType
-    unramalak.type.media_collection: Krovitch\UnramalakBundle\Form\MediaCollectionType
-    unramalak.type.attributes_collection: Krovitch\UnramalakBundle\Form\AttributeCollectionType
-
     # converter
-    unramalak.map.transformer: Krovitch\UnramalakBundle\Utils\Map\JsonTransformer
-
-    sensio_framework_extra.view.listener.class: GeorgetteParty\BaseBundle\Listener\ParametersTemplateListener
+    unramalak.map.transformer: Krovitch\UnramalakBundle\Map\Transformer\JsonTransformer
 
 services:
-
-    ### managers ###
-    krovitch_unramalak.content_manager:
-        class: %krovitch.content_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'service']
-
-    krovitch_unramalak.hero_manager:
-        class: %krovitch.hero_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'service']
-
-    krovitch_unramalak.map_manager:
-        class: %krovitch.map_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'service']
-        calls:
-          - [setTransformer, [@unramalak.map.transformer]]
-
-    krovitch_unramalak.media_manager:
-        class: %krovitch.media_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'service']
-
-    krovitch_unramalakfront.attribute_manager:
-        class: %krovitch.attribute.manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'service']
-
-    unramalak.manager.land_manager:
-        class: %unramalak.manager.land_manager.class%
-        arguments: [@doctrine.orm.entity_manager, 'service']
-    ################
-
-    ### login form ###
-    krovitch_user.registration.form.type:
-        class: Krovitch\KrovitchUserBundle\Form\RegistrationFormType
-        arguments: ['plain_value', %fos_user.model.user.class%]
-        tags:
-            - {name: form.type, alias: krovitch_user_registration}
-    ################
-
-    ### form types ###
-    unramalak.type.user:
-        class: %unramalak.type.user%
-        tags:
-            - { name: form.type, alias: user_type }
-
-    unramalak.type.hero:
-        class: %unramalak.type.hero%
-        tags:
-            - { name: form.type, alias: hero_type }
-
-    unramalak.type.media_collection:
-        class: %unramalak.type.media_collection%
-        tags:
-            - { name: form.type, alias: media_collection }
-
-    unramalak.type.attributes_collection:
-        class: %unramalak.type.attributes_collection%
-        tags:
-            - { name: form.type, alias: attributes_collection }
-    ################
-
-    ### converter ###
+    # map transformer
     unramalak.map.transformer:
         class: %unramalak.map.transformer%
-        calls:
-            - [setMapManager, [@krovitch_unramalak.map_manager]]
-            - [setLandManager, [@unramalak.manager.land_manager]]
-    ################
+        arguments: [@unramalak.manager.map, @unramalak.manager.land]
+
+imports:
+    - { resource: forms.yml }
+    - { resource: managers.yml }

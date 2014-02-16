@@ -21,6 +21,9 @@ unramalak.admin.land:
     path: /admin/land
     defaults: { _controller: KrovitchUnramalakBundle:Land:index}
 
+unramalak.admin.land.create:
+    path: /admin/land/create
+    defaults: { _controller: KrovitchUnramalakBundle:Land:create}
 
 # ça pas sur....
 admin_action:

@@ -13,7 +13,7 @@ class AttributeCollectionType extends AbstractType
 {
     public function buildView(FormView $view, FormInterface $form, array $options = [])
     {
-        $view->vars['attributes'] = $options['availables_attributes'];
+        $view->vars['attributes'] = $options['available_attributes'];
         $view->vars['minLimit'] = $options['min_limit'];
         $view->vars['maxLimit'] = $options['max_limit'];
         $view->vars['remainingPoints'] = $options['remainingPoints'];
@@ -22,7 +22,7 @@ class AttributeCollectionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults([
-            'availables_attributes' => [],
+            'available_attributes' => [],
             'min_limit' => 0,
             'max_limit' => 20,
             'remainingPoints' => 20

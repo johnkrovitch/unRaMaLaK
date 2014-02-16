@@ -23,14 +23,17 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         this.land = new Unramalak.Land();
         this.unit = null;
 
-        if (!data.background) {
+        if ($.isNull(data.background)) {
             data.background = defaultBackgroundColor;
         }
         if (data.type) {
             this.land.type = data.type;
         }
-        if (data.x && data.x) {
+        if (data.x != undefined && data.y != undefined) {
             this.position = new Unramalak.Position(parseInt(data.x), parseInt(data.y));
+        }
+        else {
+            throw new Error('Cell has invalid coordinates ' + data.x + ', ' + data.y);
         }
     },
 

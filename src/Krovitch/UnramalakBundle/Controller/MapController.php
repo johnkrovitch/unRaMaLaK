@@ -50,52 +50,37 @@ class MapController extends BaseController
         return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
     }
 
-
+    /**
+     * Save map into database
+     *
+     * @return Response
+     */
     public function saveAction()
     {
-        $data = json_decode($this->getRequest()->get('data'), false);
-
-        if (!$data || !$data->profile || !$data->profile->id) {
-            throw new InvalidParameterException('Invalid map profile');
-        }
-        $map = $this->getManager('Map')->find($data->profile->id);
-        $this->getManager('Map')->saveMap($map, $data);
-
-        return new Response('0');
-
-        // TODO security
-        $mapData = json_decode($request->get('data'));
-        $map = $this->getManager('Map')->find($request->get('id'));
-        $this->redirect404Unless($map, 'Unable to find map with id ' . $this->getRequest()->get('id'));
-        // save map in database
-        $this->getManager('Map')->setData($mapData);
-        $this->getManager('Map')->save($map);
+        $data = $this->getRequest()->get('data');
+        $this->get('unramalak.manager.map')->saveMap($data);
 
         return new Response('0');
     }
 
     /**
-     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
      * @Template()
      */
     public function testAction(Map $map)
     {
         // get map json content for the view
-        $mapJson = $this->getManager('Map')->load($map);
-        // get map textures
-        $textures = $this->getManager('Map')->loadTextures($map);
+        $mapContext = $this->getMapManager()->load($map);
 
-        return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
+        return array('mapContext' => $mapContext, 'title' => $map->getName());
     }
 
     /**
-     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     * Return map manager
+     *
+     * @return MapManager
      */
-    public function regenerateAction(Map $map)
+    protected function getMapManager()
     {
-        $this->getManager('Map')->regenerate($map);
-        $this->setMessage('Map was regenerated succesfully !');
-
-        return $this->redirect($this->getRequest()->headers->get('referer'));
+        return $this->get('unramalak.manager.map');
     }
 }

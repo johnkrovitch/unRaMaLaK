@@ -8,8 +8,7 @@
 
 <script>
     $(document).ready(function () {
-        var mapData = {{ data|raw }};
-        var textures = {{ textures|raw }};
+        var mapData = {{ mapContext|raw }};
         var routing = {{ path('unramalak.map.save')|json_encode|raw }};
 
         mapData.profile.routing = {
@@ -19,7 +18,7 @@
         console.log('routing', routing);
 
         var ur = new Unramalak.Application();
-        ur.load('myCanvas', mapData, textures);
+        ur.load('myCanvas', mapData);
         ur.run();
     });
 </script>

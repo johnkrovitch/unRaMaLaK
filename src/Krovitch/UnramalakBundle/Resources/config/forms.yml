@@ -1,0 +1,47 @@
+parameters:
+    # form types
+    unramalak.type.user: Krovitch\KrovitchUserBundle\Form\UserType
+    unramalak.type.hero: Krovitch\UnramalakBundle\Form\HeroType
+    unramalak.type.media_collection: Krovitch\UnramalakBundle\Form\MediaCollectionType
+    unramalak.type.attributes_collection: Krovitch\UnramalakBundle\Form\AttributeCollectionType
+    unramalak.type.land: Krovitch\UnramalakBundle\Form\LandType
+    unramalak.type.base: Krovitch\UnramalakBundle\Form\Base\BaseType
+
+services:
+    # login
+    krovitch_user.registration.form.type:
+        class: Krovitch\KrovitchUserBundle\Form\RegistrationFormType
+        arguments: ['plain_value', %fos_user.model.user.class%]
+        tags:
+            - {name: form.type, alias: krovitch_user_registration}
+
+    # form types
+    unramalak.type.base:
+        class: %unramalak.type.base%
+        tags:
+            - { name: form.type, alias: base }
+
+    unramalak.type.user:
+        class: %unramalak.type.user%
+        tags:
+            - { name: form.type, alias: user_type }
+
+    unramalak.type.hero:
+        class: %unramalak.type.hero%
+        tags:
+            - { name: form.type, alias: hero_type }
+
+    unramalak.type.media_collection:
+        class: %unramalak.type.media_collection%
+        tags:
+            - { name: form.type, alias: media_collection }
+
+    unramalak.type.attributes_collection:
+        class: %unramalak.type.attributes_collection%
+        tags:
+            - { name: form.type, alias: attributes_collection }
+
+    unramalak.type.land:
+        class: %unramalak.type.land%
+        tags:
+            - { name: form.type, alias: land }

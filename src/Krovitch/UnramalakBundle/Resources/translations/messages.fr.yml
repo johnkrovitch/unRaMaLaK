@@ -24,28 +24,12 @@ unramalak.hero.name: Nom
 unramalak.hero.avatar: Avatar
 unramalak.hero.remaining-points: Points restants
 
+# land
+unramalak.land.name: Nom du terrain
+unramalak.land.name.placeholder: Saisissez un nom ne terrain
 
-#editor.map.title: Map
-#editor.map.list: liste
-#editor.map.sand: sable
-#editor.map.water: eau
-#editor.map.plains: plaine
-#editor.map.removeBackground: 'supprimer le fond'
-#editor.map.save: sauvegarder
-#editor.map.saveSuccess: 'Carte sauvegardée avec succès !'
-#editor.map.baseLand: 'terrain de base'
-#editor.map.create: 'nouvelle map'
-#
-#editor.hero.create: 'nouveau héro'
-#
-#editor.save: sauvegarder
-#editor.cancel: annuler
-#editor.title: Editeur
-#editor.modify: modifier
-#editor.delete: supprimer
-#
-#media.create: ajouter un média
-#map.choose: choisis le terrain, mec
-#map.chooseMap: choisir
-#
-#home.title: 'UnRaMaLak, la terreur de l''espace !'
+unramalak.land.type: Type du terrain
+unramalak.land.sand: Sable
+unramalak.land.water: Eau
+unramalak.land.plains: Plaines
+unramalak.land.mountains: Montagnes

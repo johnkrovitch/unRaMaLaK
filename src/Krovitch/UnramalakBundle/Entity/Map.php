@@ -115,7 +115,7 @@ class Map extends Entity
     }
 
     /**
-     * @return mixed
+     * @return Position
      */
     public function getStartingPoint()
     {

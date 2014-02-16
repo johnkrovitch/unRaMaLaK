@@ -7,7 +7,7 @@
             {% set form_method = "POST" %}
         {% endif %}
         {% if form_type is defined %}
-            {% set attr_form = attr|merge({'class': (attr.class|default('') ~ ' well form-' ~ form_type)|trim}) %}
+            {% set attr_form = attr|merge({'class': (attr.class|default('') ~ ' form-' ~ form_type)|trim}) %}
         {% else %}
             {% set attr_form = attr %}
         {% endif %}
@@ -25,7 +25,6 @@
         {% if form_type is defined %}
             {% set child_vars = child_vars|merge({'form_type': form_type}) %}
         {% endif %}
-
         {% for child in form %}
             {{ form_row(child, child_vars) }}
         {% endfor %}
@@ -52,3 +51,15 @@
         {% endif %}
     {% endspaceless %}
 {% endblock form_row %}
+
+{% block form_widget_compound %}
+    {% spaceless %}
+
+            {% if form.parent is empty %}
+                {{ form_errors(form) }}
+            {% endif %}
+            {{ block('form_rows') }}
+            {{ form_rest(form) }}
+
+    {% endspaceless %}
+{% endblock form_widget_compound %}

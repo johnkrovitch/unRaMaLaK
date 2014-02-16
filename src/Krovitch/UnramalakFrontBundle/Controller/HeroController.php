@@ -18,7 +18,7 @@ class HeroController extends BaseController
         $attributes = $this->getManager('Attribute')->findAll();
 
         $form = $this->createForm('hero_type', $hero, [
-            'availables_attributes' => $attributes
+            'available_attributes' => $attributes
         ]);
 
         return ['form' => $form->createView()];

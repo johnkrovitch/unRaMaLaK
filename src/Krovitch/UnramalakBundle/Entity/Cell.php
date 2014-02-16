@@ -34,7 +34,7 @@ class Cell extends Entity
     /**
      * Return cell land type
      *
-     * @return mixed
+     * @return Land
      */
     public function getLand()
     {
@@ -44,7 +44,7 @@ class Cell extends Entity
     /**
      * Set cell land type
      *
-     * @param mixed $land
+     * @param Land $land
      */
     public function setLand($land)
     {
