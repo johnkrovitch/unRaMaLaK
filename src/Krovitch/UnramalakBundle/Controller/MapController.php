@@ -3,6 +3,7 @@
 namespace Krovitch\UnramalakBundle\Controller;
 
 use GeorgetteParty\BaseBundle\Controller\BaseController;
+use Krovitch\UnramalakBundle\Behavior\HasMapManager;
 use Krovitch\UnramalakBundle\Entity\Map;
 use Krovitch\UnramalakBundle\Manager\MapManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -18,6 +19,8 @@ use Symfony\Component\Routing\Exception\InvalidParameterException;
  */
 class MapController extends BaseController
 {
+    use HasMapManager;
+
     /**
      * Display the map chooser
      * @Route("/", name="map")
@@ -26,7 +29,7 @@ class MapController extends BaseController
      */
     public function indexAction()
     {
-        $maps = $this->getManager('Map')->findAll();
+        $maps = $this->getMapManager()->findAll();
         $this->redirect404Unless(count($maps), 'What the hell ?!!! Not map found !');
 
         return array('maps' => $maps);
@@ -72,15 +75,5 @@ class MapController extends BaseController
         $mapContext = $this->getMapManager()->load($map);
 
         return array('mapContext' => $mapContext, 'title' => $map->getName());
-    }
-
-    /**
-     * Return map manager
-     *
-     * @return MapManager
-     */
-    protected function getMapManager()
-    {
-        return $this->get('unramalak.manager.map');
     }
 }

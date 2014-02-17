@@ -133,8 +133,6 @@ $.Class('Unramalak.Map.Map', {}, {
         for (var i = 0; i < this.cellsData.length; i++) {
             hexagonCenterX = this.startingPoint.x;
 
-            console.log('center', hexagonCenterX);
-
             if (odd) {
                 // case of hexagons : each row is staggered with previous
                 // += : odd row started at the edge of the map
@@ -158,6 +156,7 @@ $.Class('Unramalak.Map.Map', {}, {
                     cellData = this.cellsData[i][j];
                 }
                 else {
+                    // TODO notify with event manager
                     this.errors.push('An error has been encountered with cell x:' + i + ', y:' + j);
                 }
                 this.cells.add(new Unramalak.Cell(hexagon, cellData));
@@ -196,6 +195,7 @@ $.Class('Unramalak.Map.Map', {}, {
         var mapData = Unramalak.Application.createContextFromMap(this, this.cells.save());
         var json = JSON.stringify(mapData);
         var url = map.profile.routing.save;
+        console.log('save', json);
         // call ajax url
         $.ajax({
             type: 'POST',

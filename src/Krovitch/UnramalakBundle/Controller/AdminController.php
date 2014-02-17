@@ -16,7 +16,7 @@ class AdminController extends BaseController
      */
     public function indexAction()
     {
-        $maps = $this->getManager('Map')->findAll();
+        $maps = $this->get('unramalak.manager.map')->findAll();
 
         return array('maps' => $maps);
     }

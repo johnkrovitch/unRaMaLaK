@@ -2,6 +2,7 @@
 
 namespace Krovitch\UnramalakBundle\Map\Transformer;
 
+use Doctrine\Common\Proxy\Exception\InvalidArgumentException;
 use Krovitch\UnramalakBundle\Entity\Cell;
 use Krovitch\UnramalakBundle\Entity\Map;
 use Krovitch\UnramalakBundle\Entity\Position;
@@ -49,7 +50,7 @@ class JsonTransformer implements TransformerInterface
         $data = json_decode($data, false);
         /** @var Map $map */
         $this->check($data);
-        $map = $this->mapManager->findWithCells($data->profile->id);
+        $map = $this->mapManager->findMap($data->profile->id);
 
         if (!$map) {
             throw new \Exception('Map not found');
@@ -70,19 +71,39 @@ class JsonTransformer implements TransformerInterface
             try {
                 // existing lands
                 $lands = $this->landManager->findSortedByType();
+                // we sort cells to ease further research
+                $cells = [];
+                $unsortedCells = $map->getCells();
+
+                /** @var Cell $cell */
+                foreach ($unsortedCells as $cell) {
+                    $x = $cell->getX();
+                    $y = $cell->getY();
+
+                    if (!array_key_exists($x, $cells)) {
+                        $cells[$x] = [];
+                    }
+                    if (!array_key_exists($y, $cells)) {
+                        $cells[$y] = [];
+                    }
+                    $cells[$x][$y] = $cell;
+                }
                 $this->mapManager->getEntityManager()->getConnection()->beginTransaction();
                 // removing existing cells
-                $map->removeCells();
+                //$map->removeCells();
                 $this->mapManager->save($map);
 
                 // save new cells data
                 foreach ($data->cells as $cellData) {
-                    $cell = new Cell();
-                    $cell->setX($cellData->x);
-                    $cell->setY($cellData->y);
+                    // find existing cell
+                    if (!array_key_exists($cellData->x, $cells)) {
+                        throw new InvalidArgumentException('Invalid row : ' . $cellData->x);
+                    }
+                    if (!array_key_exists($cellData->y, $cells[$cellData->x])) {
+                        throw new InvalidArgumentException('Invalid column : ' . $cellData->y);
+                    }
+                    $cell = $cells[$cellData->x][$cellData->y];
                     $cell->setLand($lands[$cellData->land->type]);
-                    $cell->setMap($map);
-                    $map->addCell($cell);
                 }
                 $this->mapManager->save($map);
                 $this->mapManager->getEntityManager()->getConnection()->commit();
@@ -108,6 +129,7 @@ class JsonTransformer implements TransformerInterface
         // map profile
         $mapContext = new MapContext();
         $mapContext->profile = [
+            'id' => $map->getId(),
             'name' => $map->getName(),
             'width' => $map->getWidth(),
             'height' => $map->getHeight(),
@@ -145,7 +167,7 @@ class JsonTransformer implements TransformerInterface
      */
     protected function check($data)
     {
-        if (!$data || !$data->profile || !$data->profile->id) {
+        if (!$data || empty($data->profile) || empty($data->profile->id)) {
             throw new InvalidParameterException('Invalid map profile');
         }
         // checking required data
