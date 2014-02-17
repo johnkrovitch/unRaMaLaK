@@ -1,8 +1,8 @@
 // dimensions
-$site-width:   1000px !default;
+$site-width: 1000px !default;
 $site-padding: 25px !default;
 
-$menu-height:  25px !default;
+$menu-height: 25px !default;
 $menu-item-width: 70px !default;
 
 // fonts
@@ -18,64 +18,73 @@ $grey-border: #d1d1d1;
 
 // mixins
 @function font-size-to($to-size, $from-size: $base-font-size) {
-  @if not $relative-font-sizing and $from-size != $base-font-size {
-    @warn "$relative-font-sizing is false but a relative font size was passed to adjust-font-size-to";
-  }
-  @return $font-unit * $to-size / $from-size;
+    @if not $relative-font-sizing and $from-size != $base-font-size {
+        @warn "$relative-font-sizing is false but a relative font size was passed to adjust-font-size-to";
+    }
+    @return $font-unit * $to-size / $from-size;
 }
 
 // resets
 body {
-  margin:  0px;
-  padding: 0px;
-}
-.btn, .btn:focus {
-  outline: none;
-}
-a.btn {
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
+    margin: 0px;
+    padding: 0px;
 
-// bootstrap reset
-.alert .close {
-  float: none;
-}
+    .btn, .btn:focus {
+        outline: none;
+    }
+    a.btn {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+    .alert-container {
+        position: fixed;
+        width: 40%;
 
-// useful classes
-.floatbreaker{
-  clear: both;
-  border: none;
-}
-.hidden{
-  display: none;
-}
-.loader{
-  display: none;
-  height: 16px;
-  width: 16px;
-  background-image: url('../images/ajax-loader.gif');
-}
-.left {
-  float: left;
-}
-.right {
-  float: right;
-}
+        .alert {
+            margin: 0px;
+            padding: 5px;
+            opacity: 0.8;
+        }
+    }
 
-// red shadow with high radius
-.red-box-shadow{
-  @include box-shadow(3px -3px 50px $dark-red);
-}
-// main container color
-.container-background-color{
-  background: #ffffff;
-}
-// main fonts
-.unlock{
-  font-family: 'Unlock', cursive;
-}
-// text-align
-.center-text {
-  text-align: center;
+    // useful classes
+    .floatbreaker {
+        clear: both;
+        border: none;
+    }
+    .hidden {
+        display: none;
+    }
+    .loader {
+        display: none;
+        height: 16px;
+        width: 16px;
+        background-image: url('../images/ajax-loader.gif');
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+    .margin-bottom {
+        margin-bottom: 10px;
+    }
+
+    // red shadow with high radius
+    .red-box-shadow {
+        @include box-shadow(3px -3px 50px $dark-red);
+    }
+    // main container color
+    .container-background-color {
+        background: #ffffff;
+    }
+    // main fonts
+    .unlock {
+        font-family: 'Unlock', cursive;
+    }
+    // text-align
+    .center-text {
+        text-align: center;
+    }
 }

@@ -1,0 +1,26 @@
+{% if entities|length > 0 %}
+
+    <table class="table">
+
+        {% for entity in entities %}
+
+            <tr>
+                <td>{{ entity.id }}</td>
+                <td>{{ entity.name }}</td>
+                <td>
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <a href="{{ path(editRoute, {id: entity.id}) }}">
+                        {{ 'unramalak.admin.edit'|trans }}
+                    </a>
+                    &nbsp;
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <a href="{{ path(deleteRoute, {id: entity.id}) }}">
+                        {{ 'unramalak.admin.delete'|trans }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>{{ 'unramalak.admin.noResult'|trans }}</p>
+{% endif %}

@@ -1,0 +1,26 @@
+{{ form_start(form) }}
+
+{{ form_rest(form) }}
+
+<div class="form-group">
+    <button type="submit" class="btn">
+        <span class="glyphicon glyphicon-ok"></span>
+        {{ 'unramalak.admin.save'|trans }}
+    </button>
+    &nbsp;
+    {% if (returnUrl) %}
+        <button type="button" class="btn btn-return" data-url="{{ returnUrl }}">
+            {{ 'unramalak.admin.cancel'|trans }}
+        </button>
+
+        <script>
+            $(document).on('ready', function () {
+                $('.btn-return').on('click', function () {
+                    window.location.href = $(this).data('url');
+                });
+            });
+        </script>
+    {% endif %}
+</div>
+
+{{ form_end(form) }}

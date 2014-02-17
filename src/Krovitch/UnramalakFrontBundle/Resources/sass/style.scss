@@ -6,78 +6,63 @@
 @import "partials/editor";
 
 body {
-  //@include background(linear-gradient(top, #000000 10%, #0A0736 80%, #090540 98%));
-}
-
-#unramalak {
-  //background: #9f9f9f;
-  //border: 1px solid $grey-border;
-  padding: 20px;
-  margin-top: 30px;
-}
-
-// flash notifications
-.alert-container {
-  position: fixed;
-  left: 1165px;
-
-  // messages
-  .alert {
-    margin-bottom: 5px;
-    opacity: 0.9;
-  }
-}
-
-// signin form
-.form-signin {
-  max-width: 300px;
-  padding: 19px 29px 29px;
-  margin: 0 auto 20px;
-
-  @include border-radius(5px, 5px);
-  @include box-shadow(2px 2px 2px rgba(0, 0, 0, .05));
-}
-
-.form-signin {
-  div.text-center {
-    margin-top: 20px;
-  }
-}
-
-/**************/
-canvas {
-
-}
-
-// media collection
-.avatars {
-  img.avatar {
-    height: 50px;
-
-    &.active {
-      border: 1px solid grey;
+    #unramalak {
+        padding: 20px;
+        margin-top: 30px;
     }
-  }
-}
 
-.media-collection {
-  ul {
-    clear: both;
-    display: inline-block;
+    // signin form
+    .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
 
-    li {
-      display: block;
-      float: left;
-      padding: 0 10px;
-
-      img {
-        cursor: pointer;
-      }
+        @include border-radius(5px, 5px);
+        @include box-shadow(2px 2px 2px rgba(0, 0, 0, .05));
     }
-  }
+
+    .form-signin {
+        div.text-center {
+            margin-top: 20px;
+        }
+    }
+
+    /**************/
+    canvas {
+
+    }
+
+    // media collection
+    .avatars {
+        img.avatar {
+            height: 50px;
+
+            &.active {
+                border: 1px solid grey;
+            }
+        }
+    }
+
+    .media-collection {
+        ul {
+            clear: both;
+            display: inline-block;
+
+            li {
+                display: block;
+                float: left;
+                padding: 0 10px;
+
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    // attributes collection
+    .attributes-container {
+
+    }
 }
 
-// attributes collection
-.attributes-container {
-
-}

@@ -59,8 +59,6 @@ $.Class('Unramalak.Map.Map', {}, {
         this.cells = new Unramalak.CellCollection();
         this.hitCells = [];
         this.renderer = new Unramalak.Renderer();
-        // controls
-        //this.mouseControl = new Unramalak.Control.Mouse();
         // initialize managers
         this.unitManager = new Unramalak.Unit.UnitManager();
         this.cellManager = new Unramalak.Map.CellManager();
@@ -95,21 +93,14 @@ $.Class('Unramalak.Map.Map', {}, {
         if (context.profile) {
             this.profile = context.profile;
         }
-        // TODO manage events loading
+        // TODO manage map events loading
     },
 
     /**
      * Bind map events
-     *
-     * @param onNotify
      */
-    bind: function (onNotify) {
-        this.cells.each(function (index, cell) {
-            cell.bind();
-        });
-        // TODO bind events with eventManager
-        this.onNotify = onNotify;
-
+    bind: function () {
+        this.cells.bind();
         this.menu.bind();
         this.cellManager.bind();
 
@@ -191,22 +182,19 @@ $.Class('Unramalak.Map.Map', {}, {
      */
     save: function () {
         var map = this;
-
         var mapData = Unramalak.Application.createContextFromMap(this, this.cells.save());
         var json = JSON.stringify(mapData);
         var url = map.profile.routing.save;
-        console.log('save', json);
+
         // call ajax url
         $.ajax({
             type: 'POST',
             url: url,
             data: 'data=' + json,
             success: function () {
-                // TODO handle with event manager
                 map.notify('Map successfully saved !', 'success');
             },
             error: function () {
-                // TODO handle with event manager
                 map.notify('An error has occurred during map save', 'error');
             }
         });
@@ -231,11 +219,16 @@ $.Class('Unramalak.Map.Map', {}, {
 
     /**
      * Raise on notify event with a message and its type
+     *
      * @param message
      * @param type
      */
     notify: function (message, type) {
-        this.onNotify(message, type);
+        var data = {
+            message: message,
+            type: type
+        };
+        EventManager.dispatch(UNRAMALAK_NOTIFICATION_NOTIFY, new Unramalak.Event.Event(UNRAMALAK_NOTIFICATION_NOTIFY, data));
     },
 
     /**
@@ -271,7 +264,8 @@ $.Class('Unramalak.Map.Context', {}, {
     mode: '',
     numberOfSides: 0,
     preventBubbling: true, // not customizable now
-    profile: {},
+    profile: {
+    },
     radius: 0,
     startingPoint: null,
 
@@ -286,7 +280,6 @@ $.Class('Unramalak.Map.Context', {}, {
         this.numberOfSides = mapOptions.numberOfSides;
         this.radius = mapOptions.radius;
         this.startingPoint = mapOptions.startingPoint;
-        //this.routing = mapOptions.routing;
         this.profile = mapOptions.profile;
         this.cells = mapOptions.cells;
     }

@@ -30,7 +30,6 @@ class MapController extends BaseController
     public function indexAction()
     {
         $maps = $this->getMapManager()->findAll();
-        $this->redirect404Unless(count($maps), 'What the hell ?!!! Not map found !');
 
         return array('maps' => $maps);
     }

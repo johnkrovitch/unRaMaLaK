@@ -32,6 +32,8 @@ $.Class('Unramalak.Application', {
     renderer: null,
 
     init: function () {
+        // bind events
+        EventManager.subscribe(UNRAMALAK_NOTIFICATION_NOTIFY, this.notify, [], this);
     },
 
     /**
@@ -55,11 +57,17 @@ $.Class('Unramalak.Application', {
         // draw map and bind map's events
         this.map = new Unramalak.Map.Map(this.mapContext);
         this.map.build();
-        this.map.bind(this.notify);
+        this.map.bind();
         this.map.render();
     },
 
-    notify: function (message, type) {
+    notify: function (event) {
+        var message = event.data.message;
+        var type = event.data.type;
+
+        if (!type) {
+            type = 'info';
+        }
         AlertManager.addAlert(message, type);
     }
 });

@@ -6,11 +6,14 @@ namespace Krovitch\UnramalakBundle\Controller;
 use GeorgetteParty\BaseBundle\Controller\BaseController;
 use Krovitch\UnramalakBundle\Entity\Land;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 
 class LandController extends BaseController
 {
     /**
+     * List all maps
+     *
      * @Template()
      */
     public function indexAction()
@@ -21,11 +24,25 @@ class LandController extends BaseController
     }
 
     /**
-     * @Template("KrovitchUnramalakBundle:Land:create.html.twig")
+     * Create a new map
+     *
+     * @Template("KrovitchUnramalakBundle:Land:edit.html.twig")
      */
     public function createAction()
     {
         $land = new Land();
+
+        return $this->editAction($land);
+    }
+
+    /**
+     * Edit existing map
+     *
+     * @ParamConverter("land", class="Krovitch\UnramalakBundle\Entity\Land")
+     * @Template("KrovitchUnramalakBundle:Land:edit.html.twig")
+     */
+    public function editAction(Land $land)
+    {
         $form = $this->createForm('land', $land);
         $form->handleRequest($this->getRequest());
 

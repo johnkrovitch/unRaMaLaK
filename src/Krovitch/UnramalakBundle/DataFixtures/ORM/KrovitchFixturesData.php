@@ -4,6 +4,8 @@ namespace Krovitch\UnramalakBundle\DataFixtures;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Krovitch\KrovitchUserBundle\Entity\User;
+use Krovitch\UnramalakBundle\Entity\Land;
 use Krovitch\UnramalakBundle\Entity\Race;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
@@ -11,7 +13,13 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class KrovitchFixtures implements FixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
+    /**
+     * @var ObjectManager
+     */
     protected $manager;
 
     public function load(ObjectManager $manager)
@@ -23,11 +31,12 @@ class KrovitchFixtures implements FixtureInterface, ContainerAwareInterface
         }
         $this->loadUsers();
         $this->loadRaces();
+        $this->loadLands();
 
         $manager->flush();
     }
 
-    public function loadUsers()
+    protected function loadUsers()
     {
         $users = array(
             array('username' => 'johnkrovitch', 'password' => 'krovitch', 'email' => 'arnaudfrezet@gmail.com', 'roles' => array('ROLE_ADMIN')),
@@ -47,7 +56,7 @@ class KrovitchFixtures implements FixtureInterface, ContainerAwareInterface
         }
     }
 
-    public function loadRaces()
+    protected function loadRaces()
     {
         $races = array(
             array('name' => 'Zaloumeks'),
@@ -65,6 +74,16 @@ class KrovitchFixtures implements FixtureInterface, ContainerAwareInterface
         }
     }
 
+    protected function loadLands()
+    {
+        $lands = Land::getLandTypes();
+        foreach ($lands as $landType => $landName) {
+            $land = new Land();
+            $land->setName($landName);
+            $land->setType($landType);
+            $this->manager->persist($land);
+        }
+    }
     /**
      * Sets the Container.
      *

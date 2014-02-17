@@ -1,0 +1,78 @@
+{% extends mainTemplate %}
+
+{% block content %}
+    <h1>La map, la map !!!</h1>
+
+    <div id="editor-menu">
+        {{ 'editor.map.baseLand'|trans }}
+        <!-- basic land type -->
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="sand"
+           title="{% trans %}editor.map.sand{% endtrans %}">
+            <img src="/bundles/krovitch/img/sand.png" alt="{% trans %}editor.map.sand{% endtrans %}"/>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="water"
+           title="{% trans %}editor.map.water{% endtrans %}">
+            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.water{% endtrans %}"/>
+        </a>
+        <a href="javascript:void(0);" class="btn btn-small menu-item" data-type="land" data-value="plains"
+           title="{% trans %}editor.map.plains{% endtrans %}">
+            <img src="/bundles/krovitch/img/water.png" alt="{% trans %}editor.map.plains{% endtrans %}"/>
+        </a>
+        <!-- remove background button -->
+        <a class="btn btn-danger btn-small menu-item" data-type="land" data-value="remove"
+           title="{% trans %}editor.map.removeBackground{% endtrans %}">
+            <i class="icon-white icon-remove"></i>
+        </a>
+        <!-- actions buttons -->
+        <a href="javascript:void(0);" class="menu-action btn btn-success btn-small" data-action="save">
+            <i class="icon-white icon-ok"></i>{{ 'editor.map.save' }}
+        </a>
+    </div>
+
+    <div class="row">
+        <div class="span6">
+            <div id="map-chooser" class="modal">
+                <div class="modal-header">
+                    <button class="close">x</button>
+                    <h3>{{ 'map.choose'|trans }}</h3>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>{{ 'map.name'|trans }}</th>
+                            <th>{{ 'map.description'|trans }}</th>
+                            <th>{{ 'map.taille'|trans }}</th>
+                            <th></th>
+                        </tr>
+                        {% for map in maps %}
+                            <tr>
+                                <td>{{ map.name }}</td>
+                                <td>{{ map.description|truncate('50', true, '...') }}</td>
+                                <td>{{ map.size }}</td>
+                                <td>
+                                    <button class="map-chooser btn btn-small btn-primary" data-url="{{ path('map-display', {id: map.id}) }}">{{ 'map.chooseMap'|trans }}</button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <canvas id="myCanvas" width="938" height="1000" class="hero-unit" style="padding: 10px">
+        loading into the deep space...
+    </canvas>
+
+    <script>
+        $(document).on('ready', function () {
+            $('button.map-chooser').on('click', function () {
+                window.location = $(this).data('url');
+            });
+        });
+        {#MapLauncher.init('#map-chooser', '.map-chooser', '{{ path('mapLoad') }}');#}
+    </script>
+{% endblock %}

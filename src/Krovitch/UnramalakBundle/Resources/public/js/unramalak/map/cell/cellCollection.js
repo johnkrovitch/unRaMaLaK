@@ -53,6 +53,15 @@ $.Class('Unramalak.CellCollection', {}, {
     },
 
     /**
+     * Bind cells in collection
+     */
+    bind: function () {
+        this.each (function () {
+            this.bind();
+        });
+    },
+
+    /**
      * Loop through items collection
      *
      * @param callback

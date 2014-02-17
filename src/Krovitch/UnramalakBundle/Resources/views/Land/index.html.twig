@@ -5,9 +5,18 @@
 
     <h1>{{ 'unramalak.admin.landType'|trans }}</h1>
 
+    <div class="row margin-bottom">
+        <div class="col-md-6">
+            <a href="{{ path('unramalak.admin.land.create') }}">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                {{ 'unramalak.admin.create' }}
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="{{ path('unramalak.admin.land.create') }}">{{ 'unramalak.admin.create' }}</a>
-        </div>
+            {% include 'KrovitchUnramalakBundle:Admin:list.html.twig' with {
+            entities: lands, editRoute: 'unramalak.admin.land.edit', deleteRoute: 'unramalak.admin.land.delete'} %}
+    </div>
     </div>
 {% endblock %}

@@ -1,4 +1,8 @@
-/** js events name constants */
+// js events name constants
+
+// globals
+var UNRAMALAK_NOTIFICATION_NOTIFY = 'unramalak.notification.notify';
+
 // map
 var UNRAMALAK_MAP_RENDER = 'unramalak.map.render';
 var UNRAMALAK_MAP_UNSELECT = 'unramalak.map.unselect';

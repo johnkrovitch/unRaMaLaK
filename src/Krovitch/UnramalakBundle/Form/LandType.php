@@ -21,11 +21,6 @@ class LandType extends AbstractType
 //        $builder->add('medias', 'media_collection', [
 //            'label' => 'unramalak.land.type'
 //        ]);
-        $builder->add('submit', 'submit', [
-            'attr' => [
-                'class' => 'btn btn-default'
-            ]
-        ]);
     }
 
     public function getName()

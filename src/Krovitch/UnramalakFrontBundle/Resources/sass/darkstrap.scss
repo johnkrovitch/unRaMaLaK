@@ -1,6 +1,7 @@
 @import "compass";
 
 $text-color: #C6C6C6;
+$border-color: #666666;
 
 // migration to bootstrap 3
 .navbar {
@@ -25,13 +26,32 @@ $text-color: #C6C6C6;
         padding: 10px;
     }
 }
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
-    background-color: #222222;
-    color: $text-color;
+
+.nav-tabs {
+    & > li.active {
+        & > a, & > a:hover, & > a:focus {
+            background-color: #222222;
+            color: $text-color;
+        }
+    }
+    & > li {
+        a{
+            color: #DDDDDD;
+
+        }
+    }
+}
+.table {
+    & > thead, & > tbody, & > tfoot {
+        & > tr {
+            & > td, & > th {
+                border-top: 1px solid $border-color;
+            }
+        }
+    }
 }
 
+// end migration
 // panels
 .panel {
     background-color: #444444;
@@ -155,7 +175,7 @@ textarea::-webkit-input-placeholder {
 
 .table th,
 .table td {
-    border-top: 1px solid #666666;
+    ///border-top: 1px solid #666666;
 }
 
 .table tbody + tbody {
