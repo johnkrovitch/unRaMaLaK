@@ -356,7 +356,6 @@
 
         {# setting global label class #}
         {% if (form.parent.vars.label_class is defined) %}
-            {{ dump(form.parent.vars.label_class) }}
             {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' ' ~ form.parent.vars.label_class)|trim}) %}
         {% endif %}
 
