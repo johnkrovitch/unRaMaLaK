@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
 /**
+ * Map admin controller
+ *
  * @Route("/map")
  */
 class MapController extends BaseController
@@ -28,7 +30,7 @@ class MapController extends BaseController
      */
     public function indexAction()
     {
-        $maps = $this->get('unramalak.manager.map')->findAll();
+        $maps = $this->getMapManager()->findAll();
 
         return ['maps' => $maps];
     }
@@ -57,7 +59,7 @@ class MapController extends BaseController
         $form->handleRequest($this->getRequest());
 
         if ($form->isValid()) {
-            $this->get('unramalak.manager.map')->save($map);
+            $this->getMapManager()->save($map);
         }
         return ['form' => $form->createView()];
     }
@@ -70,13 +72,13 @@ class MapController extends BaseController
      */
     public function deleteAction(Map $map)
     {
-        $this->get('unramalak.manager.map')->delete($map);
+        $this->getMapManager()->delete($map);
 
         return $this->indexAction();
     }
 
     /**
-     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     * @ParamConverter("map", class="KrovitchUnramalakBundle:Map")
      * @Template()
      */
     public function testAction(Map $map)

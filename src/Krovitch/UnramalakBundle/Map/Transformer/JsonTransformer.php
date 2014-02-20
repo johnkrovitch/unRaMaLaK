@@ -73,49 +73,37 @@ class JsonTransformer implements TransformerInterface
         $map->setRadius($data->radius);
 
         if ($data->cells) {
-//            try {
-                // existing lands
-                $lands = $this->landManager->findSortedByType();
-                // we sort cells to ease further research
-                $cells = [];
-                $unsortedCells = $map->getCells();
+            // existing lands
+            $lands = $this->landManager->findSortedByType();
+            // we sort cells to ease further research
+            $cells = [];
+            $unsortedCells = $map->getCells();
 
-                /** @var Cell $cell */
-                foreach ($unsortedCells as $cell) {
-                    $x = $cell->getX();
-                    $y = $cell->getY();
+            /** @var Cell $cell */
+            foreach ($unsortedCells as $cell) {
+                $x = $cell->getX();
+                $y = $cell->getY();
 
-                    if (!array_key_exists($x, $cells)) {
-                        $cells[$x] = [];
-                    }
-                    if (!array_key_exists($y, $cells)) {
-                        $cells[$y] = [];
-                    }
-                    $cells[$x][$y] = $cell;
+                if (!array_key_exists($x, $cells)) {
+                    $cells[$x] = [];
                 }
-                //$this->mapManager->getEntityManager()->getConnection()->beginTransaction();
-                // removing existing cells
-                //$map->removeCells();
-                //$this->mapManager->save($map);
-
-                // save new cells data
-                foreach ($data->cells as $cellData) {
-                    // find existing cell
-                    if (!array_key_exists($cellData->x, $cells)) {
-                        throw new InvalidArgumentException('Invalid row : ' . $cellData->x);
-                    }
-                    if (!array_key_exists($cellData->y, $cells[$cellData->x])) {
-                        throw new InvalidArgumentException('Invalid column : ' . $cellData->y);
-                    }
-                    $cell = $cells[$cellData->x][$cellData->y];
-                    $cell->setLand($lands[$cellData->land->type]);
+                if (!array_key_exists($y, $cells)) {
+                    $cells[$y] = [];
                 }
-                //$this->mapManager->save($map);
-                //$this->mapManager->getEntityManager()->getConnection()->commit();
-//            } catch (\Exception $e) {
-//                $this->mapManager->getEntityManager()->getConnection()->rollback();
-//                throw $e;
-//            }
+                $cells[$x][$y] = $cell;
+            }
+            // save new cells data
+            foreach ($data->cells as $cellData) {
+                // find existing cell
+                if (!array_key_exists($cellData->x, $cells)) {
+                    throw new InvalidArgumentException('Invalid row : ' . $cellData->x);
+                }
+                if (!array_key_exists($cellData->y, $cells[$cellData->x])) {
+                    throw new InvalidArgumentException('Invalid column : ' . $cellData->y);
+                }
+                $cell = $cells[$cellData->x][$cellData->y];
+                $cell->setLand($lands[$cellData->land->type]);
+            }
         }
         return $map;
     }

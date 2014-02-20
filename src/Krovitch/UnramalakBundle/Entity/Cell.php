@@ -20,14 +20,14 @@ class Cell extends Entity
     /**
      * Cell land type
      *
-     * @ORM\ManyToOne(targetEntity="Land")
+     * @ORM\ManyToOne(targetEntity="Land", fetch="EAGER")
      */
     protected $land;
 
     /**
      * Map which cell belongs
      *
-     * @ORM\ManyToOne(targetEntity="Map")
+     * @ORM\ManyToOne(targetEntity="Map", inversedBy="cells")
      */
     protected $map;
 

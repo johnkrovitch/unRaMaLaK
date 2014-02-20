@@ -25,8 +25,8 @@ class Map extends Entity
     /**
      * Map cells
      *
-     * @ORM\OneToMany(targetEntity="Cell", mappedBy="map", cascade={"remove", "persist"})
      * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Cell", mappedBy="map", cascade={"remove", "persist"}, fetch="EAGER")
      */
     protected $cells;
 
@@ -47,7 +47,7 @@ class Map extends Entity
     /**
      * Starting point in canvas for map
      *
-     * @ORM\ManyToOne(targetEntity="Position", cascade={"remove", "persist"})
+     * @ORM\ManyToOne(targetEntity="Position", cascade={"remove", "persist"}, fetch="EAGER")
      */
     protected $startingPoint;
 
