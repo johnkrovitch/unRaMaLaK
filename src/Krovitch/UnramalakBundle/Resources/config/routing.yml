@@ -13,33 +13,14 @@ unramalak.map.save:
     defaults: { _controller: KrovitchUnramalakBundle:Map:save}
 
 ###########
-unramalak.admin.home:
-    path:  /admin
-    defaults: { _controller: KrovitchUnramalakBundle:Admin:index }
 
-# land
-unramalak.admin.land:
-    path: /admin/land
-    defaults: { _controller: KrovitchUnramalakBundle:Land:index}
-
-unramalak.admin.land.create:
-    path: /admin/land/create
-    defaults: { _controller: KrovitchUnramalakBundle:Land:create}
-
-unramalak.admin.land.edit:
-    path: /admin/land/edit/{id}
-    defaults: { _controller: KrovitchUnramalakBundle:Land:edit}
-
-unramalak.admin.land.delete:
-    path: /admin/land/delete/{id}
-    defaults: { _controller: KrovitchUnramalakBundle:Land:create}
-
-unramalak.admin.map:
-    path: /admin/map
-    defaults: { _controller: KrovitchUnramalakBundle:Map:index}
+imports:
+    resource: admin.yml
 
 # ça pas sur....
 admin_action:
     path:  /admin/{action}/{entity}/{id}
     defaults: { _controller: KrovitchUnramalakBundle:Admin:execute, id: 0, entity: '' }
 # fin pas sur
+
+

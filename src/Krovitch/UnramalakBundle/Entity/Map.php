@@ -23,11 +23,6 @@ class Map extends Entity
     protected $content;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
-     */
-    protected $datafile;
-
-    /**
      * Map cells
      *
      * @ORM\OneToMany(targetEntity="Cell", mappedBy="map", cascade={"remove", "persist"})
@@ -38,7 +33,7 @@ class Map extends Entity
     /**
      * Padding between each cell
      *
-     * @ORM\Column(name="cell_padding", type="integer")
+     * @ORM\Column(name="cell_padding", type="integer", options={"default": 5})
      */
     protected $cellPadding;
 
@@ -63,9 +58,17 @@ class Map extends Entity
      */
     protected $radius;
 
+    /**
+     * Initialize map data :
+     *   - cells
+     *   - numberOfSides (default: 6)
+     *   - radius (default: 50)
+     */
     public function __construct()
     {
         $this->cells = new ArrayCollection();
+        $this->numberOfSides = 6;
+        $this->radius = 50;
     }
 
     public function setContent($content)
@@ -76,22 +79,6 @@ class Map extends Entity
     public function getContent()
     {
         return $this->content;
-    }
-
-    public function getDatafile($absolute = true)
-    {
-        $datafile = $this->datafile;
-        $path = new Path();
-
-        if ($absolute && $datafile) {
-            $datafile = $path->getXmlPath() . DIRECTORY_SEPARATOR . $datafile;
-        }
-        return $datafile;
-    }
-
-    public function setDatafile($datafile)
-    {
-        $this->datafile = $datafile;
     }
 
     public function getCellPadding()
@@ -165,6 +152,7 @@ class Map extends Entity
     public function addCell(Cell $cell)
     {
         $this->cells->add($cell);
+        $cell->setMap($this);
     }
 
     public function removeCell(Cell $cell)

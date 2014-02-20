@@ -114,12 +114,18 @@ $.Class('Unramalak.Map.Map', {}, {
      * Creates cells with theirs data
      */
     build: function () {
+        // TODO move this code in a separate object
+        if (this.numberOfSides != 6) {
+            throw new Error('Invalid number of sides (expected 6, got ' + this.numberOfSides + ')');
+        }
         // build cells
         var odd = false;
         var hexagonCenterX = this.startingPoint.x;
         var hexagonCenterY = this.startingPoint.y;
         var xRadius = 0;
         var yRadius = 0;
+
+        console.log('build : cell data', this.cellsData);
 
         for (var i = 0; i < this.cellsData.length; i++) {
             hexagonCenterX = this.startingPoint.x;
@@ -134,6 +140,8 @@ $.Class('Unramalak.Map.Map', {}, {
                 // we build an new hexagonal cell
                 var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
                 var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
+                console.log('build : hex', this.numberOfSides, this.radius);
+
 
                 // x-radius of shape : distance between center and one of his point.
                 // distance between this shape and the next is equals to a diameter (plus an optional padding)
@@ -259,7 +267,6 @@ $.Class('Unramalak.Map.Context', {}, {
     cells: [],
     data: null,
     cellPadding: 0,
-    mapContainer: '',
     menuContainer: '',
     mode: '',
     numberOfSides: 0,
@@ -275,7 +282,6 @@ $.Class('Unramalak.Map.Context', {}, {
         }
         this.cellPadding = mapOptions.cellPadding;
         this.data = mapOptions.data;
-        this.mapContainer = mapOptions.mapContainer;
         this.menuContainer = mapOptions.menuContainer;
         this.numberOfSides = mapOptions.numberOfSides;
         this.radius = mapOptions.radius;

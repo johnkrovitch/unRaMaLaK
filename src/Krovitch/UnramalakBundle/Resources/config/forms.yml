@@ -5,6 +5,7 @@ parameters:
     unramalak.type.media_collection: Krovitch\UnramalakBundle\Form\MediaCollectionType
     unramalak.type.attributes_collection: Krovitch\UnramalakBundle\Form\AttributeCollectionType
     unramalak.type.land: Krovitch\UnramalakBundle\Form\LandType
+    unramalak.type.map: Krovitch\UnramalakBundle\Form\MapType
     unramalak.type.base: Krovitch\UnramalakBundle\Form\Base\BaseType
 
 services:
@@ -45,3 +46,8 @@ services:
         class: %unramalak.type.land%
         tags:
             - { name: form.type, alias: land }
+
+    unramalak.type.map:
+        class: %unramalak.type.map%
+        tags:
+            - { name: form.type, alias: map }

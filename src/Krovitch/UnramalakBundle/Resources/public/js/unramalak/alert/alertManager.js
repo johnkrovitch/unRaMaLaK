@@ -53,6 +53,15 @@ var AlertManager = {
         }
     },
 
+    confirm: function (source, event) {
+        var hasToDeleteItem = confirm(source.data('message'));
+
+        if (!hasToDeleteItem) {
+            event.stopPropagation();
+            event.preventDefault();
+        }
+    },
+
     findAlerts: function () {
         this.alerts = $('div.alert');
     },

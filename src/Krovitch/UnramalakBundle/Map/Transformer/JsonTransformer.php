@@ -33,6 +33,12 @@ class JsonTransformer implements TransformerInterface
      */
     protected $landManager;
 
+    /**
+     * Initialize a json map transformer with map and land managers
+     *
+     * @param MapManager $mapManager
+     * @param LandManager $landManager
+     */
     public function __construct(MapManager $mapManager, LandManager $landManager)
     {
         $this->mapManager = $mapManager;
@@ -43,6 +49,7 @@ class JsonTransformer implements TransformerInterface
      * Transforms json data in an Unramalak map, then saves it with its cell (if map has cells)
      *
      * @param $data
+     * @return \Krovitch\UnramalakBundle\Entity\Map
      * @throws \Exception
      */
     public function transform($data)
@@ -59,7 +66,6 @@ class JsonTransformer implements TransformerInterface
         $map->setName($data->profile->name);
         $map->setWidth($data->profile->width);
         $map->setHeight($data->profile->height);
-        $map->setContent('test ???' . time());
         // map own data
         $map->setCellPadding($data->cellPadding);
         $map->setNumberOfSides($data->numberOfSides);
@@ -67,8 +73,7 @@ class JsonTransformer implements TransformerInterface
         $map->setRadius($data->radius);
 
         if ($data->cells) {
-            // TODO make save with differential
-            try {
+//            try {
                 // existing lands
                 $lands = $this->landManager->findSortedByType();
                 // we sort cells to ease further research
@@ -88,10 +93,10 @@ class JsonTransformer implements TransformerInterface
                     }
                     $cells[$x][$y] = $cell;
                 }
-                $this->mapManager->getEntityManager()->getConnection()->beginTransaction();
+                //$this->mapManager->getEntityManager()->getConnection()->beginTransaction();
                 // removing existing cells
                 //$map->removeCells();
-                $this->mapManager->save($map);
+                //$this->mapManager->save($map);
 
                 // save new cells data
                 foreach ($data->cells as $cellData) {
@@ -105,13 +110,14 @@ class JsonTransformer implements TransformerInterface
                     $cell = $cells[$cellData->x][$cellData->y];
                     $cell->setLand($lands[$cellData->land->type]);
                 }
-                $this->mapManager->save($map);
-                $this->mapManager->getEntityManager()->getConnection()->commit();
-            } catch (\Exception $e) {
-                $this->mapManager->getEntityManager()->getConnection()->rollback();
-                throw $e;
-            }
+                //$this->mapManager->save($map);
+                //$this->mapManager->getEntityManager()->getConnection()->commit();
+//            } catch (\Exception $e) {
+//                $this->mapManager->getEntityManager()->getConnection()->rollback();
+//                throw $e;
+//            }
         }
+        return $map;
     }
 
     /**
@@ -123,9 +129,7 @@ class JsonTransformer implements TransformerInterface
      */
     public function reverseTransform($map)
     {
-        if (!($map instanceof Map)) {
-            throw new \Exception('Invalid map type');
-        }
+        $this->reverseCheck($map);
         // map profile
         $mapContext = new MapContext();
         $mapContext->profile = [
@@ -184,6 +188,19 @@ class JsonTransformer implements TransformerInterface
                 $this->throwUnless($cell->land && array_key_exists($cell->land->type, $lands), 'Invalid land type : ' . print_r($cell, true));
             }
         }
+    }
+
+    /**
+     * Check if map data are valid. In principle, no more data checks are required after calling this method
+     *
+     * @param Map $map
+     * @throws \Exception
+     */
+    protected function reverseCheck($map)
+    {
+        $this->throwUnless($map instanceof Map, 'Invalid map type');
+        $this->throwUnless($map->getStartingPoint(), 'Invalid map starting point');
+        $this->throwUnless($map->getCells(), 'Invalid map cells');
     }
 
     /**

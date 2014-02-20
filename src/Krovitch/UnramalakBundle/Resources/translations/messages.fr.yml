@@ -8,6 +8,8 @@ unramalak.admin.edit: editer
 unramalak.admin.delete: supprimer
 unramalak.admin.save: Sauvegarder
 unramalak.admin.cancel: Annuler
+unramalak.admin.create: Ajouter
+unramalak.admin.noResult: Aucun résultat trouvé
 
 
 unramalak.admin.map.regenerate: regénéner

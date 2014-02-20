@@ -34,3 +34,4 @@ services:
         arguments: [@doctrine.orm.entity_manager, 'service']
         calls:
             - [setTransformer, [@unramalak.map.transformer]]
+            - [setLandManager, [@unramalak.manager.land]]

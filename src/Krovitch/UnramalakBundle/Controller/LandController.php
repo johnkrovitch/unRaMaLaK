@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class LandController extends BaseController
 {
     /**
-     * List all maps
+     * List all lands
      *
      * @Template()
      */
@@ -24,7 +24,7 @@ class LandController extends BaseController
     }
 
     /**
-     * Create a new map
+     * Create a new land
      *
      * @Template("KrovitchUnramalakBundle:Land:edit.html.twig")
      */
@@ -36,7 +36,7 @@ class LandController extends BaseController
     }
 
     /**
-     * Edit existing map
+     * Edit existing lands
      *
      * @ParamConverter("land", class="Krovitch\UnramalakBundle\Entity\Land")
      * @Template("KrovitchUnramalakBundle:Land:edit.html.twig")

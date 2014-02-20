@@ -44,6 +44,7 @@ $.Class('Unramalak.Application', {
         var canvas = document.getElementById(canvasId);
         // create an empty project and a view for the canvas:
         paper.setup(canvas);
+        console.log('context', context);
         // default start location
         context.startingPoint = new Unramalak.Position(100, 50);
         // setting future map context

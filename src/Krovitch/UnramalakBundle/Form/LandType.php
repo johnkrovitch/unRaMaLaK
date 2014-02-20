@@ -18,9 +18,6 @@ class LandType extends AbstractType
             'label' => 'unramalak.land.type',
             'choices' => Land::getLandTypes()
         ]);
-//        $builder->add('medias', 'media_collection', [
-//            'label' => 'unramalak.land.type'
-//        ]);
     }
 
     public function getName()

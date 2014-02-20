@@ -1,0 +1,40 @@
+unramalak.admin.home:
+    path:  /admin
+    defaults: { _controller: KrovitchUnramalakBundle:Admin:index }
+
+# land
+unramalak.admin.land:
+    path: /admin/land
+    defaults: { _controller: KrovitchUnramalakBundle:Land:index}
+
+unramalak.admin.land.create:
+    path: /admin/land/create
+    defaults: { _controller: KrovitchUnramalakBundle:Land:create}
+
+unramalak.admin.land.edit:
+    path: /admin/land/edit/{id}
+    defaults: { _controller: KrovitchUnramalakBundle:Land:edit}
+
+unramalak.admin.land.delete:
+    path: /admin/land/delete/{id}
+    defaults: { _controller: KrovitchUnramalakBundle:Land:delete}
+
+# map
+unramalak.admin.map:
+    path: /admin/map
+    defaults: { _controller: KrovitchUnramalakBundle:Map:index}
+unramalak.admin.map.create:
+    path: /admin/map/create
+    defaults: { _controller: KrovitchUnramalakBundle:Map:create}
+
+unramalak.admin.map.edit:
+    path: /admin/map/edit/{id}
+    defaults: { _controller: KrovitchUnramalakBundle:Map:edit}
+
+unramalak.admin.map.delete:
+    path: /admin/map/delete/{id}
+    defaults: { _controller: KrovitchUnramalakBundle:Map:delete}
+
+unramalak.admin.map.test:
+    path: /admin/map/test/{id}
+    defaults: { _controller: KrovitchUnramalakBundle:Map:test}

@@ -9,14 +9,14 @@
         <div class="col-md-6">
             <a href="{{ path('unramalak.admin.land.create') }}">
                 <i class="glyphicon glyphicon-plus-sign"></i>
-                {{ 'unramalak.admin.create' }}
+                {{ 'unramalak.admin.create'|trans }}
             </a>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6">
-            {% include 'KrovitchUnramalakBundle:Admin:list.html.twig' with {
-            entities: lands, editRoute: 'unramalak.admin.land.edit', deleteRoute: 'unramalak.admin.land.delete'} %}
+            {% set parameters = {entities: lands, editRoute: 'unramalak.admin.land.edit', deleteRoute: 'unramalak.admin.land.delete'} %}
+            {% include 'KrovitchUnramalakBundle:Admin:list.html.twig' with parameters %}
     </div>
     </div>
 {% endblock %}

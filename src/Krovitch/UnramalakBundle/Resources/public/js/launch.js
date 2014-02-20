@@ -1,12 +1,7 @@
 $(document).on('ready', function () {
     // setup confirm box
-    $('a.alert-delete').on('click', function (e) {
-        var hasToDeleteItem = confirm('Item will be deleted. Are you sure ?');
-
-        if (!hasToDeleteItem) {
-            e.stopPropagation();
-            e.preventDefault();
-        }
+    $('a.confirm').on('click', function (event) {
+        AlertManager.confirm($(this), event);
     });
     AlertManager.init();
 });

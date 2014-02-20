@@ -17,17 +17,18 @@ class MapType extends AbstractType
         $builder->add('description', 'textarea');
         $builder->add('width', 'integer');
         $builder->add('height', 'integer');
+        $builder->add('cellPadding', 'integer');
 
         return $builder;
     }
 
-    /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
-     */
-    function getName()
+    public function getName()
     {
-        return 'Map';
+        return 'map';
+    }
+
+    public function getParent()
+    {
+        return 'base';
     }
 }

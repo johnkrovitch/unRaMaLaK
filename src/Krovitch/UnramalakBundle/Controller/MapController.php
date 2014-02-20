@@ -22,16 +22,69 @@ class MapController extends BaseController
     use HasMapManager;
 
     /**
-     * Display the map chooser
-     * @Route("/", name="map")
+     * List all maps
+     *
      * @Template()
-     * @return array
      */
     public function indexAction()
     {
-        $maps = $this->getMapManager()->findAll();
+        $maps = $this->get('unramalak.manager.map')->findAll();
 
-        return array('maps' => $maps);
+        return ['maps' => $maps];
+    }
+
+    /**
+     * Create a new map
+     *
+     * @Template("KrovitchUnramalakBundle:Map:edit.html.twig")
+     */
+    public function createAction()
+    {
+        $map = new Map();
+
+        return $this->editAction($map);
+    }
+
+    /**
+     * Edit existing maps
+     *
+     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     * @Template("KrovitchUnramalakBundle:Map:edit.html.twig")
+     */
+    public function editAction(Map $map)
+    {
+        $form = $this->createForm('map', $map);
+        $form->handleRequest($this->getRequest());
+
+        if ($form->isValid()) {
+            $this->get('unramalak.manager.map')->save($map);
+        }
+        return ['form' => $form->createView()];
+    }
+
+    /**
+     * Delete map
+     *
+     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     * @Template()
+     */
+    public function deleteAction(Map $map)
+    {
+        $this->get('unramalak.manager.map')->delete($map);
+
+        return $this->indexAction();
+    }
+
+    /**
+     * @ParamConverter("map", class="Krovitch\UnramalakBundle\Entity\Map")
+     * @Template()
+     */
+    public function testAction(Map $map)
+    {
+        // get map json content for the view
+        $mapContext = $this->getMapManager()->load($map);
+
+        return array('mapContext' => $mapContext, 'title' => $map->getName());
     }
 
     /**
@@ -41,15 +94,15 @@ class MapController extends BaseController
      */
     public function displayAction($id)
     {
-        // TODO check permissions
-        $map = $this->getManager()->find($id);
-        $this->redirect404Unless($map, 'Map not found (id: ' . $id . ')');
-        // get map json content for the view
-        $mapJson = $this->getManager('Map')->load($map);
-        // get map textures
-        $textures = $this->getManager('Map')->loadTextures($map);
-
-        return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
+//        // TODO check permissions
+//        $map = $this->getManager()->find($id);
+//        $this->redirect404Unless($map, 'Map not found (id: ' . $id . ')');
+//        // get map json content for the view
+//        $mapJson = $this->getManager('Map')->load($map);
+//        // get map textures
+//        $textures = $this->getManager('Map')->loadTextures($map);
+//
+//        return array('data' => $mapJson, 'title' => $map->getName(), 'textures' => $textures);
     }
 
     /**
@@ -60,19 +113,8 @@ class MapController extends BaseController
     public function saveAction()
     {
         $data = $this->getRequest()->get('data');
-        $this->get('unramalak.manager.map')->saveMap($data);
+        $this->getMapManager()->saveMap($data);
 
         return new Response('0');
-    }
-
-    /**
-     * @Template()
-     */
-    public function testAction(Map $map)
-    {
-        // get map json content for the view
-        $mapContext = $this->getMapManager()->load($map);
-
-        return array('mapContext' => $mapContext, 'title' => $map->getName());
     }
 }

@@ -1,4 +1,4 @@
-{% if entities|length > 0 %}
+{% if entities|length %}
 
     <table class="table">
 
@@ -9,14 +9,20 @@
                 <td>{{ entity.name }}</td>
                 <td>
                     <i class="glyphicon glyphicon-pencil"></i>
-                    <a href="{{ path(editRoute, {id: entity.id}) }}">
-                        {{ 'unramalak.admin.edit'|trans }}
-                    </a>
+                    <a href="{{ path(editRoute, {id: entity.id}) }}">{{ 'unramalak.admin.edit'|trans }}</a>
                     &nbsp;
                     <i class="glyphicon glyphicon-remove"></i>
-                    <a href="{{ path(deleteRoute, {id: entity.id}) }}">
-                        {{ 'unramalak.admin.delete'|trans }}
-                    </a>
+                    <a href="{{ path(deleteRoute, {id: entity.id}) }}"
+                       class="confirm"
+                       data-message="{{ 'unramalak.admin.deleteConfirm'|trans }}">{{ 'unramalak.admin.delete'|trans }}</a>
+
+                    {% if customRoutes is defined and customRoutes|length %}
+                        {% for route, label in customRoutes %}
+                            &nbsp;
+                            <i class="glyphicon glyphicon-th"></i>
+                            <a href="{{ path(route, {id: entity.id}) }}">{{ label|trans }}</a>
+                        {% endfor %}
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

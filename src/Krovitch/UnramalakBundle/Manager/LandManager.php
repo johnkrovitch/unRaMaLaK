@@ -19,4 +19,16 @@ class LandManager extends BaseManager
         }
         return $landsByType;
     }
+
+    /**
+     * Return the default land type
+     *
+     * @return Land
+     */
+    public function findDefaultLandType()
+    {
+        return $this->getRepository()->findOneBy([
+            'type' => 'default'
+        ]);
+    }
 } 

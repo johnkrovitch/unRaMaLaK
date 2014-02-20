@@ -20,7 +20,6 @@ class MapContext
      */
     public $cells;
     public $numberOfSides;
-    public $mapContainer;
     public $menuContainer;
     public $preventBubbling;
     public $profile;

@@ -3,13 +3,21 @@
 {% block content %}
     {% include 'KrovitchUnramalakBundle:Admin:menu.html.twig' %}
 
-    <h1>{{ 'unramalak.admin.landType'|trans }}</h1>
+    <h1>{{ 'unramalak.admin.map'|trans }}</h1>
 
+    <div class="row margin-bottom">
+        <div class="col-md-6">
+            <a href="{{ path('unramalak.admin.map.create') }}">
+                <i class="glyphicon glyphicon-plus-sign"></i>
+                {{ 'unramalak.admin.create'|trans }}
+            </a>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="{{ path('unramalak.admin.land.create') }}">{{ 'unramalak.admin.create' }}</a>
-
-
+            {% set parameters = {entities: maps, editRoute: 'unramalak.admin.map.edit', deleteRoute: 'unramalak.admin.map.delete',
+            customRoutes: {'unramalak.admin.map.test': 'unramalak.admin.map.test'}} %}
+            {% include 'KrovitchUnramalakBundle:Admin:list.html.twig' with parameters %}
         </div>
     </div>
 {% endblock %}
