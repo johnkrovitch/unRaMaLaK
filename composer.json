@@ -1,85 +1,86 @@
 {
-  "name": "symfony/framework-standard-edition",
-  "description": "The \"Symfony Standard Edition\" distribution",
-  "autoload": {
-    "psr-0": {
-      "": "src/"
-    }
-  },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/GeorgetteParty/GMFBundle.git"
+    "name": "symfony/framework-standard-edition",
+    "description": "The \"Symfony Standard Edition\" distribution",
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
     },
-    {
-      "type": "vcs",
-      "url": "git@github.com:GeorgetteParty/UnicodeTesselationBundle.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/GeorgetteParty/BaseBundle.git"
-    }
-  ],
-  "require": {
-    "php": ">=5.3.3",
-    "symfony/symfony": "2.3.*",
-    "symfony/assetic-bundle": "2.3.*",
-    "symfony/swiftmailer-bundle": "2.3.*",
-    "symfony/monolog-bundle": "2.3.*",
-    "doctrine/orm": ">=2.2.3,<2.4-dev",
-    "doctrine/doctrine-bundle": "1.2.*",
-    "doctrine/data-fixtures": "@dev",
-    "doctrine/doctrine-fixtures-bundle": "@dev",
-    "gedmo/doctrine-extensions": "dev-master",
-    "twig/extensions": "1.0.*",
-    "sensio/distribution-bundle": "2.3.*",
-    "sensio/framework-extra-bundle": "2.3.*",
-    "sensio/generator-bundle": "2.3.*",
-    "friendsofsymfony/user-bundle": "@dev",
-    "incenteev/composer-parameter-handler": "~2.0",
-    "jms/security-extra-bundle": "1.5.*",
-    "jms/di-extra-bundle": "1.4.*",
-    "knplabs/knp-paginator-bundle": "dev-master",
-    "behat/behat": "2.4.*@dev",
-    "behat/mink": "1.4.*@dev",
-    "behat/mink-extension": "*",
-    "behat/mink-browserkit-driver": "*",
-    "behat/mink-selenium2-driver": "*",
-    "behat/symfony2-extension": "*@dev",
-    "georgette-party/gmf-bundle": "*",
-    "georgette-party/base-bundle": "*",
-    "georgette-party/unicode-tesselation-bundle": "*",
-    "phpunit/phpunit": "dev-master"
-  },
-  "scripts": {
-    "post-install-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/GeorgetteParty/GMFBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:GeorgetteParty/UnicodeTesselationBundle.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/GeorgetteParty/BaseBundle.git"
+        }
     ],
-    "post-update-cmd": [
-      "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-      "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
-    ]
-  },
-  "config": {
-    "bin-dir": "bin"
-  },
-  "minimum-stability": "dev",
-  "extra": {
-    "symfony-app-dir": "app",
-    "symfony-web-dir": "web",
-    "symfony-assets-install": "symlink",
-    "incenteev-parameters": {
-      "file": "app/config/parameters.yml"
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "2.4.2",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
+        "doctrine/orm": "2.4",
+        "doctrine/doctrine-bundle": "1.2.*",
+        "doctrine/data-fixtures": "@dev",
+        "doctrine/doctrine-fixtures-bundle": "@dev",
+        "gedmo/doctrine-extensions": "dev-master",
+        "twig/extensions": "1.0.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "friendsofsymfony/user-bundle": "@dev",
+        "incenteev/composer-parameter-handler": "~2.0",
+        "jms/security-extra-bundle": "1.5.*",
+        "jms/di-extra-bundle": "1.4.*",
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "behat/behat": "@dev",
+        "behat/mink": "@dev",
+        "behat/mink-extension": "*",
+        "behat/mink-browserkit-driver": "*",
+        "behat/mink-selenium2-driver": "*",
+        "behat/symfony2-extension": "*@dev",
+        "georgette-party/gmf-bundle": "*",
+        "georgette-party/base-bundle": "*",
+        "georgette-party/unicode-tesselation-bundle": "*",
+        "phpunit/phpunit": "dev-master",
+        "andres-montanez/magallanes": "1.0.*"
     },
-    "branch-alias": {
-      "dev-master": "2.3-dev"
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "symfony-app-dir": "app",
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
     }
-  }
 }

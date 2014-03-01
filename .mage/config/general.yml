@@ -1,0 +1,6 @@
+# global settings
+name: Unramalak
+email: arnaudfrezet@gmail.com
+notifications: true
+logging: true
+maxlogs: 5

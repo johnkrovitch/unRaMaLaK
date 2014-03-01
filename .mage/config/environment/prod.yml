@@ -1,0 +1,22 @@
+#prod
+deployment:
+  user: johnkrovitch
+  from: ./
+  to: /home/johnkrovitch/www/unramalak
+  excludes:
+releases:
+  enabled: true
+  max: 5
+  symlink: current
+  directory: releases
+hosts:
+  - ks3313894.kimsufi.com:22
+tasks:
+  pre-deploy:
+  on-deploy:
+    - symfony-permissions:
+    - symfony2/cache-warmup: {env: prod}
+    - symfony2/assets-install: {env: prod, symlink: true}
+    - symfony2/assetic-dump: {env: prod}
+  post-release:
+  post-deploy:
