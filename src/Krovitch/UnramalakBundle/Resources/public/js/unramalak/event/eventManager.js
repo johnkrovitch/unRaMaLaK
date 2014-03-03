@@ -60,8 +60,11 @@ var EventManager = {
             var subscription = subscriptions[index];
             // adding event to callback parameters
             var parameters = [event].concat(subscription.parameters);
-            // using apply() to have separated parameters in callback
-            subscription.callback.apply(subscription.thisObject, parameters);
+
+            if (subscription.callback) {
+                // using apply() to have separated parameters in callback
+                subscription.callback.apply(subscription.thisObject, parameters);
+            }
         }
     }
 };

@@ -72,15 +72,17 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         }
         // texture render
         else if (render.type == 'image') {
+            this.shape.fillColor = 'transparent';
             this.raster = new Unramalak.Raster(this.shape, render.value);
             this.raster.render();
+            // dispatch event to add the raster to cell paper.js group
+            EventManager.dispatch(UNRAMALAK_MAP_RASTER_RENDER, new Unramalak.Event.Event(UNRAMALAK_MAP_RASTER_RENDER, this.raster));
         }
         // default border color
         this.shape.strokeColor = defaultStrokeColor;
-
         // selection render
         this.shape.selected = this.selected;
-
+        // unit render should be on the last position to be on top of the canvas and not being hide by land raster
         if (this.hasUnit()) {
             this.unit.select(this.selected);
             // units render
@@ -105,18 +107,15 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
         }
         // we select/unselect cell
         this.selected = !this.selected;
-
         // we inform map that it should display cells that unit can reached
         if (this.hasUnit()) {
-
             if (this.selected) {
                 var data = {
                     cell: this,
                     unit: this.unit
                 };
-                var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
-
-                EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
+                //var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
+                //EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
             }
         }
         this.render();

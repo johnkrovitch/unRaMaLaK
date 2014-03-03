@@ -9,10 +9,6 @@ var mapMode = {
  * Map class
  */
 $.Class('Unramalak.Map.Map', {}, {
-    /**
-     * @property {Unramalak.CellCollection}
-     */
-    cells: null,
     cellsData: [],
     cellPadding: 0,
     // errors encountered during some process
@@ -20,11 +16,14 @@ $.Class('Unramalak.Map.Map', {}, {
     hitCells: [],
     keyboardControl: null,
     mouseControl: null,
+    /**
+     * @property {Unramalak.Map.CellManager}
+     */
     cellManager: null,
     unitManager: null,
     menu: null,
     /**
-     * According to the mode, map will not act the same
+     * According to the mode, map will not act the same (in fact, its not working yet...)
      */
     mode: null,
     numberOfSides: 0,
@@ -55,8 +54,6 @@ $.Class('Unramalak.Map.Map', {}, {
         this.startingPoint = context.startingPoint;
         // create menu
         this.menu = new Unramalak.Menu(context.menuContainer);
-        //  init cell collections
-        this.cells = new Unramalak.CellCollection();
         this.hitCells = [];
         this.renderer = new Unramalak.Renderer();
         // initialize managers
@@ -100,11 +97,8 @@ $.Class('Unramalak.Map.Map', {}, {
      * Bind map events
      */
     bind: function () {
-        this.cells.bind();
         this.menu.bind();
         this.cellManager.bind();
-
-        EventManager.subscribe('unramalak.map.addUnit', this.addUnit, [], this);
         EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [this.cells], this.unitManager);
         EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
         EventManager.subscribe(UNRAMALAK_MAP_SAVE, this.save, [], this);
@@ -125,8 +119,6 @@ $.Class('Unramalak.Map.Map', {}, {
         var xRadius = 0;
         var yRadius = 0;
 
-        console.log('build : cell data', this.cellsData);
-
         for (var i = 0; i < this.cellsData.length; i++) {
             hexagonCenterX = this.startingPoint.x;
 
@@ -140,8 +132,6 @@ $.Class('Unramalak.Map.Map', {}, {
                 // we build an new hexagonal cell
                 var hexagonCenter = new paper.Point(hexagonCenterX, hexagonCenterY);
                 var hexagon = new paper.Path.RegularPolygon(hexagonCenter, this.numberOfSides, this.radius);
-                console.log('build : hex', this.numberOfSides, this.radius);
-
 
                 // x-radius of shape : distance between center and one of his point.
                 // distance between this shape and the next is equals to a diameter (plus an optional padding)
@@ -158,7 +148,7 @@ $.Class('Unramalak.Map.Map', {}, {
                     // TODO notify with event manager
                     this.errors.push('An error has been encountered with cell x:' + i + ', y:' + j);
                 }
-                this.cells.add(new Unramalak.Cell(hexagon, cellData));
+                this.cellManager.create(hexagon, cellData);
             }
             odd = !odd;
             // y-radius
@@ -169,9 +159,9 @@ $.Class('Unramalak.Map.Map', {}, {
         this.cellsData = [];
     },
 
-    move: function (delta) {
-        this.cells.translate(delta);
-    },
+//    move: function (delta) {
+//        this.cells.translate(delta);
+//    },
 
     /**
      * Dispatch map render event and redraw paper.js view
@@ -190,7 +180,7 @@ $.Class('Unramalak.Map.Map', {}, {
      */
     save: function () {
         var map = this;
-        var mapData = Unramalak.Application.createContextFromMap(this, this.cells.save());
+        var mapData = Unramalak.Application.createContextFromMap(this, this.cellManager.save());
         var json = JSON.stringify(mapData);
         var url = map.profile.routing.save;
 
@@ -206,23 +196,6 @@ $.Class('Unramalak.Map.Map', {}, {
                 map.notify('An error has occurred during map save', 'error');
             }
         });
-    },
-
-    /**
-     *
-     * @param event
-     * @param position
-     */
-    addUnit: function (event, position) {
-        if ($.isNull(position)) {
-            // by default, the unit will be at 0,0
-            position = new Unramalak.Position(0, 0);
-        }
-        // creating a default unit
-        var unit = new Unramalak.Unit();
-        unit.build();
-        // attach to a cell
-        this.cells.attachUnit(unit, position);
     },
 
     /**

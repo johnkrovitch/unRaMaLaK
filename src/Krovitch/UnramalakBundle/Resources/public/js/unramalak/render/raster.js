@@ -56,5 +56,6 @@ $.Class('Unramalak.Raster', {}, {
         this.shape.position = this.container.getPosition();
         // binding events to container
         this.bind();
+        //this.shape.sendToBack();
     }
 });

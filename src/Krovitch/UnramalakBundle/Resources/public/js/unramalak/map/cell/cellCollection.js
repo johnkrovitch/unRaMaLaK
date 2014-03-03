@@ -166,6 +166,11 @@ $.Class('Unramalak.CellCollection', {}, {
         });
     },
 
+    /**
+     * Return an object containing cells data
+     *
+     * @returns {Array}
+     */
     save: function () {
         var data = [];
 

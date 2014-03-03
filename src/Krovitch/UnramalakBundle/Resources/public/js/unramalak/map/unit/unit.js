@@ -63,6 +63,8 @@ $.Class('Unramalak.Unit', {}, {
     render: function () {
         this.shape.strokeColor = 'black';
         this.shape.selected = this.selected;
+        this.shape.bringToFront();
+        console.log('bring to front');
     },
 
     select: function (selected) {
