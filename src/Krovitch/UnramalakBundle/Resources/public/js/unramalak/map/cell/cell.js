@@ -114,15 +114,10 @@ Unramalak.Container('Unramalak.BaseCell', {}, {
                     cell: this,
                     unit: this.unit
                 };
-                //var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
-                //EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
+                var event = new Unramalak.Event.Event(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, data);
+                EventManager.dispatch(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, event);
             }
         }
-        this.render();
-    },
-
-    setLandType: function (landType) {
-        this.land.type = landType;
         this.render();
     },
 
@@ -202,7 +197,12 @@ Unramalak.BaseCell('Unramalak.Cell', {}, {
     // TODO refactor this in behaviour
     getPosition: function () {
         return this.shape.position;
-    }
+    },
+
+    setLandType: function (landType) {
+        this.land.type = landType;
+        this.render();
+    },
 });
 
 

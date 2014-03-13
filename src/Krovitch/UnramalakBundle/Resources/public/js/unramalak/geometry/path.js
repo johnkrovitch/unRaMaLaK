@@ -37,7 +37,7 @@ $.Class('Unramalak.Path.Finder', {}, {
             if (validPositions.length > 0) {
                 positions.push(potentialPositions);
             }
-            // TODO decreasing movement points according to tha land type
+            // TODO decreasing movement points according to the land type
             // decrease movement points
             remainingMovement--;
         }

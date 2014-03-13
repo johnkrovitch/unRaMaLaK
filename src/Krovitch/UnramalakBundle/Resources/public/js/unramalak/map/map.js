@@ -57,7 +57,7 @@ $.Class('Unramalak.Map.Map', {}, {
         this.hitCells = [];
         this.renderer = new Unramalak.Renderer();
         // initialize managers
-        this.unitManager = new Unramalak.Unit.UnitManager();
+        this.unitManager = new Unramalak.Unit.UnitManager(this.profile.dimension);
         this.cellManager = new Unramalak.Map.CellManager();
     },
 
@@ -72,9 +72,6 @@ $.Class('Unramalak.Map.Map', {}, {
             var cellIndex;
 
             for (cellIndex in context.cells) {
-                if (!context.cells.hasOwnProperty(cellIndex)) {
-                    continue;
-                }
                 var cell = context.cells[cellIndex];
 
                 if ($.isNull(this.cellsData[cell.x])) {
@@ -89,6 +86,7 @@ $.Class('Unramalak.Map.Map', {}, {
         // load map profile
         if (context.profile) {
             this.profile = context.profile;
+            this.profile.dimension = new Unramalak.Dimension(context.profile.width, context.profile.height);
         }
         // TODO manage map events loading
     },
@@ -99,7 +97,7 @@ $.Class('Unramalak.Map.Map', {}, {
     bind: function () {
         this.menu.bind();
         this.cellManager.bind();
-        EventManager.subscribe(UNRAMALAK_UNIT_MOVEMENT_DISPLAY, this.unitManager.displayMovement, [this.cells], this.unitManager);
+        this.unitManager.bind();
         EventManager.subscribe(UNRAMALAK_MAP_REQUIRED_RENDER, this.render, [], this);
         EventManager.subscribe(UNRAMALAK_MAP_SAVE, this.save, [], this);
     },
@@ -159,10 +157,6 @@ $.Class('Unramalak.Map.Map', {}, {
         this.cellsData = [];
     },
 
-//    move: function (delta) {
-//        this.cells.translate(delta);
-//    },
-
     /**
      * Dispatch map render event and redraw paper.js view
      */
@@ -216,6 +210,7 @@ $.Class('Unramalak.Map.Map', {}, {
      * Prevents canvas events bubbling
      */
     preventBubbling: function () {
+        // TODO move into Application instead of Map
         var stopPropagation = function (e) {
             e.stopImmediatePropagation();
             e.stopPropagation();
@@ -245,6 +240,9 @@ $.Class('Unramalak.Map.Context', {}, {
     numberOfSides: 0,
     preventBubbling: true, // not customizable now
     profile: {
+        name: '',
+        height: 0,
+        width: 0
     },
     radius: 0,
     startingPoint: null,

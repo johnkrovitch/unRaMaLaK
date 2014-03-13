@@ -93,7 +93,6 @@ $.Class('Unramalak.Map.CellManager', {}, {
     },
 
     onRasterRender: function (event) {
-        console.log('raster render', event.data);
         var raster = event.data;
         // add to paper.js group
         this.cells.group.addChild(raster.shape);
