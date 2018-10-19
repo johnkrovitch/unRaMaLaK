@@ -1,6 +1,8 @@
 unRamalak and Gmf Installation
 ========================
 
+[![GuardRails badge](https://badges.production.guardrails.io/johnkrovitch/unRaMaLaK.svg)](https://www.guardrails.io)
+
 Unramalak will be (one day...) a online js/php game. The goal is to kill, Unramalak, the giant Calmar, who takes the control of the universe.
 First you will be on your planet, with a classic hexagonal map, where you can move and attack with your units, in a tactical game mode.
 
